@@ -5,6 +5,22 @@ document.addEventListener('DOMContentLoaded',()=>{
   const activate=()=>{let current='home';for(const s of sections){if(window.scrollY>=s.offsetTop-130)current=s.id}links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current))};
   window.addEventListener('scroll',activate,{passive:true}); activate();
 
+  // Website-wide month abbreviation convention: Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec.
+  const monthAbbreviations={January:'Jan',February:'Feb',March:'Mar',April:'Apr',May:'May',June:'Jun',July:'Jul',August:'Aug',September:'Sep',October:'Oct',November:'Nov',December:'Dec'};
+  const replaceMonths=(root)=>{
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+    const nodes=[]; while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      if(node.parentElement?.closest('script,style,noscript'))return;
+      let text=node.nodeValue;
+      Object.entries(monthAbbreviations).forEach(([full,short])=>{
+        text=text.replace(new RegExp(`\\b${full}\\b`,'g'),short);
+      });
+      node.nodeValue=text;
+    });
+  };
+  replaceMonths(document.body);
+
   // Route presentation helpers used by the Durga Puja itinerary pages.
   const walkTimes={56:1,83:2,100:2,120:3,160:4,170:3,230:5,250:5,270:6,280:6,290:6,300:6,350:7,400:8,450:9,500:10,550:11,600:12,650:13,700:14,800:16,850:17,950:19,1000:20,1100:22,1200:24,1300:26,1400:28,1500:30,1600:32,1700:34,1800:36};
   const walking=(distance)=>`🚶 ${distance} m · ⏱️ ${walkTimes[distance]||Math.round(distance/50)} min`;
