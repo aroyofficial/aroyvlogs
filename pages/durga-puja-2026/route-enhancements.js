@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const formatDistance=(value,unit)=>{const metres=unit.toLowerCase()==='km'?Math.round(parseFloat(value)*1000):parseInt(value,10);return `🚶 ${metres} m · ⏱️ ${walkingTimes[metres+' m']||Math.round(metres/50)+' min'}`;};
   const enhanceWalking=text=>text.replace(/(?:🚶\s*)?(?:Walk\s+)?(?:about\s+)?(\d+(?:\.\d+)?)\s*(km|m)(?:\s*·\s*⏱️?\s*\d+\s*min)?/gi,(_,v,u)=>formatDistance(v,u));
   const replaceBally=root=>{const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];while(w.nextNode())nodes.push(w.currentNode);nodes.forEach(n=>n.nodeValue=n.nodeValue.replace(/\bBali\b/g,'Bally'));};
+  const abbreviateMonths=root=>{const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];while(w.nextNode())nodes.push(w.currentNode);nodes.forEach(n=>{n.nodeValue=n.nodeValue.replace(/January/g,'Jan').replace(/February/g,'Feb').replace(/March/g,'Mar').replace(/April/g,'Apr').replace(/May/g,'May').replace(/June/g,'Jun').replace(/July/g,'Jul').replace(/August/g,'Aug').replace(/September/g,'Sep').replace(/October/g,'Oct').replace(/November/g,'Nov').replace(/December/g,'Dec');});};
 
   document.querySelectorAll('.route-step').forEach(step=>{const card=step.querySelector('.route-card');if(!card)return;if(card.classList.contains('route-lunch')||/\bLUNCH\b/i.test(card.textContent)){const n=step.querySelector('.route-number');if(n)n.remove();step.classList.add('route-lunch-step');const meta=card.querySelector('.route-meta');if(meta)meta.textContent='🍴 LUNCH';if(/Allen Kitchen/i.test(card.textContent)){const p=card.querySelector('p');if(p)p.textContent='Lunch stop. 🚶 230 m · ⏱️ 5 min from Hazra Park.';}}});
 
@@ -19,6 +20,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   // Link only transfer/transport locations and other non-card locations. Pandal/lunch cards keep plain text because their Google Maps button is already present.
   const linkLocations=root=>{Object.entries(stationLinks).forEach(([name,url])=>{const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];while(w.nextNode())nodes.push(w.currentNode);nodes.forEach(node=>{if(!node.nodeValue.includes(name)||node.parentElement.closest('a')||node.parentElement.closest('.route-card'))return;const parts=node.nodeValue.split(name),frag=document.createDocumentFragment();parts.forEach((part,i)=>{if(i){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';a.textContent=name;a.className='route-location-link';frag.appendChild(a);}if(part)frag.appendChild(document.createTextNode(part));});node.parentNode.replaceChild(frag,node);});});};
-  replaceBally(document.body);linkLocations(document.body);
+  replaceBally(document.body);linkLocations(document.body);abbreviateMonths(document.body);
   document.querySelectorAll('.route-summary strong').forEach(e=>{if(/route workflow/i.test(e.textContent))e.textContent='Itinerary:';});
 });
