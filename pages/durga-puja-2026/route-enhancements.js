@@ -8,7 +8,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   const replaceBally=root=>{const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];while(w.nextNode())nodes.push(w.currentNode);nodes.forEach(n=>n.nodeValue=n.nodeValue.replace(/\bBali\b/g,'Bally'));};
 
   // Lunch is an itinerary event, never a numbered pandal stop.
-  document.querySelectorAll('.route-step').forEach(step=>{const card=step.querySelector('.route-card');if(!card)return;if(card.classList.contains('route-lunch')||/\bLUNCH\b/i.test(card.textContent)){const n=step.querySelector('.route-number');if(n)n.remove();const meta=card.querySelector('.route-meta');if(meta)meta.textContent='🍴 LUNCH';}});
+  document.querySelectorAll('.route-step').forEach(step=>{const card=step.querySelector('.route-card');if(!card)return;if(card.classList.contains('route-lunch')||/\bLUNCH\b/i.test(card.textContent)){const n=step.querySelector('.route-number');if(n)n.remove();step.classList.add('route-lunch-step');const meta=card.querySelector('.route-meta');if(meta)meta.textContent='🍴 LUNCH';}});
+
+  // Make lunch cards full-width so removing the serial number never collapses the card into the timeline gutter.
+  const lunchStyle=document.createElement('style');
+  lunchStyle.textContent='.route-step.route-lunch-step{display:block;margin-left:66px}.route-step.route-lunch-step .route-card{width:100%;}.route-step.route-lunch-step .route-top{align-items:flex-start;}@media(max-width:575.98px){.route-step.route-lunch-step{margin-left:52px}.route-step.route-lunch-step .route-top{flex-direction:column}.route-step.route-lunch-step .map-btn{width:100%;justify-content:center}}';
+  document.head.appendChild(lunchStyle);
 
   // Move every final-pandal onward instruction into a separate Transfer step.
   document.querySelectorAll('.route-list').forEach(list=>{
