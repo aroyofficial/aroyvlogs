@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.route-card p').forEach(function(p){p.innerHTML=p.innerHTML.replace(/Walk about ([\d,.]+\s*(?:m|km))/gi,'🚶 $1')});});
