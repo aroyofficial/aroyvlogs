@@ -1,0 +1,53 @@
+name: Ensure favicon on all pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  ensure-favicon:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Add favicon to every HTML page
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          favicon = 'https://aroyofficial.github.io/aroyvlogs/favicon.svg'
+          link = f'<link rel="icon" type="image/svg+xml" href="{favicon}">'
+          changed = []
+
+          for path in Path('.').rglob('*.html'):
+              if '.git' in path.parts:
+                  continue
+              text = path.read_text(encoding='utf-8')
+              if 'rel="icon"' in text.lower() or "rel='icon'" in text.lower():
+                  continue
+              head_end = text.lower().find('</head>')
+              if head_end == -1:
+                  continue
+              text = text[:head_end] + link + text[head_end:]
+              path.write_text(text, encoding='utf-8')
+              changed.append(str(path))
+
+          print('Favicon added to:', ', '.join(changed) if changed else 'no pages needed changes')
+          PY
+
+      - name: Commit favicon updates
+        run: |
+          if git diff --quiet; then
+            echo "All HTML pages already have the favicon."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: ensure favicon on all pages [skip ci]"
+          git push
