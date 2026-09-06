@@ -1,0 +1,35 @@
+name: Temporary Alipore transfer update
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  update-transfer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Update Chaturthi transfer
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('pages/durga-puja-2026/route-enhancements.js')
+          text = path.read_text(encoding='utf-8')
+          old = 'aliporeTransfer.innerHTML=\'<strong>Transfer:</strong> 🚶 140 m · ⏱️ 3 min to <a class=\"route-location-link\" target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/t1PHRUMhTE4B4TkF9\">Alipore Chetla Crossing</a> → Then take a bus to <a class=\"route-location-link\" target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/JXGZqe44TaWgLYLq9\">Keoratala Shamshan Bus Stop</a>.';'
+          new = 'aliporeTransfer.innerHTML=\'<strong>Transfer:</strong> 🚶 140 m · ⏱️ 3 min to <a class=\"route-location-link\" target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/gMDQdMpQeGo2BYB76\">Alipore Chetla Crossing</a> → Then take a bus to <a class=\"route-location-link\" target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/5yjU1pxGtQZqwDni7\">Keoratala Samshan</a>.';'
+          if old not in text:
+              raise SystemExit('Expected Alipore transfer not found')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+      - name: Commit update
+        run: |
+          if git diff --quiet; then
+            echo 'No changes needed'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add pages/durga-puja-2026/route-enhancements.js
+          git commit -m 'fix: update Chaturthi Alipore transfer [skip ci]'
+          git push
