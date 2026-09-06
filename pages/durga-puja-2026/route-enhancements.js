@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const firstP=first.querySelector('.route-top p');
     if(firstP)firstP.textContent='Walk 550 m (11 min) from Belgachia Metro Station.';
     const secondP=second.querySelector('.route-top p');
-    if(secondP)secondP.textContent='Puja pandal name of Belgachia Sadharon Durgotsav.';
+    if(secondP)secondP.textContent='Walk 400 m (8 min) from Belgachia Sadharon Durgotsav.';
 
     const existingTransfer=second.closest('.route-step')?.nextElementSibling;
     if(existingTransfer?.classList.contains('route-transport')){
