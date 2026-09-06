@@ -40,37 +40,14 @@ jobs:
           print('Favicon added to:', ', '.join(changed) if changed else 'no pages needed changes')
           PY
 
-      - name: Add Tricone Park to Chaturthi route
+      - name: Commit favicon updates
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          route = Path('pages/durga-puja-2026/route-enhancements.js')
-          text = route.read_text(encoding='utf-8')
-          marker = "    const cards=[...document.querySelectorAll('.route-list > .route-step .route-card')];"
-          insert = '''    const mudialiStep=[...document.querySelectorAll('.route-list > .route-step')].find(step=>step.querySelector('.route-card h3')?.textContent.trim()==='Mudiali Club');
-          if(mudialiStep && !document.querySelector('[data-chaturthi-tricone="true"]')){
-            const triconeStep=document.createElement('li');
-            triconeStep.className='route-step';
-            triconeStep.innerHTML='<div class="route-card puja-pandal" data-chaturthi-tricone="true" aria-expanded="false"><div class="route-top"><div><div class="route-meta">SOUTH KOLKATA</div><h3>Tricone Park</h3><p>🚶 600 m · ⏱️ 12 min from Mudiali Club.</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="https://maps.app.goo.gl/KdY5rTzjFfFjTg9r9">Google Maps ↗</a></div></div><div class="puja-pandal-expansion" aria-hidden="true"><div><div class="puja-pandal-expansion-content">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div></div></div>';
-            mudialiStep.after(triconeStep);
-          }
-
-'''
-          if marker not in text:
-              raise SystemExit('Expected route insertion marker not found')
-          if 'data-chaturthi-tricone="true"' not in text:
-              route.write_text(text.replace(marker, insert + marker, 1), encoding='utf-8')
-          PY
-
-      - name: Commit updates
-        run: |
-          if git diff --quiet && [ ! -f .github/workflows/temp-add-tricone-park.yml ]; then
-            echo "No changes needed."
+          if git diff --quiet; then
+            echo "All HTML pages already have the favicon."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          rm -f .github/workflows/temp-add-tricone-park.yml
           git add -A
-          git commit -m "chore: update Chaturthi route and ensure favicon [skip ci]"
+          git commit -m "chore: ensure favicon on all pages [skip ci]"
           git push
