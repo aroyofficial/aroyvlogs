@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     const newStep=document.createElement('li');
     newStep.className='route-step';
-    newStep.innerHTML='<span class="route-number">03</span><div class="route-card puja-pandal" data-serial="03" aria-expanded="false"><div class="route-top"><div><div class="route-meta">NORTH KOLKATA</div><h3>Tala Barowari</h3><p>🚶 550 m · ⏱️ 11 min from Tala Station.</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="https://maps.app.goo.gl/xGHonjh9uTQdS6B59">Google Maps ↗</a></div></div><div class="puja-pandal-expansion" aria-hidden="true"><div><div class="puja-pandal-expansion-content">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div></div></div>';
+    newStep.innerHTML='<span class="route-number">03</span><div class="route-card puja-pandal" data-serial="03" aria-expanded="false"><div class="route-top"><div><div class="route-meta">NORTH KOLKATA</div><h3>Tala Barowari</h3><p>🚶 550 m · ⏱️ 11 min from Tala Station.</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="https://maps.app.goo.gl/xGHonjh9uTQdS6B59">Google Maps ↗</a><a class="map-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/toilets/@22.60717,88.37605,17z?entry=ttu">Toilets ↗</a></div></div><div class="puja-pandal-expansion" aria-hidden="true"><div><div class="puja-pandal-expansion-content">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div></div></div>';
     if(existingTransfer)existingTransfer.before(newStep);else second.closest('.route-step').after(newStep);
 
     const cards=[...document.querySelectorAll('.route-list > .route-step .route-card')];
