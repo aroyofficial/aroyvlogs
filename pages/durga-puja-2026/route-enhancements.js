@@ -22,8 +22,43 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   document.querySelectorAll('.route-list').forEach(list=>{const steps=[...list.querySelectorAll(':scope > .route-step')];let previous='';let number=1;steps.forEach(step=>{const card=step.querySelector('.route-card');if(!card)return;const title=card.querySelector('h3')?.textContent.trim();const p=card.querySelector('p');const isLunch=step.classList.contains('route-lunch-step')||/\bLUNCH\b/i.test(card.textContent);if(isLunch){if(title==='Allen Kitchen'&&p)p.textContent='Lunch stop. 🚶 230 m · ⏱️ 5 min from Hazra Park.';}else{let n=step.querySelector('.route-number');if(!n){n=document.createElement('span');n.className='route-number';step.insertBefore(n,step.firstChild);}n.textContent=String(number).padStart(2,'0');number++;}if(p&&!isLunch){let text=p.textContent.trim();if(previous&&/\b(?:Walk|🚶|About)\b/i.test(text)&&!/\bfrom\b/i.test(text))text=text.replace(/\.$/,'')+' from '+previous+'.';p.textContent=enhanceWalking(text);}if(title&&!isLunch)previous=title;});});
   document.querySelectorAll('.route-transport').forEach(el=>{el.innerHTML=enhanceWalking(el.innerHTML);});
+
+  const setupPandalExpansions=()=>{
+    const isChaturthi=/\/chaturthi\.html$/i.test(location.pathname);
+    if(isChaturthi)return;
+    const style=document.createElement('style');
+    style.textContent='.puja-pandal{cursor:pointer;transition:box-shadow .2s ease,transform .2s ease}.puja-pandal:hover{box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateY(-1px)}.puja-pandal[aria-expanded="true"]{box-shadow:0 10px 30px rgba(0,0,0,.1)}.puja-pandal-expansion{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease;margin-top:0}.puja-pandal-expansion.is-open{grid-template-rows:1fr;margin-top:14px}.puja-pandal-expansion>div{overflow:hidden}.puja-pandal-expansion-content{padding:0;border-top:1px solid var(--line);color:var(--muted);font-size:14px;line-height:1.6}.puja-pandal-expansion.is-open .puja-pandal-expansion-content{padding-top:14px}.puja-pandal .route-actions{position:relative;z-index:2}.puja-pandal .route-actions a{cursor:pointer}';
+    document.head.appendChild(style);
+    let serial=1;
+    document.querySelectorAll('.route-step .route-card').forEach(card=>{
+      if(card.classList.contains('route-lunch')||/\bLUNCH\b/i.test(card.textContent))return;
+      card.classList.add('puja-pandal');
+      card.dataset.serial=String(serial).padStart(2,'0');
+      card.setAttribute('aria-expanded','false');
+      const panel=document.createElement('div');
+      panel.className='puja-pandal-expansion';
+      panel.setAttribute('aria-hidden','true');
+      panel.innerHTML='<div><div class="puja-pandal-expansion-content">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div>';
+      card.appendChild(panel);
+      card.addEventListener('click',event=>{
+        if(event.target.closest('a'))return;
+        const open=card.getAttribute('aria-expanded')==='true';
+        document.querySelectorAll('.puja-pandal[aria-expanded="true"]').forEach(other=>{
+          if(other===card)return;
+          other.setAttribute('aria-expanded','false');
+          const otherPanel=other.querySelector('.puja-pandal-expansion');
+          if(otherPanel){otherPanel.classList.remove('is-open');otherPanel.setAttribute('aria-hidden','true');}
+        });
+        card.setAttribute('aria-expanded',String(!open));
+        panel.classList.toggle('is-open',!open);
+        panel.setAttribute('aria-hidden',String(open));
+      });
+      serial++;
+    });
+  };
+
   const linkLocations=root=>{Object.entries(stationLinks).forEach(([name,url])=>{const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];while(w.nextNode())nodes.push(w.currentNode);nodes.forEach(node=>{if(!node.nodeValue.includes(name)||node.parentElement.closest('a')||node.parentElement.closest('.route-card')||node.parentElement.closest('.route-summary'))return;const parts=node.nodeValue.split(name),frag=document.createDocumentFragment();parts.forEach((part,i)=>{if(i){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';a.textContent=name;a.className='route-location-link';frag.appendChild(a);}if(part)frag.appendChild(document.createTextNode(part));});node.parentNode.replaceChild(frag,node);});});};
 
-  replaceBally(document.body);linkLocations(document.body);abbreviateMonths(document.body);
+  replaceBally(document.body);linkLocations(document.body);abbreviateMonths(document.body);setupPandalExpansions();
   document.querySelectorAll('.route-summary strong').forEach(e=>{if(/route workflow/i.test(e.textContent))e.textContent='Itinerary:';});
 });
