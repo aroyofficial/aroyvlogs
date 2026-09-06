@@ -15,9 +15,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Patch Chaturthi route
+      - name: Fix Tricone Park card
         run: |
-          python3 -c 'import base64;exec(base64.b64decode("ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCnBhdGggPSBQYXRoKCJwYWdlcy9kdXJnYS1wdWphLTIwMjYvcm91dGUtZW5oYW5jZW1lbnRzLmpzIikKdGV4dCA9IHBhdGgucmVhZF9leHQoZW5jb2Rpbmc9InV0Zi04IikKbWFya2VyID0gIiAgICBjb25zdCBjYXJkcz1bLi4uZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLnJvdXRlLWxpc3QgPiAucm91dGUtc3RlcCA+IC5yb3V0ZS1jYXJkJyldOyIKaW5zZXJ0ID0gIiIiIiAgICBjb25zdCBtdWRpYWxpU3RlcD1bLi4uZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLnJvdXRlLWxpc3QgPiAucm91dGUtc3RlcCcpXS5maW5kKHN0ZXA9PnN0ZXAucXVlcnlTZWxlY3Rvck9uZSgnLnJvdXRlLWNhcmQgaDMnKT8udGV4dENvbnRlbnQudHJpbSgpPT09J011ZGlhbGkgQ2x1YicpOwogICAgaWYobXVkaWFsaVN0ZXAgJiYgIWRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJ1tkYXRhLWNoYXR1cnRoaS10cmljb25lPSJ0cnVlIl0nKSkgewogICAgICBjb25zdCB0cmljb25lU3RlcD1kb2N1bWVudC5jcmVhdGVFbGVtZW50KCdsaScpOwogICAgICB0cmljb25lU3RlcC5jbGFzc05hbWU9J3JvdXRlLXN0ZXAnOwogICAgICB0cmljb25lU3RlcC5pbm5lckhUTUw9JzxzcGFuIGNsYXNzPSJyb3V0ZS1udW1iZXIiPjA0PC9zcGFuPjxkaXYgY2xhc3M9InJvdXRlLWNhcmQgcHVqYS1wYW5kYWwiIGRhdGEtY2hhdHVydGhpLXRyaWNvbmU9InRydWUiIGFyaWEtZXhwYW5kZWQ9ImZhbHNlIj48ZGl2IGNsYXNzPSJyb3V0ZS10b3AiPjxkaXY+PGRpdiBjbGFzcz0icm91dGUtbWV0YSI+U09VVEggS09MS0FUQTwvZGl2PjxoMz5Ucmljb25lIFBhcmsgPC9oMz48cD7wn5SaIDYwMCBtIOKciSDigJQxMiBtaW4gZnJvbSBNdWRpYWxpIENsdWIuPC9wPjwvZGl2PjxkaXYgY2xhc3M9InJvdXRlLWFjdGlvbnMiPjxhIGNsYXNzPSJtYXAtYnRuIiB0YXJnZXQ9Il9ibGFuayIgcmVsPSJub29wZW5lciIgaHJlZj0iaHR0cHM6Ly9tYXBzLmFwcC5nby5nbC9LZFk1clR6akZmRkZmVGc0OXkiPkdvb2dsZSBNYXBzIOKcqjwvaT48L2Rpdj48L2Rpdj48ZGl2IGNsYXNzPSJwdWphLXBhbmRhbC1leHBhbnNpb24iIGFyaWEtaGlkZGVuPSJ0cnVlIj48ZGl2PjxkaXYgY2xhc3M9InB1amEtcGFuZGFsLWV4cGFuc2lvbi1jb250ZW50Ij5UYXAgdGhpcyBjYXJkIHRvIGV4cGFuZC4gRGV0YWlsZWQgcGFuZGFsIG5vdGVzIGNhbiBiZSBwbGFjZWQgaGVyZSBsYXRlci48L2Rpdj48L2Rpdj48L2Rpdj48L2Rpdj4nOwogICAgICBtdWRpYWxpU3RlcC5hZnRlcih0cmljb25lU3RlcCk7CiAgICB9CgogICkiIiIKaWYgbWFya2VyIG5vdCBpbiB0ZXh0OgogICAgcmFpc2UgU3lzdGVtRXhpdCgiRXhwZWN0ZWQgaW5zZXJ0aW9uIG1hcmtlciBub3QgZm91bmQiKQppZiAnZGF0YS1jaGF0dXJ0aGktdHJpY29uZT0idHJ1ZSIgbm90IGluIHRleHQ6CiAgICBwYXRoLndyaXRlX3RleHQodGV4dC5yZXBsYWNlKG1hcmtlciwgaW5zZXJ0ICsgbWFya2VyLCAxKSwgZW5jb2Rpbmc9InV0Zi04IikK"))'
+          python3 -c 'import base64;exec(base64.b64decode("ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCnBhdGggPSBQYXRoKCJwYWdlcy9kdXJnYS1wdWphLTIwMjYvcm91dGUtZW5oYW5jZW1lbnRzLmpzIikKdGV4dCA9IHBhdGgucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpCm9sZCA9ICc8ZGl2IGNsYXNzPSJyb3V0ZS1jYXJkIHB1amEtcGFuZGFsIiBkYXRhLWNoYXR1cnRoaS10cmljb25lPSJ0cnVlIicKbmV3ID0gJzxzcGFuIGNsYXNzPSJyb3V0ZS1udW1iZXIiPjA0PC9zcGFuPjxkaXYgY2xhc3M9InJvdXRlLWNhcmQgcHVqYS1wYW5kYWwiIGRhdGEtY2hhdHVydGhpLXRyaWNvbmU9InRydWUiJwppZiBvbGQgaW4gdGV4dCBhbmQgbmV3IG5vdCBpbiB0ZXh0OgogICAgcGF0aC53cml0ZV90ZXh0KHRleHQucmVwbGFjZShvbGQsIG5ldywgMSksIGVuY29kaW5nPSJ1dGYtOCIpCg=="))'
       - name: Commit and remove temporary workflow
         run: |
           git config user.name 'github-actions[bot]'
@@ -25,5 +25,5 @@ jobs:
           rm -f .github/workflows/temp-add-tricone-park.yml
           git add pages/durga-puja-2026/route-enhancements.js .github/workflows/temp-add-tricone-park.yml
           git diff --cached --quiet && exit 0
-          git commit -m 'Add Tricone Park to Chaturthi route'
+          git commit -m 'Fix Tricone Park card numbering'
           git push origin HEAD:main
