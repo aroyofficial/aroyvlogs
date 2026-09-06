@@ -50,6 +50,11 @@ document.addEventListener('DOMContentLoaded',()=>{
       triconeStep.className='route-step';
       triconeStep.innerHTML='<span class="route-number">04</span><div class="route-card puja-pandal" data-chaturthi-tricone="true" aria-expanded="false"><div class="route-top"><div><div class="route-meta">SOUTH KOLKATA</div><h3>Tricone Park</h3><p>🚶 600 m · ⏱️ 12 min from Mudiali Club.</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="https://maps.app.goo.gl/KdY5rTzjFfFjTg9r9">Google Maps ↗</a><a class="map-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/toilets+near+Tricone+Park,+Kolkata?entry=ttu">Toilets ↗</a></div></div><div class="puja-pandal-expansion" aria-hidden="true"><div><div class="puja-pandal-expansion-content">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div></div></div>';
       mudialiStep.after(triconeStep);
+      const triconeTransfer=document.createElement('li');
+      triconeTransfer.className='route-transport';
+      triconeTransfer.dataset.chaturthiTriconeTransfer='true';
+      triconeTransfer.innerHTML='<strong>Transfer:</strong> Walk 290 m (5 mins) to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/5MvJnw32sjB3Uh8Y7">Tollygunge PS</a> → Then take a bus to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/eovQE6JT1o9CP8jp7">New Alipore Petrol Pump</a>.';
+      triconeStep.after(triconeTransfer);
     }
 
     const cards=[...document.querySelectorAll('.route-list > .route-step .route-card')];
