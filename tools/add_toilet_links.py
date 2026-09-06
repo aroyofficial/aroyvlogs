@@ -31,6 +31,10 @@ COORD_PATTERNS = [
     ),
     re.compile(r"(?:[?&](?:q|query)=)(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)", re.I),
     re.compile(r"(?:[?&](?:ll|center)=)(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)", re.I),
+    re.compile(
+        r"/maps/search/\s*(-?\d+(?:\.\d+)?),\s*\+?\s*(-?\d+(?:\.\d+)?)",
+        re.I,
+    ),
 ]
 
 MAP_ANCHOR_RE = re.compile(
