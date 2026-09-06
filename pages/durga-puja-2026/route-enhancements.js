@@ -14,6 +14,32 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.route-list').forEach(list=>{const steps=[...list.querySelectorAll(':scope > .route-step')];let previous='';let number=1;steps.forEach(step=>{const card=step.querySelector('.route-card');if(!card)return;const title=card.querySelector('h3')?.textContent.trim();const p=card.querySelector('p');const isLunch=step.classList.contains('route-lunch-step')||/\bLUNCH\b/i.test(card.textContent);if(isLunch){if(title==='Allen Kitchen'&&p)p.textContent='Lunch stop. 🚶 230 m · ⏱️ 5 min from Hazra Park.';}else{let n=step.querySelector('.route-number');if(!n){n=document.createElement('span');n.className='route-number';step.insertBefore(n,step.firstChild);}n.textContent=String(number).padStart(2,'0');number++;}if(p&&!isLunch){let text=p.textContent.trim();if(previous&&/\b(?:Walk|🚶|About)\b/i.test(text)&&!/\bfrom\b/i.test(text))text=text.replace(/\.$/,'')+' from '+previous+'.';p.textContent=enhanceWalking(text);}if(title&&!isLunch)previous=title;});});
   document.querySelectorAll('.route-transport').forEach(el=>{el.innerHTML=enhanceWalking(el.innerHTML);});
   const linkLocations=root=>{Object.entries(stationLinks).forEach(([name,url])=>{const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];while(w.nextNode())nodes.push(w.currentNode);nodes.forEach(node=>{if(!node.nodeValue.includes(name)||node.parentElement.closest('a')||node.parentElement.closest('.route-card')||node.parentElement.closest('.route-summary'))return;const parts=node.nodeValue.split(name),frag=document.createDocumentFragment();parts.forEach((part,i)=>{if(i){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';a.textContent=name;a.className='route-location-link';frag.appendChild(a);}if(part)frag.appendChild(document.createTextNode(part));});node.parentNode.replaceChild(frag,node);});});};
+
+  const toiletPages=/\/(panchami|shashthi|saptami|navami)\.html$/i.test(window.location.pathname);
+  if(toiletPages){
+    const toiletStyle=document.createElement('style');
+    toiletStyle.textContent='.route-actions{display:flex;flex-direction:column;align-items:flex-end;gap:8px}.route-actions .map-btn{width:max-content}@media(max-width:575.98px){.route-actions{flex-direction:row;justify-content:flex-start;align-items:flex-start;gap:8px}.route-actions .map-btn{width:max-content;justify-content:center}}';
+    document.head.appendChild(toiletStyle);
+    document.querySelectorAll('.route-step').forEach(step=>{
+      const card=step.querySelector('.route-card');
+      if(!card||card.classList.contains('route-lunch')||card.querySelector('.route-lunch')||/\bLUNCH\b/i.test(card.textContent)||card.querySelector('[data-toilet-button]'))return;
+      const title=card.querySelector('h3')?.textContent.trim();
+      const mapButton=card.querySelector('.map-btn');
+      const top=card.querySelector('.route-top');
+      if(!title||!mapButton||!top)return;
+      let actions=top.querySelector('.route-actions');
+      if(!actions){actions=document.createElement('div');actions.className='route-actions';top.replaceChild(actions,mapButton);actions.appendChild(mapButton);}
+      const toilet=document.createElement('a');
+      toilet.className='map-btn';
+      toilet.dataset.toiletButton='true';
+      toilet.target='_blank';
+      toilet.rel='noopener';
+      toilet.textContent='Toilets ↗';
+      toilet.href='https://www.google.com/maps/search/toilets+within+500+meters+of+'+encodeURIComponent(title+', Kolkata')+'?entry=ttu';
+      actions.appendChild(toilet);
+    });
+  }
+
   replaceBally(document.body);linkLocations(document.body);abbreviateMonths(document.body);
   document.querySelectorAll('.route-summary strong').forEach(e=>{if(/route workflow/i.test(e.textContent))e.textContent='Itinerary:';});
 });
