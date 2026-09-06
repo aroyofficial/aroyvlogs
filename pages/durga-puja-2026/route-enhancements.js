@@ -57,6 +57,25 @@ document.addEventListener('DOMContentLoaded',()=>{
       triconeStep.after(triconeTransfer);
     }
 
+    const chaturthiSteps=[...document.querySelectorAll('.route-list > .route-step')];
+    const suruchiStep=chaturthiSteps.find(step=>step.querySelector('.route-card h3')?.textContent.trim()==='Suruchi Sangha');
+    const chetlaStep=chaturthiSteps.find(step=>step.querySelector('.route-card h3')?.textContent.trim()==='Chetla Agrani');
+    if(suruchiStep){
+      const suruchiP=suruchiStep.querySelector('.route-card .route-top p');
+      if(suruchiP)suruchiP.textContent='Walk 120 m (3 min) from New Alipore Petrol Pump.';
+      if(!document.querySelector('[data-chaturthi-suruchi-transfer="true"]')){
+        const suruchiTransfer=document.createElement('li');
+        suruchiTransfer.className='route-transport';
+        suruchiTransfer.dataset.chaturthiSuruchiTransfer='true';
+        suruchiTransfer.innerHTML='<strong>Transfer:</strong> Walk 210 m (5 mins) to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/9GBxKXYNRruMef2j9">Bankim Mukherjee Sarani</a> → Then take a bus to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/cMwWYHMpwiR2EMMm7">Chetla</a>.';
+        suruchiStep.after(suruchiTransfer);
+      }
+    }
+    if(chetlaStep){
+      const chetlaP=chetlaStep.querySelector('.route-card .route-top p');
+      if(chetlaP)chetlaP.textContent='Walk 200 m (4 min) from Chetla.';
+    }
+
     const cards=[...document.querySelectorAll('.route-list > .route-step .route-card')];
     let serial=1;
     cards.forEach(card=>{if(card.classList.contains('route-lunch')||/\bLUNCH\b/i.test(card.textContent))return;card.classList.add('puja-pandal');card.dataset.serial=String(serial).padStart(2,'0');const n=card.parentElement.querySelector('.route-number');if(n)n.textContent=String(serial).padStart(2,'0');serial++;});
