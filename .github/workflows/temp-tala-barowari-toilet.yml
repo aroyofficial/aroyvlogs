@@ -1,0 +1,32 @@
+name: Add Tala Barowari toilets button
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  patch:
+    if: github.event.head_commit.message != 'Add Tala Barowari toilets button'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch Tala Barowari card
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('pages/durga-puja-2026/route-enhancements.js')
+          s=p.read_text()
+          old='href="https://maps.app.goo.gl/xGHonjh9uTQdS6B59">Google Maps ↗</a></div>'
+          new='href="https://maps.app.goo.gl/xGHonjh9uTQdS6B59">Google Maps ↗</a><a class="map-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/toilets/@22.60717,88.37605,17z?entry=ttu">Toilets ↗</a></div>'
+          if old not in s:
+              raise SystemExit('Tala Barowari button pattern not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Commit patch and remove temporary workflow
+        run: |
+          rm .github/workflows/temp-tala-barowari-toilet.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add pages/durga-puja-2026/route-enhancements.js .github/workflows/temp-tala-barowari-toilet.yml
+          git commit -m 'Add Tala Barowari toilets button'
+          git push
