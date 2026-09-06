@@ -30,13 +30,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     first.querySelector('h3').textContent='Belgachia Sadharon Durgotsav';
     first.querySelector('.map-btn')?.setAttribute('href','https://maps.app.goo.gl/XpS9m7eLPHJJWsir8');
     const firstP=first.querySelector('.route-top p');
-    if(firstP)firstP.textContent='🚶 550 m · ⏱️ 11 min from Belgachia Metro Station.';
+    if(firstP)firstP.textContent='Walk 550 m (11 min) from Belgachia Metro Station.';
     const secondP=second.querySelector('.route-top p');
-    if(secondP)secondP.textContent='🚶 400 m · ⏱️ 8 min from Belgachia Sadharon Durgotsav.';
+    if(secondP)secondP.textContent='Walk 400 m (8 min) from Belgachia Sadharon Durgotsav.';
 
     const existingTransfer=second.closest('.route-step')?.nextElementSibling;
     if(existingTransfer?.classList.contains('route-transport')){
-      existingTransfer.innerHTML='<strong>Transfer:</strong> 🚶 200 m · ⏱️ 4 min to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/AyvrBcS9uCJjdVZw8">Tala Park Circus Maidan</a> → Then take an auto to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/A1sk3FKThgpj1QnA9">Tala Station</a>.';
+      existingTransfer.innerHTML='<strong>Transfer:</strong> 🚶 550 m · ⏱️ 11 min to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/A1sk3FKThgpj1QnA9">Tala Station</a> → then take an auto/bus to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/yzzGTjmfzijSw2z96">Belgachia Metro Station</a> → take a metro to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/ZH7pYZcyvU91bF8p9">Rabindra Sarobar Metro Station</a>.';
     }
 
     const newStep=document.createElement('li');
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const chetlaStep=chaturthiSteps.find(step=>step.querySelector('.route-card h3')?.textContent.trim()==='Chetla Agrani');
     if(suruchiStep){
       const suruchiP=suruchiStep.querySelector('.route-card .route-top p');
-      if(suruchiP)suruchiP.textContent='🚶 120 m · ⏱️ 3 min from New Alipore Petrol Pump.';
+      if(suruchiP)suruchiP.textContent='Walk 120 m (3 min) from New Alipore Petrol Pump.';
       if(!document.querySelector('[data-chaturthi-suruchi-transfer="true"]')){
         const suruchiTransfer=document.createElement('li');
         suruchiTransfer.className='route-transport';
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
     if(chetlaStep){
       const chetlaP=chetlaStep.querySelector('.route-card .route-top p');
-      if(chetlaP)chetlaP.textContent='🚶 200 m · ⏱️ 4 min from Chetla.';
+      if(chetlaP)chetlaP.textContent='Walk 200 m (4 min) from Chetla.';
     }
 
     const aliporeStep=chaturthiSteps.find(step=>step.querySelector('.route-card h3')?.textContent.trim()==='Alipore Sarbojonin');
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
     if(nepalStep){
       const nepalP=nepalStep.querySelector('.route-card .route-top p');
-      if(nepalP)nepalP.textContent='🚶 170 m · ⏱️ 4 mins from Keoratala Shamshan Bus Stop.';
+      if(nepalP)nepalP.textContent='Walk 170 m (4 mins) from Keoratala Shamshan Bus Stop.';
     }
 
     const cards=[...document.querySelectorAll('.route-list > .route-step .route-card')];
