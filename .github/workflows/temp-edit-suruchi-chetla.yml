@@ -1,0 +1,60 @@
+name: Temporary edit Suruchi Chetla
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch Chaturthi route
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('pages/durga-puja-2026/route-enhancements.js')
+          text = path.read_text(encoding='utf-8')
+          marker = '    const cards=[...document.querySelectorAll(\'.route-list > .route-step .route-card\')];'
+          insert = '''    const chaturthiSteps=[...document.querySelectorAll('.route-list > .route-step')];
+          const suruchiStep=chaturthiSteps.find(step=>step.querySelector('.route-card h3')?.textContent.trim()==='Suruchi Sangha');
+          const chetlaStep=chaturthiSteps.find(step=>step.querySelector('.route-card h3')?.textContent.trim()==='Chetla Agrani');
+          if(suruchiStep){
+            const suruchiP=suruchiStep.querySelector('.route-card .route-top p');
+            if(suruchiP)suruchiP.textContent='Walk 120 m (3 min) from New Alipore Petrol Pump.';
+            if(!document.querySelector('[data-chaturthi-suruchi-transfer="true"]')){
+              const suruchiTransfer=document.createElement('li');
+              suruchiTransfer.className='route-transport';
+              suruchiTransfer.dataset.chaturthiSuruchiTransfer='true';
+              suruchiTransfer.innerHTML='<strong>Transfer:</strong> Walk 210 m (5 mins) to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/9GBxKXYNRruMef2j9">Bankim Mukherjee Sarani</a> → Then take a bus to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/cMwWYHMpwiR2EMMm7">Chetla</a>.';
+              suruchiStep.after(suruchiTransfer);
+            }
+          }
+          if(chetlaStep){
+            const chetlaP=chetlaStep.querySelector('.route-card .route-top p');
+            if(chetlaP)chetlaP.textContent='Walk 200 m (4 min) from Chetla.';
+          }
+
+'''
+          if marker not in text:
+              raise SystemExit('Expected cards marker not found')
+          if 'data-chaturthi-suruchi-transfer="true"' not in text:
+              text = text.replace(marker, insert + marker, 1)
+          else:
+              text = text.replace("const suruchiP=suruchiStep.querySelector('.route-card .route-top p');", "const suruchiP=suruchiStep.querySelector('.route-card .route-top p');", 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+      - name: Commit changes and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/temp-edit-suruchi-chetla.yml
+          git add pages/durga-puja-2026/route-enhancements.js .github/workflows/temp-edit-suruchi-chetla.yml
+          git commit -m 'Update Chaturthi Suruchi and Chetla route'
+          git push origin HEAD:main
