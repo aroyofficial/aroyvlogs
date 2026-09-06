@@ -76,6 +76,20 @@ document.addEventListener('DOMContentLoaded',()=>{
       if(chetlaP)chetlaP.textContent='Walk 200 m (4 min) from Chetla.';
     }
 
+    const aliporeStep=chaturthiSteps.find(step=>step.querySelector('.route-card h3')?.textContent.trim()==='Alipore Sarbojonin');
+    const nepalStep=chaturthiSteps.find(step=>step.querySelector('.route-card h3')?.textContent.trim()==='Nepal Bhattacharjee Street Club');
+    if(aliporeStep && !document.querySelector('[data-chaturthi-alipore-transfer="true"]')){
+      const aliporeTransfer=document.createElement('li');
+      aliporeTransfer.className='route-transport';
+      aliporeTransfer.dataset.chaturthiAliporeTransfer='true';
+      aliporeTransfer.innerHTML='<strong>Transfer:</strong> Walk 140 m (3 min) to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/t1PHRUMhTE4B4TkF9">Alipore Chetla Crossing</a> → Then take a bus to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/JXGZqe44TaWgLYLq9">Keoratala Shamshan Bus Stop</a>.';
+      aliporeStep.after(aliporeTransfer);
+    }
+    if(nepalStep){
+      const nepalP=nepalStep.querySelector('.route-card .route-top p');
+      if(nepalP)nepalP.textContent='Walk 170 m (4 mins) from Keoratala Shamshan Bus Stop.';
+    }
+
     const cards=[...document.querySelectorAll('.route-list > .route-step .route-card')];
     let serial=1;
     cards.forEach(card=>{if(card.classList.contains('route-lunch')||/\bLUNCH\b/i.test(card.textContent))return;card.classList.add('puja-pandal');card.dataset.serial=String(serial).padStart(2,'0');const n=card.parentElement.querySelector('.route-number');if(n)n.textContent=String(serial).padStart(2,'0');serial++;});
