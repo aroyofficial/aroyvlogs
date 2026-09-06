@@ -44,6 +44,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     newStep.innerHTML='<span class="route-number">03</span><div class="route-card puja-pandal" data-serial="03" aria-expanded="false"><div class="route-top"><div><div class="route-meta">NORTH KOLKATA</div><h3>Tala Barowari</h3><p>🚶 550 m · ⏱️ 11 min from Tala Station.</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="https://maps.app.goo.gl/xGHonjh9uTQdS6B59">Google Maps ↗</a></div></div><div class="puja-pandal-expansion" aria-hidden="true"><div><div class="puja-pandal-expansion-content">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div></div></div>';
     transfer.after(newStep);
 
+    const returnTransfer=document.createElement('li');
+    returnTransfer.className='route-transport';
+    returnTransfer.innerHTML='<strong>Transfer:</strong> 🚶 550 m · ⏱️ 11 min back to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/A1sk3FKThgpj1QnA9">Tala Station</a> → then take an auto/bus to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/yzzGTjmfzijSw2z96">Belgachia Metro Station</a> → take a metro to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/ZH7pYZcyvU91bF8p9">Rabindra Sarobar Metro Station</a>.';
+    newStep.after(returnTransfer);
+
     const cards=[...document.querySelectorAll('.route-list > .route-step .route-card')];
     let serial=1;
     cards.forEach(card=>{if(card.classList.contains('route-lunch')||/\bLUNCH\b/i.test(card.textContent))return;card.classList.add('puja-pandal');card.dataset.serial=String(serial).padStart(2,'0');const n=card.parentElement.querySelector('.route-number');if(n)n.textContent=String(serial).padStart(2,'0');serial++;});
