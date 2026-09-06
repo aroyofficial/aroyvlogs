@@ -1,0 +1,32 @@
+name: Generate nearby toilet links
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  generate-toilet-links:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate toilet links
+        run: python3 tools/add_toilet_links.py
+
+      - name: Commit generated links
+        run: |
+          if git diff --quiet; then
+            echo "No toilet-link changes needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pages/durga-puja-2026/panchami.html pages/durga-puja-2026/shashthi.html pages/durga-puja-2026/saptami.html pages/durga-puja-2026/navami.html
+          git commit -m "Add nearby toilet links to Puja day pages [skip ci]"
+          git push
