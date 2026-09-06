@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     first.querySelector('h3').textContent='Belgachia Sadharon Durgotsav';
     first.querySelector('.map-btn')?.setAttribute('href','https://maps.app.goo.gl/XpS9m7eLPHJJWsir8');
     const firstP=first.querySelector('.route-top p');
-    if(firstP)firstP.textContent='Walk about 650 m from Dakshineswar Metro Station.';
+    if(firstP)firstP.textContent='Walk 550 m (11 min) from Belgachia Metro Station.';
     const secondP=second.querySelector('.route-top p');
     if(secondP)secondP.textContent='Puja pandal name of Belgachia Sadharon Durgotsav.';
 
