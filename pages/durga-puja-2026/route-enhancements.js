@@ -34,15 +34,15 @@ document.addEventListener('DOMContentLoaded',()=>{
     const secondP=second.querySelector('.route-top p');
     if(secondP)secondP.textContent='Puja pandal name of Belgachia Sadharon Durgotsav.';
 
-    const transfer=document.createElement('li');
-    transfer.className='route-transport';
-    transfer.innerHTML='<strong>Transfer:</strong> 🚶 550 m · ⏱️ 11 min to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/ZwAb1n2Sh52tzW7T6">Belgachia Bus Stop</a> → take an auto to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/A1sk3FKThgpj1QnA9">Tala Station</a>.';
-    second.closest('.route-step').after(transfer);
+    const existingTransfer=second.closest('.route-step')?.nextElementSibling;
+    if(existingTransfer?.classList.contains('route-transport')){
+      existingTransfer.innerHTML='<strong>Transfer:</strong> Walk back 550 m (11 min to Tala Station) then take an auto/bus to Belgachia Metro Station. Then take a metro to Rabindra Sarobar Metro Station.';
+    }
 
     const newStep=document.createElement('li');
     newStep.className='route-step';
     newStep.innerHTML='<span class="route-number">03</span><div class="route-card puja-pandal" data-serial="03" aria-expanded="false"><div class="route-top"><div><div class="route-meta">NORTH KOLKATA</div><h3>Tala Barowari</h3><p>🚶 550 m · ⏱️ 11 min from Tala Station.</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="https://maps.app.goo.gl/xGHonjh9uTQdS6B59">Google Maps ↗</a></div></div><div class="puja-pandal-expansion" aria-hidden="true"><div><div class="puja-pandal-expansion-content">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div></div></div>';
-    transfer.after(newStep);
+    if(existingTransfer)existingTransfer.before(newStep);else second.closest('.route-step').after(newStep);
 
     const cards=[...document.querySelectorAll('.route-list > .route-step .route-card')];
     let serial=1;
