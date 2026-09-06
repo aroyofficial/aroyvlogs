@@ -16,11 +16,17 @@ jobs:
           from pathlib import Path
           path = Path('pages/durga-puja-2026/route-enhancements.js')
           text = path.read_text(encoding='utf-8')
-          old = 'aliporeTransfer.innerHTML=\'<strong>Transfer:</strong> 🚶 140 m · ⏱️ 3 min to <a class=\"route-location-link\" target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/t1PHRUMhTE4B4TkF9\">Alipore Chetla Crossing</a> → Then take a bus to <a class=\"route-location-link\" target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/JXGZqe44TaWgLYLq9\">Keoratala Shamshan Bus Stop</a>.';'
-          new = 'aliporeTransfer.innerHTML=\'<strong>Transfer:</strong> 🚶 140 m · ⏱️ 3 min to <a class=\"route-location-link\" target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/gMDQdMpQeGo2BYB76\">Alipore Chetla Crossing</a> → Then take a bus to <a class=\"route-location-link\" target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/5yjU1pxGtQZqwDni7\">Keoratala Samshan</a>.';'
-          if old not in text:
-              raise SystemExit('Expected Alipore transfer not found')
-          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          replacements = {
+              'https://maps.app.goo.gl/t1PHRUMhTE4B4TkF9': 'https://maps.app.goo.gl/gMDQdMpQeGo2BYB76',
+              'https://maps.app.goo.gl/JXGZqe44TaWgLYLq9': 'https://maps.app.goo.gl/5yjU1pxGtQZqwDni7',
+              'Keoratala Shamshan Bus Stop</a>.': 'Keoratala Samshan</a>.'
+          }
+          original = text
+          for old, new in replacements.items():
+              text = text.replace(old, new, 1)
+          if text == original:
+              raise SystemExit('Expected Alipore transfer links/text were not found')
+          path.write_text(text, encoding='utf-8')
           PY
       - name: Commit update
         run: |
