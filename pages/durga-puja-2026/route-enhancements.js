@@ -51,11 +51,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     newStep.before(talaTransfer);
 
     const mudialiStep=[...document.querySelectorAll('.route-list > .route-step')].find(step=>step.querySelector('.route-card h3')?.textContent.trim()==='Mudiali Club');
+    const shibStep=[...document.querySelectorAll('.route-list > .route-step')].find(step=>step.querySelector('.route-card h3')?.textContent.trim()==='Shib Mandir Sarbojonin');
     if(mudialiStep && !document.querySelector('[data-chaturthi-tricone="true"]')){
       const triconeStep=document.createElement('li');
       triconeStep.className='route-step';
       triconeStep.innerHTML='<span class="route-number">04</span><div class="route-card puja-pandal" data-chaturthi-tricone="true" aria-expanded="false"><div class="route-top"><div><div class="route-meta">SOUTH KOLKATA</div><h3>Tricone Park</h3><p>🚶 600 m · ⏱️ 12 min from Mudiali Club.</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="https://maps.app.goo.gl/KdY5rTzjFfFjTg9r9">Google Maps ↗</a><a class="map-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/toilets+near+Tricone+Park,+Kolkata?entry=ttu">Toilets ↗</a></div></div><div class="puja-pandal-expansion" aria-hidden="true"><div><div class="puja-pandal-expansion-content">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div></div></div>';
-      mudialiStep.after(triconeStep);
+      (shibStep||mudialiStep).after(triconeStep);
       const triconeTransfer=document.createElement('li');
       triconeTransfer.className='route-transport';
       triconeTransfer.dataset.chaturthiTriconeTransfer='true';
