@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       const aliporeTransfer=document.createElement('li');
       aliporeTransfer.className='route-transport';
       aliporeTransfer.dataset.chaturthiAliporeTransfer='true';
-      aliporeTransfer.innerHTML='<strong>Transfer:</strong> 🚶 140 m · ⏱️ 3 min to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/t1PHRUMhTE4B4TkF9">Alipore Chetla Crossing</a> → Then take a bus to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/JXGZqe44TaWgLYLq9">Keoratala Shamshan Bus Stop</a>.';
+      aliporeTransfer.innerHTML='<strong>Transfer:</strong> 🚶 140 m · ⏱️ 3 min to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/gMDQdMpQeGo2BYB76">Alipore Chetla Crossing</a> → Then take a bus to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/5yjU1pxGtQZqwDni7">Keoratala Samshan</a>.';
       aliporeStep.after(aliporeTransfer);
     }
     if(nepalStep){
