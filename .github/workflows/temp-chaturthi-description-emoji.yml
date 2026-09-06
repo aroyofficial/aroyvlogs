@@ -1,0 +1,37 @@
+name: Fix Chaturthi walking description emojis
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Update Chaturthi descriptions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('pages/durga-puja-2026/route-enhancements.js')
+          text = path.read_text(encoding='utf-8')
+          replacements = {
+              "Walk 550 m (11 min) from Belgachia Metro Station.": "🚶 550 m · ⏱️ 11 min from Belgachia Metro Station.",
+              "Walk 400 m (8 min) from Belgachia Sadharon Durgotsav.": "🚶 400 m · ⏱️ 8 min from Belgachia Sadharon Durgotsav.",
+              "Walk 120 m (3 min) from New Alipore Petrol Pump.": "🚶 120 m · ⏱️ 3 min from New Alipore Petrol Pump.",
+              "Walk 200 m (4 min) from Chetla.": "🚶 200 m · ⏱️ 4 min from Chetla.",
+              "Walk 170 m (4 mins) from Keoratala Shamshan Bus Stop.": "🚶 170 m · ⏱️ 4 mins from Keoratala Shamshan Bus Stop."
+          }
+          for old, new in replacements.items():
+              text = text.replace(old, new)
+          path.write_text(text, encoding='utf-8')
+          PY
+      - name: Commit changes and remove temporary workflow
+        run: |
+          git rm .github/workflows/temp-chaturthi-description-emoji.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pages/durga-puja-2026/route-enhancements.js
+          git commit -m "fix: add walking and clock emojis to Chaturthi descriptions [skip ci]"
+          git push
