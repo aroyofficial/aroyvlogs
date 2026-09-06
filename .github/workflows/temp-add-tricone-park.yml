@@ -16,28 +16,27 @@ jobs:
         with:
           fetch-depth: 0
       - name: Patch Chaturthi route
-        shell: python
         run: |
+          python3 - <<'PY'
           from pathlib import Path
           path = Path('pages/durga-puja-2026/route-enhancements.js')
           text = path.read_text(encoding='utf-8')
           marker = "    const cards=[...document.querySelectorAll('.route-list > .route-step .route-card')];"
-          insert = """    const mudialiStep=[...document.querySelectorAll('.route-list > .route-step')].find(step=>step.querySelector('.route-card h3')?.textContent.trim()==='Mudiali Club');
-          if(mudialiStep && !document.querySelector('[data-chaturthi-tricone=\"true\"]')){
+          insert = '''    const mudialiStep=[...document.querySelectorAll('.route-list > .route-step')].find(step=>step.querySelector('.route-card h3')?.textContent.trim()==='Mudiali Club');
+          if(mudialiStep && !document.querySelector('[data-chaturthi-tricone="true"]')){
             const triconeStep=document.createElement('li');
             triconeStep.className='route-step';
-            triconeStep.innerHTML='<div class=\"route-card puja-pandal\" data-chaturthi-tricone=\"true\" aria-expanded=\"false\"><div class=\"route-top\"><div><div class=\"route-meta\">SOUTH KOLKATA</div><h3>Tricone Park</h3><p>🚶 600 m · ⏱️ 12 min from Mudiali Club.</p></div><div class=\"route-actions\"><a class=\"map-btn\" target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/KdY5rTzjFfFjTg9r9\">Google Maps ↗</a></div></div><div class=\"puja-pandal-expansion\" aria-hidden=\"true\"><div><div class=\"puja-pandal-expansion-content\">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div></div></div>';
+            triconeStep.innerHTML='<div class="route-card puja-pandal" data-chaturthi-tricone="true" aria-expanded="false"><div class="route-top"><div><div class="route-meta">SOUTH KOLKATA</div><h3>Tricone Park</h3><p>🚶 600 m · ⏱️ 12 min from Mudiali Club.</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="https://maps.app.goo.gl/KdY5rTzjFfFjTg9r9">Google Maps ↗</a></div></div><div class="puja-pandal-expansion" aria-hidden="true"><div><div class="puja-pandal-expansion-content">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div></div></div>';
             mudialiStep.after(triconeStep);
           }
 
-"""
+'''
           if marker not in text:
               raise SystemExit('Expected insertion marker not found')
           if 'data-chaturthi-tricone="true"' not in text:
-              text = text.replace(marker, insert + marker, 1)
-              path.write_text(text, encoding='utf-8')
+              path.write_text(text.replace(marker, insert + marker, 1), encoding='utf-8')
+          PY
       - name: Commit and remove temporary workflow
-        shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
