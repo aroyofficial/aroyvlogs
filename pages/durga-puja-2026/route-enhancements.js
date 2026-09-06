@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     const existingTransfer=second.closest('.route-step')?.nextElementSibling;
     if(existingTransfer?.classList.contains('route-transport')){
-      existingTransfer.innerHTML='<strong>Transfer:</strong> Walk back 550 m (11 min to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/A1sk3FKThgpj1QnA9">Tala Station</a>) then take an auto/bus to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/yzzGTjmfzijSw2z96">Belgachia Metro Station</a>. Then take a metro to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/ZH7pYZcyvU91bF8p9">Rabindra Sarobar Metro Station</a>.';
+      existingTransfer.innerHTML='<strong>Transfer:</strong> Walk back 550 m (11 min) to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/A1sk3FKThgpj1QnA9">Tala Station</a> → then take an auto/bus to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/yzzGTjmfzijSw2z96">Belgachia Metro Station</a> → take a metro to <a class="route-location-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/ZH7pYZcyvU91bF8p9">Rabindra Sarobar Metro Station</a>.';
     }
 
     const newStep=document.createElement('li');
