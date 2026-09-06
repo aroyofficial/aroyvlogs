@@ -16,26 +16,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Add transfer after Tricone Park
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          path = Path('pages/durga-puja-2026/route-enhancements.js')
-          text = path.read_text(encoding='utf-8')
-          marker = "      mudialiStep.after(triconeStep);\n    }\n\n    const cards="
-          insert = """      mudialiStep.after(triconeStep);
-      const triconeTransfer=document.createElement('li');
-      triconeTransfer.className='route-transport';
-      triconeTransfer.innerHTML='<strong>Transfer:</strong> Walk 290 m (5 mins) to <a class=\"route-location-link\" target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/5MvJnw32sjB3Uh8Y7\">Tollygunge PS</a> → Then take a bus to <a class=\"route-location-link\" target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/eovQE6JT1o9CP8jp7\">New Alipore Petrol Pump</a>.';
-      triconeStep.after(triconeTransfer);
-    }
-
-    const cards="""
-          if marker not in text:
-              raise SystemExit('Expected Tricone insertion marker not found')
-          if 'data-chaturthi-tricone-transfer="true"' not in text:
-              insert = insert.replace("triconeTransfer.className='route-transport';", "triconeTransfer.className='route-transport';triconeTransfer.dataset.chaturthiTriconeTransfer='true';")
-              path.write_text(text.replace(marker, insert, 1), encoding='utf-8')
-          PY
+        run: python3 -c "from pathlib import Path; p=Path('pages/durga-puja-2026/route-enhancements.js'); t=p.read_text(encoding='utf-8'); old='      mudialiStep.after(triconeStep);\n    }'; new='      mudialiStep.after(triconeStep);\n      const triconeTransfer=document.createElement(\'li\');\n      triconeTransfer.className=\'route-transport\';\n      triconeTransfer.innerHTML=\'<strong>Transfer:</strong> Walk 290 m (5 mins) to <a class=\"route-location-link\" target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/5MvJnw32sjB3Uh8Y7\">Tollygunge PS</a> → Then take a bus to <a class=\"route-location-link\" target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/eovQE6JT1o9CP8jp7\">New Alipore Petrol Pump</a>\';\n      triconeStep.after(triconeTransfer);\n    }';\nassert old in t; t=t.replace(old,new,1); p.write_text(t,encoding='utf-8')"
       - name: Commit and remove temporary workflow
         run: |
           git config user.name 'github-actions[bot]'
