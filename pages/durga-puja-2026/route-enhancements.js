@@ -57,8 +57,24 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   };
 
+  const fixChaturthiBelgachia=()=>{
+    if(!/\/chaturthi\.html$/i.test(location.pathname))return;
+    const first=document.querySelector('.puja-pandal[data-serial="01"]');
+    const second=document.querySelector('.puja-pandal[data-serial="02"]');
+    if(first){
+      const title=first.querySelector('h3');
+      const map=first.querySelector('.route-actions a.map-btn');
+      if(title)title.textContent='Belgachia Sadharon Durgotsav';
+      if(map)map.href='https://maps.app.goo.gl/XpS9m7eLPHJJWsir8';
+    }
+    if(second){
+      const p=second.querySelector('p');
+      if(p)p.textContent='Walk about 800 m from Belgachia Sadharon Durgotsav.';
+    }
+  };
+
   const linkLocations=root=>{Object.entries(stationLinks).forEach(([name,url])=>{const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];while(w.nextNode())nodes.push(w.currentNode);nodes.forEach(node=>{if(!node.nodeValue.includes(name)||node.parentElement.closest('a')||node.parentElement.closest('.route-card')||node.parentElement.closest('.route-summary'))return;const parts=node.nodeValue.split(name),frag=document.createDocumentFragment();parts.forEach((part,i)=>{if(i){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';a.textContent=name;a.className='route-location-link';frag.appendChild(a);}if(part)frag.appendChild(document.createTextNode(part));});node.parentNode.replaceChild(frag,node);});});};
 
-  replaceBally(document.body);linkLocations(document.body);abbreviateMonths(document.body);setupPandalExpansions();
+  replaceBally(document.body);linkLocations(document.body);abbreviateMonths(document.body);setupPandalExpansions();fixChaturthiBelgachia();
   document.querySelectorAll('.route-summary strong').forEach(e=>{if(/route workflow/i.test(e.textContent))e.textContent='Itinerary:';});
 });
