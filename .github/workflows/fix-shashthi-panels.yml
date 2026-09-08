@@ -1,0 +1,37 @@
+name: Fix Shashthi panel click handling
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/fix-shashthi-panels.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add robust Shashthi click handler
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('pages/durga-puja-2026/shashthi.html')
+          text = path.read_text(encoding='utf-8')
+          marker = '</body>'
+          if 'data-shashthi-direct-panels' not in text:
+              script = '''<script data-shashthi-direct-panels>(function(){function bind(){if(!/\\/shashthi\\.html$/i.test(location.pathname))return;document.querySelectorAll('.route-card.puja-pandal').forEach(function(card){if(card.dataset.shashthiDirectPanels==='true')return;var panel=card.querySelector('.puja-pandal-expansion');if(!panel)return;card.dataset.shashthiDirectPanels='true';card.addEventListener('click',function(e){if(e.target.closest('a'))return;e.stopPropagation();var open=card.getAttribute('aria-expanded')==='true';document.querySelectorAll('.route-card.puja-pandal[aria-expanded="true"]').forEach(function(other){if(other===card)return;other.setAttribute('aria-expanded','false');var op=other.querySelector('.puja-pandal-expansion');if(op){op.classList.remove('is-open');op.setAttribute('aria-hidden','true');op.style.display='grid';op.style.gridTemplateRows='0fr';op.style.marginTop='0'}});card.setAttribute('aria-expanded',String(!open));panel.classList.toggle('is-open',!open);panel.setAttribute('aria-hidden',String(open));panel.style.display='grid';panel.style.gridTemplateRows=open?'0fr':'1fr';panel.style.marginTop=open?'0':'14px';},true);});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind,{once:true});else bind();})();</script>'''
+              text = text.replace(marker, script + marker)
+              path.write_text(text, encoding='utf-8')
+          PY
+      - name: Remove this one-shot workflow and commit permanent fix
+        run: |
+          rm -f .github/workflows/fix-shashthi-panels.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pages/durga-puja-2026/shashthi.html .github/workflows/fix-shashthi-panels.yml
+          git commit -m "fix: permanently repair Shashthi expansion panels"
+          git push
