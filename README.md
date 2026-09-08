@@ -20,3 +20,4 @@ The repository is ready for Netlify as a static site. Set the publish directory 
 
 <!-- deployment refresh marker: 2026-09-09 -->
 <!-- Panchami expansion fix trigger: 2026-09-09 -->
+<!-- Panchami expansion workflow rerun: 2026-09-09 -->
