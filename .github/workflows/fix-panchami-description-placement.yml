@@ -25,41 +25,31 @@ jobs:
           path = Path('pages/durga-puja-2026/panchami.html')
           s = path.read_text(encoding='utf-8')
           token = re.compile(r'<div(?:\s[^>]*)?>|</div>')
-          moved = 0
+          exp_re = re.compile(r'<div class="puja-pandal-expansion" aria-hidden="true">')
+          matches = list(exp_re.finditer(s))
+          if len(matches) != 23:
+              raise SystemExit(f'Expected 23 expansion panels, found {len(matches)}')
 
-          while True:
-              m = re.search(r'<div class="puja-pandal-expansion" aria-hidden="true">', s)
-              if not m:
-                  break
-              exp_start = m.start()
+          def matching_end(text, start):
               depth = 0
-              exp_end = None
-              for t in token.finditer(s, exp_start):
+              for t in token.finditer(text, start):
                   if t.group(0).startswith('<div'):
                       depth += 1
                   else:
                       depth -= 1
                       if depth == 0:
-                          exp_end = t.end()
-                          break
-              if exp_end is None:
-                  raise SystemExit('Could not find expansion end')
+                          return t.end()
+              raise SystemExit('Could not find matching closing div')
 
+          moved = 0
+          for match in reversed(matches):
+              exp_start = match.start()
+              exp_end = matching_end(s, exp_start)
               top_start = s.rfind('<div class="route-top">', 0, exp_start + 1)
               if top_start < 0:
                   raise SystemExit('Could not find route-top')
-
-              depth = 0
-              top_end = None
-              for t in token.finditer(s, top_start):
-                  if t.group(0).startswith('<div'):
-                      depth += 1
-                  else:
-                      depth -= 1
-                      if depth == 0:
-                          top_end = t.end()
-                          break
-              if top_end is None or not (top_start < exp_start < exp_end <= top_end):
+              top_end = matching_end(s, top_start)
+              if not (top_start < exp_start < exp_end <= top_end):
                   raise SystemExit('Expansion is not inside route-top')
 
               block = s[exp_start:exp_end]
@@ -68,10 +58,16 @@ jobs:
               s = s[:top_end] + block + s[top_end:]
               moved += 1
 
-          if moved != 23:
-              raise SystemExit(f'Expected 23 expansion panels, moved {moved}')
           if '<div class="route-description">' in s:
               raise SystemExit('route-description elements found')
+          remaining_inside = 0
+          for m in exp_re.finditer(s):
+              before = s[:m.start()]
+              top_start = before.rfind('<div class="route-top">')
+              if top_start >= 0 and matching_end(s, top_start) > m.start():
+                  remaining_inside += 1
+          if remaining_inside:
+              raise SystemExit(f'{remaining_inside} expansion panels remain inside route-top')
 
           path.write_text(s, encoding='utf-8')
           print(f'Moved {moved} expansion panels outside route-top')
