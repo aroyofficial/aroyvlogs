@@ -139,4 +139,28 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   replaceBally(document.body);linkLocations(document.body);abbreviateMonths(document.body);setupChaturthiAdditions();setupPandalExpansions();
   document.querySelectorAll('.route-summary strong').forEach(e=>{if(/route workflow/i.test(e.textContent))e.textContent='Itinerary:';});
+
+  if(/\/panchami\.html$/i.test(location.pathname)){
+    document.querySelectorAll('.route-list').forEach(list=>{
+      if(list.dataset.pujaPanelsBound==='true')return;
+      list.dataset.pujaPanelsBound='true';
+      list.addEventListener('click',e=>{
+        const card=e.target.closest('.route-card.puja-pandal');
+        if(!card||!list.contains(card)||e.target.closest('a'))return;
+        const panel=card.querySelector('.puja-pandal-expansion');
+        if(!panel)return;
+        e.stopPropagation();
+        const open=card.getAttribute('aria-expanded')==='true';
+        list.querySelectorAll('.route-card.puja-pandal[aria-expanded="true"]').forEach(other=>{
+          if(other===card)return;
+          other.setAttribute('aria-expanded','false');
+          const op=other.querySelector('.puja-pandal-expansion');
+          if(op){op.classList.remove('is-open');op.setAttribute('aria-hidden','true');}
+        });
+        card.setAttribute('aria-expanded',String(!open));
+        panel.classList.toggle('is-open',!open);
+        panel.setAttribute('aria-hidden',String(open));
+      },true);
+    });
+  }
 });

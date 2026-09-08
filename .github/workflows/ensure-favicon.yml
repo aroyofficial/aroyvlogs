@@ -15,45 +15,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Patch Panchami expansion panel JS
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p = Path('pages/durga-puja-2026/route-enhancements.js')
-          s = p.read_text(encoding='utf-8')
-          marker = "  if(/\\/panchami\\.html$/i.test(location.pathname)){"
-          if marker not in s:
-              needle = "\n});"
-              handler = r'''\n  if(/\/panchami\.html$/i.test(location.pathname)){
-    document.querySelectorAll('.route-list').forEach(list=>{
-      if(list.dataset.pujaPanelsBound==='true')return;
-      list.dataset.pujaPanelsBound='true';
-      list.addEventListener('click',e=>{
-        const card=e.target.closest('.route-card.puja-pandal');
-        if(!card||!list.contains(card)||e.target.closest('a'))return;
-        const panel=card.querySelector('.puja-pandal-expansion');
-        if(!panel)return;
-        e.stopPropagation();
-        const open=card.getAttribute('aria-expanded')==='true';
-        list.querySelectorAll('.route-card.puja-pandal[aria-expanded="true"]').forEach(other=>{
-          if(other===card)return;
-          other.setAttribute('aria-expanded','false');
-          const op=other.querySelector('.puja-pandal-expansion');
-          if(op){op.classList.remove('is-open');op.setAttribute('aria-hidden','true');}
-        });
-        card.setAttribute('aria-expanded',String(!open));
-        panel.classList.toggle('is-open',!open);
-        panel.setAttribute('aria-hidden',String(open));
-      },true);
-    });
-  }
-'''
-              idx = s.rfind(needle)
-              if idx < 0:
-                  raise SystemExit('Could not find final DOMContentLoaded close')
-              p.write_text(s[:idx] + handler + s[idx:], encoding='utf-8')
-          PY
-
       - name: Add favicon to every HTML page
         run: |
           python - <<'PY'
@@ -78,20 +39,6 @@ jobs:
 
           print('Favicon added to:', ', '.join(changed) if changed else 'no pages needed changes')
           PY
-
-      - name: Restore workflow and commit permanent JS change
-        run: |
-          git checkout HEAD^ -- .github/workflows/ensure-favicon.yml
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pages/durga-puja-2026/route-enhancements.js .github/workflows/ensure-favicon.yml
-          git diff --cached --check
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
-          fi
-          git commit -m "fix: make Panchami expansion panels robust [skip ci]"
-          git push
 
       - name: Commit favicon updates
         run: |
