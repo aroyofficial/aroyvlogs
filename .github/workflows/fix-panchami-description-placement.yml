@@ -1,17 +1,23 @@
 name: Fix Panchami description placement
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 jobs:
   fix:
-    if: github.event.head_commit.message != 'fix: match Panchami description placement to Chaturthi'
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Move descriptions outside route-top
+      - name: Move descriptions and commit
+        env:
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
+          if [ "$COMMIT_MESSAGE" = "fix: match Panchami description placement to Chaturthi" ]; then
+            echo "Already fixed - nothing to do."
+            exit 0
+          fi
           python3 - <<'PY'
           from pathlib import Path
           import re
@@ -26,7 +32,6 @@ jobs:
               if not m:
                   break
               exp_start = m.start()
-
               depth = 0
               exp_end = None
               for t in token.finditer(s, exp_start):
@@ -38,7 +43,7 @@ jobs:
                           exp_end = t.end()
                           break
               if exp_end is None:
-                  raise SystemExit('Could not find end of expansion block')
+                  raise SystemExit('Could not find expansion end')
 
               top_start = s.rfind('<div class="route-top">', 0, exp_start + 1)
               if top_start < 0:
@@ -55,25 +60,22 @@ jobs:
                           top_end = t.end()
                           break
               if top_end is None or not (top_start < exp_start < exp_end <= top_end):
-                  raise SystemExit('Expansion is not inside the expected route-top')
+                  raise SystemExit('Expansion is not inside route-top')
 
               block = s[exp_start:exp_end]
               s = s[:exp_start] + s[exp_end:]
-              top_end -= (exp_end - exp_start)
+              top_end -= exp_end - exp_start
               s = s[:top_end] + block + s[top_end:]
               moved += 1
 
           if moved != 23:
-              raise SystemExit(f'Expected to move 23 descriptions, moved {moved}')
-
+              raise SystemExit(f'Expected 23 expansion panels, moved {moved}')
           if '<div class="route-description">' in s:
-              raise SystemExit('route-description elements must not exist')
+              raise SystemExit('route-description elements found')
 
           path.write_text(s, encoding='utf-8')
-          print(f'Moved {moved} descriptions outside route-top')
+          print(f'Moved {moved} expansion panels outside route-top')
           PY
-      - name: Commit and remove workflow
-        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add pages/durga-puja-2026/panchami.html
