@@ -1,0 +1,69 @@
+name: Fix Panchami panels 2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fix Panchami expansion panels
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('pages/durga-puja-2026/panchami.html')
+          s = p.read_text(encoding='utf-8')
+
+          # Make all 23 numbered pandal cards static expandable cards.
+          s, n = re.subn(
+              r'(<li class="route-step"><span class="route-number">\d{2}</span><div class="route-card)(">)',
+              r'\1 puja-pandal" aria-expanded="false">',
+              s
+          )
+          if n != 23:
+              raise SystemExit(f'Expected 23 pandal cards, changed {n}')
+
+          # Match Chaturthi's expansion styling.
+          s = re.sub(
+              r'<style>\.route-card\.puja-pandal\{cursor:pointer\}.*?</style>',
+              '<style>.puja-pandal{cursor:pointer;transition:box-shadow .2s ease,transform .2s ease}.puja-pandal:hover{box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateY(-1px)}.puja-pandal[aria-expanded="true"]{box-shadow:0 10px 30px rgba(0,0,0,.1)}.puja-pandal-expansion{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease;margin-top:0}.puja-pandal-expansion.is-open{grid-template-rows:1fr;margin-top:14px}.puja-pandal-expansion>div{overflow:hidden}.puja-pandal-expansion-content{padding:0;border-top:1px solid var(--line);color:var(--muted);font-size:14px;line-height:1.6}.puja-pandal-expansion.is-open .puja-pandal-expansion-content{padding-top:14px}.puja-pandal .route-actions{position:relative;z-index:2}.puja-pandal .route-actions a{cursor:pointer}</style>',
+              s, count=1, flags=re.S
+          )
+
+          # Replace the existing click script with the static-card version.
+          marker = "<script>document.addEventListener('DOMContentLoaded',()=>{"
+          start = s.rfind(marker)
+          if start < 0:
+              raise SystemExit('Panchami click script not found')
+          end = s.find('</script>', start)
+          if end < 0:
+              raise SystemExit('Panchami click script closing tag not found')
+          end += len('</script>')
+
+          script = '''<script>document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.route-card.puja-pandal').forEach(card=>{const panel=card.querySelector('.puja-pandal-expansion');if(!panel)return;card.addEventListener('click',e=>{if(e.target.closest('a'))return;const open=card.getAttribute('aria-expanded')==='true';document.querySelectorAll('.route-card.puja-pandal[aria-expanded="true"]').forEach(other=>{if(other===card)return;other.setAttribute('aria-expanded','false');const op=other.querySelector('.puja-pandal-expansion');if(op){op.classList.remove('is-open');op.setAttribute('aria-hidden','true')}});card.setAttribute('aria-expanded',String(!open));panel.classList.toggle('is-open',!open);panel.setAttribute('aria-hidden',String(open))})})});</script>'''
+          s = s[:start] + script + s[end:]
+
+          if s.count('class="puja-pandal-expansion-content"') != 23:
+              raise SystemExit('Expected 23 descriptions')
+          if 'route-description' in s:
+              raise SystemExit('route-description still present')
+
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit fixed Panchami page
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add pages/durga-puja-2026/panchami.html
+          git diff --cached --quiet || git commit -m 'fix: enable Panchami description expansion panels'
+          git push || true
