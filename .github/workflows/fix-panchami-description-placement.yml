@@ -18,37 +18,32 @@ jobs:
 
           path = Path('pages/durga-puja-2026/panchami.html')
           s = path.read_text(encoding='utf-8')
+          token = re.compile(r'<div(?:\s[^>]*)?>|</div>')
           moved = 0
 
           while True:
               m = re.search(r'<div class="puja-pandal-expansion" aria-hidden="true">', s)
               if not m:
                   break
-              start = m.start()
+              exp_start = m.start()
+
               depth = 0
-              i = start
-              end = None
-              token = re.compile(r'<div(?:\s[^>]*)?>|</div>')
-              for t in token.finditer(s, start):
+              exp_end = None
+              for t in token.finditer(s, exp_start):
                   if t.group(0).startswith('<div'):
                       depth += 1
                   else:
                       depth -= 1
                       if depth == 0:
-                          end = t.end()
+                          exp_end = t.end()
                           break
-              if end is None:
+              if exp_end is None:
                   raise SystemExit('Could not find end of expansion block')
 
-              block = s[start:end]
-              before = s[:start]
-              after = s[end:]
-
-              top_start = before.rfind('<div class="route-top">')
+              top_start = s.rfind('<div class="route-top">', 0, exp_start + 1)
               if top_start < 0:
                   raise SystemExit('Could not find route-top')
 
-              # Find the matching closing div for route-top.
               depth = 0
               top_end = None
               for t in token.finditer(s, top_start):
@@ -59,22 +54,23 @@ jobs:
                       if depth == 0:
                           top_end = t.end()
                           break
-              if top_end is None or top_end <= end:
-                  raise SystemExit('Invalid route-top placement')
+              if top_end is None or not (top_start < exp_start < exp_end <= top_end):
+                  raise SystemExit('Expansion is not inside the expected route-top')
 
-              # Remove the expansion from its current position, then insert it
-              # immediately after route-top, matching Chaturthi exactly.
-              s = s[:start] + s[end:]
-              if top_end > end:
-                  top_end -= (end - start)
+              block = s[exp_start:exp_end]
+              s = s[:exp_start] + s[exp_end:]
+              top_end -= (exp_end - exp_start)
               s = s[:top_end] + block + s[top_end:]
               moved += 1
 
           if moved != 23:
               raise SystemExit(f'Expected to move 23 descriptions, moved {moved}')
 
+          if '<div class="route-description">' in s:
+              raise SystemExit('route-description elements must not exist')
+
           path.write_text(s, encoding='utf-8')
-          print(f'Moved {moved} descriptions to match Chaturthi placement')
+          print(f'Moved {moved} descriptions outside route-top')
           PY
       - name: Commit and remove workflow
         run: |
