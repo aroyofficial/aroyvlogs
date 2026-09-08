@@ -1,5 +1,7 @@
 name: Fix Panchami JS
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -25,10 +27,12 @@ jobs:
               raise SystemExit('Expected old panel script not found')
           p.write_text(s.replace(old,new,1))
           PY
-      - name: Commit
+      - name: Commit fix and remove workflow
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add pages/durga-puja-2026/panchami.html
           git commit -m 'fix: use delegated JS for Panchami panels'
+          git rm .github/workflows/fix-panchami-js.yml
+          git commit -m 'chore: remove temporary Panchami fix workflow'
           git push origin main
