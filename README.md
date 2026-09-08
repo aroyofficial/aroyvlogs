@@ -17,3 +17,5 @@ This is intentionally a **content-first personal site**, rather than a dedicated
 ## Deployment
 
 The repository is ready for Netlify as a static site. Set the publish directory to the repository root (`.`); no build command is required.
+
+<!-- deployment refresh marker: 2026-09-09 -->
