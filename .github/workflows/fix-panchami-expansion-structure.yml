@@ -13,31 +13,22 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Apply the same expansion-panel implementation as Chaturthi
+      - name: Add robust Panchami expansion-panel behavior
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p=Path('pages/durga-puja-2026/panchami.html')
           s=p.read_text()
-          new='''<script>document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.route-card.puja-pandal').forEach(card=>{const panel=card.querySelector('.puja-pandal-expansion');if(!panel)return;card.addEventListener('click',e=>{if(e.target.closest('a'))return;const open=card.getAttribute('aria-expanded')==='true';document.querySelectorAll('.route-card.puja-pandal[aria-expanded="true"]').forEach(other=>{if(other===card)return;other.setAttribute('aria-expanded','false');const op=other.querySelector('.puja-pandal-expansion');if(op){op.classList.remove('is-open');op.setAttribute('aria-hidden','true')}});card.setAttribute('aria-expanded',String(!open));panel.classList.toggle('is-open',!open);panel.setAttribute('aria-hidden',String(open))})})});</script>'''
-          marker="<script>(function(){function initPujaPanels()"
-          start=s.rfind(marker)
-          if start<0:
-              marker="<script>document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.route-card.puja-pandal')"
-              start=s.rfind(marker)
-          if start<0: raise SystemExit('Panchami panel script not found')
-          end=s.find('</script>',start)
-          if end<0: raise SystemExit('Panchami panel script end not found')
-          end += len('</script>')
-          p.write_text(s[:start]+new+s[end:])
+          script='''<script>(function(){function initPujaPanels(){document.querySelectorAll('.route-list').forEach(function(list){if(list.dataset.pujaPanelsBound==='true')return;list.dataset.pujaPanelsBound='true';list.addEventListener('click',function(e){const card=e.target.closest('.route-card.puja-pandal');if(!card||!list.contains(card)||e.target.closest('a'))return;const panel=card.querySelector('.puja-pandal-expansion');if(!panel)return;const open=card.getAttribute('aria-expanded')==='true';list.querySelectorAll('.route-card.puja-pandal[aria-expanded="true"]').forEach(function(other){if(other===card)return;other.setAttribute('aria-expanded','false');const op=other.querySelector('.puja-pandal-expansion');if(op){op.classList.remove('is-open');op.setAttribute('aria-hidden','true')}});card.setAttribute('aria-expanded',String(!open));panel.classList.toggle('is-open',!open);panel.setAttribute('aria-hidden',String(open));});});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initPujaPanels);}else{initPujaPanels();}})();</script>'''
+          marker='</body>'
+          if 'data-puja-panels-bound' not in s:
+              s=s.replace(marker,script+marker)
+          p.write_text(s)
           PY
-      - name: Commit Panchami fix and remove temporary workflows
+      - name: Commit Panchami fix
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add pages/durga-puja-2026/panchami.html
-          git commit -m 'fix: match Chaturthi expansion panel implementation'
-          git rm .github/workflows/fix-panchami-expansion-structure.yml .github/workflows/fix-panchami-js.yml 2>/dev/null || true
-          git add -A
-          git commit -m 'chore: remove temporary Panchami fix workflows' || true
+          git commit -m 'fix: make Panchami expansion panels robust'
           git push
