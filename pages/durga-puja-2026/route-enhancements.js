@@ -164,3 +164,57 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   }
 });
+/* SHASHTHI_DESCRIPTION_FIX_V1 */
+(function(){
+  const descriptions={
+    "Bagbazar Sarbojanin":"A historic North Kolkata puja known for its <strong>traditional and heritage character</strong>. For 2026, a reliable final theme or artist announcement has not been confirmed yet, so this stop is best approached for its old-school Puja atmosphere and cultural legacy.",
+    "Jagat Mukherjee Park":"Celebrating its <strong>90th year in 2026</strong>, this North Kolkata puja has begun its preparations with Khuti Puja. The final 2026 theme and creative details are still awaiting reliable confirmation, making its milestone anniversary the key highlight for this visit.",
+    "Kumortuli Sarbojanin":"One of Kumortuli's important <strong>heritage-style Durga Pujas</strong>, closely connected with the traditional artisan neighbourhood. Its distinctive <strong>Ashtadhatu Durga idol and Kathamo Puja tradition</strong> make this a particularly interesting stop for those wanting to experience the older traditions of Kolkata Puja.",
+    "Kumortuli Park":"The 2026 presentation is based on <strong>“Gangotri to Ganga” (গঙ্গোত্রী থেকে গঙ্গা)</strong>, tracing the journey of the Ganga from its Himalayan origin towards the Bay of Bengal. The concept gives the pandal a strong connection with India's cultural and spiritual relationship with the river.",
+    "Hatkhola Gosaipara Sarbojanin":"A neighbourhood puja in the historic North Kolkata belt. Reliable 2026 information about its final theme or creative team is not yet available, so the stop is included primarily for its <strong>local Puja atmosphere and place within the Kumortuli-Hatkhola circuit</strong>.",
+    "Ahiritola Sarbojanin":"The 2026 presentation follows a <strong>Sabeki/traditional direction</strong>, with <strong>Manas Das</strong> handling the concept and creation, <strong>Subrata Mudha</strong> creating the idol and <strong>Soumen Chakraborty</strong> working on the lighting. Rather than forcing an unconfirmed theme title, the emphasis here is on its traditional artistic treatment.",
+    "Ahiritola Jubak Brinda":"A long-running Ahiritola puja reaching its <strong>50th edition</strong>. The committee has continued preparations for 2026, but a reliable final theme or artist announcement has not yet been established, so this stop is best presented as part of the historic Ahiritola Puja circuit.",
+    "Chorbagan Sarbojanin":"Celebrating its <strong>91st year</strong>, the 2026 presentation has officially unveiled the theme <strong>“Akal Bodhon”</strong>. The concept draws on the story and significance of Durga's untimely invocation, giving this historic North Kolkata puja a distinctly Bengali mythological and cultural character.",
+    "Maniktala Chalta Bagan Lohapatty":"The 2026 theme is <strong>“Nishan - The Mark”</strong>, conceived by artist <strong>Aditi Chakraborty</strong>. Inspired by tattoo traditions such as those of the <strong>Ramnami community</strong>, the concept explores identity, faith and the marks people carry as expressions of belief and belonging. Special music has also been created by <strong>Pt. Vishwa Mohan Bhatt</strong>.",
+    "Lalabagan Nabankur":"A well-known puja in the Maniktala area with a history of socially and environmentally conscious presentations. However, a sufficiently reliable <strong>final 2026 theme or artist announcement</strong> has not been found yet, so no specific creative claim is being attached to this year's pandal.",
+    "Kashi Bose Lane":"For 2026, <strong>artist Anirban Das</strong> has been confirmed for the creative work. Recent preparation material uses the phrase <strong>“সৃষ্টি পুজো”</strong>, but it is not yet sufficiently clear whether this represents the final public theme or an early creative concept, so it is not presented here as a confirmed theme.",
+    "Hatibagan Sarbojanin":"One of the recognisable traditional pujas of North Kolkata, with a <strong>heritage-oriented presentation</strong> rather than relying solely on a large thematic installation. A specific 2026 theme or artist has not been reliably confirmed, so the focus here remains on its traditional Puja character.",
+    "Nalin Sarkar Street":"Celebrating its <strong>94th year</strong>, the 2026 theme is <strong>“Jalalipi” (জললিপি)</strong>. The name evokes the idea of <strong>writing or script formed in water</strong>, giving the presentation a poetic connection between water, memory and expression.",
+    "North Tridhara":"A North Kolkata neighbourhood puja included in the Hatibagan circuit. Reliable information confirming a specific <strong>2026 theme or artist</strong> is not currently available, so this stop is kept intentionally general rather than attributing an unverified concept to the committee.",
+    "Hatibagan Nabinpally":"A long-running Hatibagan-area puja that forms part of this traditional North Kolkata circuit. Current 2026 information confirms the Puja, but a reliable final theme or creative-team announcement has not been established, so the description stays focused on the neighbourhood Puja experience.",
+    "Sovabazar Rajbari":"One of Kolkata's most significant <strong>heritage Durga Pujas</strong>, held at the historic Sovabazar Rajbari. For 2026, <strong>Jayanta Saha</strong> is handling the creative direction and <strong>Jagannath Saha</strong> is creating the idol. The main attraction here is the atmosphere and continuity of a centuries-old family Puja rather than a conventional theme-pandal concept."
+  };
+  function fix(){
+    if(!/\/shashthi\.html$/i.test(location.pathname))return;
+    document.querySelectorAll('.route-list > .route-step .route-card').forEach(function(card){
+      if(card.classList.contains('route-lunch'))return;
+      const title=card.querySelector('h3')?.textContent.trim();
+      const description=descriptions[title];
+      if(!description)return;
+      card.classList.add('puja-pandal');
+      let panel=card.querySelector('.puja-pandal-expansion');
+      if(!panel){
+        panel=document.createElement('div');
+        panel.className='puja-pandal-expansion';
+        panel.setAttribute('aria-hidden','true');
+        const inner=document.createElement('div');
+        const content=document.createElement('div');
+        content.className='puja-pandal-expansion-content';
+        inner.appendChild(content);
+        panel.appendChild(inner);
+        card.appendChild(panel);
+      }
+      let content=panel.querySelector('.puja-pandal-expansion-content');
+      if(!content){
+        content=document.createElement('div');
+        content.className='puja-pandal-expansion-content';
+        let inner=panel.querySelector(':scope > div');
+        if(!inner){inner=document.createElement('div');panel.appendChild(inner);}
+        inner.appendChild(content);
+      }
+      content.innerHTML=description;
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(fix,0);},{once:true});
+  else setTimeout(fix,0);
+})();
