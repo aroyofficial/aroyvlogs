@@ -1,7 +1,8 @@
 name: Fix Shashthi descriptions
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [main]
 
 permissions:
   contents: write
@@ -50,7 +51,6 @@ jobs:
                 const description=descriptions[title];
                 if(!description)return;
                 card.classList.add('puja-pandal');
-                card.setAttribute('aria-expanded',card.getAttribute('aria-expanded')==='true'?'true':'false');
                 let panel=card.querySelector('.puja-pandal-expansion');
                 if(!panel){
                   panel=document.createElement('div');
@@ -83,7 +83,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add pages/durga-puja-2026/route-enhancements.js
-          git commit -m 'fix: inject Shashthi pandal descriptions after panels exist'
+          git commit -m 'fix: inject Shashthi pandal descriptions after panels exist' || true
           git push origin main
       - name: Remove temporary workflow
         shell: bash
