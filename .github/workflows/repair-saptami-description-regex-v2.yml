@@ -1,0 +1,41 @@
+name: Repair Saptami description regex v2
+
+on:
+  push:
+    paths:
+      - '.github/workflows/repair-saptami-description-regex-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Repair JS and remove temporary workflows
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('pages/durga-puja-2026/route-enhancements.js')
+          lines=p.read_text(encoding='utf-8').splitlines()
+          changed=False
+          for i,line in enumerate(lines):
+              if 'saptami' in line.lower() and 'location.pathname' in line and 'return' in line:
+                  lines[i]=r'    if(!/\/saptami\.html$/i.test(location.pathname))return;'
+                  changed=True
+                  break
+          if not changed:
+              raise SystemExit('Saptami path check not found')
+          p.write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          PY
+          rm -f .github/workflows/repair-saptami-description-regex.yml .github/workflows/repair-saptami-description-regex-v2.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add pages/durga-puja-2026/route-enhancements.js .github/workflows/repair-saptami-description-regex.yml .github/workflows/repair-saptami-description-regex-v2.yml
+          git commit -m 'fix: repair Saptami description path check'
+          git push
