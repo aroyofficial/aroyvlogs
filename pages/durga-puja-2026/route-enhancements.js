@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     "Ekdalia Evergreen":"Celebrating its <strong>84th year</strong>, the Puja retains its iconic <strong>Sabeki idol</strong> while taking inspiration from Gujarat's magnificent <strong>Somnath Temple</strong> for the 2026 pandal. The temple-inspired architecture provides the year's major visual attraction, while the traditional idol remains at the heart of the Puja."
   };
   function fix(){
-    if(!/\\/saptami\\.html$/i.test(location.pathname))return;
+    if(!/\/saptami\.html$/i.test(location.pathname))return;
     document.querySelectorAll('.route-list > .route-step .route-card').forEach(function(card){
       if(card.classList.contains('route-lunch'))return;
       const title=card.querySelector('h3')?.textContent.trim();
