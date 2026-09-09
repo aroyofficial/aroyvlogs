@@ -218,3 +218,50 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(fix,0);},{once:true});
   else setTimeout(fix,0);
 })();
+
+/* SAPTAMI_DESCRIPTION_FIX_V1 */
+(function(){
+  const descriptions={
+    "Deshapriya Park":"Celebrating its <strong>89th year</strong>, the 2026 presentation takes the form of a <strong>fictional white-and-gold temple</strong>, featuring multiple spires, a grand staircase and classical architectural detailing. The idol is being created by <strong>Padma Shri Sanatan Rudra Pal</strong>, with a special lighting presentation planned to add to the visual experience.",
+    "Tridhara Sammilani":"Known for blending tradition with contemporary artistic expression, the 2026 presentation is described as a <strong>fusion of sculptural work and modern lighting</strong>. The committee is continuing its distinctive South Kolkata style, though a reliable final theme title and artist credit have not yet been confirmed.",
+    "Ballygunge Cultural Association":"Celebrating its <strong>76th year</strong>, the 2026 theme is <strong>“Yojon” (যোজন)</strong>, exploring the connections between people, generations, Bengali culture, art and the environment. <strong>Artist Sushanta Shivani Pal</strong> leads the creative vision, while the project also focuses strongly on sustainability through recycling festival materials and turning waste into reusable products.",
+    "Samaj Sebi Sangha":"Celebrating its <strong>81st year</strong>, the Puja pays tribute to Uttam Kumar's birth centenary through <strong>“Mahapujoy Mahanayak”</strong>. The presentation recreates the nostalgia of <strong>1970s-80s Kolkata</strong>, bringing together film posters, photographs, memorabilia and stories from the legendary actor's life. <strong>Bishwanath Dey</strong> is the theme-maker, with the idol by <strong>Arighna Saha</strong>.",
+    "Hindustan Park":"The 2026 presentation places the emphasis on <strong>Bengali craftsmanship and intricate handwork</strong>, continuing the area's reputation for detailed artistic installations. A reliable final theme title or artist credit has not yet been confirmed, so this description intentionally avoids carrying forward themes from previous years.",
+    "Gariahat Hindustan Club":"A long-running Gariahat Puja with a history of traditional and colourful artistic presentations. For <strong>2026</strong>, no sufficiently reliable final theme or artist announcement has been found yet, so older theme information has deliberately not been carried forward.",
+    "Singhi Park":"An established Gariahat Puja with a strong <strong>community and traditional identity</strong>. The committee is actively preparing for the 2026 festivities, but a reliable final theme or artist announcement has not yet been confirmed, so no unsupported creative details are being added.",
+    "Ekdalia Evergreen":"Celebrating its <strong>84th year</strong>, the Puja retains its iconic <strong>Sabeki idol</strong> while taking inspiration from Gujarat's magnificent <strong>Somnath Temple</strong> for the 2026 pandal. The temple-inspired architecture provides the year's major visual attraction, while the traditional idol remains at the heart of the Puja."
+  };
+  function fix(){
+    if(!/\\/saptami\\.html$/i.test(location.pathname))return;
+    document.querySelectorAll('.route-list > .route-step .route-card').forEach(function(card){
+      if(card.classList.contains('route-lunch'))return;
+      const title=card.querySelector('h3')?.textContent.trim();
+      const description=descriptions[title];
+      if(!description)return;
+      card.classList.add('puja-pandal');
+      let panel=card.querySelector('.puja-pandal-expansion');
+      if(!panel){
+        panel=document.createElement('div');
+        panel.className='puja-pandal-expansion';
+        panel.setAttribute('aria-hidden','true');
+        const inner=document.createElement('div');
+        const content=document.createElement('div');
+        content.className='puja-pandal-expansion-content';
+        inner.appendChild(content);
+        panel.appendChild(inner);
+        card.appendChild(panel);
+      }
+      let content=panel.querySelector('.puja-pandal-expansion-content');
+      if(!content){
+        content=document.createElement('div');
+        content.className='puja-pandal-expansion-content';
+        let inner=panel.querySelector(':scope > div');
+        if(!inner){inner=document.createElement('div');panel.appendChild(inner);}
+        inner.appendChild(content);
+      }
+      content.innerHTML=description;
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(fix,0);},{once:true});
+  else setTimeout(fix,0);
+})();
