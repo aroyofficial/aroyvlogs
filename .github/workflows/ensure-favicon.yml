@@ -15,16 +15,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Inject Navami descriptions
+      - name: Clean duplicate Navami description blocks
         run: |
           python - <<'PY'
           from pathlib import Path
           route = Path('pages/durga-puja-2026/route-enhancements.js')
-          helper = Path('pages/durga-puja-2026/navami-descriptions-final.js')
           text = route.read_text(encoding='utf-8')
-          block = helper.read_text(encoding='utf-8').strip()
-          route.write_text(text.rstrip() + '\n\n' + block + '\n', encoding='utf-8')
-          print('Navami descriptions appended')
+          marker = '/* NAVAMI_DESCRIPTION_FIX_V2 */'
+          if marker in text:
+              prefix, rest = text.split(marker, 1)
+              rest_parts = rest.split(marker)
+              text = prefix + marker + rest_parts[0]
+              route.write_text(text.rstrip() + '\n', encoding='utf-8')
+              print('Duplicate Navami blocks removed')
+          else:
+              print('No Navami description block found')
           PY
 
       - name: Validate Navami JavaScript
@@ -55,13 +60,13 @@ jobs:
           print('Favicon added to:', ', '.join(changed) if changed else 'no pages needed changes')
           PY
 
-      - name: Commit permanent Navami fix and restore workflow
+      - name: Commit cleanup and restore workflow
         run: |
-          rm -f pages/durga-puja-2026/navami-descriptions-final.js
+          rm -f navami-repair-trigger.txt
           git checkout -- .github/workflows/ensure-favicon.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git diff --cached --quiet && exit 0
-          git commit -m "fix: inject Navami descriptions [skip ci]"
+          git commit -m "fix: clean duplicate Navami descriptions [skip ci]"
           git push
