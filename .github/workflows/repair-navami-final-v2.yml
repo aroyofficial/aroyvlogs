@@ -24,3 +24,4 @@ jobs:
           git add pages/durga-puja-2026/route-enhancements.js .github/workflows/repair-navami-syntax.yml .github/workflows/fix-navami-js-v2.yml .github/workflows/finalize-navami-repair.yml .github/workflows/repair-navami-final.yml .github/workflows/repair-navami-final-v2.yml
           git commit -m "fix: repair Navami JS syntax"
           git push
+# trigger repair
