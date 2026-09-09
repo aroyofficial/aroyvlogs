@@ -15,26 +15,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Repair Navami JavaScript
+      - name: Inject Navami descriptions
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
-
-          path = Path('pages/durga-puja-2026/route-enhancements.js')
-          text = path.read_text(encoding='utf-8')
-          marker = '/* NAVAMI_DESCRIPTION_FIX_V1 */'
-          if marker not in text:
-              raise SystemExit('Navami marker not found')
-
-          prefix, suffix = text.split(marker, 1)
-          while prefix.endswith('\\n'):
-              prefix = prefix[:-2]
-
-          suffix = re.sub(r'\\+', r'\\', suffix)
-          suffix = suffix.replace('\\n', '\n')
-          path.write_text(prefix.rstrip() + '\n\n' + marker + suffix, encoding='utf-8')
-          print('Navami JavaScript normalized')
+          route = Path('pages/durga-puja-2026/route-enhancements.js')
+          helper = Path('pages/durga-puja-2026/navami-descriptions-final.js')
+          text = route.read_text(encoding='utf-8')
+          block = helper.read_text(encoding='utf-8').strip()
+          route.write_text(text.rstrip() + '\n\n' + block + '\n', encoding='utf-8')
+          print('Navami descriptions appended')
           PY
 
       - name: Validate Navami JavaScript
@@ -67,10 +57,11 @@ jobs:
 
       - name: Commit permanent Navami fix and restore workflow
         run: |
+          rm -f pages/durga-puja-2026/navami-descriptions-final.js
           git checkout -- .github/workflows/ensure-favicon.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git diff --cached --quiet && exit 0
-          git commit -m "fix: repair Navami descriptions JavaScript [skip ci]"
+          git commit -m "fix: inject Navami descriptions [skip ci]"
           git push
