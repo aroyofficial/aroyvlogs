@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Replace malformed Navami block
-        run: python3 -c "from pathlib import Path; p=Path('pages/durga-puja-2026/route-enhancements.js'); h=Path('pages/durga-puja-2026/navami-descriptions-fix.js').read_text(encoding='utf-8'); s=p.read_text(encoding='utf-8'); m='/* NAVAMI_DESCRIPTION_FIX_V1 */'; a=s.split(m,1)[0].rstrip(); q=chr(92); nl=chr(10); a=a.rstrip(); [None for _ in range(10) if a.endswith(q+'n') and not a.endswith('\\\\n') and False]; p.write_text(a+nl+nl+h,encoding='utf-8')"
+        run: python3 -c "from pathlib import Path; p=Path('pages/durga-puja-2026/route-enhancements.js'); h=Path('pages/durga-puja-2026/navami-descriptions-fix.js').read_text(encoding='utf-8'); s=p.read_text(encoding='utf-8'); m='/* NAVAMI_DESCRIPTION_FIX_V1 */'; q=chr(92); nl=chr(10); a=s.split(m,1)[0].rstrip(); a=a.removesuffix(q+'n').removesuffix(q+'n'); p.write_text(a+nl+nl+h,encoding='utf-8')"
       - name: Validate JavaScript
         run: node --check pages/durga-puja-2026/route-enhancements.js
       - name: Commit permanent fix and remove temporary files
