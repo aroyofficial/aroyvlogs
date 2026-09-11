@@ -22,29 +22,29 @@ jobs:
           route = Path('pages/durga-puja-2026/route-enhancements.js')
           text = route.read_text(encoding='utf-8')
           marker = '/* NAVAMI_DESCRIPTION_FIX_V2 */'
-          if marker in text:
-              prefix, rest = text.split(marker, 1)
-              rest_parts = rest.split(marker)
-              text = prefix + marker + rest_parts[0]
-              route.write_text(text.rstrip() + '\n', encoding='utf-8')
-              print('Duplicate Navami blocks removed')
+          parts = text.split(marker)
+          if len(parts) > 2:
+              route.write_text((parts[0] + marker + parts[1]).rstrip() + '\n', encoding='utf-8')
+              print(f'Duplicate Navami blocks removed ({len(parts) - 1} -> 1)')
+          elif len(parts) == 2:
+              print('Single Navami description block found (no duplicates)')
           else:
               print('No Navami description block found')
           PY
 
-      - name: Validate Navami JavaScript
-        run: node --check pages/durga-puja-2026/route-enhancements.js
+      - name: Validate site JavaScript
+        run: |
+          node --check js/app.js
+          node --check pages/durga-puja-2026/route-enhancements.js
 
       - name: Add favicon to every HTML page
         run: |
           python - <<'PY'
           from pathlib import Path
 
-          favicon = 'https://aroyofficial.github.io/aroyvlogs/favicon.svg'
-          link = f'<link rel="icon" type="image/svg+xml" href="{favicon}">'
           changed = []
 
-          for path in Path('.').rglob('*.html'):
+          for path in sorted(Path('.').rglob('*.html')):
               if '.git' in path.parts:
                   continue
               text = path.read_text(encoding='utf-8')
@@ -53,20 +53,23 @@ jobs:
               head_end = text.lower().find('</head>')
               if head_end == -1:
                   continue
+              # Depth-aware relative href (site uses relative links throughout).
+              depth = len(path.parent.parts)
+              href = '../' * depth + 'favicon.svg' if depth else 'favicon.svg'
+              link = f'<link rel="icon" type="image/svg+xml" href="{href}">'
               text = text[:head_end] + link + text[head_end:]
               path.write_text(text, encoding='utf-8')
-              changed.append(str(path))
+              changed.append(f'{path} (href={href})')
 
           print('Favicon added to:', ', '.join(changed) if changed else 'no pages needed changes')
           PY
 
-      - name: Commit cleanup and restore workflow
+      - name: Commit cleanup
         run: |
-          rm -f navami-repair-trigger.txt
-          git checkout -- .github/workflows/ensure-favicon.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
+          # Scoped adds only: never sweep unrelated files into the bot commit.
+          git add -- '*.html' 'pages/durga-puja-2026/route-enhancements.js'
           git diff --cached --quiet && exit 0
-          git commit -m "fix: clean duplicate Navami descriptions [skip ci]"
+          git commit -m "fix: automated favicon/description cleanup [skip ci]"
           git push
