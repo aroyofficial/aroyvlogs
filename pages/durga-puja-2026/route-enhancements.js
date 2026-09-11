@@ -113,11 +113,14 @@ document.addEventListener('DOMContentLoaded',()=>{
       card.classList.add('puja-pandal');
       card.dataset.serial=String(serial).padStart(2,'0');
       card.setAttribute('aria-expanded','false');
-      const panel=document.createElement('div');
-      panel.className='puja-pandal-expansion';
-      panel.setAttribute('aria-hidden','true');
-      panel.innerHTML='<div><div class="puja-pandal-expansion-content">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div>';
-      card.appendChild(panel);
+      let panel=card.querySelector('.puja-pandal-expansion');
+      if(!panel){
+        panel=document.createElement('div');
+        panel.className='puja-pandal-expansion';
+        panel.setAttribute('aria-hidden','true');
+        panel.innerHTML='<div><div class="puja-pandal-expansion-content">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div>';
+        card.appendChild(panel);
+      }
       card.addEventListener('click',event=>{
         if(event.target.closest('a'))return;
         const open=card.getAttribute('aria-expanded')==='true';
