@@ -8,6 +8,10 @@ A lightweight, responsive personal content hub for travel, festivals, food, tech
 - `css/style.css` — global responsive design
 - `js/app.js` — small site interactions
 - `pages/durga-puja-2026/` — Durga Puja 2026 collection
+- `tech/c-programming/` — C Programming notes
+- `tech/java-programming/` — Java Programming notes
+- `tech/object-oriented-programming/` — Object Oriented Programming notes
+- `tech/data-structures-algorithms/` — Data Structures & Algorithms notes
 - `assets/` — vendored binary assets (images) + one-command vendor script
 - `netlify.toml` — Netlify static deployment configuration
 
