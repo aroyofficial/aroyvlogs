@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="C programming notes — pointers, memory, compilation and systems-level thinking, collected in order.">
+    <title>C Programming · Vlogs with Arijit</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="../../">
+          <span class="brand-icon">✦</span>
+          <span>
+            <strong>Vlogs with Arijit</strong>
+            <small>Stories, routes & experiences</small>
+          </span>
+        </a>
+        <nav class="desktop-nav">
+          <a href="../../travel/">Travel</a>
+          <a href="../../festivals/">Festivals</a>
+          <a href="../../food/">Food</a>
+          <a class="active" href="../">Tech</a>
+          <a href="../../about/">About</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="hero container-fluid">
+        <div class="hero-copy">
+          <span class="eyebrow">TECH · PROGRAMMING</span>
+          <h1>C<br>
+            <em>Programming.</em>
+          </h1>
+          <p>Pointers, memory and systems-level thinking — notes, small examples and hard-won lessons from working through C, in order.</p>
+          <div class="hero-actions">
+            <a class="text-link" href="../">← Back to Tech</a>
+            <a class="text-link" href="../java-programming/">Next: Java Programming →</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="code-window">
+            <div class="code-bar">
+              <span class="code-dot" style="background:#ff5f57"></span>
+              <span class="code-dot" style="background:#febc2e"></span>
+              <span class="code-dot" style="background:#28c840"></span>
+              <span class="code-file">hello.c</span>
+            </div>
+            <span class="code-glow"></span>
+            <pre class="code-body"><span class="tk-c">// hello.c — the classic first program</span>
+<span class="tk-k">#include</span> <span class="tk-s">&lt;stdio.h&gt;</span>
+
+<span class="tk-t">int</span> <span class="tk-f">main</span>(<span class="tk-t">void</span>) {
+    <span class="tk-k">const char</span> *name = <span class="tk-s">"Arijit"</span>;
+    <span class="tk-f">printf</span>(<span class="tk-s">"Hello, %s!\n"</span>, name);
+    <span class="tk-k">return</span> <span class="tk-n">0</span>;
+}</pre>
+          </div>
+        </div>
+      </section>
+      <section class="section container-fluid">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">THE PAGE</span>
+            <h2>What lives here</h2>
+          </div>
+        </div>
+        <div class="content-grid">
+          <article class="card-body note-card" style="grid-column:span 2">
+            <p>C is the language the rest of computing quietly stands on — UNIX, Linux, git, browser engines, and the embedded systems in everything around the room. Learning C means learning how your program actually works: what memory looks like, what a pointer really is, and what the compiler is doing between you and the machine.</p>
+            <p>This page collects the notes, small examples and mistakes that came with working through C in order. It starts at the first compile and climbs all the way up to dynamic memory and writing your own little libraries.</p>
+          </article>
+        </div>
+      </section>
+      <section class="section container-fluid">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">ROADMAP</span>
+            <h2>Topics, in order</h2>
+          </div>
+          <span class="muted">12 topics · notes &amp; code</span>
+        </div>
+        <div class="content-grid mt-4">
+          <article class="card-body note-card">
+            <div class="topic-card-head">
+              <span class="topic-num">01</span>
+              <span class="category">FOUNDATIONS</span>
+            </div>
+            <h3>Why C</h3>
+            <p>K&amp;R, UNIX and where C runs today — kernels, drivers, toolchains and embedded devices.</p>
+          </article>
+          <article class="card-body note-card">
+            <div class="topic-card-head">
+              <span class="topic-num">02</span>
+              <span class="category">FOUNDATIONS</span>
+            </div>
+            <h3>Setup &amp; toolchain</h3>
+            <p>gcc and clang, how a program is compiled and linked, and a first look at makefiles.</p>
+          </article>
+          <article class="card-body note-card">
+            <div class="topic-card-head">
+              <span class="topic-num">03</span>
+              <span class="category">FIRST STEPS</span>
+            </div>
+            <h3>Hello, C</h3>
+            <p>Translation units, the preprocessor and the first compile–run cycle. What actually happens between source and binary.</p>
+          </article>
+          <article class="card-body note-card">
+            <div class="topic-card-head">
+              <span class="topic-num">04</span>
+              <span class="category">FIRST STEPS</span>
+            </div>
+            <h3>Data types &amp; variables</h3>
+            <p>char, int, float, sizeof and the promotion rules that quietly change what your program does.</p>
+          </article>
+          <article class="card-body note-card">
+            <div class="topic-card-head">
+              <span class="topic-num">05</span>
+              <span class="category">FIRST STEPS</span>
+            </div>
+            <h3>Operators &amp; expressions</h3>
+            <p>Arithmetic through bitwise — precedence, compound assignment and the shifts C programmers actually use.</p>
+          </article>
+          <article class="card-body note-card">
+            <div class="topic-card-head">
+              <span class="topic-num">06</span>
+              <span class="category">FIRST STEPS</span>
+            </div>
+            <h3>Input &amp; output</h3>
+            <p>printf and scanf in detail: format specifiers, return values and the usual input pitfalls.</p>
+          </article>
+          <article class="card-body note-card">
+            <div class="topic-card-head">
+              <span class="topic-num">07</span>
+              <span class="category">CORE LANGUAGE</span>
+            </div>
+            <h3>Control flow</h3>
+            <p>if/else, switch, for and while, break and continue — and the rare places where goto is legitimate.</p>
+          </article>
+          <article class="card-body note-card">
+            <div class="topic-card-head">
+              <span class="topic-num">08</span>
+              <span class="category">CORE LANGUAGE</span>
+            </div>
+            <h3>Functions &amp; scope</h3>
+            <p>Call by value, returns, static functions and recursion — and how the stack keeps it all straight.</p>
+          </article>
+          <article class="card-body note-card">
+            <div class="topic-card-head">
+              <span class="topic-num">09</span>
+              <span class="category">THE DEEP END</span>
+            </div>
+            <h3>Pointers &amp; memory</h3>
+            <p>Addresses, pointer arithmetic, stack vs heap, malloc/free and why dangling pointers bite.</p>
+          </article>
+          <article class="card-body note-card">
+            <div class="topic-card-head">
+              <span class="topic-num">10</span>
+              <span class="category">THE DEEP END</span>
+            </div>
+            <h3>Arrays &amp; strings</h3>
+            <p>Multidimensional arrays, null-terminated strings and string.h — strings are just char arrays.</p>
+          </article>
+          <article class="card-body note-card">
+            <div class="topic-card-head">
+              <span class="topic-num">11</span>
+              <span class="category">STRUCTURING</span>
+            </div>
+            <h3>Structs, unions &amp; typedef</h3>
+            <p>Grouping data, unions, enums, bit-fields and designing clean abstractions without a class keyword.</p>
+          </article>
+          <article class="card-body note-card">
+            <div class="topic-card-head">
+              <span class="topic-num">12</span>
+              <span class="category">BUILDING</span>
+            </div>
+            <h3>Files, preprocessor &amp; projects</h3>
+            <p>File I/O, #define and #ifdef, then small projects: a calculator, a linked list, a tiny allocator.</p>
+          </article>
+        </div>
+      </section>
+      <section class="section container-fluid">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">KEEP GOING</span>
+            <h2>The programming hub</h2>
+          </div>
+        </div>
+        <div class="topic-row">
+          <a href="../">
+            <span>Tech hub<small>Everything under Tech</small></span>
+            <span style="color:var(--accent);font-weight:900">→</span>
+          </a>
+          <a href="../java-programming/">
+            <span>Java Programming<small>JVM, collections &amp; modern Java</small></span>
+            <span style="color:var(--accent);font-weight:900">→</span>
+          </a>
+          <a href="../object-oriented-programming/">
+            <span>Object Oriented Programming<small>Classes, SOLID &amp; patterns</small></span>
+            <span style="color:var(--accent);font-weight:900">→</span>
+          </a>
+          <a href="../data-structures-algorithms/">
+            <span>Data Structures &amp; Algorithms<small>The problem-solving toolkit</small></span>
+            <span style="color:var(--accent);font-weight:900">→</span>
+          </a>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div>
+        <strong>Vlogs with Arijit</strong><span>Tech · C Programming</span>
+      </div>
+      <a class="text-link" href="../../">Home</a>
+    </footer>
+  </body>
+</html>
