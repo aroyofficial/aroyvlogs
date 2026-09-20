@@ -425,7 +425,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					}
 					inner.appendChild(content);
 				}
-				content.innerHTML = description;
+				//content.innerHTML = description;
 			});
 	}
 	if (document.readyState === "loading")
