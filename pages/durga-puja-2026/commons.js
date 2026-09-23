@@ -260,7 +260,7 @@ export function renderPandal(item, routeData) {
 		: null;
 	const lastTransitStep = previousTransit?.steps.at(-1);
 	const fromLocation = item.isPreviousTransit
-		? lastTransitStep?.destLabel || lastTransitStep?.dest?.name
+		? lastTransitStep?.dest?.name
 		: previousStop?.title;
 	const walkingTime = Math.ceil(item.distance / WALKING_PACE_METERS_PER_MINUTE);
 
@@ -268,15 +268,12 @@ export function renderPandal(item, routeData) {
 }
 
 export function renderTransit(transit) {
-	const locationLink = (place, label = place.name) =>
+	const locationLink = (place) =>
 		place?.gmapsUrl
-			? `<a class="route-location-link" target="_blank" rel="noopener" href="${place.gmapsUrl}">${label}</a>`
-			: label;
+			? `<a class="route-location-link" target="_blank" rel="noopener" href="${place.gmapsUrl}">${place.name}</a>`
+			: place.name;
 	const steps = transit.steps.map((step) => {
-		const destination = locationLink(
-			step.dest,
-			step.destLabel || step.dest.name,
-		);
+		const destination = locationLink(step.dest);
 		switch (step.medium) {
 			case TransitMedium.WALK: {
 				const prefix = step.prefix ? `${step.prefix} ` : "";
@@ -288,7 +285,7 @@ export function renderTransit(transit) {
 			}
 			case TransitMedium.BUS:
 				return step.src
-					? `Take a bus from ${locationLink(step.src, step.srcLabel || step.src.name)} to ${destination}`
+					? `Take a bus from ${locationLink(step.src)} to ${destination}`
 					: `Then take a bus to ${destination}`;
 			case TransitMedium.METRO:
 				return `take a metro to ${destination}`;

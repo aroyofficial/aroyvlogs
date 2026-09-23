@@ -111,7 +111,7 @@ export const panchami = {
 	dateLabel: "16 OCTOBER &middot; FRIDAY",
 	meetup: {
 		time: "7:30 AM",
-		place: { ...Places.BUS_STOPS.BALLY_HALT, name: "Bally Halt Bus Stand" },
+		place: Places.BUS_STOPS.BALLY_HALT,
 	},
 	lunchStop: {
 		type: ItemType.LUNCH,

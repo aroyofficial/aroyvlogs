@@ -53,9 +53,9 @@ function calculateRouteSummary(routeData) {
 	const lastTransitStep = lastTransit?.steps[lastTransit.steps.length - 1];
 	const areas = [...new Set(stops.map((stop) => stop.area[0]))];
 	const itinerary = [
-		firstTransitStep?.srcLabel || firstTransitStep?.src?.name,
+		firstTransitStep?.src?.name,
 		...areas,
-		lastTransitStep?.destLabel || lastTransitStep?.dest?.name,
+		lastTransitStep?.dest?.name,
 	].filter(Boolean);
 	const linkedTransitIndexes = new Set(
 		stops.map((stop) => stop.transit).filter((index) => index !== undefined),
@@ -128,8 +128,5 @@ if (routeData) {
 	renderMain(routeData);
 	renderFooter(routeData);
 } else {
-	document.title = "Puja day not found · Durga Puja 2026";
-	if (pageRoot) {
-		pageRoot.outerHTML = '<main class="section"><h1>Puja day not found</h1><p>Please choose Chaturthi or Panchami from the <a href="index.html">Puja calendar</a>.</p></main>';
-	}
+	window.location.replace("../../404.html");
 }
