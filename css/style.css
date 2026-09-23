@@ -436,14 +436,14 @@ body {
 	width: 2px;
 	background: var(--line);
 }
-.route-step {
+.itinerary-stop {
 	position: relative;
 	display: grid;
 	grid-template-columns: 48px 1fr;
 	gap: 18px;
 	margin-bottom: 14px;
 }
-.route-number {
+.itinerary-item-order {
 	width: 48px;
 	height: 48px;
 	border-radius: 50%;
@@ -456,32 +456,32 @@ body {
 	z-index: 1;
 	box-shadow: 0 0 0 7px var(--paper);
 }
-.route-card {
+.itinerary-item {
 	background: var(--card);
 	border: 1px solid var(--line);
 	border-radius: 18px;
 	padding: 20px 22px;
 }
-.route-top {
+.itinerary-item-body {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
 	gap: 15px;
 }
-.route-card h3 {
+.itinerary-item h3 {
 	font-family: Georgia, serif;
 	font-size: 26px;
 	font-weight: 500;
 	margin: 4px 0 7px;
 	letter-spacing: -0.03em;
 }
-.route-card p {
+.itinerary-item p {
 	margin: 0;
 	color: var(--muted);
 	font-size: 14px;
 	line-height: 1.6;
 }
-.route-meta {
+.geo-area {
 	font-size: 10px;
 	font-weight: 900;
 	letter-spacing: 0.13em;
@@ -517,7 +517,7 @@ body {
 .route-location:hover {
 	color: var(--accent);
 }
-.route-transport {
+.itinerary-transit {
 	margin: 0 0 14px 66px;
 	padding: 13px 16px;
 	border: 1px dashed var(--accent);
@@ -527,7 +527,7 @@ body {
 	font-size: 12px;
 	line-height: 1.6;
 }
-.route-transport strong {
+.itinerary-transit strong {
 	display: inline-block;
 	color: var(--accent);
 	text-transform: uppercase;
@@ -535,7 +535,7 @@ body {
 	font-size: 10px;
 	margin-right: 7px;
 }
-.route-lunch {
+.lunch-stop {
 	border-style: dashed;
 }
 @media (max-width: 991.98px) {
@@ -691,25 +691,25 @@ body {
 	.route-list:before {
 		left: 19px;
 	}
-	.route-step {
+	.itinerary-stop {
 		grid-template-columns: 40px 1fr;
 		gap: 12px;
 	}
-	.route-number {
+	.itinerary-item-order {
 		width: 40px;
 		height: 40px;
 		font-size: 10px;
 	}
-	.route-card {
+	.itinerary-item {
 		padding: 16px;
 	}
-	.route-top {
+	.itinerary-item-body {
 		flex-direction: column;
 	}
-	.route-card h3 {
+	.itinerary-item h3 {
 		font-size: 23px;
 	}
-	.route-transport {
+	.itinerary-transit {
 		margin-left: 52px;
 	}
 }
@@ -839,7 +839,7 @@ i.fa-solid {
 	font-size: 21px;
 	color: var(--muted);
 }
-.puja-pandal-social-media {
+.itinerary-item-expansion-panel-footer {
 	margin-top: 16px;
 	margin-left: 1px;
 	display: flex;

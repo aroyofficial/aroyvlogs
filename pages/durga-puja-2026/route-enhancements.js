@@ -148,17 +148,17 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	};
 
-	document.querySelectorAll(".route-step").forEach((step) => {
-		const card = step.querySelector(".route-card");
+	document.querySelectorAll(".itinerary-stop").forEach((step) => {
+		const card = step.querySelector(".itinerary-item");
 		if (!card) return;
 		if (
-			card.classList.contains("route-lunch") ||
+			card.classList.contains("lunch-stop") ||
 			/\bLUNCH\b/i.test(card.textContent)
 		) {
-			const n = step.querySelector(".route-number");
+			const n = step.querySelector(".itinerary-item-order");
 			if (n) n.remove();
-			step.classList.add("route-lunch-step");
-			const meta = card.querySelector(".route-meta");
+			step.classList.add("lunch-stop-step");
+			const meta = card.querySelector(".geo-area");
 			if (meta) meta.textContent = "🍴 LUNCH";
 			if (/Allen Kitchen/i.test(card.textContent)) {
 				const p = card.querySelector("p");
@@ -169,14 +169,14 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 	const lunchStyle = document.createElement("style");
 	lunchStyle.textContent =
-		'.route-step.route-lunch-step{display:block;margin-left:66px;position:relative}.route-step.route-lunch-step:before{content:"🍴";position:absolute;left:-66px;top:8px;width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:18px;z-index:1;box-shadow:0 0 0 7px var(--paper)}.route-step.route-lunch-step .route-card{width:100%;}.route-step.route-lunch-step .route-top{align-items:flex-start;}@media(max-width:575.98px){.route-step.route-lunch-step{margin-left:52px}.route-step.route-lunch-step:before{left:-52px;width:40px;height:40px;font-size:16px}.route-step.route-lunch-step .route-top{flex-direction:column}.route-step.route-lunch-step .map-btn{width:100%;justify-content:center}}';
+		'.itinerary-stop.lunch-stop-step{display:block;margin-left:66px;position:relative}.itinerary-stop.lunch-stop-step:before{content:"🍴";position:absolute;left:-66px;top:8px;width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:18px;z-index:1;box-shadow:0 0 0 7px var(--paper)}.itinerary-stop.lunch-stop-step .itinerary-item{width:100%;}.itinerary-stop.lunch-stop-step .itinerary-item-body{align-items:flex-start;}@media(max-width:575.98px){.itinerary-stop.lunch-stop-step{margin-left:52px}.itinerary-stop.lunch-stop-step:before{left:-52px;width:40px;height:40px;font-size:16px}.itinerary-stop.lunch-stop-step .itinerary-item-body{flex-direction:column}.itinerary-stop.lunch-stop-step .map-btn{width:100%;justify-content:center}}';
 	document.head.appendChild(lunchStyle);
 
 	document.querySelectorAll(".route-list").forEach((list) => {
-		const steps = [...list.querySelectorAll(":scope > .route-step")];
+		const steps = [...list.querySelectorAll(":scope > .itinerary-stop")];
 		const last = steps[steps.length - 1];
 		if (!last) return;
-		const p = last.querySelector(".route-card p");
+		const p = last.querySelector(".itinerary-item p");
 		if (!p) return;
 		const raw = p.textContent.trim();
 		const marker = raw.search(/\bThen\s+/i);
@@ -188,32 +188,32 @@ document.addEventListener("DOMContentLoaded", () => {
 				.replace(/^Then\s+/i, "");
 			p.textContent = visit ? visit + "." : "";
 			const li = document.createElement("li");
-			li.className = "route-transport";
+			li.className = "itinerary-transit";
 			li.innerHTML = "<strong>Transfer:</strong> " + transfer;
 			last.after(li);
 		}
 	});
 
 	document.querySelectorAll(".route-list").forEach((list) => {
-		const steps = [...list.querySelectorAll(":scope > .route-step")];
+		const steps = [...list.querySelectorAll(":scope > .itinerary-stop")];
 		let previous = "";
 		let number = 1;
 		steps.forEach((step) => {
-			const card = step.querySelector(".route-card");
+			const card = step.querySelector(".itinerary-item");
 			if (!card) return;
 			const title = card.querySelector("h3")?.textContent.trim();
 			const p = card.querySelector("p");
 			const isLunch =
-				step.classList.contains("route-lunch-step") ||
+				step.classList.contains("lunch-stop-step") ||
 				/\bLUNCH\b/i.test(card.textContent);
 			if (isLunch) {
 				if (title === "Allen Kitchen" && p)
 					p.textContent = "Lunch stop. 🚶 230 m · ⏱️ 5 min from Hazra Park.";
 			} else {
-				let n = step.querySelector(".route-number");
+				let n = step.querySelector(".itinerary-item-order");
 				if (!n) {
 					n = document.createElement("span");
-					n.className = "route-number";
+					n.className = "itinerary-item-order";
 					step.insertBefore(n, step.firstChild);
 				}
 				n.textContent = String(number).padStart(2, "0");
@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (title && !isLunch) previous = title;
 		});
 	});
-	document.querySelectorAll(".route-transport").forEach((el) => {
+	document.querySelectorAll(".itinerary-transit").forEach((el) => {
 		el.innerHTML = enhanceWalking(el.innerHTML);
 	});
 
@@ -240,47 +240,51 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (/\/chaturthi\.html$/i.test(location.pathname)) return;
 		const style = document.createElement("style");
 		style.textContent =
-			'.puja-pandal{cursor:pointer;transition:box-shadow .2s ease,transform .2s ease}.puja-pandal:hover{box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateY(-1px)}.puja-pandal[aria-expanded="true"]{box-shadow:0 10px 30px rgba(0,0,0,.1)}.puja-pandal-expansion{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease;margin-top:0}.puja-pandal-expansion.is-open{grid-template-rows:1fr;margin-top:14px}.puja-pandal-expansion>div{overflow:hidden}.puja-pandal-expansion-content{padding:0;border-top:1px solid var(--line);color:var(--muted);font-size:14px;line-height:1.6}.puja-pandal-expansion.is-open .puja-pandal-expansion-content{padding-top:14px}.puja-pandal .route-actions{position:relative;z-index:2}.puja-pandal .route-actions a{cursor:pointer}';
+			'.pandal{cursor:pointer;transition:box-shadow .2s ease,transform .2s ease}.pandal:hover{box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateY(-1px)}.pandal[aria-expanded="true"]{box-shadow:0 10px 30px rgba(0,0,0,.1)}.itinerary-item-expansion-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease;margin-top:0}.itinerary-item-expansion-panel.is-open{grid-template-rows:1fr;margin-top:14px}.itinerary-item-expansion-panel>div{overflow:hidden}.itinerary-item-expansion-panel-body{padding:0;border-top:1px solid var(--line);color:var(--muted);font-size:14px;line-height:1.6}.itinerary-item-expansion-panel.is-open .itinerary-item-expansion-panel-body{padding-top:14px}.pandal .route-actions{position:relative;z-index:2}.pandal .route-actions a{cursor:pointer}';
 		document.head.appendChild(style);
 		let serial = 1;
-		document.querySelectorAll(".route-step .route-card").forEach((card) => {
-			if (
-				card.classList.contains("route-lunch") ||
-				/\bLUNCH\b/i.test(card.textContent)
-			)
-				return;
-			card.classList.add("puja-pandal");
-			card.dataset.serial = String(serial).padStart(2, "0");
-			card.setAttribute("aria-expanded", "false");
-			let panel = card.querySelector(".puja-pandal-expansion");
-			if (!panel) {
-				panel = document.createElement("div");
-				panel.className = "puja-pandal-expansion";
-				panel.setAttribute("aria-hidden", "true");
-				panel.innerHTML =
-					'<div><div class="puja-pandal-expansion-content">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div>';
-				card.appendChild(panel);
-			}
-			card.addEventListener("click", (event) => {
-				if (event.target.closest("a")) return;
-				const open = card.getAttribute("aria-expanded") === "true";
-				document
-					.querySelectorAll('.puja-pandal[aria-expanded="true"]')
-					.forEach((other) => {
-						if (other === card) return;
-						other.setAttribute("aria-expanded", "false");
-						const otherPanel = other.querySelector(".puja-pandal-expansion");
-						if (otherPanel) {
-							otherPanel.classList.remove("is-open");
-							otherPanel.setAttribute("aria-hidden", "true");
-						}
-					});
-				card.setAttribute("aria-expanded", String(!open));
-				panel.classList.toggle("is-open", !open);
-				panel.setAttribute("aria-hidden", String(open));
+		document
+			.querySelectorAll(".itinerary-stop .itinerary-item")
+			.forEach((card) => {
+				if (
+					card.classList.contains("lunch-stop") ||
+					/\bLUNCH\b/i.test(card.textContent)
+				)
+					return;
+				card.classList.add("pandal");
+				card.dataset.serial = String(serial).padStart(2, "0");
+				card.setAttribute("aria-expanded", "false");
+				let panel = card.querySelector(".itinerary-item-expansion-panel");
+				if (!panel) {
+					panel = document.createElement("div");
+					panel.className = "itinerary-item-expansion-panel";
+					panel.setAttribute("aria-hidden", "true");
+					panel.innerHTML =
+						'<div><div class="itinerary-item-expansion-panel-body">Tap this card to expand. Detailed pandal notes can be placed here later.</div></div>';
+					card.appendChild(panel);
+				}
+				card.addEventListener("click", (event) => {
+					if (event.target.closest("a")) return;
+					const open = card.getAttribute("aria-expanded") === "true";
+					document
+						.querySelectorAll('.pandal[aria-expanded="true"]')
+						.forEach((other) => {
+							if (other === card) return;
+							other.setAttribute("aria-expanded", "false");
+							const otherPanel = other.querySelector(
+								".itinerary-item-expansion-panel",
+							);
+							if (otherPanel) {
+								otherPanel.classList.remove("is-open");
+								otherPanel.setAttribute("aria-hidden", "true");
+							}
+						});
+					card.setAttribute("aria-expanded", String(!open));
+					panel.classList.toggle("is-open", !open);
+					panel.setAttribute("aria-hidden", String(open));
+				});
+				serial++;
 			});
-			serial++;
-		});
 	};
 
 	const linkLocations = (root) => {
@@ -292,7 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				if (
 					!node.nodeValue.includes(name) ||
 					node.parentElement.closest("a") ||
-					node.parentElement.closest(".route-card") ||
+					node.parentElement.closest(".itinerary-item") ||
 					node.parentElement.closest(".route-summary")
 				)
 					return;
@@ -330,18 +334,18 @@ document.addEventListener("DOMContentLoaded", () => {
 			list.addEventListener(
 				"click",
 				(e) => {
-					const card = e.target.closest(".route-card.puja-pandal");
+					const card = e.target.closest(".itinerary-item.pandal");
 					if (!card || !list.contains(card) || e.target.closest("a")) return;
-					const panel = card.querySelector(".puja-pandal-expansion");
+					const panel = card.querySelector(".itinerary-item-expansion-panel");
 					if (!panel) return;
 					e.stopPropagation();
 					const open = card.getAttribute("aria-expanded") === "true";
 					list
-						.querySelectorAll('.route-card.puja-pandal[aria-expanded="true"]')
+						.querySelectorAll('.itinerary-item.pandal[aria-expanded="true"]')
 						.forEach((other) => {
 							if (other === card) return;
 							other.setAttribute("aria-expanded", "false");
-							const op = other.querySelector(".puja-pandal-expansion");
+							const op = other.querySelector(".itinerary-item-expansion-panel");
 							if (op) {
 								op.classList.remove("is-open");
 								op.setAttribute("aria-hidden", "true");
@@ -395,29 +399,31 @@ document.addEventListener("DOMContentLoaded", () => {
 	function fix() {
 		if (!/\/shashthi\.html$/i.test(location.pathname)) return;
 		document
-			.querySelectorAll(".route-list > .route-step .route-card")
+			.querySelectorAll(".route-list > .itinerary-stop .itinerary-item")
 			.forEach(function (card) {
-				if (card.classList.contains("route-lunch")) return;
+				if (card.classList.contains("lunch-stop")) return;
 				const title = card.querySelector("h3")?.textContent.trim();
 				const description = descriptions[title];
 				if (!description) return;
-				card.classList.add("puja-pandal");
-				let panel = card.querySelector(".puja-pandal-expansion");
+				card.classList.add("pandal");
+				let panel = card.querySelector(".itinerary-item-expansion-panel");
 				if (!panel) {
 					panel = document.createElement("div");
-					panel.className = "puja-pandal-expansion";
+					panel.className = "itinerary-item-expansion-panel";
 					panel.setAttribute("aria-hidden", "true");
 					const inner = document.createElement("div");
 					const content = document.createElement("div");
-					content.className = "puja-pandal-expansion-content";
+					content.className = "itinerary-item-expansion-panel-body";
 					inner.appendChild(content);
 					panel.appendChild(inner);
 					card.appendChild(panel);
 				}
-				let content = panel.querySelector(".puja-pandal-expansion-content");
+				let content = panel.querySelector(
+					".itinerary-item-expansion-panel-body",
+				);
 				if (!content) {
 					content = document.createElement("div");
-					content.className = "puja-pandal-expansion-content";
+					content.className = "itinerary-item-expansion-panel-body";
 					let inner = panel.querySelector(":scope > div");
 					if (!inner) {
 						inner = document.createElement("div");
@@ -462,29 +468,31 @@ document.addEventListener("DOMContentLoaded", () => {
 	function fix() {
 		if (!/\/saptami\.html$/i.test(location.pathname)) return;
 		document
-			.querySelectorAll(".route-list > .route-step .route-card")
+			.querySelectorAll(".route-list > .itinerary-stop .itinerary-item")
 			.forEach(function (card) {
-				if (card.classList.contains("route-lunch")) return;
+				if (card.classList.contains("lunch-stop")) return;
 				const title = card.querySelector("h3")?.textContent.trim();
 				const description = descriptions[title];
 				if (!description) return;
-				card.classList.add("puja-pandal");
-				let panel = card.querySelector(".puja-pandal-expansion");
+				card.classList.add("pandal");
+				let panel = card.querySelector(".itinerary-item-expansion-panel");
 				if (!panel) {
 					panel = document.createElement("div");
-					panel.className = "puja-pandal-expansion";
+					panel.className = "itinerary-item-expansion-panel";
 					panel.setAttribute("aria-hidden", "true");
 					const inner = document.createElement("div");
 					const content = document.createElement("div");
-					content.className = "puja-pandal-expansion-content";
+					content.className = "itinerary-item-expansion-panel-body";
 					inner.appendChild(content);
 					panel.appendChild(inner);
 					card.appendChild(panel);
 				}
-				let content = panel.querySelector(".puja-pandal-expansion-content");
+				let content = panel.querySelector(
+					".itinerary-item-expansion-panel-body",
+				);
 				if (!content) {
 					content = document.createElement("div");
-					content.className = "puja-pandal-expansion-content";
+					content.className = "itinerary-item-expansion-panel-body";
 					let inner = panel.querySelector(":scope > div");
 					if (!inner) {
 						inner = document.createElement("div");
@@ -562,33 +570,35 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (location.pathname.toLowerCase().endsWith("/navami.html") === false)
 			return;
 		document
-			.querySelectorAll(".route-list > .route-step .route-card")
+			.querySelectorAll(".route-list > .itinerary-stop .itinerary-item")
 			.forEach(function (card) {
 				if (
-					card.classList.contains("route-lunch") ||
+					card.classList.contains("lunch-stop") ||
 					card.textContent.toUpperCase().includes("LUNCH")
 				)
 					return;
 				const title = card.querySelector("h3")?.textContent.trim();
 				const description = descriptions[title];
 				if (!description) return;
-				card.classList.add("puja-pandal");
-				let panel = card.querySelector(".puja-pandal-expansion");
+				card.classList.add("pandal");
+				let panel = card.querySelector(".itinerary-item-expansion-panel");
 				if (!panel) {
 					panel = document.createElement("div");
-					panel.className = "puja-pandal-expansion";
+					panel.className = "itinerary-item-expansion-panel";
 					panel.setAttribute("aria-hidden", "true");
 					const inner = document.createElement("div");
 					const content = document.createElement("div");
-					content.className = "puja-pandal-expansion-content";
+					content.className = "itinerary-item-expansion-panel-body";
 					inner.appendChild(content);
 					panel.appendChild(inner);
 					card.appendChild(panel);
 				}
-				let content = panel.querySelector(".puja-pandal-expansion-content");
+				let content = panel.querySelector(
+					".itinerary-item-expansion-panel-body",
+				);
 				if (!content) {
 					content = document.createElement("div");
-					content.className = "puja-pandal-expansion-content";
+					content.className = "itinerary-item-expansion-panel-body";
 					let inner = panel.querySelector(":scope > div");
 					if (!inner) {
 						inner = document.createElement("div");

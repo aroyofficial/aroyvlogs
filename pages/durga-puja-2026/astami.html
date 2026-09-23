@@ -25,47 +25,48 @@
 			.route-actions .map-btn {
 				width: max-content;
 			}
-			.puja-pandal {
+			.pandal {
 				cursor: pointer;
 				transition:
 					box-shadow 0.2s ease,
 					transform 0.2s ease;
 			}
-			.puja-pandal:hover {
+			.pandal:hover {
 				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 				transform: translateY(-1px);
 			}
-			.puja-pandal[aria-expanded="true"] {
+			.pandal[aria-expanded="true"] {
 				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 			}
-			.puja-pandal-expansion {
+			.itinerary-item-expansion-panel {
 				display: grid;
 				grid-template-rows: 0fr;
 				transition: grid-template-rows 0.25s ease;
 				margin-top: 0;
 			}
-			.puja-pandal-expansion.is-open {
+			.itinerary-item-expansion-panel.is-open {
 				grid-template-rows: 1fr;
 				margin-top: 14px;
 			}
-			.puja-pandal-expansion > div {
+			.itinerary-item-expansion-panel > div {
 				overflow: hidden;
 			}
-			.puja-pandal-expansion-content {
+			.itinerary-item-expansion-panel-body {
 				padding: 0;
 				border-top: 1px solid var(--line);
 				color: var(--muted);
 				font-size: 14px;
 				line-height: 1.6;
 			}
-			.puja-pandal-expansion.is-open .puja-pandal-expansion-content {
+			.itinerary-item-expansion-panel.is-open
+				.itinerary-item-expansion-panel-body {
 				padding-top: 14px;
 			}
-			.puja-pandal .route-actions {
+			.pandal .route-actions {
 				position: relative;
 				z-index: 2;
 			}
-			.puja-pandal .route-actions a {
+			.pandal .route-actions a {
 				cursor: pointer;
 			}
 			@media (max-width: 575.98px) {
@@ -122,7 +123,7 @@
 					🗺️ <strong>Zones Covered:</strong> Port Area
 				</div>
 				<ol class="route-list">
-					<li class="route-transport">
+					<li class="itinerary-transit">
 						<strong>Transfer:</strong> 🚕 Take a cab from
 						<a
 							class="route-location-link"
@@ -140,12 +141,12 @@
 							>Khidirpur Manasa Mandir</a
 						>.
 					</li>
-					<li class="route-step">
-						<span class="route-number">01</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">01</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">KHIDIRPUR (PORT AREA)</div>
+									<div class="geo-area">KHIDIRPUR (PORT AREA)</div>
 									<h3>25 Pally</h3>
 									<p>🚶 150 m · ⏱️ 3 min from Khidirpur Manasa Mandir.</p>
 								</div>
@@ -166,9 +167,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>82nd year</strong>, this
 										long-running Khidirpur community Puja boasts a rich history
 										of thematic installations dating back to 1945. The 2026
@@ -177,8 +178,8 @@
 										life by creative artists
 										<strong>Sujit Das and Buddhadeb Karmakar</strong>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/25Pally"
 												target="_blank"
@@ -186,7 +187,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -195,7 +196,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -204,7 +205,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -213,7 +214,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -222,12 +223,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+919831566910" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:25pallyclub@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -237,12 +238,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">02</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">02</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">KHIDIRPUR (PORT AREA)</div>
+									<div class="geo-area">KHIDIRPUR (PORT AREA)</div>
 									<h3>74 Pally</h3>
 									<p>🚶 550 m · ⏱️ 11 min from 25 Pally.</p>
 								</div>
@@ -263,9 +264,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>71st year</strong>, this puja is
 										known for its long tradition of community-led thematic work
 										and traditional craftsmanship. The 2026 presentation
@@ -279,8 +280,8 @@
 											Sen, Sudip Sanyal, and Pallab Sekhar Das</strong
 										>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/74PalliSarbojaninDurgotsavKidderpore"
 												target="_blank"
@@ -288,7 +289,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -297,7 +298,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -306,7 +307,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -315,7 +316,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -324,12 +325,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a href="tel:+919674999555" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:74pallyclub@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -339,12 +340,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">03</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">03</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">KHIDIRPUR (PORT AREA)</div>
+									<div class="geo-area">KHIDIRPUR (PORT AREA)</div>
 									<h3>75 Pally</h3>
 									<p>🚶 650 m · ⏱️ 13 min from 74 Pally.</p>
 								</div>
@@ -365,9 +366,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>63rd year</strong>, the 2026
 										presentation features the theme
 										<strong
@@ -382,8 +383,8 @@
 											Biswas, Azaan Chakraborty, and Paresh Bera</strong
 										>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/75pallykhidderpore"
 												target="_blank"
@@ -391,7 +392,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -400,7 +401,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -409,7 +410,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@75pallykhidderpore"
 												target="_blank"
@@ -418,7 +419,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -427,12 +428,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+916290427717" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a href="mailto:barishasarbojanindurgotsab@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -442,12 +443,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">04</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">04</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">KHIDIRPUR (PORT AREA)</div>
+									<div class="geo-area">KHIDIRPUR (PORT AREA)</div>
 									<h3>Khidderpore Pally Sharadiya</h3>
 									<p>🚶 350 m · ⏱️ 7 min from 75 Pally.</p>
 								</div>
@@ -468,9 +469,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>85th year</strong>, this established
 										Khidirpur puja presents a nostalgic tribute to Kolkata's
 										city heritage Tram. The 2026 presentation features the theme
@@ -481,8 +482,8 @@
 											Jana</strong
 										>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/kidderpore.pallysaradiya"
 												target="_blank"
@@ -490,7 +491,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/kidderporepallysaradiya"
 												target="_blank"
@@ -499,7 +500,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -508,7 +509,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -517,7 +518,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -526,12 +527,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+919830817718" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:pallysaradiyakidderpore@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -541,7 +542,7 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-transport">
+					<li class="itinerary-transit">
 						<strong>Transfer:</strong> 🚶 Walk 600 m · ⏱️ about 12 min to
 						<a
 							class="route-location-link"
@@ -601,10 +602,10 @@
 			(function () {
 				function bind() {
 					document
-						.querySelectorAll(".route-card.puja-pandal")
+						.querySelectorAll(".itinerary-item.pandal")
 						.forEach(function (card) {
 							if (card.dataset.astamiBound === "true") return;
-							var panel = card.querySelector(".puja-pandal-expansion");
+							var panel = card.querySelector(".itinerary-item-expansion-panel");
 							if (!panel) return;
 							card.dataset.astamiBound = "true";
 							card.addEventListener("click", function (e) {
@@ -612,12 +613,14 @@
 								var open = card.getAttribute("aria-expanded") === "true";
 								document
 									.querySelectorAll(
-										'.route-card.puja-pandal[aria-expanded="true"]',
+										'.itinerary-item.pandal[aria-expanded="true"]',
 									)
 									.forEach(function (other) {
 										if (other === card) return;
 										other.setAttribute("aria-expanded", "false");
-										var op = other.querySelector(".puja-pandal-expansion");
+										var op = other.querySelector(
+											".itinerary-item-expansion-panel",
+										);
 										if (op) {
 											op.classList.remove("is-open");
 											op.setAttribute("aria-hidden", "true");

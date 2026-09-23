@@ -35,47 +35,48 @@
 					width: max-content;
 				}
 			}
-			.puja-pandal {
+			.pandal {
 				cursor: pointer;
 				transition:
 					box-shadow 0.2s ease,
 					transform 0.2s ease;
 			}
-			.puja-pandal:hover {
+			.pandal:hover {
 				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 				transform: translateY(-1px);
 			}
-			.puja-pandal[aria-expanded="true"] {
+			.pandal[aria-expanded="true"] {
 				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 			}
-			.puja-pandal-expansion {
+			.itinerary-item-expansion-panel {
 				display: grid;
 				grid-template-rows: 0fr;
 				transition: grid-template-rows 0.25s ease;
 				margin-top: 0;
 			}
-			.puja-pandal-expansion.is-open {
+			.itinerary-item-expansion-panel.is-open {
 				grid-template-rows: 1fr;
 				margin-top: 14px;
 			}
-			.puja-pandal-expansion > div {
+			.itinerary-item-expansion-panel > div {
 				overflow: hidden;
 			}
-			.puja-pandal-expansion-content {
+			.itinerary-item-expansion-panel-body {
 				padding: 0;
 				border-top: 1px solid var(--line);
 				color: var(--muted);
 				font-size: 14px;
 				line-height: 1.6;
 			}
-			.puja-pandal-expansion.is-open .puja-pandal-expansion-content {
+			.itinerary-item-expansion-panel.is-open
+				.itinerary-item-expansion-panel-body {
 				padding-top: 14px;
 			}
-			.puja-pandal .route-actions {
+			.pandal .route-actions {
 				position: relative;
 				z-index: 2;
 			}
-			.puja-pandal .route-actions a {
+			.pandal .route-actions a {
 				cursor: pointer;
 			}
 		</style>
@@ -123,7 +124,7 @@
 					🗺️ <strong>Zones Covered:</strong> North Kolkata
 				</div>
 				<ol class="route-list">
-					<li class="route-transport">
+					<li class="itinerary-transit">
 						<strong>Transfer:</strong> Start at
 						<a
 							href="https://maps.app.goo.gl/8LoWVUE9gNdAG7dBA"
@@ -132,12 +133,12 @@
 							>Sonarpur Junction</a
 						>. Take a cab to the Bagbazar Puja area.
 					</li>
-					<li class="route-step">
-						<span class="route-number">01</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">01</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">BAGBAZAR (NORTH KOLKATA)</div>
+									<div class="geo-area">BAGBAZAR (NORTH KOLKATA)</div>
 									<h3>Bagbazar Sarbojanin</h3>
 									<p>Starting point of the North Kolkata circuit.</p>
 								</div>
@@ -158,9 +159,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>108th year</strong>, this iconic
 										heritage puja is renowned for its traditional
 										<strong>Sabeki idol</strong> and timeless cultural
@@ -168,8 +169,8 @@
 										preserve the authentic spirit and grandeur of Kolkata's
 										classic Durga Puja celebrations.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/BaghbazarSarbojaninDurgotsavExhibition"
 												target="_blank"
@@ -177,7 +178,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -186,7 +187,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.bsde.org"
 												target="_blank"
@@ -195,7 +196,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -204,7 +205,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -213,12 +214,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+919830704299" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:info@bsde.org"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -228,12 +229,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">02</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">02</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">SHYAMBAZAR (NORTH KOLKATA)</div>
+									<div class="geo-area">SHYAMBAZAR (NORTH KOLKATA)</div>
 									<h3>Jagat Mukherjee Park</h3>
 									<p>🚶 750 m · ⏱️ 15 min from Bagbazar Sarbojanin.</p>
 								</div>
@@ -254,17 +255,17 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>90th year</strong>, this North
 										Kolkata puja features the theme
 										<strong>'Shankar Nama' (শঙ্কর নামা)</strong>, narrated by
 										<strong>Avijit Ghatak</strong>, with an idol crafted by
 										<strong>Amal Paul</strong>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/jagatmukherjipark"
 												target="_blank"
@@ -272,7 +273,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -281,7 +282,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.jagatmukherjeepark.com"
 												target="_blank"
@@ -290,7 +291,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@jagatmukherjeepark"
 												target="_blank"
@@ -299,7 +300,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -308,12 +309,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+918240037520" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:jagatmukherjeepark@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -323,12 +324,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">03</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">03</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">KUMARTULI (NORTH KOLKATA)</div>
+									<div class="geo-area">KUMARTULI (NORTH KOLKATA)</div>
 									<h3>Kumartuli Sarbojanin</h3>
 									<p>🚶 500 m · ⏱️ 10 min from Jagat Mukherjee Park.</p>
 								</div>
@@ -349,9 +350,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>96th year</strong>, the 2026
 										presentation features the theme
 										<strong>'Mon Diye Dekhun' (মন দিয়ে দেখুন)</strong>,
@@ -360,8 +361,8 @@
 										<strong>S B Electric</strong>, and pandal decoration by
 										<strong>S B Decorator</strong>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/kumartulisarbojaninofficial"
 												target="_blank"
@@ -369,7 +370,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/kumartulisarbojaninofficial"
 												target="_blank"
@@ -378,7 +379,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://kumartulysarbojanin.com"
 												target="_blank"
@@ -387,7 +388,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -396,7 +397,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -405,12 +406,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+919804145557" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:kumartulysarbojanin@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -420,12 +421,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">04</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">04</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">KUMARTULI (NORTH KOLKATA)</div>
+									<div class="geo-area">KUMARTULI (NORTH KOLKATA)</div>
 									<h3>Kumartuli Park</h3>
 									<p>🚶 300 m · ⏱️ 6 min from Kumartuli Sarbojanin.</p>
 								</div>
@@ -446,9 +447,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>34th year</strong>, the 2026
 										presentation features the theme
 										<strong
@@ -459,8 +460,8 @@
 										strong connection with India's cultural and spiritual
 										relationship with the river.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/profile.php?id=100069907448030"
 												target="_blank"
@@ -468,7 +469,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -477,7 +478,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -486,7 +487,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -495,7 +496,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -504,12 +505,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+917980001710" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:kpsdc1993@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -519,12 +520,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">05</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">05</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">HATKHOLA (NORTH KOLKATA)</div>
+									<div class="geo-area">HATKHOLA (NORTH KOLKATA)</div>
 									<h3>Hatkhola Gosaipara Sarbojanin</h3>
 									<p>🚶 250 m · ⏱️ 5 min from Kumartuli Park.</p>
 								</div>
@@ -545,9 +546,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>90th year</strong>, this
 										neighbourhood puja in the historic North Kolkata belt is
 										known for its local Puja atmosphere and place within the
@@ -556,8 +557,8 @@
 										<strong>'Punoragomon' (পুনরাগমন)</strong>, conceptualised by
 										<strong>Ajit Pal</strong>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/HGSDS1936"
 												target="_blank"
@@ -565,7 +566,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -574,7 +575,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -583,7 +584,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -592,7 +593,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -601,12 +602,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a href="tel:+919674999555" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a href="mailto:barishasarbojanindurgotsab@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -616,12 +617,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">06</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">06</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">AHIRITOLA (NORTH KOLKATA)</div>
+									<div class="geo-area">AHIRITOLA (NORTH KOLKATA)</div>
 									<h3>Ahiritola Sarbojanin</h3>
 									<p>
 										🚶 800 m · ⏱️ 16 min from Hatkhola Gosaipara Sarbojanin.
@@ -644,9 +645,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>87th year</strong>, the 2026
 										presentation follows a
 										<strong>Sabeki/traditional direction</strong> with the theme
@@ -657,8 +658,8 @@
 										<strong>Subrata Mridha</strong> and lighting designed by
 										<strong>Soumen Chakraborty</strong>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/AHIRITOLASARBOJANIN"
 												target="_blank"
@@ -666,7 +667,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/ahiritolasarbojanin"
 												target="_blank"
@@ -675,7 +676,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -684,7 +685,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -693,7 +694,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -702,12 +703,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+919831598300" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:ahiritolasdurgotsabskol@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -717,12 +718,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">07</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">07</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">AHIRITOLA (NORTH KOLKATA)</div>
+									<div class="geo-area">AHIRITOLA (NORTH KOLKATA)</div>
 									<h3>Ahiritola Jubak Brinda</h3>
 									<p>🚶 350 m · ⏱️ 7 min from Ahiritola Sarbojanin.</p>
 								</div>
@@ -743,9 +744,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>56th year</strong>, this
 										long-running Ahiritola puja features the theme
 										<strong>'Sesh Belay Rabir Alo' (শেষ বেলায় রবির আলো)</strong
@@ -758,8 +759,8 @@
 											and Prasanta</strong
 										>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/ahiritolajubakbrinda"
 												target="_blank"
@@ -767,7 +768,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/ahiritola_jubak_brinda1971"
 												target="_blank"
@@ -776,7 +777,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -785,7 +786,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -794,7 +795,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -803,12 +804,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+919883065346" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:assajb@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -818,7 +819,7 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-transport">
+					<li class="itinerary-transit">
 						<strong>Transfer:</strong> 🚶 600 m · ⏱️ 12 min to
 						<a
 							href="https://maps.app.goo.gl/CfjzpQb3YW9s32tF9"
@@ -833,12 +834,12 @@
 							>Jorasanko Thakur Bari</a
 						>.
 					</li>
-					<li class="route-step">
-						<span class="route-number">08</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">08</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">CHORBAGAN (NORTH KOLKATA)</div>
+									<div class="geo-area">CHORBAGAN (NORTH KOLKATA)</div>
 									<h3>Chorbagan Sarbojanin</h3>
 									<p>🚶 240 m · ⏱️ 5 min from Jorasanko Thakur Bari.</p>
 								</div>
@@ -859,9 +860,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>91st year</strong>, the 2026
 										presentation features the theme
 										<strong>'Beyond Sound - অরব'</strong>, conceptualised by
@@ -875,8 +876,8 @@
 											Das</strong
 										>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/profile.php?id=61592332442890"
 												target="_blank"
@@ -884,7 +885,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/chorebagansarbojaninofficial"
 												target="_blank"
@@ -893,7 +894,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -902,7 +903,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -911,7 +912,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -920,12 +921,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+919073980535" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:chorebagansarbojaninofficial@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -935,7 +936,7 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-transport">
+					<li class="itinerary-transit">
 						<strong>Transfer:</strong> 🚶 280 m · ⏱️ 6 min to
 						<a
 							href="https://maps.app.goo.gl/dzf2Fku6mtZMafaK8"
@@ -950,12 +951,12 @@
 							>Chalta Bagan</a
 						>.
 					</li>
-					<li class="route-step">
-						<span class="route-number">09</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">09</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">MANIKTALA (NORTH KOLKATA)</div>
+									<div class="geo-area">MANIKTALA (NORTH KOLKATA)</div>
 									<h3>Maniktala Chalta Bagan Lohapatty</h3>
 									<p>🚶 240 m · ⏱️ 5 min from Chalta Bagan.</p>
 								</div>
@@ -976,16 +977,16 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>84th year</strong>, the 2026
 										presentation features the theme
 										<strong>'Aditi' (অদিতি)</strong>, brought to life by
 										creative artists <strong>Pallab and Arpan</strong>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/chaltabagan"
 												target="_blank"
@@ -993,7 +994,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -1002,7 +1003,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="http://manicktallachaltabaganlohapattydurgapuja.com"
 												target="_blank"
@@ -1011,7 +1012,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -1020,7 +1021,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -1029,12 +1030,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a href="tel:+919674999555" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a href="mailto:barishasarbojanindurgotsab@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -1044,12 +1045,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">10</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">10</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">MANIKTALA (NORTH KOLKATA)</div>
+									<div class="geo-area">MANIKTALA (NORTH KOLKATA)</div>
 									<h3>Lalabagan Sarbojonin</h3>
 									<p>
 										🚶 800 m · ⏱️ 16 min from Maniktala Chalta Bagan Lohapatty.
@@ -1072,9 +1073,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>79th year</strong>, this well-known
 										Maniktala area puja features the theme
 										<strong
@@ -1082,8 +1083,8 @@
 										>, with arrangement and concept by
 										<strong>Babusona</strong>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/Sammilita.Lalabagan.Sarbojanin.Durgotsav.Committee"
 												target="_blank"
@@ -1091,7 +1092,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -1100,7 +1101,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -1109,7 +1110,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -1118,7 +1119,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/S_Lalabagan"
 												target="_blank"
@@ -1127,12 +1128,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+918910047936" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:sammilita.lalabagan@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -1142,12 +1143,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">10</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">10</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">MANIKTALA (NORTH KOLKATA)</div>
+									<div class="geo-area">MANIKTALA (NORTH KOLKATA)</div>
 									<h3>Lalabagan Nabankur</h3>
 									<p>🚶 50 m · ⏱️ 1 min from Lalabagan Sarbojonin.</p>
 								</div>
@@ -1168,9 +1169,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>67th year</strong>, this well-known
 										Maniktala area puja features the theme
 										<strong>'শিকড় - a historic root'</strong>. The 2026
@@ -1180,8 +1181,8 @@
 											Bampai</strong
 										>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/lalabagannabankurofficial"
 												target="_blank"
@@ -1189,7 +1190,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/lalabagannabankur_official"
 												target="_blank"
@@ -1198,7 +1199,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -1207,7 +1208,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -1216,7 +1217,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -1225,12 +1226,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+919163031118" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:lalabagannabankur1961@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -1240,12 +1241,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">10</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">10</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">GOURIBARI (NORTH KOLKATA)</div>
+									<div class="geo-area">GOURIBARI (NORTH KOLKATA)</div>
 									<h3>Gouriberia Sarbojonin</h3>
 									<p>🚶 800 m · ⏱️ 16 min from Lalabagan Nabankur.</p>
 								</div>
@@ -1266,9 +1267,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>93rd year</strong>, this well-known
 										Maniktala area puja features the theme
 										<strong>'Bankim' (বঙ্কিম)</strong>. The 2026 presentation is
@@ -1277,8 +1278,8 @@
 										background music by <strong>Saikat Deb</strong>, and
 										lighting directed by <strong>Kunal Pathak</strong>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/GSDOP"
 												target="_blank"
@@ -1286,7 +1287,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -1295,7 +1296,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -1304,7 +1305,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -1313,7 +1314,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -1322,12 +1323,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+919331003711" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:info@gouriberia.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -1337,12 +1338,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">11</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">11</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">HATIBAGAN (NORTH KOLKATA)</div>
+									<div class="geo-area">HATIBAGAN (NORTH KOLKATA)</div>
 									<h3>Kashi Bose Lane</h3>
 									<p>🚶 1400 m · ⏱️ 28 min from Gouribari Sarbojonin.</p>
 								</div>
@@ -1363,16 +1364,16 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>89th year</strong>, the specific
 										theme for the 2026 presentation has not been disclosed yet.
 										The overall concept and planning are being helmed by
 										<strong>Anirban Das</strong>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/kashiboselanedurgapujasamity"
 												target="_blank"
@@ -1380,7 +1381,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -1389,7 +1390,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.kashiboselane.com"
 												target="_blank"
@@ -1398,7 +1399,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -1407,7 +1408,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -1416,12 +1417,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+918777094525" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:kashiboselane@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -1431,12 +1432,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">12</span>
-						<div class="route-card route-lunch">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">12</span>
+						<div class="itinerary-item lunch-stop">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">🍴 LUNCH STOP</div>
+									<div class="geo-area">🍴 LUNCH STOP</div>
 									<h3>Bhojohori Manna</h3>
 									<p>
 										Lunch stop before the afternoon circuit. 🚶 450 m · ⏱️ 9 min
@@ -1453,12 +1454,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">13</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">13</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">HATIBAGAN (NORTH KOLKATA)</div>
+									<div class="geo-area">HATIBAGAN (NORTH KOLKATA)</div>
 									<h3>Hatibagan Sarbojanin</h3>
 									<p>🚶 170 m · ⏱️ 3 min from Bhojohori Manna.</p>
 								</div>
@@ -1479,9 +1480,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>92nd year</strong>, this
 										recognisable North Kolkata puja features the theme
 										<strong>'Rhythmless Orderless' (ছন্দছাড়া ছন্নছাড়া)</strong
@@ -1492,8 +1493,8 @@
 											Adhikari, Lakshman Roy, and Suman Maity</strong
 										>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/HatibaganSarbojaninDurgotsav"
 												target="_blank"
@@ -1501,7 +1502,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/hatibagan_sarbojanin_durgotsav"
 												target="_blank"
@@ -1510,7 +1511,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -1519,7 +1520,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -1528,7 +1529,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -1537,12 +1538,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+919433052274" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:hatibagansarbojonin@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -1552,12 +1553,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">14</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">14</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">HATIBAGAN (NORTH KOLKATA)</div>
+									<div class="geo-area">HATIBAGAN (NORTH KOLKATA)</div>
 									<h3>Nalin Sarkar Street</h3>
 									<p>🚶 270 m · ⏱️ 6 min from Hatibagan Sarbojanin.</p>
 								</div>
@@ -1578,9 +1579,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>94th year</strong>, the 2026
 										presentation features the theme
 										<strong>'Jololipi' (জললিপি)</strong>. The concept evokes the
@@ -1588,8 +1589,8 @@
 										connection between water, memory, and expression, brought to
 										life by <strong>Team Sanatan Dinda</strong>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/NalinSarkarStreetSarbojoninDurgotsab"
 												target="_blank"
@@ -1597,7 +1598,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/streetnalinsarkar"
 												target="_blank"
@@ -1606,7 +1607,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -1615,7 +1616,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@nalinsarkarstreetsarbojani5976"
 												target="_blank"
@@ -1624,7 +1625,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -1633,12 +1634,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+919830241410" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:n3sd17@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -1648,12 +1649,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">15</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">15</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">HATIBAGAN (NORTH KOLKATA)</div>
+									<div class="geo-area">HATIBAGAN (NORTH KOLKATA)</div>
 									<h3>North Tridhara</h3>
 									<p>🚶 290 m · ⏱️ 6 min from Nalin Sarkar Street.</p>
 								</div>
@@ -1674,17 +1675,17 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										A North Kolkata neighbourhood puja included in the Hatibagan
 										circuit. Reliable information confirming a specific
 										<strong>2026 theme or artist</strong> is not currently
 										available, so this stop is kept intentionally general rather
 										than attributing an unverified concept to the committee.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/NorthTridharaclub"
 												target="_blank"
@@ -1692,7 +1693,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -1701,7 +1702,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -1710,7 +1711,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -1719,7 +1720,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -1728,12 +1729,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+919836637777" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:tridhara.club1950@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -1743,12 +1744,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">16</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">16</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">HATIBAGAN (NORTH KOLKATA)</div>
+									<div class="geo-area">HATIBAGAN (NORTH KOLKATA)</div>
 									<h3>Hatibagan Nabinpally</h3>
 									<p>🚶 350 m · ⏱️ 7 min from North Tridhara.</p>
 								</div>
@@ -1769,9 +1770,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>93rd year</strong>, this
 										long-running Hatibagan-area puja forms an integral part of
 										the traditional North Kolkata circuit. The 2026 presentation
@@ -1784,8 +1785,8 @@
 										<strong>Dipankar Dey</strong>, and music by
 										<strong>Gautam Ghosh</strong>.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/nabinpally.hatibagan"
 												target="_blank"
@@ -1793,7 +1794,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -1802,7 +1803,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -1811,7 +1812,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@hatibagan-nabinpally"
 												target="_blank"
@@ -1820,7 +1821,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -1829,12 +1830,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+919831220088" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:hatibagan.nabinpally@gmail.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -1844,12 +1845,12 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-step">
-						<span class="route-number">17</span>
-						<div class="route-card puja-pandal" aria-expanded="false">
-							<div class="route-top">
+					<li class="itinerary-stop">
+						<span class="itinerary-item-order">17</span>
+						<div class="itinerary-item pandal" aria-expanded="false">
+							<div class="itinerary-item-body">
 								<div>
-									<div class="route-meta">SOVABAZAR (NORTH KOLKATA)</div>
+									<div class="geo-area">SOVABAZAR (NORTH KOLKATA)</div>
 									<h3>Sovabazar Rajbari</h3>
 									<p>🚶 850 m · ⏱️ 17 min from Hatibagan Nabinpally.</p>
 								</div>
@@ -1870,9 +1871,9 @@
 									>
 								</div>
 							</div>
-							<div class="puja-pandal-expansion" aria-hidden="true">
+							<div class="itinerary-item-expansion-panel" aria-hidden="true">
 								<div>
-									<div class="puja-pandal-expansion-content">
+									<div class="itinerary-item-expansion-panel-body">
 										Celebrating its <strong>269th year</strong>, this iconic
 										bonedi bari (household) puja was established in
 										<strong>1757 by Raja Nabakrishna Deb</strong>. Held in the
@@ -1881,8 +1882,8 @@
 										rituals, and a rich heritage that has hosted historical
 										figures from Lord Clive to Rabindranath Tagore.
 									</div>
-									<div class="puja-pandal-social-media">
-										<div class="smedia-btn">
+									<div class="itinerary-item-expansion-panel-footer">
+										<div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.facebook.com/sovabazar.rajbari.official"
 												target="_blank"
@@ -1890,7 +1891,7 @@
 												><i class="fa-brands fa-facebook"></i
 											></a>
 										</div>
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.instagram.com/talaprattoy"
 												target="_blank"
@@ -1899,7 +1900,7 @@
 												<i class="fa-brands fa-instagram"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.talaprattoy.com"
 												target="_blank"
@@ -1908,7 +1909,7 @@
 												<i class="fa-brands fa-chrome"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://www.youtube.com/@talaprattoy"
 												target="_blank"
@@ -1917,7 +1918,7 @@
 												<i class="fa-brands fa-youtube"></i>
 											</a>
 										</div> -->
-										<!-- <div class="smedia-btn">
+										<!-- <div class="itinerary-item-fa-btn">
 											<a
 												href="https://x.com/talaprattoy"
 												target="_blank"
@@ -1926,12 +1927,12 @@
 												<i class="fa-brands fa-x-twitter"></i>
 											</a>
 										</div> -->
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="tel:+917595985168" target="_blank" rel="noopener"
 												><i class="fa-solid fa-phone"></i
 											></a>
 										</div>
-										<div class="smedia-btn">
+										<div class="itinerary-item-fa-btn">
 											<a href="mailto:sovabazarrajbari@yahoo.com"
 												><i class="fa-solid fa-envelope"></i
 											></a>
@@ -1941,7 +1942,7 @@
 							</div>
 						</div>
 					</li>
-					<li class="route-transport">
+					<li class="itinerary-transit">
 						<strong>Transfer:</strong> Arrange a cab from the adjoining area
 						back to
 						<a
@@ -2003,22 +2004,22 @@
 					};
 					const cards = [
 						...document.querySelectorAll(
-							".route-list > .route-step .route-card",
+							".route-list > .itinerary-stop .itinerary-item",
 						),
-					].filter((card) => !card.classList.contains("route-lunch"));
+					].filter((card) => !card.classList.contains("lunch-stop"));
 					cards.forEach((card) => {
 						const title = card.querySelector("h3")?.textContent.trim();
 						const description = descriptions[title];
 						if (!description) return;
-						card.classList.add("puja-pandal");
+						card.classList.add("pandal");
 						card.setAttribute("aria-expanded", "false");
-						if (!card.querySelector(".puja-pandal-expansion")) {
+						if (!card.querySelector(".itinerary-item-expansion-panel")) {
 							const panel = document.createElement("div");
-							panel.className = "puja-pandal-expansion";
+							panel.className = "itinerary-item-expansion-panel";
 							panel.setAttribute("aria-hidden", "true");
 							const inner = document.createElement("div");
 							const content = document.createElement("div");
-							content.className = "puja-pandal-expansion-content";
+							content.className = "itinerary-item-expansion-panel-body";
 							content.innerHTML = description;
 							inner.appendChild(content);
 							panel.appendChild(inner);
@@ -2029,19 +2030,23 @@
 						document.body.dataset.shashthiPanelsBound = "true";
 						document.addEventListener("click", function (e) {
 							if (!/\/shashthi\.html$/i.test(location.pathname)) return;
-							const card = e.target.closest(".route-card.puja-pandal");
+							const card = e.target.closest(".itinerary-item.pandal");
 							if (!card || e.target.closest("a")) return;
-							const panel = card.querySelector(".puja-pandal-expansion");
+							const panel = card.querySelector(
+								".itinerary-item-expansion-panel",
+							);
 							if (!panel) return;
 							const open = card.getAttribute("aria-expanded") === "true";
 							document
 								.querySelectorAll(
-									'.route-card.puja-pandal[aria-expanded="true"]',
+									'.itinerary-item.pandal[aria-expanded="true"]',
 								)
 								.forEach((other) => {
 									if (other === card) return;
 									other.setAttribute("aria-expanded", "false");
-									const op = other.querySelector(".puja-pandal-expansion");
+									const op = other.querySelector(
+										".itinerary-item-expansion-panel",
+									);
 									if (op) {
 										op.classList.remove("is-open");
 										op.setAttribute("aria-hidden", "true");
@@ -2063,10 +2068,10 @@
 				function bind() {
 					if (!/\/shashthi\.html$/i.test(location.pathname)) return;
 					document
-						.querySelectorAll(".route-card.puja-pandal")
+						.querySelectorAll(".itinerary-item.pandal")
 						.forEach(function (card) {
 							if (card.dataset.shashthiDirectPanels === "true") return;
-							var panel = card.querySelector(".puja-pandal-expansion");
+							var panel = card.querySelector(".itinerary-item-expansion-panel");
 							if (!panel) return;
 							card.dataset.shashthiDirectPanels = "true";
 							card.addEventListener(
@@ -2077,12 +2082,14 @@
 									var open = card.getAttribute("aria-expanded") === "true";
 									document
 										.querySelectorAll(
-											'.route-card.puja-pandal[aria-expanded="true"]',
+											'.itinerary-item.pandal[aria-expanded="true"]',
 										)
 										.forEach(function (other) {
 											if (other === card) return;
 											other.setAttribute("aria-expanded", "false");
-											var op = other.querySelector(".puja-pandal-expansion");
+											var op = other.querySelector(
+												".itinerary-item-expansion-panel",
+											);
 											if (op) {
 												op.classList.remove("is-open");
 												op.setAttribute("aria-hidden", "true");
