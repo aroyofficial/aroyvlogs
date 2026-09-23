@@ -6,16 +6,19 @@ import {
 	renderTransit,
 } from "./commons.js";
 import { chaturthi } from "./chaturthi.js";
+import { panchami } from "./panchami.js";
 
-function renderItinerary() {
-	const { stops, transits, lunchStop } = chaturthi;
+const pageData = { chaturthi, panchami };
+
+function renderItinerary(routeData) {
+	const { stops, transits, lunchStop } = routeData;
 	const list = document.querySelector(".route-list");
 	if (!list) return;
 
 	list.innerHTML = stops
 		.map(
 			(stop) =>
-				`<li class="itinerary-stop" data-stop-order="${stop.order}">${renderPandal(stop, chaturthi)}</li>`,
+				`<li class="itinerary-stop" data-stop-order="${stop.order}">${renderPandal(stop, routeData)}</li>`,
 		)
 		.join("");
 
@@ -42,8 +45,8 @@ function renderItinerary() {
 	});
 }
 
-function calculateRouteSummary() {
-	const { stops, transits, lunchStop } = chaturthi;
+function calculateRouteSummary(routeData) {
+	const { stops, transits, lunchStop } = routeData;
 	const orderedTransits = [...transits].sort((a, b) => a.index - b.index);
 	const firstTransitStep = orderedTransits[0]?.steps[0];
 	const lastTransit = orderedTransits[orderedTransits.length - 1];
@@ -89,15 +92,16 @@ function calculateRouteSummary() {
 	};
 }
 
-function renderMain() {
+function renderMain(routeData) {
 	const mainRoot = document.getElementById("puja-day-main-root");
-	if (!mainRoot) return;
+	if (!mainRoot || !routeData) return;
 
-	const { dateLabel, meetup } = chaturthi;
+	const { title, dateLabel, meetup } = routeData;
 	const { itinerary, totalWalkingDistance, totalPandals, zones } =
-		calculateRouteSummary();
-	mainRoot.outerHTML = `<main id="puja-day-main"><section class="section"><span class="eyebrow">${dateLabel}</span><h1 class="puja-day display-3 mt-3">Chaturthi</h1><p class="lead text-secondary">Meet-up: ${meetup.time} &middot; <a class="route-location-link" target="_blank" rel="noopener" href="${meetup.place.gmapsUrl}">${meetup.place.name}</a></p><div class="route-summary">&#128256; <strong>Itinerary:</strong> ${itinerary}</div><div class="route-summary mt-3">&#128694; <strong>Total Walking Distance:</strong> ${totalWalkingDistance}</div><div class="route-summary mt-3">&#127917; <strong>Total Pandals:</strong> ${totalPandals}</div><div class="route-summary mt-3">&#128506;&#65039; <strong>Zones Covered:</strong> ${zones}</div><ol class="route-list"></ol></section></main>`;
-	renderItinerary();
+		calculateRouteSummary(routeData);
+	mainRoot.outerHTML = `<main id="puja-day-main"><section class="section"><span class="eyebrow">${dateLabel}</span><h1 class="puja-day display-3 mt-3">${title}</h1><p class="lead text-secondary">Meet-up: ${meetup.time} &middot; <a class="route-location-link" target="_blank" rel="noopener" href="${meetup.place.gmapsUrl}">${meetup.place.name}</a></p><div class="route-summary">&#128256; <strong>Itinerary:</strong> ${itinerary}</div><div class="route-summary mt-3">&#128694; <strong>Total Walking Distance:</strong> ${totalWalkingDistance}</div><div class="route-summary mt-3">&#127917; <strong>Total Pandals:</strong> ${totalPandals}</div><div class="route-summary mt-3">&#128506;&#65039; <strong>Zones Covered:</strong> ${zones}</div><ol class="route-list"></ol></section></main>`;
+	renderItinerary(routeData);
 }
 
-renderMain();
+const pageRoot = document.getElementById("puja-day-main-root");
+renderMain(pageData[pageRoot?.dataset.page]);

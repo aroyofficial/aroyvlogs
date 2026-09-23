@@ -31,6 +31,17 @@ export const Area = {
 	COLLEGE_STREET: ["College Street", Zone.CENTRAL],
 	BOWBAZAR: ["Bowbazar", Zone.CENTRAL],
 	ENTALLY: ["Entally", Zone.CENTRAL],
+	BOSEPUKUR: ["Bosepukur", Zone.SOUTH],
+	RAJDANGA: ["Rajdanga", Zone.SOUTH],
+	SANTOSHPUR: ["Santoshpur", Zone.SOUTH],
+	PATULI: ["Patuli", Zone.SOUTH],
+	GARIA: ["Garia", Zone.SOUTH],
+	NAKTALA: ["Naktala", Zone.SOUTH],
+	KUDGHAT: ["Kudghat", Zone.SOUTH],
+	PASCHIM_PUTIARY: ["Paschim Putiary", Zone.SOUTH],
+	HARIDEVPUR: ["Haridevpur", Zone.SOUTH],
+	BEHALA: ["Behala", Zone.SOUTHWEST],
+	THAKURPUKUR: ["Thakurpukur", Zone.SOUTH],
 };
 
 export const LinkType = {
@@ -251,23 +262,28 @@ export function renderPandal(item, routeData) {
 	const fromLocation = item.isPreviousTransit
 		? lastTransitStep?.destLabel || lastTransitStep?.dest?.name
 		: previousStop?.title;
-	const walkingTime = Math.ceil(
-		item.distance / WALKING_PACE_METERS_PER_MINUTE,
-	);
+	const walkingTime = Math.ceil(item.distance / WALKING_PACE_METERS_PER_MINUTE);
 
 	return `<span class="itinerary-item-order">${String(item.order).padStart(2, "0")}</span><div class="itinerary-item pandal" data-serial="${safe(item.serial)}" aria-expanded="false"><div class="itinerary-item-body"><div><div class="geo-area">${safe(area)}</div><h3>${safe(item.title)}</h3><p>&#128694; ${safe(item.distance)} m &middot; &#9201;&#65039; ${walkingTime} min${fromLocation ? ` from ${safe(fromLocation)}` : ""}</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="${safe(item.gmapsUrl)}">Google Maps &#8599;</a>${toiletsLink}</div></div><div class="itinerary-item-expansion-panel" aria-hidden="true"><div><div class="itinerary-item-expansion-panel-body">${item.htmlDesc}</div>${linkFooter}</div></div></div>`;
 }
 
 export function renderTransit(transit) {
 	const locationLink = (place, label = place.name) =>
-		`<a class="route-location-link" target="_blank" rel="noopener" href="${place.gmapsUrl}">${label}</a>`;
+		place?.gmapsUrl
+			? `<a class="route-location-link" target="_blank" rel="noopener" href="${place.gmapsUrl}">${label}</a>`
+			: label;
 	const steps = transit.steps.map((step) => {
-		const destination = locationLink(step.dest, step.destLabel || step.dest.name);
+		const destination = locationLink(
+			step.dest,
+			step.destLabel || step.dest.name,
+		);
 		switch (step.medium) {
 			case TransitMedium.WALK: {
 				const prefix = step.prefix ? `${step.prefix} ` : "";
 				const from = step.fromName ? `from ${step.fromName} to` : "to";
-				const duration = Math.ceil(step.distance / WALKING_PACE_METERS_PER_MINUTE);
+				const duration = Math.ceil(
+					step.distance / WALKING_PACE_METERS_PER_MINUTE,
+				);
 				return `${prefix}&#128694; ${step.distance} m &middot; &#9201;&#65039; ${duration} min ${from} ${destination}`;
 			}
 			case TransitMedium.BUS:
@@ -279,12 +295,14 @@ export function renderTransit(transit) {
 			case TransitMedium.AUTO:
 				return `then take ${step.modeLabel || "an auto"} to ${destination}`;
 			case TransitMedium.TRAIN:
-				return `Then take ${step.service || "a train"} to ${destination}`;
+				return step.src
+					? `Take ${step.service || "a train"} from ${locationLink(step.src)} to ${destination}`
+					: `Then take ${step.service || "a train"} to ${destination}`;
 			default:
 				return destination;
 		}
 	});
-	return `<strong>Transfer:</strong> ${steps.join(" &rarr; ")}.`;
+	return `<strong>Transfer:</strong> ${steps.join(" &rarr; ")}${transit.note ? ` &middot; ${transit.note}` : ""}.`;
 }
 
 export function renderLunch(lunch) {

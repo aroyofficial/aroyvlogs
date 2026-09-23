@@ -1,11 +1,18 @@
 """Replace Google Maps short links in the Chaturthi data with their final URLs."""
 
 import re
+import sys
 from pathlib import Path
 from urllib.request import Request, urlopen
 
 
-TARGET = Path(__file__).parent / "pages" / "durga-puja-2026" / "chaturthi.js"
+TARGET = (
+	Path(sys.argv[1])
+	if len(sys.argv) > 1
+	else Path(__file__).parent / "pages" / "durga-puja-2026" / "chaturthi.js"
+)
+if not TARGET.is_absolute():
+	TARGET = Path.cwd() / TARGET
 GMAPS_URL = re.compile(
     r'(?P<prefix>\bgmapsUrl\s*:\s*")'
     r'(?P<url>https://maps\.app\.goo\.gl/[^"\s]+)'
