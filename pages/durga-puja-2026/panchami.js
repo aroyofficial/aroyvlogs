@@ -124,7 +124,6 @@ export const panchami = {
 	stops: [
 		{
 			order: 1,
-			serial: "01",
 			type: ItemType.PANDAL,
 			area: Area.BOSEPUKUR,
 			title: "Bosepukur Sitala Mandir",
@@ -146,7 +145,6 @@ export const panchami = {
 		},
 		{
 			order: 2,
-			serial: "02",
 			type: ItemType.PANDAL,
 			area: Area.BOSEPUKUR,
 			title: "Bosepukur Talbagan Sarbojanin",
@@ -166,7 +164,6 @@ export const panchami = {
 		},
 		{
 			order: 3,
-			serial: "03",
 			type: ItemType.PANDAL,
 			area: Area.RAJDANGA,
 			title: "Rajdanga Naba Uday Sangha",
@@ -190,7 +187,6 @@ export const panchami = {
 		},
 		{
 			order: 4,
-			serial: "04",
 			type: ItemType.PANDAL,
 			area: Area.SANTOSHPUR,
 			title: "Santoshpur Lake Pally",
@@ -209,7 +205,6 @@ export const panchami = {
 		},
 		{
 			order: 5,
-			serial: "05",
 			type: ItemType.PANDAL,
 			area: Area.SANTOSHPUR,
 			title: "Santoshpur Avenue South Pallymangal Samity",
@@ -229,7 +224,6 @@ export const panchami = {
 		},
 		{
 			order: 6,
-			serial: "06",
 			type: ItemType.PANDAL,
 			area: Area.SANTOSHPUR,
 			title: "Santoshpur Trikon Park",
@@ -250,7 +244,6 @@ export const panchami = {
 		},
 		{
 			order: 7,
-			serial: "07",
 			type: ItemType.PANDAL,
 			area: Area.PATULI,
 			title: "Vaishnavghata Jatra Shuru Sangha",
@@ -263,7 +256,6 @@ export const panchami = {
 		},
 		{
 			order: 8,
-			serial: "08",
 			type: ItemType.PANDAL,
 			area: Area.GARIA,
 			title: "Kendua Shanti Sangha",
@@ -288,7 +280,6 @@ export const panchami = {
 		},
 		{
 			order: 9,
-			serial: "09",
 			type: ItemType.PANDAL,
 			area: Area.NAKTALA,
 			title: "Naktala Udayan Sangha",
@@ -313,7 +304,6 @@ export const panchami = {
 		},
 		{
 			order: 10,
-			serial: "10",
 			type: ItemType.PANDAL,
 			area: Area.KUDGHAT,
 			title: "Putiyari Club",
@@ -326,7 +316,6 @@ export const panchami = {
 		},
 		{
 			order: 11,
-			serial: "11",
 			type: ItemType.PANDAL,
 			area: Area.PASCHIM_PUTIARY,
 			title: "Pally Unnayan Samiti",
@@ -346,7 +335,6 @@ export const panchami = {
 		},
 		{
 			order: 12,
-			serial: "12",
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Haridevpur Adarsha Samiti Club",
@@ -366,7 +354,6 @@ export const panchami = {
 		},
 		{
 			order: 13,
-			serial: "13",
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Haridevpur New Sporting Club",
@@ -384,7 +371,6 @@ export const panchami = {
 		},
 		{
 			order: 14,
-			serial: "14",
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Ajeya Sanghati Club",
@@ -404,7 +390,6 @@ export const panchami = {
 		},
 		{
 			order: 15,
-			serial: "15",
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Vivekananda Park Athletic Club",
@@ -431,7 +416,6 @@ export const panchami = {
 		},
 		{
 			order: 16,
-			serial: "16",
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Haridevpur 41 Palli",
@@ -453,7 +437,6 @@ export const panchami = {
 		},
 		{
 			order: 17,
-			serial: "17",
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Netaji Sarak Ancholik Adhibasi Brindo",
@@ -474,7 +457,6 @@ export const panchami = {
 		},
 		{
 			order: 18,
-			serial: "18",
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Barisha Players Corner",
@@ -494,7 +476,6 @@ export const panchami = {
 		},
 		{
 			order: 19,
-			serial: "19",
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Barisha Club",
@@ -515,7 +496,6 @@ export const panchami = {
 		},
 		{
 			order: 20,
-			serial: "20",
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Barisha Sarbojanin",
@@ -536,7 +516,6 @@ export const panchami = {
 		},
 		{
 			order: 21,
-			serial: "21",
 			type: ItemType.PANDAL,
 			area: Area.THAKURPUKUR,
 			title: "Thakurpukur State Bank Park",
@@ -560,7 +539,6 @@ export const panchami = {
 		},
 		{
 			order: 22,
-			serial: "22",
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Friends Club",
@@ -579,7 +557,6 @@ export const panchami = {
 		},
 		{
 			order: 23,
-			serial: "23",
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Nutan Dal",
@@ -600,7 +577,6 @@ export const panchami = {
 		},
 		{
 			order: 24,
-			serial: "24",
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Adarsha Pally",
@@ -618,7 +594,6 @@ export const panchami = {
 		},
 		{
 			order: 25,
-			serial: "25",
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Club Sarbojanin",
@@ -646,7 +621,6 @@ export const panchami = {
 		},
 		{
 			order: 26,
-			serial: "26",
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Young Men's Association",

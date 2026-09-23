@@ -18,7 +18,6 @@ export const chaturthi = {
 	stops: [
 		{
 			order: 1,
-			serial: "01",
 			transit: 0,
 			isPreviousTransit: true,
 			type: ItemType.PANDAL,
@@ -45,7 +44,6 @@ export const chaturthi = {
 		},
 		{
 			order: 2,
-			serial: "02",
 			type: ItemType.PANDAL,
 			area: Area.TALA,
 			title: "Tala Prattoy",
@@ -86,7 +84,6 @@ export const chaturthi = {
 		},
 		{
 			order: 3,
-			serial: "03",
 			transit: 1,
 			type: ItemType.PANDAL,
 			area: Area.TALA,
@@ -104,7 +101,6 @@ export const chaturthi = {
 		},
 		{
 			order: 4,
-			serial: "04",
 			type: ItemType.PANDAL,
 			area: Area.TALA,
 			title: "Tala Barowari",
@@ -129,7 +125,6 @@ export const chaturthi = {
 		},
 		{
 			order: 5,
-			serial: "05",
 			transit: 2,
 			type: ItemType.PANDAL,
 			area: Area.TALA,
@@ -155,7 +150,6 @@ export const chaturthi = {
 		},
 		{
 			order: 6,
-			serial: "06",
 			type: ItemType.PANDAL,
 			area: Area.MUDIALI,
 			title: "Mudiali Club",
@@ -180,7 +174,6 @@ export const chaturthi = {
 		},
 		{
 			order: 7,
-			serial: "07",
 			type: ItemType.PANDAL,
 			area: Area.RABINDRA_SAROBAR,
 			title: "Shib Mandir Sarbojonin",
@@ -205,7 +198,6 @@ export const chaturthi = {
 		},
 		{
 			order: 8,
-			serial: "08",
 			transit: 3,
 			type: ItemType.PANDAL,
 			area: Area.BALLYGUNGE,
@@ -235,7 +227,6 @@ export const chaturthi = {
 		},
 		{
 			order: 9,
-			serial: "09",
 			transit: 4,
 			type: ItemType.PANDAL,
 			area: Area.NEW_ALIPORE,
@@ -265,7 +256,6 @@ export const chaturthi = {
 		},
 		{
 			order: 10,
-			serial: "10",
 			type: ItemType.PANDAL,
 			area: Area.CHETLA,
 			title: "Chetla Agrani",
@@ -298,7 +288,6 @@ export const chaturthi = {
 		},
 		{
 			order: 11,
-			serial: "11",
 			transit: 5,
 			type: ItemType.PANDAL,
 			area: Area.ALIPORE,
@@ -320,7 +309,6 @@ export const chaturthi = {
 		},
 		{
 			order: 12,
-			serial: "12",
 			type: ItemType.PANDAL,
 			area: Area.KALIGHAT,
 			title: "Nepal Bhattacharjee Street Club",
@@ -332,7 +320,6 @@ export const chaturthi = {
 		},
 		{
 			order: 13,
-			serial: "13",
 			type: ItemType.PANDAL,
 			area: Area.KALIGHAT,
 			title: "66 Pally",
@@ -353,7 +340,6 @@ export const chaturthi = {
 		},
 		{
 			order: 14,
-			serial: "14",
 			transit: 6,
 			type: ItemType.PANDAL,
 			area: Area.KALIGHAT,
@@ -375,7 +361,6 @@ export const chaturthi = {
 		},
 		{
 			order: 15,
-			serial: "15",
 			type: ItemType.PANDAL,
 			area: Area.KALIGHAT,
 			title: "Kalighat Milan Sangha",
@@ -387,7 +372,6 @@ export const chaturthi = {
 		},
 		{
 			order: 16,
-			serial: "16",
 			lunch: true,
 			type: ItemType.PANDAL,
 			area: Area.HAZRA,
@@ -409,7 +393,6 @@ export const chaturthi = {
 		},
 		{
 			order: 17,
-			serial: "17",
 			type: ItemType.PANDAL,
 			area: Area.BHOWANIPORE,
 			title: "Bakul Bagan Sarbojonin",
@@ -438,7 +421,6 @@ export const chaturthi = {
 		},
 		{
 			order: 18,
-			serial: "18",
 			type: ItemType.PANDAL,
 			area: Area.BHOWANIPORE,
 			title: "Chakraberia Sarbojonin",
@@ -455,7 +437,6 @@ export const chaturthi = {
 		},
 		{
 			order: 19,
-			serial: "19",
 			transit: 7,
 			type: ItemType.PANDAL,
 			area: Area.BHOWANIPOPRE,
@@ -468,7 +449,6 @@ export const chaturthi = {
 		},
 		{
 			order: 20,
-			serial: "20",
 			transit: 8,
 			type: ItemType.PANDAL,
 			area: Area.PARK_STREET,
@@ -481,7 +461,6 @@ export const chaturthi = {
 		},
 		{
 			order: 21,
-			serial: "21",
 			type: ItemType.PANDAL,
 			area: Area.COLLEGE_STREET,
 			title: "College Square",
@@ -502,7 +481,6 @@ export const chaturthi = {
 		},
 		{
 			order: 22,
-			serial: "22",
 			transit: 9,
 			type: ItemType.PANDAL,
 			area: Area.BOWBAZAR,
@@ -524,7 +502,6 @@ export const chaturthi = {
 		},
 		{
 			order: 23,
-			serial: "23",
 			transit: 10,
 			type: ItemType.PANDAL,
 			area: Area.ENTALLY,

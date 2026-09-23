@@ -242,7 +242,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		style.textContent =
 			'.pandal{cursor:pointer;transition:box-shadow .2s ease,transform .2s ease}.pandal:hover{box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateY(-1px)}.pandal[aria-expanded="true"]{box-shadow:0 10px 30px rgba(0,0,0,.1)}.itinerary-item-expansion-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease;margin-top:0}.itinerary-item-expansion-panel.is-open{grid-template-rows:1fr;margin-top:14px}.itinerary-item-expansion-panel>div{overflow:hidden}.itinerary-item-expansion-panel-body{padding:0;border-top:1px solid var(--line);color:var(--muted);font-size:14px;line-height:1.6}.itinerary-item-expansion-panel.is-open .itinerary-item-expansion-panel-body{padding-top:14px}.pandal .route-actions{position:relative;z-index:2}.pandal .route-actions a{cursor:pointer}';
 		document.head.appendChild(style);
-		let serial = 1;
 		document
 			.querySelectorAll(".itinerary-stop .itinerary-item")
 			.forEach((card) => {
@@ -252,7 +251,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				)
 					return;
 				card.classList.add("pandal");
-				card.dataset.serial = String(serial).padStart(2, "0");
 				card.setAttribute("aria-expanded", "false");
 				let panel = card.querySelector(".itinerary-item-expansion-panel");
 				if (!panel) {
@@ -283,7 +281,6 @@ document.addEventListener("DOMContentLoaded", () => {
 					panel.classList.toggle("is-open", !open);
 					panel.setAttribute("aria-hidden", String(open));
 				});
-				serial++;
 			});
 	};
 

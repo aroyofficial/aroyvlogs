@@ -103,5 +103,33 @@ function renderMain(routeData) {
 	renderItinerary(routeData);
 }
 
+function renderHeader() {
+	const headerRoot = document.getElementById("page-header-root");
+	if (!headerRoot) return;
+
+	headerRoot.outerHTML = `<header class="site-header"><div class="site-header-inner"><a class="brand" href="../../"><span class="brand-icon">&#10022;</span><span><strong>Vlogs with Arijit</strong><small>Durga Puja 2026</small></span></a><a class="btn btn-dark rounded-pill" href="index.html">&#8592; Puja days</a></div></header>`;
+}
+
+function renderFooter(routeData) {
+	const footerRoot = document.getElementById("page-footer-root");
+	if (!footerRoot) return;
+
+	footerRoot.outerHTML = `<footer class="site-footer"><div><strong>Vlogs with Arijit</strong><span>Durga Puja 2026 &middot; ${routeData.title}</span></div><a class="text-link" href="index.html">All Puja days</a></footer>`;
+}
+
 const pageRoot = document.getElementById("puja-day-main-root");
-renderMain(pageData[pageRoot?.dataset.page]);
+const requestedPage = new URLSearchParams(window.location.search).get("day");
+const pageKey = requestedPage || pageRoot?.dataset.page || "chaturthi";
+const routeData = pageData[pageKey.toLowerCase()];
+
+if (routeData) {
+	document.title = `${routeData.title} · Durga Puja 2026`;
+	renderHeader();
+	renderMain(routeData);
+	renderFooter(routeData);
+} else {
+	document.title = "Puja day not found · Durga Puja 2026";
+	if (pageRoot) {
+		pageRoot.outerHTML = '<main class="section"><h1>Puja day not found</h1><p>Please choose Chaturthi or Panchami from the <a href="index.html">Puja calendar</a>.</p></main>';
+	}
+}
