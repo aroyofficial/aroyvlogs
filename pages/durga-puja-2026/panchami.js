@@ -1,111 +1,5 @@
 import { Area, ItemType, LinkType, Places, TransitMedium } from "./commons.js";
 
-const TransitPlaces = {
-	BALLY_HALT_STATION: {
-		name: "Bally Halt Station",
-		gmapsUrl:
-			"https://www.google.com/maps/place/Bally+Halt/@22.6522445,88.3366672,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89d2407d0b96d:0xbc21f779dc795ff2!8m2!3d22.6522445!4d88.3392421!16s%2Fg%2F1vs1q8hf?entry=tts&g_ep=EgoyMDI2MDgyNi4wIPu8ASoASAFQAw%3D%3D&skid=76e94d61-cffc-44a6-8c4c-6f0148cd3054",
-	},
-	SEALDAH_JUNCTION: {
-		name: "Sealdah Junction",
-		gmapsUrl:
-			"https://www.google.com/maps/place/Sealdah/@22.568745,88.3687606,804m/data=!3m1!1e3!4m7!3m6!1s0x3a027659c5555555:0xa3968ffa1950bfd0!8m2!3d22.567792!4d88.3710203!15sChBzZWFsZGFoIGp1bmN0aW9ukgENdHJhaW5fc3RhdGlvbuABAA!16zL20vMDV2MWM5?entry=tts&g_ep=EgoyMDI2MDgyNi4wIPu8ASoASAFQAw%3D%3D&skid=1d3cd92e-7ff2-45a8-8082-718a119fb9ec",
-	},
-	RAJDANGA_NABA_PALLY: {
-		name: "Rajdanga Naba Pally",
-		gmapsUrl:
-			"https://www.google.com/maps/search/22.514643,+88.390323?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=e0b7bbbd-41a6-4ac9-ba73-f2ca06e101eb",
-	},
-	EKDALIA: {
-		name: "Ekdalia",
-		gmapsUrl:
-			"https://www.google.com/maps/search/22.520756,+88.368214?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=629bbbdf-6a3f-4b81-a430-80877a30b923",
-	},
-	GARIAHAT_MORE: {
-		name: "Gariahat More",
-		gmapsUrl:
-			"https://www.google.com/maps/place/City+Center/@22.587041,88.4072523,101m/data=!3m1!1e3!4m6!3m5!1s0x3a0275dd908f2c4b:0x1358520f5fbc2aa!8m2!3d22.5870411!4d88.4078654!16s%2Fg%2F1vzv22rv!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=a075cc2f-fff6-4327-8d85-25e4f5f08066",
-	},
-	SANTOSHPUR_LAKE: {
-		name: "Santoshpur Lake",
-		gmapsUrl:
-			"https://www.google.com/maps/place/Santoshpur+Lake/@22.4918288,88.3824248,191m/am=t/data=!3m1!1e3!4m6!3m5!1s0x3a02716aa95f0f75:0x8443281c805ee1aa!8m2!3d22.491824!4d88.383126!16s%2Fg%2F11b7qd5rc7!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=59ae0639-ec08-468e-be55-e8524e982dd9",
-	},
-	SANTOSHPUR_BOTTOLA: {
-		name: "Santoshpur Bottola",
-		gmapsUrl:
-			"https://www.google.com/maps/search/22.493035,+88.379878?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=b47e0ad5-ebad-43b0-bcac-d5f8529ed462",
-	},
-	SULEKHA_MORE: {
-		name: "Sulekha More",
-		gmapsUrl:
-			"https://www.google.com/maps/place/Sulekha+More/@22.4916501,88.3714729,201m/am=t/data=!3m1!1e3!4m6!3m5!1s0x3a027118064959e5:0xb0b301350b1539db!8m2!3d22.49165!4d88.372248!16s%2Fg%2F1hjgydcy9!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=608e706a-8891-4543-abe9-285535832aa1",
-	},
-	KK_DAS_COLLEGE: {
-		name: "KK Das College",
-		gmapsUrl:
-			"https://www.google.com/maps/search/22.471442,+88.380746?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=7b5cfc89-9a2d-4a33-b386-bde5478956a8",
-	},
-	GARIA_NO_6_BUS_TERMINUS: {
-		name: "Garia No. 6 Bus Terminus",
-		gmapsUrl:
-			"https://www.google.com/maps/search/22.465182,+88.377306?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=96bdf8e9-b005-4cb7-b5d0-d4d99a392d3d",
-	},
-	ANANDA_ASHRAM: {
-		name: "Ananda Ashram",
-		gmapsUrl:
-			"https://www.google.com/maps/search/22.471534,+88.367492?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=71f0bcec-9b54-44e4-a2f3-dbf64024b458",
-	},
-	GEETANJALI_METRO_STATION: {
-		name: "Geetanjali Metro Station",
-		gmapsUrl:
-			"https://www.google.com/maps/place/Gitanjali/@22.469425,88.3673474,805m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a02710777f15313:0x89774f7a8b6e951f!8m2!3d22.469425!4d88.3699223!16s%2Fg%2F1hm6s202z?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=757ff03e-6f00-4000-9fc1-f3722ceb8645",
-	},
-	KARUNAMOYEE_BUS_STAND: {
-		name: "Karunamoyee Bus Stand",
-		gmapsUrl:
-			"https://www.google.com/maps/search/22.486214,+88.340042?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=669ef928-aaec-406e-8ac4-9fd92fdfb78c",
-	},
-	MUCHIPARA: {
-		name: "Muchipara",
-		gmapsUrl:
-			"https://www.google.com/maps/search/22.487138,+88.332350?entry=tts&g_ep=EgoyMDI2MDkxNi4wIPu8ASoASAFQAw%3D%3D&skid=4bf0d578-8441-49e2-9d2a-158fae4d64d8",
-	},
-	MUCHIPARA_BUS_STAND: {
-		name: "Muchipara Bus Stand",
-		gmapsUrl:
-			"https://www.google.com/maps/search/22.487137,+88.332354?entry=tts&g_ep=EgoyMDI2MDkxNi4wIPu8ASoASAFQAw%3D%3D&skid=5e01ae70-37ab-4205-8498-187b63ebdbfc",
-	},
-	BEHALA_CHOWRASTA: {
-		name: "Behala Chowrasta",
-		gmapsUrl:
-			"https://www.google.com/maps/place/Behala+Chowrasta/@22.4871211,88.310141,543m/data=!3m1!1e3!4m6!3m5!1s0x3a027a6d9190f669:0x4dcef2ce2623eb60!8m2!3d22.4870602!4d88.3131928!16s%2Fg%2F1pp2vlpvk!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkxNi4wIPu8ASoASAFQAw%3D%3D&skid=5ada383a-ecd1-4d56-b61f-5c4971730a70",
-	},
-	SAKHERBAZAR_BUS_STAND: {
-		name: "Sakherbazar Bus Stand",
-		gmapsUrl:
-			"https://www.google.com/maps/search/22.481899,+88.311089?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=abb47090-b73f-423f-8055-a8bd46b5f542",
-	},
-	THAKURPUKUR_METRO_STATION: {
-		name: "Thakurpukur Metro Station",
-		gmapsUrl:
-			"https://www.google.com/maps/place/Thakurpukur/@22.4627778,88.2729664,6203m/data=!3m1!1e3!4m6!3m5!1s0x3a027a8ba16f9511:0xa766c9189ed14f7d!8m2!3d22.4642826!4d88.3074849!16s%2Fg%2F1hf6jkfmc?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=9747849a-f8b3-4dfa-8e00-ff0f668980a2",
-	},
-	BEHALA_BAZAR: {
-		name: "Behala Bazar",
-		gmapsUrl:
-			"https://www.google.com/maps/place/Behala+Bazar/@22.5003316,88.3192637,1549m/data=!3m1!1e3!4m6!3m5!1s0x3a027a0ee4cea537:0x53edb209775aeb4!8m2!3d22.500378!4d88.3172706!16s%2Fg%2F1ptxv86p1!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkxNi4wIPu8ASoASAFQAw%3D%3D&skid=dad2a5f9-8fbc-4c4d-8407-ceefb4f132f5",
-	},
-	AJANTA_CINEMA_BUS_STOP: {
-		name: "Ajanta Cinema Bus Stop",
-		gmapsUrl:
-			"https://www.google.com/maps/place/Ajanta+Cinema/@22.5079328,88.3166994,1240m/data=!3m1!1e3!4m6!3m5!1s0x3a027a06d092224f:0xb72abb8c0a0d05b4!8m2!3d22.5091892!4d88.3211371!16s%2Fg%2F11b7q4h0nq!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkxNi4wIPu8ASoASAFQAw%3D%3D&skid=e839ca7b-8ae2-46e1-974d-da1ea2bda4a1",
-	},
-	BALLYGUNGE_JUNCTION: { name: "Ballygunge Junction" },
-	NETAJI_METRO_STATION: { name: "Netaji Metro Station" },
-	PANCHANANTALA: { name: "Panchanantala" },
-};
-
 export const panchami = {
 	title: "Panchami",
 	dateLabel: "16 OCTOBER &middot; FRIDAY",
@@ -117,7 +11,6 @@ export const panchami = {
 		type: ItemType.LUNCH,
 		title: "Khao More Cafe",
 		distance: 350,
-		fromName: "Naktala Udayan Sangha",
 		gmapsUrl:
 			"https://www.google.com/maps/place/Khao+More+Cafe/@22.4719942,88.3653771,402m/data=!3m1!1e3!4m6!3m5!1s0x3a0271fdf24dcc0d:0x95190477bf42a175!8m2!3d22.4719988!4d88.366844!16s%2Fg%2F11q_0q4r6l?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=4eb394e4-780c-41ef-a2d0-80a8d389877b",
 	},
@@ -651,15 +544,14 @@ export const panchami = {
 				{
 					order: 1,
 					medium: TransitMedium.TRAIN,
-					service: "the local",
-					src: TransitPlaces.BALLY_HALT_STATION,
-					dest: TransitPlaces.SEALDAH_JUNCTION,
+					src: Places.RAIL_STATIONS.BALLY_HALT,
+					dest: Places.RAIL_STATIONS.SEALDAH,
 				},
 				{
 					order: 2,
 					medium: TransitMedium.TRAIN,
 					service: "a train",
-					dest: TransitPlaces.BALLYGUNGE_JUNCTION,
+					dest: Places.RAIL_STATIONS.BALLYGUNGE,
 				},
 			],
 		},
@@ -671,20 +563,19 @@ export const panchami = {
 					order: 1,
 					medium: TransitMedium.WALK,
 					distance: 260,
-					fromName: "Rajdanga Naba Uday Sangha",
-					dest: TransitPlaces.RAJDANGA_NABA_PALLY,
+					dest: Places.BUS_STOPS.RAJDANGA_NABA_PALLY,
 				},
-				{ order: 2, medium: TransitMedium.BUS, dest: TransitPlaces.EKDALIA },
+				{ order: 2, medium: TransitMedium.BUS, dest: Places.BUS_STOPS.EKDALIA },
 				{
 					order: 3,
 					medium: TransitMedium.WALK,
 					distance: 240,
-					dest: TransitPlaces.GARIAHAT_MORE,
+					dest: Places.BUS_STOPS.GARIAHAT_MORE,
 				},
 				{
 					order: 4,
 					medium: TransitMedium.BUS,
-					dest: TransitPlaces.SANTOSHPUR_LAKE,
+					dest: Places.BUS_STOPS.SANTOSHPUR_LAKE,
 				},
 			],
 		},
@@ -696,12 +587,12 @@ export const panchami = {
 					order: 1,
 					medium: TransitMedium.WALK,
 					distance: 150,
-					dest: TransitPlaces.SANTOSHPUR_BOTTOLA,
+					dest: Places.BUS_STOPS.SANTOSHPUR_BOTTOLA,
 				},
 				{
 					order: 2,
 					medium: TransitMedium.BUS,
-					dest: TransitPlaces.SULEKHA_MORE,
+					dest: Places.BUS_STOPS.SULEKHA_MORE,
 				},
 			],
 		},
@@ -713,17 +604,17 @@ export const panchami = {
 					order: 1,
 					medium: TransitMedium.WALK,
 					distance: 110,
-					dest: TransitPlaces.KK_DAS_COLLEGE,
+					dest: Places.BUS_STOPS.KK_DAS_COLLEGE,
 				},
 				{
 					order: 2,
 					medium: TransitMedium.BUS,
-					dest: TransitPlaces.GARIA_NO_6_BUS_TERMINUS,
+					dest: Places.BUS_STOPS.GARIA_NO_6_BUS_TERMINUS,
 				},
 				{
 					order: 3,
 					medium: TransitMedium.BUS,
-					dest: TransitPlaces.ANANDA_ASHRAM,
+					dest: Places.BUS_STOPS.ANANDA_ASHRAM,
 				},
 			],
 		},
@@ -735,13 +626,12 @@ export const panchami = {
 					order: 1,
 					medium: TransitMedium.WALK,
 					distance: 450,
-					fromName: "Khao More Cafe",
-					dest: TransitPlaces.GEETANJALI_METRO_STATION,
+					dest: Places.METRO_STATIONS.GEETANJALI,
 				},
 				{
 					order: 2,
 					medium: TransitMedium.METRO,
-					dest: TransitPlaces.NETAJI_METRO_STATION,
+					dest: Places.METRO_STATIONS.NETAJI,
 				},
 			],
 		},
@@ -753,10 +643,13 @@ export const panchami = {
 					order: 1,
 					medium: TransitMedium.WALK,
 					distance: 550,
-					fromName: "Haridevpur 41 Palli",
-					dest: TransitPlaces.KARUNAMOYEE_BUS_STAND,
+					dest: Places.BUS_STOPS.KARUNAMOYEE,
 				},
-				{ order: 2, medium: TransitMedium.BUS, dest: TransitPlaces.MUCHIPARA },
+				{
+					order: 2,
+					medium: TransitMedium.BUS,
+					dest: Places.BUS_STOPS.MUCHIPARA,
+				},
 			],
 		},
 		{
@@ -768,12 +661,12 @@ export const panchami = {
 					medium: TransitMedium.WALK,
 					distance: 350,
 					prefix: "Walk back",
-					dest: TransitPlaces.MUCHIPARA_BUS_STAND,
+					dest: Places.BUS_STOPS.MUCHIPARA,
 				},
 				{
 					order: 2,
 					medium: TransitMedium.BUS,
-					dest: TransitPlaces.BEHALA_CHOWRASTA,
+					dest: Places.BUS_STOPS.BEHALA_CHOWRASTA,
 				},
 			],
 		},
@@ -785,13 +678,12 @@ export const panchami = {
 					order: 1,
 					medium: TransitMedium.WALK,
 					distance: 450,
-					fromName: "Barisha Sarbojanin",
-					dest: TransitPlaces.SAKHERBAZAR_BUS_STAND,
+					dest: Places.BUS_STOPS.SAKHERBAZAR,
 				},
 				{
 					order: 2,
 					medium: TransitMedium.BUS,
-					dest: TransitPlaces.PANCHANANTALA,
+					dest: Places.BUS_STOPS.PANCHANANTALA,
 				},
 			],
 		},
@@ -803,27 +695,29 @@ export const panchami = {
 					order: 1,
 					medium: TransitMedium.WALK,
 					distance: 500,
-					fromName: "Thakurpukur State Bank Park",
-					dest: TransitPlaces.THAKURPUKUR_METRO_STATION,
+					dest: Places.METRO_STATIONS.THAKURPUKUR,
 				},
 				{
 					order: 2,
 					medium: TransitMedium.METRO,
-					dest: TransitPlaces.BEHALA_BAZAR,
+					dest: Places.METRO_STATIONS.BEHALA_BAZAR,
 				},
 			],
 		},
 		{
 			index: 9,
 			type: ItemType.TRANSIT,
-			note: "Then take a bus, cab, or metro for the journey home",
 			steps: [
 				{
 					order: 1,
 					medium: TransitMedium.WALK,
 					distance: 650,
-					fromName: "Behala Young Men's Association",
-					dest: TransitPlaces.AJANTA_CINEMA_BUS_STOP,
+					dest: Places.BUS_STOPS.AJANTA_CINEMA,
+				},
+				{
+					order: 2,
+					medium: TransitMedium.CAB,
+					dest: Places.RAIL_STATIONS.BALLY_HALT,
 				},
 			],
 		},

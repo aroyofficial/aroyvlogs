@@ -11,7 +11,6 @@ export const chaturthi = {
 		type: ItemType.LUNCH,
 		title: "Allen Kitchen",
 		distance: 230,
-		fromName: "Hazra Park",
 		gmapsUrl:
 			"https://www.google.com/maps/place/Allen+Kitchen+-+Saveurs+de+Calcutta/@22.5238133,88.345164,310m/data=!3m1!1e3!4m6!3m5!1s0x3a0277091eaf1cb9:0xf13bcf4321444544!8m2!3d22.5242545!4d88.3473219!16s%2Fg%2F11h1dmgbf9?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=00806ce5-b610-44e0-bd61-5676a0bda95b",
 	},
@@ -696,7 +695,6 @@ export const chaturthi = {
 					order: 1,
 					medium: TransitMedium.WALK,
 					distance: 450,
-					fromName: "Santosh Mitra Square",
 					dest: Places.BUS_STOPS.NRS_HOSPITAL,
 				},
 				{
@@ -714,7 +712,6 @@ export const chaturthi = {
 					order: 1,
 					medium: TransitMedium.WALK,
 					distance: 280,
-					fromName: "Entall Kanthal Bagan",
 					dest: Places.BUS_STOPS.RAMLILA_MAIDAN,
 				},
 				{

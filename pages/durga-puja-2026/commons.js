@@ -137,6 +137,81 @@ export const Places = {
 			gmapsUrl:
 				"https://www.google.com/maps/place/Ramlila+Maidan/@22.559633,88.3674661,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276f9a062f333:0xff9cab9b31b3cd91!8m2!3d22.559633!4d88.370041!16s%2Fg%2F11g8bblzl9!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
 		},
+		RAJDANGA_NABA_PALLY: {
+			name: "Rajdanga Naba Pally",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Raj+Danga+Nabapally/@22.5146703,88.3902557,78m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMwJzUyLjciTiA4OMKwMjMnMjUuMiJF!8m2!3d22.514643!4d88.390323!3m5!1s0x3a02714d19cfe4a5:0x72787fc5c458e230!8m2!3d22.514644!4d88.390324!16s%2Fg%2F12hq5tgj9!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		EKDALIA: {
+			name: "Ekdalia",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ekdalia/@22.5206963,88.3682383,198m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMxJzE0LjciTiA4OMKwMjInMDUuNiJF!8m2!3d22.520756!4d88.368214!3m5!1s0x3a0276d3f33de6e5:0x97850b9a0b12ab86!8m2!3d22.520876!4d88.368025!16s%2Fg%2F11gbfp22l_!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		GARIAHAT_MORE: {
+			name: "Gariahat More",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Gariahat+More/@22.5200923,88.363544,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276d450e5e077:0xe5043a36e48122e7!8m2!3d22.5200923!4d88.3661189!16s%2Fg%2F1ydnvm__p!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SANTOSHPUR_LAKE: {
+			name: "Santoshpur Lake",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Santoshpur+Lake/@22.4918288,88.3824248,191m/am=t/data=!3m1!1e3!4m6!3m5!1s0x3a02716aa95f0f75:0x8443281c805ee1aa!8m2!3d22.491824!4d88.383126!16s%2Fg%2F11b7qd5rc7!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=59ae0639-ec08-468e-be55-e8524e982dd9",
+		},
+		SANTOSHPUR_BOTTOLA: {
+			name: "Santoshpur Bottola",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Santoshpur+Bottala/@22.4930523,88.3798409,50m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI5JzM0LjkiTiA4OMKwMjInNDcuNiJF!8m2!3d22.493035!4d88.379878!3m5!1s0x3a02713e2c935b79:0x3526bfff908b3edd!8m2!3d22.4930262!4d88.3798778!16s%2Fg%2F11b7q10qtz!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SULEKHA_MORE: {
+			name: "Sulekha More",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sulekha+More/@22.4916501,88.3714729,201m/am=t/data=!3m1!1e3!4m6!3m5!1s0x3a027118064959e5:0xb0b301350b1539db!8m2!3d22.49165!4d88.372248!16s%2Fg%2F1hjgydcy9!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=608e706a-8891-4543-abe9-285535832aa1",
+		},
+		KK_DAS_COLLEGE: {
+			name: "KK Das College",
+			gmapsUrl:
+				"https://www.google.com/maps/place/K.K.+Das+College/@22.4711722,88.3806125,179m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI4JzE3LjIiTiA4OMKwMjInNTAuNyJF!8m2!3d22.471442!4d88.380746!3m5!1s0x3a02710ae4add2b3:0x13bd8220f494133!8m2!3d22.471439!4d88.380747!16s%2Fg%2F11b7q6kp0n!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		GARIA_NO_6_BUS_TERMINUS: {
+			name: "Garia No. 6 Bus Terminus",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Garia+No.+6/@22.4652144,88.3774054,116m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI3JzU0LjciTiA4OMKwMjInMzguMyJF!8m2!3d22.465182!4d88.377306!3m5!1s0x3a0271a6d2859f21:0xa895964d52e7d3bb!8m2!3d22.465182!4d88.377305!16s%2Fg%2F1tp_4tf9!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		ANANDA_ASHRAM: {
+			name: "Ananda Ashram",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ananda+Ashram/@22.4715265,88.3673922,136m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI4JzE3LjUiTiA4OMKwMjInMDMuMCJF!8m2!3d22.471534!4d88.367492!3m5!1s0x3a0271012a1daba9:0xe828e01792c35e0f!8m2!3d22.471541!4d88.3675!16s%2Fg%2F1tnpjf1w!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		KARUNAMOYEE: {
+			name: "Karunamoyee",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Karunamayee/@22.4861149,88.3402206,135m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI5JzEwLjQiTiA4OMKwMjAnMjQuMiJF!8m2!3d22.486214!4d88.340042!3m5!1s0x3a0270938a042c9f:0xe0783cb628868336!8m2!3d22.486215!4d88.340041!16s%2Fg%2F11f0wnv4kn!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		MUCHIPARA: {
+			name: "Muchipara",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Muchipara/@22.4871732,88.3324175,66m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI5JzEzLjciTiA4OMKwMTknNTYuNSJF!8m2!3d22.487138!4d88.33235!3m5!1s0x3a0270999325aca3:0x30dc04062a9364fc!8m2!3d22.4871814!4d88.3323339!16s%2Fg%2F11gbfbvq9h!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BEHALA_CHOWRASTA: {
+			name: "Behala Chowrasta",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Behala+Chowrasta/@22.4871511,88.3129405,171m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a027a6d9190f669:0x4dcef2ce2623eb60!2sBehala+Chowrasta!8m2!3d22.4870602!4d88.3131928!16s%2Fg%2F1pp2vlpvk!3m5!1s0x3a027a6debfee4f9:0x663ed9bd2228e65!8m2!3d22.486941!4d88.313366!16s%2Fg%2F1tsyn5x_!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SAKHERBAZAR: {
+			name: "Sakherbazar",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sakher+Bazar/@22.4817473,88.3113353,189m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI4JzU0LjgiTiA4OMKwMTgnMzkuOSJF!8m2!3d22.481899!4d88.311089!3m5!1s0x3a027a6f6b0ffacd:0xf3e25cf29c32d37b!8m2!3d22.481902!4d88.311092!16s%2Fg%2F11b7q86d_x!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		AJANTA_CINEMA: {
+			name: "Ajanta Cinema",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ajanta+Cinema/@22.5079328,88.3166994,1240m/data=!3m1!1e3!4m6!3m5!1s0x3a027a06d092224f:0xb72abb8c0a0d05b4!8m2!3d22.5091892!4d88.3211371!16s%2Fg%2F11b7q4h0nq!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkxNi4wIPu8ASoASAFQAw%3D%3D&skid=e839ca7b-8ae2-46e1-974d-da1ea2bda4a1",
+		},
+		PANCHANANTALA: {
+			name: "Panchanantala",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Panchanantala/@22.4674026,88.3070362,402m/data=!3m1!1e3!4m10!1m2!2m1!1spanchanantala+near+thakurpukur!3m6!1s0x3a027a8a0f9d5903:0x262825028bb1593b!8m2!3d22.467561!4d88.308826!15sCh5wYW5jaGFuYW50YWxhIG5lYXIgdGhha3VycHVrdXJaICIecGFuY2hhbmFudGFsYSBuZWFyIHRoYWt1cnB1a3VykgEIYnVzX3N0b3CaAURDaTlEUVVsUlFVTnZaRU5vZEhsalJqbHZUMnQwY2xGdVFsbFZiVGxOV1RCT1FtSkZWVEpsUldoc1ducEtSRTlZWXhBQuABAPoBBAgAEEQ!16s%2Fg%2F11bylf9k7v!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
 	},
 	METRO_STATIONS: {
 		DAKSHINESHWAR: {
@@ -169,6 +244,26 @@ export const Places = {
 			gmapsUrl:
 				"https://www.google.com/maps/place/Central/@22.5725237,88.3556674,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0277ac0161c411:0xa1c2fcf3868f35f3!8m2!3d22.5725237!4d88.3582423!16s%2Fm%2F0gtwrz3!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
 		},
+		BEHALA_BAZAR: {
+			name: "Behala Bazar",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Behala+Bazar/@22.5003316,88.3192637,1549m/data=!3m1!1e3!4m6!3m5!1s0x3a027a0ee4cea537:0x53edb209775aeb4!8m2!3d22.500378!4d88.3172706!16s%2Fg%2F1ptxv86p1!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkxNi4wIPu8ASoASAFQAw%3D%3D&skid=dad2a5f9-8fbc-4c4d-8407-ceefb4f132f5",
+		},
+		GEETANJALI: {
+			name: "Geetanjali",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Gitanjali/@22.469425,88.3673474,805m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a02710777f15313:0x89774f7a8b6e951f!8m2!3d22.469425!4d88.3699223!16s%2Fg%2F1hm6s202z?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=757ff03e-6f00-4000-9fc1-f3722ceb8645",
+		},
+		THAKURPUKUR: {
+			name: "Thakurpukur",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Thakurpukur/@22.4627778,88.2729664,6203m/data=!3m1!1e3!4m6!3m5!1s0x3a027a8ba16f9511:0xa766c9189ed14f7d!8m2!3d22.4642826!4d88.3074849!16s%2Fg%2F1hf6jkfmc?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=9747849a-f8b3-4dfa-8e00-ff0f668980a2",
+		},
+		NETAJI: {
+			name: "Netaji",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Netaji/@22.4809362,88.3433862,805m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0270ed8471e3fb:0xf8876f7c9d7c7ba7!8m2!3d22.4809362!4d88.3459611!16s%2Fm%2F0gtv5rk!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
 	},
 	RAIL_STATIONS: {
 		TALA: {
@@ -185,6 +280,11 @@ export const Places = {
 			name: "Bally Halt",
 			gmapsUrl:
 				"https://www.google.com/maps/place/Bally+Halt/@22.6522445,88.3366672,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89d2407d0b96d:0xbc21f779dc795ff2!8m2!3d22.6522445!4d88.3392421!16s%2Fg%2F1vs1q8hf!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BALLYGUNGE: {
+			name: "Ballygunge",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ballygunge+Jn/@22.5194391,88.3717059,302m/data=!3m1!1e3!4m6!3m5!1s0x3a0276d27c71e5b1:0xdfc52b39229e41e1!8m2!3d22.5193772!4d88.3721353!16s%2Fg%2F11f776gnq7!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
 		},
 	},
 };
@@ -255,13 +355,16 @@ export function renderPandal(item, routeData) {
 	const previousStop = routeData.stops.find(
 		(stop) => stop.order === item.order - 1,
 	);
-	const previousTransit = item.isPreviousTransit
-		? routeData.transits.find((transit) => transit.index === item.transit)
-		: null;
-	const lastTransitStep = previousTransit?.steps.at(-1);
-	const fromLocation = item.isPreviousTransit
-		? lastTransitStep?.dest?.name
-		: previousStop?.title;
+	const transitBeforeStopIndex = item.isPreviousTransit
+		? item.transit
+		: previousStop?.isPreviousTransit
+			? undefined
+			: previousStop?.transit;
+	const transitBeforeStop = routeData.transits.find(
+		(transit) => transit.index === transitBeforeStopIndex,
+	);
+	const lastTransitDestination = transitBeforeStop?.steps.at(-1)?.dest?.name;
+	const fromLocation = lastTransitDestination || previousStop?.title;
 	const walkingTime = Math.ceil(item.distance / WALKING_PACE_METERS_PER_MINUTE);
 
 	return `<span class="itinerary-item-order">${String(item.order).padStart(2, "0")}</span><div class="itinerary-item pandal" aria-expanded="false"><div class="itinerary-item-body"><div><div class="geo-area">${safe(area)}</div><h3>${safe(item.title)}</h3><p>&#128694; ${safe(item.distance)} m &middot; &#9201;&#65039; ${walkingTime} min${fromLocation ? ` from ${safe(fromLocation)}` : ""}</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="${safe(item.gmapsUrl)}">Google Maps &#8599;</a>${toiletsLink}</div></div><div class="itinerary-item-expansion-panel" aria-hidden="true"><div><div class="itinerary-item-expansion-panel-body">${item.htmlDesc}</div>${linkFooter}</div></div></div>`;
@@ -295,11 +398,13 @@ export function renderTransit(transit) {
 				return step.src
 					? `Take ${step.service || "a train"} from ${locationLink(step.src)} to ${destination}`
 					: `Then take ${step.service || "a train"} to ${destination}`;
+			case TransitMedium.CAB:
+				return `book a cab to ${destination}`;
 			default:
 				return destination;
 		}
 	});
-	return `<strong>Transfer:</strong> ${steps.join(" &rarr; ")}${transit.note ? ` &middot; ${transit.note}` : ""}.`;
+	return `<strong>Transit:</strong> ${steps.join(" &rarr; ")}${transit.note ? ` &middot; ${transit.note}` : ""}.`;
 }
 
 export function renderLunch(lunch) {
