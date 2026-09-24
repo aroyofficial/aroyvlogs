@@ -114,30 +114,28 @@ function calculateRouteSummary(routeData) {
 	};
 }
 
-const meetupPlaceTypes = {
-	"bus-stop": {
-		iconClass: "fa-solid fa-bus",
-		className: "place-chip--bus",
-	},
-	"metro-station": {
-		iconClass: "fa-solid fa-train-tunnel",
-		className: "place-chip--metro",
-	},
-	"rail-station": {
-		iconClass: "fa-solid fa-train-subway",
-		className: "place-chip--rail",
-	},
-};
+function getMeetupPlaceClass(place, Places) {
+	if (Object.values(Places.BUS_STOPS).includes(place)) {
+		return "place-chip--bus";
+	}
+	if (Object.values(Places.METRO_STATIONS).includes(place)) {
+		return "place-chip--metro";
+	}
+	if (Object.values(Places.RAIL_STATIONS).includes(place)) {
+		return "place-chip--rail";
+	}
+	return "";
+}
 
-function renderMain(routeData) {
+function renderMain(routeData, Places) {
 	const mainRoot = document.getElementById("puja-day-main-root");
 	if (!mainRoot || !routeData) return;
 
 	const { title, dateLabel, meetup } = routeData;
-	const meetupPlaceType = meetupPlaceTypes[meetup.placeType];
+	const meetupPlaceClass = getMeetupPlaceClass(meetup.place, Places);
 	const { itinerary, totalWalkingDistance, totalPandals, zones } =
 		calculateRouteSummary(routeData);
-	mainRoot.outerHTML = `<main id="puja-day-main"><section class="section"><span class="eyebrow">${dateLabel}</span><h1 class="puja-day display-3 mt-3">${title}</h1><p class="lead text-secondary">Meet-up: ${meetup.time} &middot; <a class="route-location-link meetup-place-chip ${meetupPlaceType.className}" target="_blank" rel="noopener" href="${meetup.place.gmapsUrl}"><span class="place-chip-icon" aria-hidden="true"><i class="${meetupPlaceType.iconClass}"></i></span><span>${meetup.place.name}</span></a></p><div class="route-summary">&#128256; <strong>Itinerary:</strong> ${itinerary}</div><div class="route-summary mt-3">&#128694; <strong>Total Walking Distance:</strong> ${totalWalkingDistance}</div><div class="route-summary mt-3">&#127917; <strong>Total Pandals:</strong> ${totalPandals}</div><div class="route-summary mt-3">&#128506;&#65039; <strong>Zones Covered:</strong> ${zones}</div><ol class="route-list"></ol></section></main>`;
+	mainRoot.outerHTML = `<main id="puja-day-main"><section class="section"><span class="eyebrow">${dateLabel}</span><h1 class="puja-day display-3 mt-3">${title}</h1><p class="lead text-secondary">Meet-up: ${meetup.time} &middot; <a class="route-location-link meetup-place-chip ${meetupPlaceClass}" target="_blank" rel="noopener" href="${meetup.place.gmapsUrl}"><span>${meetup.place.name}</span></a></p><div class="route-summary">&#128256; <strong>Itinerary:</strong> ${itinerary}</div><div class="route-summary mt-3">&#128694; <strong>Total Walking Distance:</strong> ${totalWalkingDistance}</div><div class="route-summary mt-3">&#127917; <strong>Total Pandals:</strong> ${totalPandals}</div><div class="route-summary mt-3">&#128506;&#65039; <strong>Zones Covered:</strong> ${zones}</div><ol class="route-list"></ol></section></main>`;
 	renderItinerary(routeData);
 	setupPandalExpansions();
 }
@@ -206,7 +204,7 @@ function renderSelectedPage(pageRoot) {
 
 			document.title = `${routeData.title} \u00b7 Durga Puja 2026`;
 			renderHeader();
-			renderMain(routeData);
+			renderMain(routeData, commons.Places);
 			renderFooter(routeData);
 		})
 		.catch(() => window.location.replace("../../404.html"));

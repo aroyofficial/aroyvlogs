@@ -373,30 +373,21 @@ export function renderPandal(item, routeData) {
 export function renderTransit(transit) {
 	const getPlaceType = (place) => {
 		if (Object.values(Places.BUS_STOPS).includes(place)) {
-			return { iconClass: "fa-solid fa-bus", chipClass: "place-chip--bus" };
+			return { chipClass: "place-chip--bus" };
 		}
 		if (Object.values(Places.METRO_STATIONS).includes(place)) {
-			return {
-				iconClass: "fa-solid fa-train-tunnel",
-				chipClass: "place-chip--metro",
-			};
+			return { chipClass: "place-chip--metro" };
 		}
 		if (Object.values(Places.RAIL_STATIONS).includes(place)) {
-			return {
-				iconClass: "fa-solid fa-train-subway",
-				chipClass: "place-chip--rail",
-			};
+			return { chipClass: "place-chip--rail" };
 		}
 		return null;
 	};
 	const locationLink = (place) => {
 		const placeType = getPlaceType(place);
-		const icon = placeType
-			? `<span class="place-chip-icon" aria-hidden="true"><i class="${placeType.iconClass}"></i></span>`
-			: "";
 		const chipClass = placeType ? ` ${placeType.chipClass}` : "";
 		return place?.gmapsUrl
-			? `<a class="route-location-link${chipClass}" target="_blank" rel="noopener" href="${place.gmapsUrl}">${icon}<span>${place.name}</span></a>`
+			? `<a class="route-location-link${chipClass}" target="_blank" rel="noopener" href="${place.gmapsUrl}">${place.name}</a>`
 			: place.name;
 	};
 	const steps = transit.steps.map((step) => {

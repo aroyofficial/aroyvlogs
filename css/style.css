@@ -540,29 +540,23 @@ body {
 	transform: translateY(-1px);
 	box-shadow: 0 5px 14px rgba(23, 23, 23, 0.1);
 }
-.place-chip--bus {
-	border-color: #e4c5b3;
-	background: #f4e8df;
+.route-location-link.place-chip--bus,
+.route-location-link.place-chip--bus:hover {
+	border-color: #dfa987;
+	background-color: #f8ddc9;
 	color: #713a28;
 }
-.place-chip--metro {
-	border-color: #bfd1e0;
-	background: #e8f0f6;
+.route-location-link.place-chip--metro,
+.route-location-link.place-chip--metro:hover {
+	border-color: #9bbdd8;
+	background-color: #dcecf8;
 	color: #244e70;
 }
-.place-chip--rail {
-	border-color: #c8d8c0;
-	background: #eaf0e6;
+.route-location-link.place-chip--rail,
+.route-location-link.place-chip--rail:hover {
+	border-color: #a9c398;
+	background-color: #e0edd8;
 	color: #3d5c33;
-}
-.place-chip-icon {
-	font-size: 1.2em;
-}
-.itinerary-transit .place-chip-icon {
-	font-size: 15px;
-}
-.itinerary-transit .place-chip-icon .fa-solid {
-	font-size: 15px;
 }
 .itinerary-transit .route-location-link {
 	margin-top: 3px;

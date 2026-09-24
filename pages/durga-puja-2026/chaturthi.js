@@ -5,8 +5,7 @@ export const chaturthi = {
 	dateLabel: "15 OCTOBER &middot; THURSDAY",
 	meetup: {
 		time: "7:30 AM",
-		place: Places.RAIL_STATIONS.BALLY_HALT,
-		placeType: "rail-station",
+		place: Places.BUS_STOPS.BALLY_HALT,
 	},
 	lunchStop: {
 		type: ItemType.LUNCH,

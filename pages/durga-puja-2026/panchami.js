@@ -5,8 +5,7 @@ export const panchami = {
 	dateLabel: "16 OCTOBER &middot; FRIDAY",
 	meetup: {
 		time: "7:30 AM",
-		place: Places.BUS_STOPS.BALLY_HALT,
-		placeType: "bus-stop",
+		place: Places.RAIL_STATIONS.BALLY_HALT,
 	},
 	lunchStop: {
 		type: ItemType.LUNCH,
