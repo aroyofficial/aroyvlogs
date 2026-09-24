@@ -569,35 +569,7 @@
 			</div>
 			<a class="text-link" href="index.html">All Puja days</a>
 		</footer>
-		<script>
-			(function () {
-				function startPujaAudio() {
-					let audio = document.getElementById("durga-puja-bgm");
-					if (!audio) {
-						audio = document.createElement("audio");
-						audio.id = "durga-puja-bgm";
-						audio.src = "Durga_Puja_BGM.mp3";
-						audio.loop = true;
-						audio.preload = "auto";
-						audio.setAttribute("aria-hidden", "true");
-						audio.style.display = "none";
-						document.body.appendChild(audio);
-					}
-					audio.play().catch(() => {});
-					return audio;
-				}
-				const pujaAudio = startPujaAudio();
-				["pointerdown", "keydown", "touchstart"].forEach((eventName) =>
-					document.addEventListener(
-						eventName,
-						() => {
-							pujaAudio.play().catch(() => {});
-						},
-						{ once: true, passive: true },
-					),
-				);
-			})();
-		</script>
+		<script type="module" src="main.js"></script>
 		<script>
 			(function () {
 				function bind() {

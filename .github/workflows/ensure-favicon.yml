@@ -15,27 +15,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Clean duplicate Navami description blocks
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          route = Path('pages/durga-puja-2026/route-enhancements.js')
-          text = route.read_text(encoding='utf-8')
-          marker = '/* NAVAMI_DESCRIPTION_FIX_V2 */'
-          parts = text.split(marker)
-          if len(parts) > 2:
-              route.write_text((parts[0] + marker + parts[1]).rstrip() + '\n', encoding='utf-8')
-              print(f'Duplicate Navami blocks removed ({len(parts) - 1} -> 1)')
-          elif len(parts) == 2:
-              print('Single Navami description block found (no duplicates)')
-          else:
-              print('No Navami description block found')
-          PY
-
       - name: Validate site JavaScript
         run: |
           node --check js/app.js
-          node --check pages/durga-puja-2026/route-enhancements.js
 
       - name: Add favicon to every HTML page
         run: |
@@ -69,7 +51,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # Scoped adds only: never sweep unrelated files into the bot commit.
-          git add -- '*.html' 'pages/durga-puja-2026/route-enhancements.js'
+          git add -- '*.html'
           git diff --cached --quiet && exit 0
-          git commit -m "fix: automated favicon/description cleanup [skip ci]"
+          git commit -m "fix: automated favicon cleanup [skip ci]"
           git push

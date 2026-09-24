@@ -1,14 +1,8 @@
-import {
-	WALKING_PACE_METERS_PER_MINUTE,
-	TransitMedium,
-	renderLunch,
-	renderPandal,
-	renderTransit,
-} from "./commons.js";
-import { chaturthi } from "./chaturthi.js";
-import { panchami } from "./panchami.js";
-
-const pageData = { chaturthi, panchami };
+let WALKING_PACE_METERS_PER_MINUTE;
+let TransitMedium;
+let renderLunch;
+let renderPandal;
+let renderTransit;
 
 function renderItinerary(routeData) {
 	const { stops, transits, lunchStop } = routeData;
@@ -42,6 +36,34 @@ function renderItinerary(routeData) {
 		if (stop.lunch && lunchStop) {
 			slot.insertAdjacentHTML("afterend", renderLunch(lunchStop));
 		}
+	});
+}
+
+function setupPandalExpansions() {
+	document.querySelectorAll(".pandal").forEach((card) => {
+		card.addEventListener("click", (event) => {
+			if (event.target.closest("a")) return;
+			const open = card.getAttribute("aria-expanded") === "true";
+			document
+				.querySelectorAll('.pandal[aria-expanded="true"]')
+				.forEach((other) => {
+					if (other === card) return;
+					other.setAttribute("aria-expanded", "false");
+					const panel = other.querySelector(
+						".itinerary-item-expansion-panel",
+					);
+					if (panel) {
+						panel.classList.remove("is-open");
+						panel.setAttribute("aria-hidden", "true");
+					}
+				});
+			card.setAttribute("aria-expanded", String(!open));
+			const panel = card.querySelector(".itinerary-item-expansion-panel");
+			if (panel) {
+				panel.classList.toggle("is-open", !open);
+				panel.setAttribute("aria-hidden", String(open));
+			}
+		});
 	});
 }
 
@@ -101,6 +123,7 @@ function renderMain(routeData) {
 		calculateRouteSummary(routeData);
 	mainRoot.outerHTML = `<main id="puja-day-main"><section class="section"><span class="eyebrow">${dateLabel}</span><h1 class="puja-day display-3 mt-3">${title}</h1><p class="lead text-secondary">Meet-up: ${meetup.time} &middot; <a class="route-location-link" target="_blank" rel="noopener" href="${meetup.place.gmapsUrl}">${meetup.place.name}</a></p><div class="route-summary">&#128256; <strong>Itinerary:</strong> ${itinerary}</div><div class="route-summary mt-3">&#128694; <strong>Total Walking Distance:</strong> ${totalWalkingDistance}</div><div class="route-summary mt-3">&#127917; <strong>Total Pandals:</strong> ${totalPandals}</div><div class="route-summary mt-3">&#128506;&#65039; <strong>Zones Covered:</strong> ${zones}</div><ol class="route-list"></ol></section></main>`;
 	renderItinerary(routeData);
+	setupPandalExpansions();
 }
 
 function renderHeader() {
@@ -117,16 +140,63 @@ function renderFooter(routeData) {
 	footerRoot.outerHTML = `<footer class="site-footer"><div><strong>Vlogs with Arijit</strong><span>Durga Puja 2026 &middot; ${routeData.title}</span></div><a class="text-link" href="index.html">All Puja days</a></footer>`;
 }
 
-const pageRoot = document.getElementById("puja-day-main-root");
-const requestedPage = new URLSearchParams(window.location.search).get("day");
-const pageKey = requestedPage || pageRoot?.dataset.page || "chaturthi";
-const routeData = pageData[pageKey.toLowerCase()];
+function initializePujaAudio() {
+	let audio = document.getElementById("durga-puja-bgm");
+	if (!audio) {
+		audio = document.createElement("audio");
+		audio.id = "durga-puja-bgm";
+		audio.src = "Durga_Puja_BGM.mp3";
+		audio.loop = true;
+		audio.preload = "auto";
+		audio.setAttribute("aria-hidden", "true");
+		audio.style.display = "none";
+		document.body.appendChild(audio);
+	}
 
-if (routeData) {
-	document.title = `${routeData.title} · Durga Puja 2026`;
-	renderHeader();
-	renderMain(routeData);
-	renderFooter(routeData);
-} else {
-	window.location.replace("../../404.html");
+	const playAudio = () => audio.play().catch(() => {});
+	playAudio();
+	["pointerdown", "keydown", "touchstart"].forEach((eventName) =>
+		document.addEventListener(eventName, playAudio, {
+			once: true,
+			passive: true,
+		}),
+	);
 }
+
+function renderSelectedPage(pageRoot) {
+	Promise.all([
+		import("./commons.js"),
+		import("./chaturthi.js"),
+		import("./panchami.js"),
+	])
+		.then(([commons, { chaturthi }, { panchami }]) => {
+			WALKING_PACE_METERS_PER_MINUTE =
+				commons.WALKING_PACE_METERS_PER_MINUTE;
+			TransitMedium = commons.TransitMedium;
+			renderLunch = commons.renderLunch;
+			renderPandal = commons.renderPandal;
+			renderTransit = commons.renderTransit;
+
+			const requestedPage = new URLSearchParams(window.location.search).get(
+				"day",
+			);
+			const pageKey = requestedPage || pageRoot.dataset.page || "chaturthi";
+			const routeData = { chaturthi, panchami }[pageKey.toLowerCase()];
+
+			if (!routeData) {
+				window.location.replace("../../404.html");
+				return;
+			}
+
+			document.title = `${routeData.title} \u00b7 Durga Puja 2026`;
+			renderHeader();
+			renderMain(routeData);
+			renderFooter(routeData);
+		})
+		.catch(() => window.location.replace("../../404.html"));
+}
+
+initializePujaAudio();
+
+const pageRoot = document.getElementById("puja-day-main-root");
+if (pageRoot) renderSelectedPage(pageRoot);
