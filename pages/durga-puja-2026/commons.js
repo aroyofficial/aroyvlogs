@@ -42,6 +42,33 @@ export const Area = {
 	HARIDEVPUR: ["Haridevpur", Zone.SOUTH],
 	BEHALA: ["Behala", Zone.SOUTHWEST],
 	THAKURPUKUR: ["Thakurpukur", Zone.SOUTH],
+	BAGBAZAR: ["Bagbazar", Zone.NORTH],
+	SHYAMBAZAR: ["Shyambazar", Zone.NORTH],
+	KUMARTULI: ["Kumartuli", Zone.NORTH],
+	HATKHOLA: ["Hatkhola", Zone.NORTH],
+	AHIRITOLA: ["Ahiritola", Zone.NORTH],
+	CHORBAGAN: ["Chorbagan", Zone.NORTH],
+	MANIKTALA: ["Maniktala", Zone.NORTH],
+	GOURIBARI: ["Gouribari", Zone.NORTH],
+	HATIBAGAN: ["Hatibagan", Zone.NORTH],
+	SOVABAZAR: ["Sovabazar", Zone.NORTH],
+	GARIAHAT: ["Gariahat", Zone.SOUTH],
+	ULTADANGA: ["Ultadanga", Zone.NORTH],
+	NAGER_BAZAR: ["Nager Bazar", Zone.EAST],
+	BARANAGAR: ["Baranagar", Zone.NORTH],
+	KHIDIRPUR: ["Khidirpur", Zone.PORT],
+	DHAKURIA: ["Dhakuria", Zone.SOUTH],
+	SELIMPUR: ["Selimpur", Zone.SOUTH],
+	JODHPUR_PARK: ["Jodhpur Park", Zone.SOUTH],
+	JODHPUR: ["Jodhpur", Zone.SOUTH],
+	JADAVPUR: ["Jadavpur", Zone.SOUTH],
+	LAKETOWN: ["Laketown", Zone.EAST],
+	BELIAGHATA: ["Beliaghata", Zone.EAST],
+	SALT_LAKE: ["Salt Lake", Zone.EAST],
+	NEWTOWN: ["Newtown", Zone.EAST],
+	DUM_DUM_PARK: ["Dum Dum Park", Zone.NORTH],
+	DUM_DUM: ["Dum Dum", Zone.NORTH],
+	BAGUIATI: ["Baguiati", Zone.NORTH],
 };
 
 export const LinkType = {
@@ -212,6 +239,16 @@ export const Places = {
 			gmapsUrl:
 				"https://www.google.com/maps/place/Panchanantala/@22.4674026,88.3070362,402m/data=!3m1!1e3!4m10!1m2!2m1!1spanchanantala+near+thakurpukur!3m6!1s0x3a027a8a0f9d5903:0x262825028bb1593b!8m2!3d22.467561!4d88.308826!15sCh5wYW5jaGFuYW50YWxhIG5lYXIgdGhha3VycHVrdXJaICIecGFuY2hhbmFudGFsYSBuZWFyIHRoYWt1cnB1a3VykgEIYnVzX3N0b3CaAURDaTlEUVVsUlFVTnZaRU5vZEhsalJqbHZUMnQwY2xGdVFsbFZiVGxOV1RCT1FtSkZWVEpsUldoc1ducEtSRTlZWXhBQuABAPoBBAgAEEQ!16s%2Fg%2F11bylf9k7v!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
 		},
+		FANCY_MARKET: {
+			name: "Fancy Market",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Fancy+Market/@22.5399299,88.3237098,171m/data=!3m1!1e3!4m6!3m5!1s0x3a027760021798f1:0x3c15cf2da7d2f597!8m2!3d22.540092!4d88.323999!16s%2Fg%2F11bv6pmnwb!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		MANASHA_MANDIR: {
+			name: "Manasha Mandir",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Manasha+Mandir/@22.5403309,88.3268512,132m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a02775e030a6427:0xcba695bf1878949d!2sManasha+Mandir!8m2!3d22.5402903!4d88.3270474!16s%2Fg%2F1pp2x9b_f!3m5!1s0x3a02775e030a6427:0xcba695bf1878949d!8m2!3d22.5402903!4d88.3270474!16s%2Fg%2F1pp2x9b_f!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
 	},
 	METRO_STATIONS: {
 		DAKSHINESHWAR: {
@@ -286,8 +323,40 @@ export const Places = {
 			gmapsUrl:
 				"https://www.google.com/maps/place/Ballygunge+Jn/@22.5194391,88.3717059,302m/data=!3m1!1e3!4m6!3m5!1s0x3a0276d27c71e5b1:0xdfc52b39229e41e1!8m2!3d22.5193772!4d88.3721353!16s%2Fg%2F11f776gnq7!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
 		},
+		RAMRAJATALA: {
+			name: "Ramrajatala",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ramrajatala/@22.5894096,88.2943872,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0278684e1f631d:0xd5d92607bd744c9e!8m2!3d22.5894096!4d88.2969621!16s%2Fg%2F11h0d3grfd!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BALLY: {
+			name: "Bally",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Bally/@22.6556234,88.3369475,804m/data=!3m1!1e3!4m15!1m8!3m7!1s0x39f89d20fde81ee7:0x15f059101ff78933!2sBally,+Howrah,+West+Bengal+700084!3b1!8m2!3d22.6547113!4d88.3404785!16s%2Fg%2F11n6spr548!3m5!1s0x39f89d210123f297:0xe7009345b2ebfbcc!8m2!3d22.6559311!4d88.3405404!16s%2Fg%2F1vq737wp!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
 	},
 };
+
+Object.assign(Places.BUS_STOPS, {
+	BALLY_BUS_STAND: {
+		name: "Bally Bus Stand",
+		gmapsUrl: "https://www.google.com/maps/search/?api=1&query=Bally+Bus+Stand",
+	},
+});
+
+Object.assign(Places.RAIL_STATIONS, {
+	SONARPUR_JUNCTION: {
+		name: "Sonarpur Junction",
+		gmapsUrl: "https://maps.app.goo.gl/8LoWVUE9gNdAG7dBA",
+	},
+	BALLY_STATION: {
+		name: "Bally Station",
+		gmapsUrl: "https://maps.app.goo.gl/uavYxSJbuMhwrJTH6",
+	},
+	RAMRAJATALA_STATION: {
+		name: "Ramrajatala Station",
+		gmapsUrl: "https://maps.app.goo.gl/d4cej3YGPMJSgw8C6",
+	},
+});
 
 export function getPinLocation(urlString) {
 	try {
@@ -381,6 +450,15 @@ export function renderTransit(transit) {
 		if (Object.values(Places.RAIL_STATIONS).includes(place)) {
 			return { chipClass: "place-chip--rail" };
 		}
+		if (place?.placeType === "bus-stop") {
+			return { chipClass: "place-chip--bus" };
+		}
+		if (place?.placeType === "metro-station") {
+			return { chipClass: "place-chip--metro" };
+		}
+		if (place?.placeType === "rail-station") {
+			return { chipClass: "place-chip--rail" };
+		}
 		return null;
 	};
 	const locationLink = (place) => {
@@ -411,10 +489,12 @@ export function renderTransit(transit) {
 				return `then take ${step.modeLabel || "an auto"} to ${destination}`;
 			case TransitMedium.TRAIN:
 				return step.src
-					? `Take ${step.service || "a train"} from ${locationLink(step.src)} to ${destination}`
-					: `Then take ${step.service || "a train"} to ${destination}`;
+					? `Take ${step.service || "a train"} from ${locationLink(step.src)} to ${destination}${step.via ? ` via ${locationLink(step.via)}` : ""}`
+					: `Then take ${step.service || "a train"} to ${destination}${step.via ? ` via ${locationLink(step.via)}` : ""}`;
 			case TransitMedium.CAB:
-				return `Then book a cab to ${destination}`;
+				return step.src
+					? `Take a cab from ${locationLink(step.src)} to ${destination}`
+					: `Then book a cab to ${destination}`;
 			default:
 				return destination;
 		}

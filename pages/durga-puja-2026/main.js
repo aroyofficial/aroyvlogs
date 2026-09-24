@@ -49,9 +49,7 @@ function setupPandalExpansions() {
 				.forEach((other) => {
 					if (other === card) return;
 					other.setAttribute("aria-expanded", "false");
-					const panel = other.querySelector(
-						".itinerary-item-expansion-panel",
-					);
+					const panel = other.querySelector(".itinerary-item-expansion-panel");
 					if (panel) {
 						panel.classList.remove("is-open");
 						panel.setAttribute("aria-hidden", "true");
@@ -182,10 +180,10 @@ function renderSelectedPage(pageRoot) {
 		import("./commons.js"),
 		import("./chaturthi.js"),
 		import("./panchami.js"),
+		import("./astami.js"),
 	])
-		.then(([commons, { chaturthi }, { panchami }]) => {
-			WALKING_PACE_METERS_PER_MINUTE =
-				commons.WALKING_PACE_METERS_PER_MINUTE;
+		.then(([commons, { chaturthi }, { panchami }, { astami }]) => {
+			WALKING_PACE_METERS_PER_MINUTE = commons.WALKING_PACE_METERS_PER_MINUTE;
 			TransitMedium = commons.TransitMedium;
 			renderLunch = commons.renderLunch;
 			renderPandal = commons.renderPandal;
@@ -195,7 +193,7 @@ function renderSelectedPage(pageRoot) {
 				"day",
 			);
 			const pageKey = requestedPage || pageRoot.dataset.page || "chaturthi";
-			const routeData = { chaturthi, panchami }[pageKey.toLowerCase()];
+			const routeData = { chaturthi, panchami, astami }[pageKey.toLowerCase()];
 
 			if (!routeData) {
 				window.location.replace("../../404.html");
