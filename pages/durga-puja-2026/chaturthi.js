@@ -6,6 +6,7 @@ export const chaturthi = {
 	meetup: {
 		time: "7:30 AM",
 		place: Places.RAIL_STATIONS.BALLY_HALT,
+		placeType: "rail-station",
 	},
 	lunchStop: {
 		type: ItemType.LUNCH,

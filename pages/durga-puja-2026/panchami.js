@@ -6,6 +6,7 @@ export const panchami = {
 	meetup: {
 		time: "7:30 AM",
 		place: Places.BUS_STOPS.BALLY_HALT,
+		placeType: "bus-stop",
 	},
 	lunchStop: {
 		type: ItemType.LUNCH,

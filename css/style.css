@@ -506,16 +506,70 @@ body {
 	background: var(--ink);
 	color: #fff;
 }
-.route-location {
+.route-location-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	margin: 0 2px;
+	padding: 2px 9px;
+	border: 1px solid var(--line);
+	border-radius: 9px;
+	background: var(--card);
 	color: var(--ink);
 	font-weight: 800;
-	text-decoration: underline;
-	text-decoration-color: var(--accent);
-	text-decoration-thickness: 1px;
-	text-underline-offset: 3px;
+	text-decoration: none;
+	vertical-align: baseline;
 }
-.route-location:hover {
+.route-location-link:hover {
 	color: var(--accent);
+	text-decoration: none;
+}
+.meetup-place-chip {
+	gap: 8px;
+	margin-left: 5px;
+	padding: 7px 13px;
+	border-radius: 12px;
+	font-size: 0.78em;
+	line-height: 1.35;
+	vertical-align: middle;
+	transition:
+		transform 0.18s ease,
+		box-shadow 0.18s ease;
+}
+.meetup-place-chip:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 5px 14px rgba(23, 23, 23, 0.1);
+}
+.place-chip--bus {
+	border-color: #e4c5b3;
+	background: #f4e8df;
+	color: #713a28;
+}
+.place-chip--metro {
+	border-color: #bfd1e0;
+	background: #e8f0f6;
+	color: #244e70;
+}
+.place-chip--rail {
+	border-color: #c8d8c0;
+	background: #eaf0e6;
+	color: #3d5c33;
+}
+.place-chip-icon {
+	font-size: 1.2em;
+}
+.itinerary-transit .place-chip-icon {
+	font-size: 15px;
+}
+.itinerary-transit .place-chip-icon .fa-solid {
+	font-size: 15px;
+}
+.itinerary-transit .route-location-link {
+	margin-top: 3px;
+	margin-bottom: 3px;
+	transform: scale(0.9);
+	transform-origin: center;
+	vertical-align: middle;
 }
 .itinerary-transit {
 	margin: 0 0 14px 66px;
