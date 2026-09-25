@@ -69,6 +69,7 @@ export const Area = {
 	DUM_DUM_PARK: ["Dum Dum Park", Zone.NORTH],
 	DUM_DUM: ["Dum Dum", Zone.NORTH],
 	BAGUIATI: ["Baguiati", Zone.NORTH],
+	JORABAGAN: ["Jorabagan", Zone.NORTH],
 };
 
 export const LinkType = {
@@ -249,6 +250,46 @@ export const Places = {
 			gmapsUrl:
 				"https://www.google.com/maps/place/Manasha+Mandir/@22.5403309,88.3268512,132m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a02775e030a6427:0xcba695bf1878949d!2sManasha+Mandir!8m2!3d22.5402903!4d88.3270474!16s%2Fg%2F1pp2x9b_f!3m5!1s0x3a02775e030a6427:0xcba695bf1878949d!8m2!3d22.5402903!4d88.3270474!16s%2Fg%2F1pp2x9b_f!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
 		},
+		SOVABAZAR: {
+			name: "Sovabazar",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sovabazar/@22.5950786,88.3647086,125m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM1JzQyLjMiTiA4OMKwMjEnNTQuMyJF!8m2!3d22.595075!4d88.365078!3m5!1s0x3a0276330a5a8cd1:0x42914a9d96f2992c!8m2!3d22.5950734!4d88.3650799!16s%2Fg%2F11byl1cy93!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		JORASANKO_THAKURBARI: {
+			name: "Jorasanko Thakurbari",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Jorasanko+Thakur+Bari/@22.5842558,88.362333,138m/data=!3m1!1e3!4m6!3m5!1s0x3a0277b4c5ebde5d:0x5125fcdf21e4fa66!8m2!3d22.584265!4d88.362332!16s%2Fg%2F11byl60xhd!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		RAM_MANDIR: {
+			name: "Ram Mandir",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ram+Mandir/@22.5825318,88.3617455,120m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM0JzU3LjgiTiA4OMKwMjEnNDIuMiJF!8m2!3d22.582734!4d88.361709!3m5!1s0x3a0277b4bee86bdf:0xc3c5d50e0bcb23af!8m2!3d22.582729!4d88.361705!16s%2Fg%2F1hjgxv9nx!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		CHALTABAGAN: {
+			name: "Chalta Bagan",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Chalta+Bagan/@22.5854019,88.3707547,97m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM1JzA3LjgiTiA4OMKwMjInMTQuNiJF!8m2!3d22.585489!4d88.370717!3m5!1s0x3a0276485b707df7:0x41835dc2d8d59a8c!8m2!3d22.5854949!4d88.3707234!16s%2Fg%2F11byl6f4ts!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		JAIPURIA_COLLEGE: {
+			name: "Jaipuria College",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Jaipuria+College/@22.5967343,88.3656067,201m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a027633ccbc0001:0x91c63cb1189b5816!2sSovabazar+Rajbari!8m2!3d22.5962644!4d88.3673797!16s%2Fm%2F0j7h_09!3m5!1s0x3a02763254935db7:0xed43779524665!8m2!3d22.5968676!4d88.3655935!16s%2Fg%2F11bymxf_fy!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BAGBAZAR_ROAD: {
+			name: "Bagbazar Road",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Bagbazar+Road/@22.6036249,88.367585,80m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a02770037e0911d:0xfa847e12d9e36882!2s(Bagbazar+Sarbojanin+Durga+Puja+Mandap)!8m2!3d22.60478!4d88.3661767!16s%2Fg%2F11vs6f9h3d!3m5!1s0x3a02762e9cefaf55:0xcc0548e9c29199c7!8m2!3d22.603529!4d88.36781!16s%2Fg%2F11bycjy961!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		GOURIBARI: {
+			name: "Gouribari",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Gouribari/@22.5941218,88.3751246,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a02763c032fac31:0xd1b60d7c7e1f8448!8m2!3d22.5941218!4d88.3776995!16s%2Fg%2F1tmxt_sm!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		GREY_STREET: {
+			name: "Grey Street",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Grey+Street/@22.594919,88.3668191,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276313c97d9d5:0x759e7f685edf2745!8m2!3d22.594919!4d88.369394!16s%2Fg%2F11b7q8gmlc!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
 	},
 	METRO_STATIONS: {
 		DAKSHINESHWAR: {
@@ -332,6 +373,11 @@ export const Places = {
 			name: "Bally",
 			gmapsUrl:
 				"https://www.google.com/maps/place/Bally/@22.6556234,88.3369475,804m/data=!3m1!1e3!4m15!1m8!3m7!1s0x39f89d20fde81ee7:0x15f059101ff78933!2sBally,+Howrah,+West+Bengal+700084!3b1!8m2!3d22.6547113!4d88.3404785!16s%2Fg%2F11n6spr548!3m5!1s0x39f89d210123f297:0xe7009345b2ebfbcc!8m2!3d22.6559311!4d88.3405404!16s%2Fg%2F1vq737wp!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SONARPUR: {
+			name: "Sonarpur",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sonarpur+Junction/@22.4429798,88.4305441,805m/data=!3m3!1e3!4b1!5s0x3991aaada085e821:0xbacf9a7d718961b5!4m6!3m5!1s0x3a027268720d59bd:0x6b7e7cedeb80a85a!8m2!3d22.4429798!4d88.4305441!16s%2Fg%2F11gjt6knh3!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
 		},
 	},
 };

@@ -443,7 +443,7 @@ export const chaturthi = {
 			distance: 750,
 			gmapsUrl:
 				"https://www.google.com/maps/place/Bhowanipur+75+Palli/@22.5299822,88.3451846,1609m/data=!3m1!1e3!4m6!3m5!1s0x3a027738d78d4fbd:0x4d0b78b9bd98a1fd!8m2!3d22.533319!4d88.3457086!16s%2Fg%2F11b5wlr8qh!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkwOS4wIPu8ASoASAFQAw%3D%3D&skid=ebe0a73c-7e5f-49b8-bba3-4fae05a8ac91",
-			htmlDesc: `Celebrating its <strong>77th year in 2026</strong>, the <strong>final theme and artist details are not yet confirmed</strong> and will be updated when official information is available.`,
+			htmlDesc: `Celebrating its <strong>62nd year in 2026</strong>, the <strong>final theme and artist details are not yet confirmed</strong> and will be updated when official information is available.`,
 			links: [],
 		},
 		{

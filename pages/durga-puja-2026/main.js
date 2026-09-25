@@ -180,31 +180,36 @@ function renderSelectedPage(pageRoot) {
 		import("./commons.js"),
 		import("./chaturthi.js"),
 		import("./panchami.js"),
+		import("./shashthi.js"),
 		import("./astami.js"),
 	])
-		.then(([commons, { chaturthi }, { panchami }, { astami }]) => {
-			WALKING_PACE_METERS_PER_MINUTE = commons.WALKING_PACE_METERS_PER_MINUTE;
-			TransitMedium = commons.TransitMedium;
-			renderLunch = commons.renderLunch;
-			renderPandal = commons.renderPandal;
-			renderTransit = commons.renderTransit;
+		.then(
+			([commons, { chaturthi }, { panchami }, { shashthi }, { astami }]) => {
+				WALKING_PACE_METERS_PER_MINUTE = commons.WALKING_PACE_METERS_PER_MINUTE;
+				TransitMedium = commons.TransitMedium;
+				renderLunch = commons.renderLunch;
+				renderPandal = commons.renderPandal;
+				renderTransit = commons.renderTransit;
 
-			const requestedPage = new URLSearchParams(window.location.search).get(
-				"day",
-			);
-			const pageKey = requestedPage || pageRoot.dataset.page || "chaturthi";
-			const routeData = { chaturthi, panchami, astami }[pageKey.toLowerCase()];
+				const requestedPage = new URLSearchParams(window.location.search).get(
+					"day",
+				);
+				const pageKey = requestedPage || pageRoot.dataset.page || "chaturthi";
+				const routeData = { chaturthi, panchami, shashthi, astami }[
+					pageKey.toLowerCase()
+				];
 
-			if (!routeData) {
-				window.location.replace("../../404.html");
-				return;
-			}
+				if (!routeData) {
+					window.location.replace("../../404.html");
+					return;
+				}
 
-			document.title = `${routeData.title} \u00b7 Durga Puja 2026`;
-			renderHeader();
-			renderMain(routeData, commons.Places);
-			renderFooter(routeData);
-		})
+				document.title = `${routeData.title} \u00b7 Durga Puja 2026`;
+				renderHeader();
+				renderMain(routeData, commons.Places);
+				renderFooter(routeData);
+			},
+		)
 		.catch(() => window.location.replace("../../404.html"));
 }
 

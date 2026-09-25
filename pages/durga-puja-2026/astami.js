@@ -4,7 +4,7 @@ export const astami = {
 	title: "Astami",
 	dateLabel: "19 OCTOBER · MONDAY",
 	meetup: {
-		time: "4:00 PM · Ramrajatala Station",
+		time: "4:00 PM",
 		place: Places.RAIL_STATIONS.RAMRAJATALA,
 	},
 	lunchStop: null,
@@ -20,7 +20,7 @@ export const astami = {
 			htmlDesc:
 				"Celebrating its <strong>82nd year</strong>, this\n\t\t\t\t\t\t\t\t\t\tlong-running Khidirpur community Puja boasts a rich history\n\t\t\t\t\t\t\t\t\t\tof thematic installations dating back to 1945. The 2026\n\t\t\t\t\t\t\t\t\t\tpresentation features the theme\n\t\t\t\t\t\t\t\t\t\t<strong>'Durga Bandana' (দুর্গা বন্দনা)</strong>, brought to\n\t\t\t\t\t\t\t\t\t\tlife by creative artists\n\t\t\t\t\t\t\t\t\t\t<strong>Sujit Das and Buddhadeb Karmakar</strong>.",
 			links: [
-				{ type: LinkType.WEBSITE, value: "https://www.facebook.com/25Pally" },
+				{ type: LinkType.FACEBOOK, value: "https://www.facebook.com/25Pally" },
 				{ type: LinkType.PHONE, value: "9831566910" },
 				{ type: LinkType.EMAIL, value: "25pallyclub@gmail.com" },
 			],
@@ -39,7 +39,7 @@ export const astami = {
 				"Celebrating its <strong>71st year</strong>, this puja is\n\t\t\t\t\t\t\t\t\t\tknown for its long tradition of community-led thematic work\n\t\t\t\t\t\t\t\t\t\tand traditional craftsmanship. The 2026 presentation\n\t\t\t\t\t\t\t\t\t\tfeatures the theme\n\t\t\t\t\t\t\t\t\t\t<strong>'Porlo Pujo 71 e, Nojor Rakhun 74 e' (পড়ল পুজো ৭১ এ, নজর\n\t\t\t\t\t\t\t\t\t\t\tরাখুন ৭৪ এ)</strong>, brought to life by a creative team including\n\t\t\t\t\t\t\t\t\t\t<strong>Iman Chandra, Akash Chakraborty, Shuvam Banerjee, Avik\n\t\t\t\t\t\t\t\t\t\t\tSen, Sudip Sanyal, and Pallab Sekhar Das</strong>.",
 			links: [
 				{
-					type: LinkType.WEBSITE,
+					type: LinkType.FACEBOOK,
 					value:
 						"https://www.facebook.com/74PalliSarbojaninDurgotsavKidderpore",
 				},
@@ -58,11 +58,11 @@ export const astami = {
 				"Celebrating its <strong>63rd year</strong>, the 2026\n\t\t\t\t\t\t\t\t\t\tpresentation features the theme\n\t\t\t\t\t\t\t\t\t\t<strong>'Parasray - Ek Chironton Satya' (পরাশ্রয় - এক চিরন্তন\n\t\t\t\t\t\t\t\t\t\t\tসত্য)</strong>. The concept draws on the koel's brood-parasitic behaviour\n\t\t\t\t\t\t\t\t\t\tto explore human exploitation of nature and the wider\n\t\t\t\t\t\t\t\t\t\tecological balance, brought to life by a creative team\n\t\t\t\t\t\t\t\t\t\tincluding\n\t\t\t\t\t\t\t\t\t\t<strong>Pradipta Karmakar, Parimal Pal, Soumen Haldar, Koustav\n\t\t\t\t\t\t\t\t\t\t\tBiswas, Azaan Chakraborty, and Paresh Bera</strong>.",
 			links: [
 				{
-					type: LinkType.WEBSITE,
+					type: LinkType.FACEBOOK,
 					value: "https://www.facebook.com/75pallykhidderpore",
 				},
 				{
-					type: LinkType.WEBSITE,
+					type: LinkType.YOUTUBE,
 					value: "https://www.youtube.com/@75pallykhidderpore",
 				},
 				{ type: LinkType.PHONE, value: "6290427717" },
@@ -80,11 +80,11 @@ export const astami = {
 				"Celebrating its <strong>85th year</strong>, this established\n\t\t\t\t\t\t\t\t\t\tKhidirpur puja presents a nostalgic tribute to Kolkata's\n\t\t\t\t\t\t\t\t\t\tcity heritage Tram. The 2026 presentation features the theme\n\t\t\t\t\t\t\t\t\t\t<strong>'Chol Jabo Toke Niye' (চল যাবো তোকে নিয়ে)</strong>,\n\t\t\t\t\t\t\t\t\t\tbrought to life by a creative team including\n\t\t\t\t\t\t\t\t\t\t<strong>Dipankar Dey, Soumen Pal, Ashu Chakraborty, and Debajyoti\n\t\t\t\t\t\t\t\t\t\t\tJana</strong>.",
 			links: [
 				{
-					type: LinkType.WEBSITE,
+					type: LinkType.FACEBOOK,
 					value: "https://www.facebook.com/kidderpore.pallysaradiya",
 				},
 				{
-					type: LinkType.WEBSITE,
+					type: LinkType.INSTAGRAM,
 					value: "https://www.instagram.com/kidderporepallysaradiya",
 				},
 				{ type: LinkType.PHONE, value: "9830817718" },
