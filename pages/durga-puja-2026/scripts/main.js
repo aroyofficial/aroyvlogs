@@ -133,7 +133,7 @@ function renderMain(routeData, Places) {
 	const meetupPlaceClass = getMeetupPlaceClass(meetup.place, Places);
 	const { itinerary, totalWalkingDistance, totalPandals, zones } =
 		calculateRouteSummary(routeData);
-	mainRoot.outerHTML = `<main id="puja-day-main"><section class="section"><span class="eyebrow">${dateLabel}</span><h1 class="puja-day display-3 mt-3">${title}</h1><p class="lead text-secondary">Meet-up: ${meetup.time} &middot; <a class="route-location-link meetup-place-chip ${meetupPlaceClass}" target="_blank" rel="noopener" href="${meetup.place.gmapsUrl}"><span>${meetup.place.name}</span></a></p><div class="route-summary">&#128256; <strong>Itinerary:</strong> ${itinerary}</div><div class="route-summary mt-3">&#128694; <strong>Total Walking Distance:</strong> ${totalWalkingDistance}</div><div class="route-summary mt-3">&#127917; <strong>Total Pandals:</strong> ${totalPandals}</div><div class="route-summary mt-3">&#128506;&#65039; <strong>Zones Covered:</strong> ${zones}</div><ol class="route-list"></ol></section></main>`;
+	mainRoot.outerHTML = `<main id="puja-day-main"><section class="section"><span class="eyebrow">${dateLabel}</span><h1 class="puja-day display-3 mt-3">${title}</h1><p class="lead text-secondary">Meet-up: ${meetup.time} &middot; <a class="route-location-link meetup-place-chip ${meetupPlaceClass}" target="_blank" rel="noopener" href="${meetup.place.gmapsUrl}"><span>${meetup.place.name}</span></a></p><div class="route-summary">&#128256; <strong>Itinerary:</strong> ${itinerary}</div><div class="route-summary mt-3">&#128694; <strong>Total Walking Distance:</strong> ${totalWalkingDistance}</div><div class="route-summary mt-3">&#127917; <strong>Total Pandals:</strong> ${totalPandals}</div><div class="route-summary mt-3">&#128506;&#65039; <strong>Zones Covered:</strong> ${zones}</div><div class="mt-4 mb-3"><button id="toggle-map-btn" class="btn btn-outline-dark">Show Map View</button></div><div id="map-view-container" style="display: none; height: 500px; width: 100%; margin-bottom: 20px; z-index: 1;"></div><ol class="route-list"></ol></section></main>`;
 	renderItinerary(routeData);
 	setupPandalExpansions();
 }
@@ -178,6 +178,7 @@ function initializePujaAudio() {
 function renderSelectedPage(pageRoot) {
 	Promise.all([
 		import("./commons.js"),
+		import("./map.js"),
 		import("./views/chaturthi.js"),
 		import("./views/panchami.js"),
 		import("./views/shashthi.js"),
@@ -187,6 +188,7 @@ function renderSelectedPage(pageRoot) {
 		.then(
 			([
 				commons,
+				map,
 				{ chaturthi },
 				{ panchami },
 				{ shashthi },
@@ -216,6 +218,7 @@ function renderSelectedPage(pageRoot) {
 				renderHeader();
 				renderMain(routeData, commons.Places);
 				renderFooter(routeData);
+				map.register(routeData);
 			},
 		)
 		.catch(() => window.location.replace("../../404.html"));
