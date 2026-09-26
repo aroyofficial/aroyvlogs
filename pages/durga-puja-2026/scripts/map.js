@@ -152,6 +152,24 @@ const ensureMapMarkerStyles = () => {
 		}
 		.map-rotate-control .mrc-btn:hover { background: #f1f3f5; transform: translateY(-1px); }
 		.map-rotate-control .mrc-btn:active { transform: translateY(0); }
+
+		/* ── Live location blue dot ─────────────────────────────────────── */
+		.live-loc-icon { background: transparent; border: none; }
+		.live-loc-icon .lld-dot {
+			position: absolute; inset: 3px; border-radius: 50%;
+			background: #1a73e8; border: 2.5px solid #ffffff;
+			box-shadow: 0 0 6px rgba(0,0,0,.4);
+			box-sizing: border-box;
+		}
+		.live-loc-icon .lld-pulse {
+			position: absolute; inset: -10px; border-radius: 50%;
+			background: rgba(26,115,232,.3);
+			animation: lldPulse 2s ease-out infinite;
+		}
+		@keyframes lldPulse {
+			0% { transform: scale(.35); opacity: .9; }
+			100% { transform: scale(1.4); opacity: 0; }
+		}
 	`;
 	document.head.appendChild(style);
 };
@@ -268,6 +286,108 @@ const addRotateControl = (map, step = 15) => {
 	control.addTo(map);
 };
 
+/* Live device location (Google Maps-style blue dot).
+   - Crosshair button toggles geolocation watching on/off
+   - First fix centers the map on the user; updates then only move the dot
+   - Shows a pulsing blue dot + accuracy circle; stops watching on map unload
+   NOTE: requires HTTPS (or localhost) and the user's location permission. */
+const addLiveLocationControl = (map) => {
+	let watching = false;
+	let dot = null;
+	let halo = null;
+
+	const dotIcon = L.divIcon({
+		className: "live-loc-icon",
+		html: `<div class="lld-pulse"></div><div class="lld-dot"></div>`,
+		iconSize: [22, 22],
+		iconAnchor: [11, 11],
+	});
+
+	const onLocationFound = (e) => {
+		if (!dot) {
+			dot = L.marker(e.latlng, {
+				icon: dotIcon,
+				zIndexOffset: 2000, // always above the other pins
+				interactive: false,
+			}).addTo(map);
+			halo = L.circle(e.latlng, {
+				radius: e.accuracy,
+				color: "rgba(26,115,232,.35)",
+				weight: 1,
+				fillColor: "rgba(26,115,232,.12)",
+			}).addTo(map);
+			map.setView(e.latlng, Math.max(map.getZoom(), 16)); // first fix: jump to user
+		} else {
+			dot.setLatLng(e.latlng);
+			halo.setLatLng(e.latlng).setRadius(e.accuracy);
+			// For a "follow mode" that re-centers on every update, also call:
+			// map.panTo(e.latlng);
+		}
+	};
+
+	const onLocationError = (e) => console.warn("Location error:", e.message);
+
+	const control = L.control({ position: "topright" });
+	control.onAdd = () => {
+		const wrapper = L.DomUtil.create("div", "leaflet-bar leaflet-control");
+		const btn = L.DomUtil.create("button", "", wrapper);
+		btn.type = "button";
+		btn.title = "Show my live location";
+		btn.setAttribute("aria-label", "Show my live location");
+		btn.setAttribute("aria-pressed", "false");
+		Object.assign(btn.style, {
+			width: "34px",
+			height: "34px",
+			display: "flex",
+			alignItems: "center",
+			justifyContent: "center",
+			background: "#fff",
+			color: "#1f2937",
+			border: "0",
+			borderRadius: "4px",
+			cursor: "pointer",
+			fontSize: "16px",
+		});
+		btn.innerHTML = `<i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>`;
+
+		L.DomEvent.disableClickPropagation(wrapper);
+		L.DomEvent.disableScrollPropagation(wrapper);
+
+		L.DomEvent.on(btn, "click", (e) => {
+			L.DomEvent.stop(e);
+			if (!watching) {
+				map.locate({ watch: true, enableHighAccuracy: true });
+				btn.style.color = "#1a73e8";
+				btn.setAttribute("aria-pressed", "true");
+				watching = true;
+			} else {
+				map.stopLocate();
+				if (dot) {
+					map.removeLayer(dot);
+					dot = null;
+				}
+				if (halo) {
+					map.removeLayer(halo);
+					halo = null;
+				}
+				btn.style.color = "#1f2937";
+				btn.setAttribute("aria-pressed", "false");
+				watching = false;
+			}
+		});
+		return wrapper;
+	};
+	control.addTo(map);
+
+	map.on("locationfound", onLocationFound);
+	map.on("locationerror", onLocationError);
+	map.once("unload", () => {
+		map.stopLocate();
+		map.off("locationfound", onLocationFound);
+		map.off("locationerror", onLocationError);
+	});
+};
+
 // Builds the teardrop pin (gradient head + tip + ground shadow)
 const createPinHtml = (pin, innerContent) => `
 	<div class="map-pin" style="--c1:${pin[0]};--c2:${pin[1]};">
@@ -335,6 +455,9 @@ export function renderMapView(routeData, containerId = "map-view-container") {
 
 	// Custom compass rotator (drag dial / step buttons / reset to north)
 	addRotateControl(map);
+
+	// Live device location toggle (Google Maps-style blue dot)
+	addLiveLocationControl(map);
 
 	const mapContainer = map.getContainer();
 	const originalWidth = mapContainer.style.width;
