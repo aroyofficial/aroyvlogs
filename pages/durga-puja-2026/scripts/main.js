@@ -157,7 +157,7 @@ function initializePujaAudio() {
 	if (!audio) {
 		audio = document.createElement("audio");
 		audio.id = "durga-puja-bgm";
-		audio.src = "Durga_Puja_BGM.mp3";
+		audio.src = "assets/audio/bgm.mp3";
 		audio.loop = true;
 		audio.preload = "auto";
 		audio.setAttribute("aria-hidden", "true");
@@ -178,11 +178,11 @@ function initializePujaAudio() {
 function renderSelectedPage(pageRoot) {
 	Promise.all([
 		import("./commons.js"),
-		import("./chaturthi.js"),
-		import("./panchami.js"),
-		import("./shashthi.js"),
-		import("./saptami.js"),
-		import("./astami.js"),
+		import("./views/chaturthi.js"),
+		import("./views/panchami.js"),
+		import("./views/shashthi.js"),
+		import("./views/saptami.js"),
+		import("./views/astami.js"),
 	])
 		.then(
 			([

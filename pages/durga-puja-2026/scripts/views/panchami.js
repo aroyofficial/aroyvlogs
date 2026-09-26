@@ -1,4 +1,4 @@
-import { Area, ItemType, LinkType, Places, TransitMedium } from "./commons.js";
+import { Area, ItemType, LinkType, Places, TransitMedium } from "../commons.js";
 
 export const panchami = {
 	title: "Panchami",
