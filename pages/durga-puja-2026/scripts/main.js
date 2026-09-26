@@ -184,6 +184,7 @@ function renderSelectedPage(pageRoot) {
 		import("./views/shashthi.js"),
 		import("./views/saptami.js"),
 		import("./views/astami.js"),
+		import("./views/navami.js"),
 	])
 		.then(
 			([
@@ -194,6 +195,7 @@ function renderSelectedPage(pageRoot) {
 				{ shashthi },
 				{ saptami },
 				{ astami },
+				{ navami },
 			]) => {
 				WALKING_PACE_METERS_PER_MINUTE = commons.WALKING_PACE_METERS_PER_MINUTE;
 				TransitMedium = commons.TransitMedium;
@@ -205,9 +207,14 @@ function renderSelectedPage(pageRoot) {
 					"day",
 				);
 				const pageKey = requestedPage || pageRoot.dataset.page || "chaturthi";
-				const routeData = { chaturthi, panchami, shashthi, saptami, astami }[
-					pageKey.toLowerCase()
-				];
+				const routeData = {
+					chaturthi,
+					panchami,
+					shashthi,
+					saptami,
+					astami,
+					navami,
+				}[pageKey.toLowerCase()];
 
 				if (!routeData) {
 					window.location.replace("../../404.html");

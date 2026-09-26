@@ -315,6 +315,86 @@ export const Places = {
 			gmapsUrl:
 				"https://www.google.com/maps/place/Howrah/@22.5845071,88.3333649,1542m/data=!3m1!1e3!4m10!1m2!2m1!1showrah+bus+stand!3m6!1s0x3a0277956c3f4a2f:0xd729bdebc872a007!8m2!3d22.5853928!4d88.3423778!15sChBob3dyYWggYnVzIHN0YW5kkgEIYnVzX3N0b3DgAQA!16s%2Fg%2F11pcb066c6!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
 		},
+		EDF: {
+			name: "EDF",
+			gmapsUrl:
+				"https://www.google.com/maps/place/E.D.F./@22.5023571,88.3633341,75m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMwJzA4LjciTiA4OMKwMjEnNDcuOSJF!8m2!3d22.502412!4d88.363293!3m5!1s0x3a0270d8702ab421:0x3b44dd83ecad30cc!8m2!3d22.5024109!4d88.3632967!16s%2Fg%2F11byl71s07!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SITALA_MANDIR: {
+			name: "Sitala Mandir",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sitala+Mandir+(Naskarpara)/@22.502226,88.3880214,189m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMwJzA4LjIiTiA4OMKwMjMnMTYuOSJF!8m2!3d22.502278!4d88.388013!3m5!1s0x3a027145b77e1569:0x1305b04f792dd991!8m2!3d22.502277!4d88.388018!16s%2Fg%2F11dztsl5tx!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SITALA_MANDIR_NASKARPARA: {
+			name: "Sitala Mandir (Naskarpara)",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sitala+Mandir+(Naskarpara)/@22.5018374,88.3824772,1601m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMwJzA3LjUiTiA4OMKwMjMnMTcuMyJF!8m2!3d22.502091!4d88.388135!3m5!1s0x3a027145c92357bb:0x67ecb7799a55a46d!8m2!3d22.502087!4d88.388142!16s%2Fg%2F11bbtp8ts2!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SELIMPUR: {
+			name: "Selimpur",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Selimpur/@22.5040379,88.3729425,92m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMwJzE0LjYiTiA4OMKwMjInMjIuNyJF!8m2!3d22.504066!4d88.37297!3m5!1s0x3a02713aa949e477:0x369d18643477248b!8m2!3d22.504067!4d88.372968!16s%2Fg%2F11dz56j_c0!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		LAKETOWN: {
+			name: "Lake Town",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Lake+Town/@22.5996911,88.4057101,79m/data=!3m1!1e3!4m6!3m5!1s0x3a0275e3518796d7:0xb5d5a0d8b2078566!8m2!3d22.599613!4d88.406018!16s%2Fg%2F11bc8cd5k2!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		LAKETOWN_FOOTBRIDGE: {
+			name: "Lake Town Foot Bridge",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Lake+Town+Foot+Bridge/@22.5999813,88.407417,402m/data=!3m1!1e3!4m6!3m5!1s0x3a0275fb31ee5b47:0x7f8ca56343ef2d44!8m2!3d22.6005398!4d88.408282!16s%2Fg%2F11bc8df04t!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		PHOOLBAGAN_KALIMANDIR: {
+			name: "Phool Bagan Kali Mandir",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Phoolbagan+Kali+Mandir/@22.5706094,88.3868154,804m/data=!3m1!1e3!4m6!3m5!1s0x3a0276637d4ef7b7:0x33360cce7acdfc5a!8m2!3d22.570058!4d88.390184!16s%2Fg%2F1td7lqls!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=644e32a6-2aed-41e5-b4dc-cede611c298a",
+		},
+		CIT_MORE: {
+			name: "CIT More",
+			gmapsUrl:
+				"https://www.google.com/maps/place/C.I.T.+More/@22.5629008,88.3955706,100m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMzJzQ3LjAiTiA4OMKwMjMnNDQuNyJF!8m2!3d22.563054!4d88.395755!3m5!1s0x3a02768740fb59d7:0x139fef62fd2654f!8m2!3d22.563045!4d88.395755!16s%2Fg%2F11gbktynrg!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		NICCO_PARK: {
+			name: "Nicco Park",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Nicco+Park/@22.5719661,88.4203423,136m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM0JzE5LjIiTiA4OMKwMjUnMTMuMCJF!8m2!3d22.572007!4d88.420277!3m5!1s0x3a0275c9dcd18725:0x6274fa6a4207b933!8m2!3d22.5719957!4d88.42028!16s%2Fg%2F11c6cnv4f1!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BIDHANNAGAR_SOUTH_POLICE_STATION: {
+			name: "Bidhannagar South Police Station",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Bidhannagar+South+Police+Station/@22.5703856,88.4134317,112m/data=!3m1!1e3!4m6!3m5!1s0x3a0275ce7f1b0195:0x3f7e0a73019a932f!8m2!3d22.570513!4d88.41353!16s%2Fg%2F11gnprvct6!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		LABONY: {
+			name: "Labony",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Labony/@22.5813163,88.4066557,186m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM0JzUyLjQiTiA4OMKwMjQnMjMuOCJF!8m2!3d22.581225!4d88.406598!3m5!1s0x3a0275d956ec949d:0xea5b35ff909e343e!8m2!3d22.581231!4d88.406604!16s%2Fg%2F11b7q58tbh!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		CITY_CENTER: {
+			name: "City Center",
+			gmapsUrl:
+				"https://www.google.com/maps/place/City+Center/@22.587041,88.4072523,101m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a0275dd908f2c4b:0x1358520f5fbc2aa!2sCity+Centre!8m2!3d22.5870411!4d88.4078654!16s%2Fg%2F1vzv22rv!3m5!1s0x3a0275dde80c29a9:0x576df7e2935363ff!8m2!3d22.587015!4d88.407402!16s%2Fg%2F11gbfd6hrg!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		TECHNOPOLIS: {
+			name: "Technopolis",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Technopolis/@22.5805573,88.4375128,222m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM0JzUwLjUiTiA4OMKwMjYnMTYuNCJF!8m2!3d22.580695!4d88.437888!3m5!1s0x3a0275a6e2052571:0x16c6d428b7cfffb5!8m2!3d22.580697!4d88.437888!16s%2Fg%2F11byl5b9b5!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		NEWTOWN_BUS_TERMINUS: {
+			name: "New Town Bus Terminus",
+			gmapsUrl:
+				"https://www.google.com/maps/place/New+Town/@22.5826886,88.4535871,193m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM0JzU3LjYiTiA4OMKwMjcnMTMuOSJF!8m2!3d22.582666!4d88.453848!3m5!1s0x3a0275115fe53141:0x24c1b6e17ea160be!8m2!3d22.582669!4d88.45385!16s%2Fg%2F1tj7zcwg!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		NEWTOWN_AXIS_MALL: {
+			name: "New Town Axis Mall",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Axis+Mall+New+Town/@22.5809029,88.4557995,804m/data=!3m1!1e3!4m6!3m5!1s0x3a02753d8a064cf9:0x682d3519d7eb1f4b!8m2!3d22.5809017!4d88.4597773!16s%2Fg%2F11h598zj2p!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		DUM_DUM_PARK: {
+			name: "Dum Dum Park",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Dum+Dum+Park/@22.6028665,88.418867,402m/data=!3m1!1e3!4m6!3m5!1s0x3a0275f2fd3dd92b:0xf57d2634d3a37f65!8m2!3d22.6031682!4d88.419258!16s%2Fg%2F1tf272kd!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
 	},
 	METRO_STATIONS: {
 		DAKSHINESHWAR: {
@@ -367,6 +447,11 @@ export const Places = {
 			gmapsUrl:
 				"https://www.google.com/maps/place/Netaji/@22.4809362,88.3433862,805m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0270ed8471e3fb:0xf8876f7c9d7c7ba7!8m2!3d22.4809362!4d88.3459611!16s%2Fm%2F0gtv5rk!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
 		},
+		SALTLAKE_SECTOR_V: {
+			name: "Salt Lake Sector V",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Salt+Lake+Sector+V/@22.5828074,88.4249997,1411m/data=!3m1!1e3!4m6!3m5!1s0x3a0275bb6b618b6f:0x985bb9bc2420e910!8m2!3d22.580939!4d88.429052!16s%2Fg%2F11f69_jwfm!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=d8e2088f-d031-4761-96c5-ac3f2f76a328",
+		},
 	},
 	RAIL_STATIONS: {
 		TALA: {
@@ -418,6 +503,11 @@ export const Places = {
 			name: "Dum Dum",
 			gmapsUrl:
 				"https://www.google.com/maps/place/Dum+Dum+Junction/@22.6211825,88.390566,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89dfaf3564501:0xd9f017fd844bc3c7!8m2!3d22.6211825!4d88.3931409!16s%2Fm%2F0gttn81!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		DHAKURIA: {
+			name: "Dhakuria",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Dhakuria/@22.5091478,88.3686128,805m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a02712e6ae3f11b:0x917260bb2f312d62!2sDhakuria!8m2!3d22.5091478!4d88.3711877!16s%2Fg%2F11fd7d7qgy!3m5!1s0x3a02712e6ae3f11b:0x917260bb2f312d62!8m2!3d22.5091478!4d88.3711877!16s%2Fg%2F11fd7d7qgy!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
 		},
 	},
 };
