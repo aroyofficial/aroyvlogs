@@ -181,10 +181,18 @@ function renderSelectedPage(pageRoot) {
 		import("./chaturthi.js"),
 		import("./panchami.js"),
 		import("./shashthi.js"),
+		import("./saptami.js"),
 		import("./astami.js"),
 	])
 		.then(
-			([commons, { chaturthi }, { panchami }, { shashthi }, { astami }]) => {
+			([
+				commons,
+				{ chaturthi },
+				{ panchami },
+				{ shashthi },
+				{ saptami },
+				{ astami },
+			]) => {
 				WALKING_PACE_METERS_PER_MINUTE = commons.WALKING_PACE_METERS_PER_MINUTE;
 				TransitMedium = commons.TransitMedium;
 				renderLunch = commons.renderLunch;
@@ -195,7 +203,7 @@ function renderSelectedPage(pageRoot) {
 					"day",
 				);
 				const pageKey = requestedPage || pageRoot.dataset.page || "chaturthi";
-				const routeData = { chaturthi, panchami, shashthi, astami }[
+				const routeData = { chaturthi, panchami, shashthi, saptami, astami }[
 					pageKey.toLowerCase()
 				];
 

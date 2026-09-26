@@ -290,6 +290,31 @@ export const Places = {
 			gmapsUrl:
 				"https://www.google.com/maps/place/Grey+Street/@22.594919,88.3668191,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276313c97d9d5:0x759e7f685edf2745!8m2!3d22.594919!4d88.369394!16s%2Fg%2F11b7q8gmlc!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
 		},
+		RASHBEHARI_CROSSING: {
+			name: "Rashbehari Crossing",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Rashbehari+Crossing/@22.516342,88.345669,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a027734e230252b:0x2b7af518f47a7a96!8m2!3d22.516342!4d88.345669!16s%2Fg%2F11b7q0vnbm!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		NAGERBAZAR: {
+			name: "Nager Bazar",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Rashbehari+Crossing/@22.516342,88.345669,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a027734e230252b:0x2b7af518f47a7a96!8m2!3d22.516342!4d88.345669!16s%2Fg%2F11b7q0vnbm!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SINTHIR_MORE: {
+			name: "Sinthir More",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sinthee+More+(%E0%A6%B8%E0%A6%BF%E0%A6%81%E0%A6%A5%E0%A6%BF%E0%A6%B0+%E0%A6%AE%E0%A7%8B%E0%A6%A1%E0%A6%BC)/@22.6310927,88.3778971,244m/data=!3m1!1e3!4m14!1m7!3m6!1s0x39f89d946aaa0ccf:0xd4c33247bff3124f!2sSinthi+More!8m2!3d22.631334!4d88.378642!16s%2Fg%2F1pv0wy_lc!3m5!1s0x39f89d004b6e29e9:0x29b9a5f7eb547a0c!8m2!3d22.6310165!4d88.378543!16s%2Fg%2F11x06_ln_y!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		PALPARA: {
+			name: "Palpara",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Pal+Para/@22.6363584,88.3758015,804m/data=!3m1!1e3!4m6!3m5!1s0x39f89dbe1cf8c1db:0x7967fc3d3cc03483!8m2!3d22.635825!4d88.378067!16s%2Fg%2F1thvr2_4!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		HOWRAH: {
+			name: "Howrah",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Howrah/@22.5845071,88.3333649,1542m/data=!3m1!1e3!4m10!1m2!2m1!1showrah+bus+stand!3m6!1s0x3a0277956c3f4a2f:0xd729bdebc872a007!8m2!3d22.5853928!4d88.3423778!15sChBob3dyYWggYnVzIHN0YW5kkgEIYnVzX3N0b3DgAQA!16s%2Fg%2F11pcb066c6!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
 	},
 	METRO_STATIONS: {
 		DAKSHINESHWAR: {
@@ -379,30 +404,23 @@ export const Places = {
 			gmapsUrl:
 				"https://www.google.com/maps/place/Sonarpur+Junction/@22.4429798,88.4305441,805m/data=!3m3!1e3!4b1!5s0x3991aaada085e821:0xbacf9a7d718961b5!4m6!3m5!1s0x3a027268720d59bd:0x6b7e7cedeb80a85a!8m2!3d22.4429798!4d88.4305441!16s%2Fg%2F11gjt6knh3!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
 		},
+		HOWRAH: {
+			name: "Howrah",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Howrah+Jn/@22.5837,88.3395651,804m/data=!3m3!1e3!4b1!5s0x1207f875ff627ff7:0x5d15e7c15533e6f9!4m6!3m5!1s0x3a027795d8ab719b:0x45ef375a63fd05f3!8m2!3d22.5837!4d88.34214!16s%2Fg%2F12lppvq2b!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BIDHANNAGAR_ROAD: {
+			name: "Bidhannagar Road",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Bidhan+Nagar+Road/@22.5914513,88.3882393,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276128ae2ad71:0xe86f7f526ac0430c!8m2!3d22.5914513!4d88.3908142!16s%2Fm%2F051_bz7!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		DUMDUM: {
+			name: "Dum Dum",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Dum+Dum+Junction/@22.6211825,88.390566,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89dfaf3564501:0xd9f017fd844bc3c7!8m2!3d22.6211825!4d88.3931409!16s%2Fm%2F0gttn81!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
 	},
 };
-
-Object.assign(Places.BUS_STOPS, {
-	BALLY_BUS_STAND: {
-		name: "Bally Bus Stand",
-		gmapsUrl: "https://www.google.com/maps/search/?api=1&query=Bally+Bus+Stand",
-	},
-});
-
-Object.assign(Places.RAIL_STATIONS, {
-	SONARPUR_JUNCTION: {
-		name: "Sonarpur Junction",
-		gmapsUrl: "https://maps.app.goo.gl/8LoWVUE9gNdAG7dBA",
-	},
-	BALLY_STATION: {
-		name: "Bally Station",
-		gmapsUrl: "https://maps.app.goo.gl/uavYxSJbuMhwrJTH6",
-	},
-	RAMRAJATALA_STATION: {
-		name: "Ramrajatala Station",
-		gmapsUrl: "https://maps.app.goo.gl/d4cej3YGPMJSgw8C6",
-	},
-});
 
 export function getPinLocation(urlString) {
 	try {
@@ -479,10 +497,12 @@ export function renderPandal(item, routeData) {
 		(transit) => transit.index === transitBeforeStopIndex,
 	);
 	const lastTransitDestination = transitBeforeStop?.steps.at(-1)?.dest?.name;
-	const fromLocation = lastTransitDestination || previousStop?.title;
+	const lunchStop = previousStop?.lunch ? routeData.lunchStop.title : null;
+	const fromLocation =
+		lastTransitDestination || lunchStop || previousStop?.title;
 	const walkingTime = Math.ceil(item.distance / WALKING_PACE_METERS_PER_MINUTE);
 
-	return `<span class="itinerary-item-order">${String(item.order).padStart(2, "0")}</span><div class="itinerary-item pandal" aria-expanded="false"><div class="itinerary-item-body"><div><div class="geo-area">${safe(area)}</div><h3>${safe(item.title)}</h3><p>&#128694; ${safe(item.distance)} m &middot; &#9201;&#65039; ${walkingTime} min${fromLocation ? ` from ${safe(fromLocation)}` : ""}</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="${safe(item.gmapsUrl)}">Google Maps &#8599;</a>${toiletsLink}</div></div><div class="itinerary-item-expansion-panel" aria-hidden="true"><div><div class="itinerary-item-expansion-panel-body">${item.htmlDesc}</div>${linkFooter}</div></div></div>`;
+	return `<span class="itinerary-item-order">${String(item.order).padStart(2, "0")}</span><div class="itinerary-item pandal" aria-expanded="false"><div class="itinerary-item-body"><div><div class="geo-area">${safe(area)}</div><h3>${safe(item.title)}</h3><p>&#128694; ${safe(item.distance)} m &middot; &#9201;&#65039; ${walkingTime} min${fromLocation ? ` from ${safe(fromLocation)}.` : "."}</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="${safe(item.gmapsUrl)}">Google Maps &#8599;</a>${toiletsLink}</div></div><div class="itinerary-item-expansion-panel" aria-hidden="true"><div><div class="itinerary-item-expansion-panel-body">${item.htmlDesc}</div>${linkFooter}</div></div></div>`;
 }
 
 export function renderTransit(transit) {

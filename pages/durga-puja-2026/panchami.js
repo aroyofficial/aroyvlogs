@@ -11,6 +11,7 @@ export const panchami = {
 		type: ItemType.LUNCH,
 		title: "Khao More Cafe",
 		distance: 350,
+		fromName: "Naktala Udayan Sangha",
 		gmapsUrl:
 			"https://www.google.com/maps/place/Khao+More+Cafe/@22.4719942,88.3653771,402m/data=!3m1!1e3!4m6!3m5!1s0x3a0271fdf24dcc0d:0x95190477bf42a175!8m2!3d22.4719988!4d88.366844!16s%2Fg%2F11q_0q4r6l?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=4eb394e4-780c-41ef-a2d0-80a8d389877b",
 	},

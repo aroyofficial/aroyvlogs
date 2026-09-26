@@ -11,6 +11,7 @@ export const chaturthi = {
 		type: ItemType.LUNCH,
 		title: "Allen Kitchen",
 		distance: 230,
+		fromName: "Hazra Park",
 		gmapsUrl:
 			"https://www.google.com/maps/place/Allen+Kitchen+-+Saveurs+de+Calcutta/@22.5238133,88.345164,310m/data=!3m1!1e3!4m6!3m5!1s0x3a0277091eaf1cb9:0xf13bcf4321444544!8m2!3d22.5242545!4d88.3473219!16s%2Fg%2F11h1dmgbf9?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=00806ce5-b610-44e0-bd61-5676a0bda95b",
 	},
@@ -422,8 +423,32 @@ export const chaturthi = {
 			order: 18,
 			type: ItemType.PANDAL,
 			area: Area.BHOWANIPORE,
+			title: "Abasar Sarbojonin",
+			distance: 230,
+			gmapsUrl:
+				"https://www.google.com/maps/place/Abasar+Sarbojanin+Durgotsab+Samity/@22.5278699,88.3463478,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a02770066af874f:0x2523f7ecc9c159b2!8m2!3d22.5278699!4d88.3489227!16s%2Fg%2F11y81k00v0!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc: `Celebrating its <strong>76th year</strong>, the 2026 presentation for Abasar Sarbojonin Dorgotsav Samiti features the theme <strong>'Onyo Jekhane Ononyo' (অন্য যেখানে অনন্য)</strong>. The concept is a creation by <strong>Thinkers, Arighna, Debayan, and Saikat</strong>.`,
+			links: [
+				{
+					type: LinkType.FACEBOOK,
+					value: "https://www.facebook.com/profile.php?id=100063532645730",
+				},
+				{
+					type: LinkType.PHONE,
+					value: "8013506224",
+				},
+				{
+					type: LinkType.EMAIL,
+					value: "abasardurgopujo@gmail.com",
+				},
+			],
+		},
+		{
+			order: 19,
+			type: ItemType.PANDAL,
+			area: Area.BHOWANIPORE,
 			title: "Chakraberia Sarbojonin",
-			distance: 1100,
+			distance: 900,
 			gmapsUrl:
 				"https://www.google.com/maps/place/Chakraberia+Sarbojanin+Durgotsab/@22.5289154,88.3473694,1770m/am=t/data=!3m1!1e3!4m6!3m5!1s0x3a02773bbf310017:0xf6d48ad98db4016a!8m2!3d22.5336065!4d88.3519214!16s%2Fg%2F11f1yd4cb_!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=e34de491-8e8b-45dd-9f30-c1d99c247cf1",
 			htmlDesc: `Celebrating its <strong>81st year in 2026</strong>, the theme is <strong>&ldquo;Padmodighir Ghate&rdquo; (At the Ghat of the Lotus Pond)</strong>. The creative team includes <strong>Sumi Majumder, Shubhodip Majumder and Trisha Dutta</strong>; <strong>Parimal Paul</strong> is creating the idol, with <strong>Dinesh Poddar</strong> handling lighting and <strong>Goutam Brahma</strong> the music.`,
@@ -435,7 +460,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 19,
+			order: 20,
 			transit: 7,
 			type: ItemType.PANDAL,
 			area: Area.BHOWANIPOPRE,
@@ -447,7 +472,7 @@ export const chaturthi = {
 			links: [],
 		},
 		{
-			order: 20,
+			order: 21,
 			transit: 8,
 			type: ItemType.PANDAL,
 			area: Area.PARK_STREET,
@@ -459,7 +484,7 @@ export const chaturthi = {
 			links: [],
 		},
 		{
-			order: 21,
+			order: 22,
 			type: ItemType.PANDAL,
 			area: Area.COLLEGE_STREET,
 			title: "College Square",
@@ -479,7 +504,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 22,
+			order: 23,
 			transit: 9,
 			type: ItemType.PANDAL,
 			area: Area.BOWBAZAR,
@@ -500,7 +525,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 23,
+			order: 24,
 			transit: 10,
 			type: ItemType.PANDAL,
 			area: Area.ENTALLY,
