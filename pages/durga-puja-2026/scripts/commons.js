@@ -70,6 +70,9 @@ export const Area = {
 	DUM_DUM: ["Dum Dum", Zone.NORTH],
 	BAGUIATI: ["Baguiati", Zone.NORTH],
 	JORABAGAN: ["Jorabagan", Zone.NORTH],
+	TOLLYGUNGE: ["Tollygunge", Zone.SOUTH],
+	BALLYGUNGE_PHARI: ["Ballygunge Phari", Zone.SOUTH],
+	KANKURGACHI: ["Kankurgachi", Zone.EAST],
 };
 
 export const LinkType = {
@@ -179,6 +182,21 @@ export const Places = {
 			name: "Gariahat More",
 			gmapsUrl:
 				"https://www.google.com/maps/place/Gariahat+More/@22.5200923,88.363544,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276d450e5e077:0xe5043a36e48122e7!8m2!3d22.5200923!4d88.3661189!16s%2Fg%2F1ydnvm__p!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		GARIAHAT_MORE_NEAR_EKDALIA_EVERGREEN: {
+			name: "Gariahat More",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Gariahat+More/@22.5197752,88.3650782,804m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a0276d450e5e077:0xe5043a36e48122e7!2sGariahat+More!8m2!3d22.5200923!4d88.3661189!16s%2Fg%2F1ydnvm__p!3m5!1s0x3a0276d451787397:0x5bf0350f840b53f5!8m2!3d22.5203371!4d88.3649721!16s%2Fg%2F11b7qc3z4s!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BALLYGUNGE_PHARI: {
+			name: "Ballygunge Phari",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ballygunge+Phari/@22.528162,88.3633361,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276d762bd16fd:0x50c3844ca79f2435!8m2!3d22.528162!4d88.365911!16s%2Fg%2F11gzt888s!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BALLYGUNGE: {
+			name: "Ballygunge",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ballygunge/@22.5207815,88.3705823,57m/data=!3m1!1e3!4m6!3m5!1s0x3a0276d23f6d8821:0x2406c9898adc1537!8m2!3d22.5207691!4d88.3708287!16s%2Fg%2F1ptz4p0sh!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
 		},
 		SANTOSHPUR_LAKE: {
 			name: "Santoshpur Lake",
@@ -395,6 +413,21 @@ export const Places = {
 			gmapsUrl:
 				"https://www.google.com/maps/place/Dum+Dum+Park/@22.6028665,88.418867,402m/data=!3m1!1e3!4m6!3m5!1s0x3a0275f2fd3dd92b:0xf57d2634d3a37f65!8m2!3d22.6031682!4d88.419258!16s%2Fg%2F1tf272kd!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
 		},
+		MRINALINI: {
+			name: "Mrinalini",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Mrinalini/@22.628782,88.4181171,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89e161eac96fd:0x72fd011f2a26d4c1!8m2!3d22.628782!4d88.420692!16s%2Fg%2F11c6_d89kj?entry=tts&g_ep=EgoyMDI2MDgyNi4wIPu8ASoASAFQAw%3D%3D&skid=f4a315e8-839c-4a23-bac1-272edbe00dfa",
+		},
+		KANKURGACHI: {
+			name: "Kankurgachi",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Kankurgachi/@22.5803922,88.3900812,128m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a0275fb31ee5b47:0x7f8ca56343ef2d44!2sLake+Town+Foot+Bridge!8m2!3d22.6005398!4d88.408282!16s%2Fg%2F11bc8df04t!3m5!1s0x3a02766e5cd6e911:0x935f966e84e693e9!8m2!3d22.580353!4d88.390012!16s%2Fg%2F11g2_g3ctg!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		AMARPALLY_BHAGABATI: {
+			name: "Amarpally Bhagabati",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Amarpally+Bhagabati/@22.6171357,88.4121371,277m/data=!3m1!1e3!4m6!3m5!1s0x39f89e1c9eccaa07:0xa9982817fdeb086e!8m2!3d22.617523!4d88.412711!16s%2Fg%2F11bymtjw5s!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
 	},
 	METRO_STATIONS: {
 		DAKSHINESHWAR: {
@@ -588,8 +621,17 @@ export function renderPandal(item, routeData) {
 	);
 	const lastTransitDestination = transitBeforeStop?.steps.at(-1)?.dest?.name;
 	const lunchStop = previousStop?.lunch ? routeData.lunchStop.title : null;
+	const lastTransitDestinationAfterLunchStop =
+		previousStop?.lunch && routeData.lunchStop.transit
+			? routeData.transits
+					.find((t) => t.index === routeData.lunchStop.transit)
+					.steps.at(-1)?.dest?.name
+			: null;
 	const fromLocation =
-		lastTransitDestination || lunchStop || previousStop?.title;
+		lastTransitDestinationAfterLunchStop ||
+		lunchStop ||
+		lastTransitDestination ||
+		previousStop?.title;
 	const walkingTime = Math.ceil(item.distance / WALKING_PACE_METERS_PER_MINUTE);
 
 	return `<span class="itinerary-item-order">${String(item.order).padStart(2, "0")}</span><div class="itinerary-item pandal" aria-expanded="false"><div class="itinerary-item-body"><div><div class="geo-area">${safe(area)}</div><h3>${safe(item.title)}</h3><p>&#128694; ${safe(item.distance)} m &middot; &#9201;&#65039; ${walkingTime} min${fromLocation ? ` from ${safe(fromLocation)}.` : "."}</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="${safe(item.gmapsUrl)}">Google Maps &#8599;</a>${toiletsLink}</div></div><div class="itinerary-item-expansion-panel" aria-hidden="true"><div><div class="itinerary-item-expansion-panel-body">${item.htmlDesc}</div>${linkFooter}</div></div></div>`;

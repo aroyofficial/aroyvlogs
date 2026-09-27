@@ -440,6 +440,9 @@ export function renderMapView(routeData, containerId = "map-view-container") {
 	ensureMapMarkerStyles();
 
 	const map = L.map(containerId, {
+		zoomDelta: 0.1,
+		zoomSnap: 0.1,
+		wheelPxPerZoomLevel: 120,
 		rotate: true,
 		bearing: 45,
 		rotateControl: false, // built-in tri-state control replaced by addRotateControl below

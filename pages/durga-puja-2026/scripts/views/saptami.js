@@ -10,10 +10,11 @@ export const saptami = {
 	lunchStop: {
 		type: ItemType.LUNCH,
 		title: "Raj Hotel & Restaurant",
-		distance: 500,
-		fromName: "Ekdalia Evergreen",
+		distance: 69,
+		fromName: "Ballygunge",
 		gmapsUrl:
 			"https://www.google.com/maps/place/Raj+Hotel+%26+Restaurant/@22.520626,88.3706761,201m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276d25290dac3:0x5b6f972f0ba35ff7!8m2!3d22.520626!4d88.3713198!16s%2Fg%2F1tkrk6hw!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		transit: 1,
 	},
 	stops: [
 		{
@@ -183,11 +184,36 @@ export const saptami = {
 				{ type: LinkType.PHONE, value: "9831095622" },
 				{ type: LinkType.EMAIL, value: "evergreenclub43.ekdalia@gmail.com" },
 			],
-			lunch: true,
-			transit: 1,
+			transit: 5,
 		},
 		{
 			order: 9,
+			type: ItemType.PANDAL,
+			area: Area.BALLYGUNGE_PHARI,
+			title: "Ballygunge 21 Pally",
+			distance: 350,
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ballygunge+21+Pally/@22.529175,88.3662414,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276da11045def:0xdfde27864be4b528!8m2!3d22.529175!4d88.3688163!16s%2Fg%2F1q66y5s13!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc: `Celebrating its <strong>80th year in 2026</strong>, Ballygunge 21 Pally presents the theme <strong>'Shorobhujer Ontorale' (ষড়ভুজের অন্তরালে)</strong>. The creative concept is by <strong>Sourajit Banerjee</strong>, with execution and design by <strong>Sayan Haldar</strong>.`,
+			links: [
+				{
+					type: LinkType.FACEBOOK,
+					value: "https://www.facebook.com/Ballygunge21pally",
+				},
+				{
+					type: LinkType.PHONE,
+					value: "9073463089",
+				},
+				{
+					type: LinkType.EMAIL,
+					value: "ekushpally15@gmail.com",
+				},
+			],
+			lunch: true,
+			transit: 6,
+		},
+		{
+			order: 10,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
 			title: "Karbagan",
@@ -204,7 +230,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 10,
+			order: 11,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
 			title: "Pallyshree",
@@ -222,7 +248,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 11,
+			order: 12,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
 			title: "Telengabagan",
@@ -239,7 +265,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 12,
+			order: 13,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
 			title: "Jagarani Sangha",
@@ -258,7 +284,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 13,
+			order: 14,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
 			title: "Surirbagan",
@@ -270,11 +296,35 @@ export const saptami = {
 			links: [],
 		},
 		{
-			order: 14,
+			order: 15,
+			type: ItemType.PANDAL,
+			area: Area.ULTADANGA,
+			title: "Dakshindari Youths",
+			distance: 600,
+			gmapsUrl:
+				"https://www.google.com/maps/place/Dakshindari+Youth+Forum+Ground/@22.593044,88.3894997,804m/data=!3m1!1e3!4m6!3m5!1s0x3a02760e67a24671:0x5dfbe508a0d48293!8m2!3d22.5953004!4d88.39385!16s%2Fg%2F1pzyj2s69!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc: `For Durga Puja 2026, Dakshindari Youths embraces a traditional presentation. The theme is inspired by a Rajasthani temple and centers around the concept of the <strong>'Ashwamedha Horse' (অশ্বমেধের ঘোড়া)</strong>.`,
+			links: [
+				{
+					type: LinkType.FACEBOOK,
+					value: "https://www.facebook.com/profile.php?id=100085567818710",
+				},
+				{
+					type: LinkType.PHONE,
+					value: "7980696104",
+				},
+				{
+					type: LinkType.EMAIL,
+					value: "dakshindariyouthsdurgotsav@gmail.com",
+				},
+			],
+		},
+		{
+			order: 16,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
 			title: "Sangrami Sangha",
-			distance: 1200,
+			distance: 850,
 			gmapsUrl:
 				"https://www.google.com/maps/place/Ultadanga+Sangrami+Club+Durga+Pujo/@22.5909721,88.3932635,402m/data=!3m1!1e3!4m6!3m5!1s0x3a0277003b2d919f:0xf2f11badd7547e93!8m2!3d22.5905068!4d88.3952877!16s%2Fg%2F11wjq3whkf!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
 			htmlDesc:
@@ -294,7 +344,7 @@ export const saptami = {
 			transit: 2,
 		},
 		{
-			order: 15,
+			order: 17,
 			type: ItemType.PANDAL,
 			area: Area.NAGER_BAZAR,
 			title: "Yuba Sangha",
@@ -322,7 +372,7 @@ export const saptami = {
 			transit: 3,
 		},
 		{
-			order: 16,
+			order: 18,
 			type: ItemType.PANDAL,
 			area: Area.BARANAGAR,
 			title: "Bandhudal Sporting Club",
@@ -345,7 +395,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 17,
+			order: 19,
 			type: ItemType.PANDAL,
 			area: Area.BARANAGAR,
 			title: "Karmi Sangha",
@@ -364,7 +414,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 18,
+			order: 20,
 			type: ItemType.PANDAL,
 			area: Area.BARANAGAR,
 			title: "Barangar Netaji Colony Lowland",
@@ -479,6 +529,38 @@ export const saptami = {
 					order: 1,
 					medium: TransitMedium.BUS,
 					dest: Places.BUS_STOPS.BALLY_HALT,
+				},
+			],
+		},
+		{
+			index: 5,
+			steps: [
+				{
+					order: 1,
+					medium: TransitMedium.WALK,
+					distance: 230,
+					dest: Places.BUS_STOPS.GARIAHAT_MORE_NEAR_EKDALIA_EVERGREEN,
+				},
+				{
+					order: 2,
+					medium: TransitMedium.BUS,
+					dest: Places.BUS_STOPS.BALLYGUNGE_PHARI,
+				},
+			],
+		},
+		{
+			index: 6,
+			steps: [
+				{
+					order: 1,
+					medium: TransitMedium.WALK,
+					distance: 350,
+					dest: Places.BUS_STOPS.BALLYGUNGE_PHARI,
+				},
+				{
+					order: 2,
+					medium: TransitMedium.BUS,
+					dest: Places.BUS_STOPS.BALLYGUNGE,
 				},
 			],
 		},

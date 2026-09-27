@@ -151,9 +151,25 @@ export const chaturthi = {
 		{
 			order: 6,
 			type: ItemType.PANDAL,
+			area: Area.TOLLYGUNGE,
+			title: "Charu Avenue Nabapalli Sangha",
+			distance: 250,
+			gmapsUrl:
+				"https://www.google.com/maps/place/Charu+Avenue+Nabapalli+Sangha/@22.5072692,88.3412765,805m/data=!3m1!1e3!4m6!3m5!1s0x3a0270c9cd7ead41:0xb15a06fcbb0e7f65!8m2!3d22.5072692!4d88.3439881!16s%2Fg%2F1hd_ffclg!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc: `Celebrating its <strong>100th year in 2026</strong>, Charu Avenue Naba Pally presents the theme <strong>'The Illusion' (ভ্রম)</strong>. The creative conceptualization is by <strong>Sandip Mukherjee and Tapasi Mukherjee</strong>, with the idol crafted by <strong>Pradip Rudra Pal</strong>, background ambience by <strong>Pandit Mallar Ghosh</strong>, and lighting design by <strong>Kunal Pathak</strong>.`,
+			links: [
+				{
+					type: LinkType.FACEBOOK,
+					value: "https://www.facebook.com/nabapalli.sangha",
+				},
+			],
+		},
+		{
+			order: 7,
+			type: ItemType.PANDAL,
 			area: Area.MUDIALI,
 			title: "Mudiali Club",
-			distance: 290,
+			distance: 550,
 			gmapsUrl:
 				"https://www.google.com/maps/place/Mudiali+Club/@22.510194,88.3437373,805m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0270cbdf5173cd:0x5518c1c09c9335f0!8m2!3d22.510194!4d88.3463122!16s%2Fg%2F11xjbv0sk?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=e52e7684-22e7-4769-937a-a5c213b9d1ff",
 			htmlDesc: `Dating back to <strong>1935</strong>, this puja reaches its <strong>92nd year in 2026</strong>. Known for its artistic approach, distinctive idol, and carefully designed pandal environments, the 2026 presentation features the theme <strong>'Traditional Folktales' (ঐতিহ্যের লোককথা) - Timeless Tales, Timeless Devotion</strong>, conceptualized by artist <strong>Biman Saha</strong>.`,
@@ -173,7 +189,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 7,
+			order: 8,
 			type: ItemType.PANDAL,
 			area: Area.RABINDRA_SAROBAR,
 			title: "Shib Mandir Sarbojonin",
@@ -197,7 +213,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 8,
+			order: 9,
 			transit: 3,
 			type: ItemType.PANDAL,
 			area: Area.BALLYGUNGE,
@@ -226,7 +242,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 9,
+			order: 10,
 			transit: 4,
 			type: ItemType.PANDAL,
 			area: Area.NEW_ALIPORE,
@@ -255,7 +271,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 10,
+			order: 11,
 			type: ItemType.PANDAL,
 			area: Area.CHETLA,
 			title: "Chetla Agrani",
@@ -287,7 +303,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 11,
+			order: 12,
 			transit: 5,
 			type: ItemType.PANDAL,
 			area: Area.ALIPORE,
@@ -308,7 +324,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 12,
+			order: 13,
 			type: ItemType.PANDAL,
 			area: Area.KALIGHAT,
 			title: "Nepal Bhattacharjee Street Club",
@@ -319,7 +335,7 @@ export const chaturthi = {
 			links: [],
 		},
 		{
-			order: 13,
+			order: 14,
 			type: ItemType.PANDAL,
 			area: Area.KALIGHAT,
 			title: "66 Pally",
@@ -339,7 +355,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 14,
+			order: 15,
 			transit: 6,
 			type: ItemType.PANDAL,
 			area: Area.KALIGHAT,
@@ -360,7 +376,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 15,
+			order: 16,
 			type: ItemType.PANDAL,
 			area: Area.KALIGHAT,
 			title: "Kalighat Milan Sangha",
@@ -371,7 +387,7 @@ export const chaturthi = {
 			links: [],
 		},
 		{
-			order: 16,
+			order: 17,
 			lunch: true,
 			type: ItemType.PANDAL,
 			area: Area.HAZRA,
@@ -392,7 +408,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 17,
+			order: 18,
 			type: ItemType.PANDAL,
 			area: Area.BHOWANIPORE,
 			title: "Bakul Bagan Sarbojonin",
@@ -420,7 +436,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 18,
+			order: 19,
 			type: ItemType.PANDAL,
 			area: Area.BHOWANIPORE,
 			title: "Abasar Sarbojonin",
@@ -444,7 +460,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 19,
+			order: 20,
 			type: ItemType.PANDAL,
 			area: Area.BHOWANIPORE,
 			title: "Chakraberia Sarbojonin",
@@ -460,7 +476,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 20,
+			order: 21,
 			transit: 7,
 			type: ItemType.PANDAL,
 			area: Area.BHOWANIPOPRE,
@@ -472,7 +488,7 @@ export const chaturthi = {
 			links: [],
 		},
 		{
-			order: 21,
+			order: 22,
 			transit: 8,
 			type: ItemType.PANDAL,
 			area: Area.PARK_STREET,
@@ -484,7 +500,7 @@ export const chaturthi = {
 			links: [],
 		},
 		{
-			order: 22,
+			order: 23,
 			type: ItemType.PANDAL,
 			area: Area.COLLEGE_STREET,
 			title: "College Square",
@@ -504,7 +520,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 23,
+			order: 24,
 			transit: 9,
 			type: ItemType.PANDAL,
 			area: Area.BOWBAZAR,
@@ -525,7 +541,7 @@ export const chaturthi = {
 			],
 		},
 		{
-			order: 24,
+			order: 25,
 			transit: 10,
 			type: ItemType.PANDAL,
 			area: Area.ENTALLY,

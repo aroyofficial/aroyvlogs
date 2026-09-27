@@ -16,25 +16,37 @@ function renderItinerary(routeData) {
 		)
 		.join("");
 
+	const renderTransitMarkup = (transitIndex) => {
+		const transit = transits.find((item) => item.index === transitIndex);
+		return transit
+			? `<li class="itinerary-transit">${renderTransit(transit)}</li>`
+			: "";
+	};
+
 	list.querySelectorAll("[data-stop-order]").forEach((slot) => {
 		const stop = stops.find(
 			(item) => item.order === Number(slot.dataset.stopOrder),
 		);
 		if (!stop) return;
 
-		if (stop.transit !== undefined) {
-			const transit = transits.find((item) => item.index === stop.transit);
-			if (transit) {
-				const markup = `<li class="itinerary-transit">${renderTransit(transit)}</li>`;
-				slot.insertAdjacentHTML(
-					stop.isPreviousTransit ? "beforebegin" : "afterend",
-					markup,
-				);
-			}
+		if (stop.isPreviousTransit && stop.transit !== undefined) {
+			slot.insertAdjacentHTML("beforebegin", renderTransitMarkup(stop.transit));
 		}
 
-		if (stop.lunch && lunchStop) {
-			slot.insertAdjacentHTML("afterend", renderLunch(lunchStop));
+		const stopTransitMarkup =
+			!stop.isPreviousTransit && stop.transit !== undefined
+				? renderTransitMarkup(stop.transit)
+				: "";
+		const lunchMarkup = stop.lunch && lunchStop ? renderLunch(lunchStop) : "";
+		const lunchTransitMarkup =
+			stop.lunch && lunchStop?.transit !== undefined
+				? renderTransitMarkup(lunchStop.transit)
+				: "";
+		const afterStopMarkup =
+			stopTransitMarkup + lunchMarkup + lunchTransitMarkup;
+
+		if (afterStopMarkup) {
+			slot.insertAdjacentHTML("afterend", afterStopMarkup);
 		}
 	});
 }
@@ -77,9 +89,12 @@ function calculateRouteSummary(routeData) {
 		...areas,
 		lastTransitStep?.dest?.name,
 	].filter(Boolean);
-	const linkedTransitIndexes = new Set(
-		stops.map((stop) => stop.transit).filter((index) => index !== undefined),
-	);
+	const linkedTransitIndexes = new Set([
+		...stops.map((stop) => stop.transit).filter((index) => index !== undefined),
+		...(stops.some((stop) => stop.lunch) && lunchStop?.transit !== undefined
+			? [lunchStop.transit]
+			: []),
+	]);
 	const transitWalkingDistance = transits
 		.filter((transit) => linkedTransitIndexes.has(transit.index))
 		.flatMap((transit) => transit.steps)
@@ -228,7 +243,10 @@ function renderSelectedPage(pageRoot) {
 				map.register(routeData);
 			},
 		)
-		.catch(() => window.location.replace("../../404.html"));
+		.catch((ex) => {
+			window.alert("Oops! Something went wrong. Try reloading the page.");
+			window.location.replace("../../404.html");
+		});
 }
 
 initializePujaAudio();
