@@ -1,3 +1,20 @@
+import { chaturthi as chaturthiData } from "./views/chaturthi.js";
+import { panchami as panchamiData } from "./views/panchami.js";
+import { shashthi as sasthiData } from "./views/shashthi.js";
+import { saptami, saptami as saptamiData } from "./views/saptami.js";
+import { astami as astamiData } from "./views/astami.js";
+import { navami as navamiData } from "./views/navami.js";
+import { Area, Zone } from "./commons.js";
+
+let data = {
+	chaturthi: chaturthiData,
+	panchami: panchamiData,
+	sasthi: sasthiData,
+	saptami: saptamiData,
+	astami: astamiData,
+	navami: navamiData,
+};
+
 let WALKING_PACE_METERS_PER_MINUTE;
 let TransitMedium;
 let renderLunch;
@@ -157,7 +174,7 @@ function renderHeader() {
 	const headerRoot = document.getElementById("page-header-root");
 	if (!headerRoot) return;
 
-	headerRoot.outerHTML = `<header class="site-header"><div class="site-header-inner"><a class="brand" href="../../"><span class="brand-icon">&#10022;</span><span><strong>Vlogs with Arijit</strong><small>Durga Puja 2026</small></span></a><a class="btn btn-dark rounded-pill" href="index.html">&#8592; Puja days</a></div></header>`;
+	headerRoot.outerHTML = `<header class="site-header"><div class="site-header-inner"><a class="brand" href="../../"><span class="brand-icon">&#10022;</span><span><strong>Vlogs with Arijit</strong><small>Durga Puja 2026</small></span></a><a class="btn btn-dark rounded-pill" href="index.html">&lt; Puja days</a></div></header>`;
 }
 
 function renderFooter(routeData) {
@@ -249,7 +266,77 @@ function renderSelectedPage(pageRoot) {
 		});
 }
 
+function renderCounts() {
+	let keys = Object.keys(data);
+	keys.forEach((k) => {
+		let dt = JSON.parse(JSON.stringify(data[k]));
+		let totalStopDistance = dt.stops.reduce((acc, st) => acc + st.distance, 0);
+		let totalTransitDistance = dt.transits
+			.map((tr) => tr.steps)
+			.flat()
+			.filter((s) => s.hasOwnProperty("distance"))
+			.reduce((acc, st) => acc + st.distance, 0);
+		let lunchStopDistance = dt?.lunchStop?.distance ?? 0;
+		let totalDistance =
+			totalStopDistance + totalTransitDistance + lunchStopDistance;
+		data[k].total = {
+			pandals: dt.stops.length,
+			distance: totalDistance,
+			time: Math.ceil(totalDistance / 50),
+		};
+	});
+	data.total = {
+		pandals: keys
+			.map((k) => data[k].total.pandals)
+			.reduce((acc, p) => acc + p, 0),
+	};
+	let daywisePandalCountEls = document.querySelectorAll(
+		".daywise-total-pandal-count",
+	);
+	let pandalCountSummaryEls = document.querySelectorAll(
+		".pandal-count-summary",
+	);
+	let overallPandalCountEls = document.querySelectorAll(
+		".overall-pandal-count",
+	);
+	let totalDaysEl = document.querySelector(".total-days");
+	totalDaysEl.innerText = keys.length;
+	overallPandalCountEls.forEach((el) => (el.innerText = data.total.pandals));
+	keys.forEach((k, index) => {
+		if (daywisePandalCountEls && daywisePandalCountEls[index]) {
+			daywisePandalCountEls[index].innerText = data[k].total.pandals;
+		}
+		if (pandalCountSummaryEls && pandalCountSummaryEls[index]) {
+			pandalCountSummaryEls[index].innerText = data[k].total.pandals;
+		}
+	});
+}
+
+function renderZones() {
+	let zoneKeys = Object.keys(Zone);
+	let areaKeys = Object.keys(Area);
+	let targetingZonesEl = document.getElementById("targeting-zones");
+	zoneKeys.forEach((z) => {
+		let areas = areaKeys
+			.map((a) => Area[a])
+			.filter((a) => a[1] === Zone[z])
+			.map((a) => a[0]);
+		let anchorEl = document.createElement("a");
+		let spanEl = document.createElement("span");
+		spanEl.innerHTML = `${Zone[z]}<small>${areas.sort().join(", ")}</small>`;
+		anchorEl.href = "#";
+		anchorEl.appendChild(spanEl);
+		targetingZonesEl.appendChild(anchorEl);
+	});
+}
+
+function calculateStats() {
+	renderCounts();
+	renderZones();
+}
+
 initializePujaAudio();
+calculateStats();
 
 const pageRoot = document.getElementById("puja-day-main-root");
 if (pageRoot) renderSelectedPage(pageRoot);

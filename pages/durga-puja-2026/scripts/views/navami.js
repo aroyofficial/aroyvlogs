@@ -97,7 +97,7 @@ export const navami = {
 		{
 			order: 5,
 			type: ItemType.PANDAL,
-			area: Area.JODHPUR,
+			area: Area.JODHPUR_PARK,
 			title: "95 Pally Association",
 			distance: 850,
 			gmapsUrl:

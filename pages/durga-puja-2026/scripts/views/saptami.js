@@ -189,7 +189,7 @@ export const saptami = {
 		{
 			order: 9,
 			type: ItemType.PANDAL,
-			area: Area.BALLYGUNGE_PHARI,
+			area: Area.BALLYGUNGE,
 			title: "Ballygunge 21 Pally",
 			distance: 350,
 			gmapsUrl:

@@ -8,7 +8,6 @@ export const Zone = {
 	NORTH: "North Kolkata",
 	SOUTH: "South Kolkata",
 	EAST: "East Kolkata",
-	WEST: "West Kolkata",
 	PORT: "Port Area",
 	SOUTHWEST: "South West Kolkata",
 	CENTRAL: "Central Kolkata",
@@ -26,7 +25,6 @@ export const Area = {
 	KALIGHAT: ["Kalighat", Zone.SOUTH],
 	HAZRA: ["Hazra", Zone.SOUTH],
 	BHOWANIPORE: ["Bhowanipore", Zone.SOUTH],
-	BHOWANIPOPRE: ["Bhowanipopre", Zone.SOUTH],
 	PARK_STREET: ["Park Street", Zone.CENTRAL],
 	COLLEGE_STREET: ["College Street", Zone.CENTRAL],
 	BOWBAZAR: ["Bowbazar", Zone.CENTRAL],
@@ -38,10 +36,10 @@ export const Area = {
 	GARIA: ["Garia", Zone.SOUTH],
 	NAKTALA: ["Naktala", Zone.SOUTH],
 	KUDGHAT: ["Kudghat", Zone.SOUTH],
-	PASCHIM_PUTIARY: ["Paschim Putiary", Zone.SOUTH],
-	HARIDEVPUR: ["Haridevpur", Zone.SOUTH],
+	PASCHIM_PUTIARY: ["Paschim Putiary", Zone.SOUTHWEST],
+	HARIDEVPUR: ["Haridevpur", Zone.SOUTHWEST],
 	BEHALA: ["Behala", Zone.SOUTHWEST],
-	THAKURPUKUR: ["Thakurpukur", Zone.SOUTH],
+	THAKURPUKUR: ["Thakurpukur", Zone.SOUTHWEST],
 	BAGBAZAR: ["Bagbazar", Zone.NORTH],
 	SHYAMBAZAR: ["Shyambazar", Zone.NORTH],
 	KUMARTULI: ["Kumartuli", Zone.NORTH],
@@ -49,8 +47,8 @@ export const Area = {
 	AHIRITOLA: ["Ahiritola", Zone.NORTH],
 	CHORBAGAN: ["Chorbagan", Zone.NORTH],
 	MANIKTALA: ["Maniktala", Zone.NORTH],
-	GOURIBARI: ["Gouribari", Zone.NORTH],
-	HATIBAGAN: ["Hatibagan", Zone.NORTH],
+	GOURIBARI: ["Gouri Bari", Zone.NORTH],
+	HATIBAGAN: ["Hati Bagan", Zone.NORTH],
 	SOVABAZAR: ["Sovabazar", Zone.NORTH],
 	GARIAHAT: ["Gariahat", Zone.SOUTH],
 	ULTADANGA: ["Ultadanga", Zone.NORTH],
@@ -60,18 +58,16 @@ export const Area = {
 	DHAKURIA: ["Dhakuria", Zone.SOUTH],
 	SELIMPUR: ["Selimpur", Zone.SOUTH],
 	JODHPUR_PARK: ["Jodhpur Park", Zone.SOUTH],
-	JODHPUR: ["Jodhpur", Zone.SOUTH],
 	JADAVPUR: ["Jadavpur", Zone.SOUTH],
-	LAKETOWN: ["Laketown", Zone.EAST],
+	LAKETOWN: ["Lake Town", Zone.EAST],
 	BELIAGHATA: ["Beliaghata", Zone.EAST],
 	SALT_LAKE: ["Salt Lake", Zone.EAST],
-	NEWTOWN: ["Newtown", Zone.EAST],
+	NEWTOWN: ["New Town", Zone.EAST],
 	DUM_DUM_PARK: ["Dum Dum Park", Zone.NORTH],
 	DUM_DUM: ["Dum Dum", Zone.NORTH],
 	BAGUIATI: ["Baguiati", Zone.NORTH],
 	JORABAGAN: ["Jorabagan", Zone.NORTH],
 	TOLLYGUNGE: ["Tollygunge", Zone.SOUTH],
-	BALLYGUNGE_PHARI: ["Ballygunge Phari", Zone.SOUTH],
 	KANKURGACHI: ["Kankurgachi", Zone.EAST],
 };
 
@@ -705,4 +701,57 @@ export function renderLunch(lunch) {
 		lunch.distance / WALKING_PACE_METERS_PER_MINUTE,
 	);
 	return `<li class="itinerary-stop lunch-stop-step"><div class="itinerary-item lunch-stop"><div class="itinerary-item-body"><div><div class="geo-area">&#127869; LUNCH</div><h3>${lunch.title}</h3><p>Lunch stop. &#128694; ${lunch.distance} m &middot; &#9201;&#65039; ${walkingTime} min from ${lunch.fromName}.</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="${lunch.gmapsUrl}">Google Maps &#8599;</a></div></div></div></li>`;
+}
+
+export function getRouteCenter(routeData) {
+	const coords = [];
+
+	const push = (gmapsUrl) => {
+		if (!gmapsUrl) return;
+		const pin = getPinLocation(gmapsUrl);
+		if (pin) {
+			// getPinLocation returns strings — must cast before min/max / math
+			const lat = Number(pin.latitude);
+			const lng = Number(pin.longitude);
+			if (Number.isFinite(lat) && Number.isFinite(lng)) {
+				coords.push({ lat, lng });
+			}
+		}
+	};
+
+	// 1. Meetup place
+	push(routeData?.meetup?.place?.gmapsUrl);
+
+	// 2. Lunch stop
+	push(routeData?.lunchStop?.gmapsUrl);
+
+	// 3. All puja stops
+	(routeData?.stops || []).forEach((stop) => push(stop?.gmapsUrl));
+
+	// 4. All transit endpoints (src + dest of every step)
+	(routeData?.transits || []).forEach((transit) =>
+		(transit?.steps || []).forEach((step) => {
+			push(step?.src?.gmapsUrl);
+			push(step?.dest?.gmapsUrl);
+		}),
+	);
+
+	if (!coords.length) return null;
+
+	let minLat = Infinity;
+	let maxLat = -Infinity;
+	let minLng = Infinity;
+	let maxLng = -Infinity;
+
+	for (const { lat, lng } of coords) {
+		if (lat < minLat) minLat = lat;
+		if (lat > maxLat) maxLat = lat;
+		if (lng < minLng) minLng = lng;
+		if (lng > maxLng) maxLng = lng;
+	}
+
+	return {
+		latitude: (minLat + maxLat) / 2,
+		longitude: (minLng + maxLng) / 2,
+	};
 }

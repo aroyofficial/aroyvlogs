@@ -479,7 +479,7 @@ export const chaturthi = {
 			order: 21,
 			transit: 7,
 			type: ItemType.PANDAL,
-			area: Area.BHOWANIPOPRE,
+			area: Area.BHOWANIPORE,
 			title: "Bhowanipore 75 Pally",
 			distance: 750,
 			gmapsUrl:

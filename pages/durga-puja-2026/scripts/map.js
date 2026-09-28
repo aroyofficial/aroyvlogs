@@ -1,5 +1,10 @@
 // Add `Places` to your existing commons import if it isn't there already:
-import { Places, TransitMedium, getPinLocation } from "./commons.js";
+import {
+	Places,
+	TransitMedium,
+	getPinLocation,
+	getRouteCenter,
+} from "./commons.js";
 
 /* ──────────────────────────────────────────────────────────────────────────
    STOP MARKER CONFIG  —  ✏️  EDIT ICONS / COLOURS / LABELS HERE
@@ -438,6 +443,7 @@ const buildStopKindLookup = () => {
 
 export function renderMapView(routeData, containerId = "map-view-container") {
 	ensureMapMarkerStyles();
+	let coords = getRouteCenter(routeData);
 
 	const map = L.map(containerId, {
 		zoomDelta: 0.1,
@@ -446,7 +452,7 @@ export function renderMapView(routeData, containerId = "map-view-container") {
 		rotate: true,
 		bearing: 45,
 		rotateControl: false, // built-in tri-state control replaced by addRotateControl below
-		center: [22.5726, 88.3639], // required initial view (Kolkata)
+		center: [coords.latitude, coords.longitude],
 		zoom: 12,
 	});
 
