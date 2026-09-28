@@ -185,6 +185,20 @@ const ensureMapMarkerStyles = () => {
    - Reset button snaps back to north-up
    - Stays in sync with shift+wheel / touch gestures via the map "rotate" event */
 const addRotateControl = (map, step = 15) => {
+	// Skip gracefully when leaflet-rotate isn't loaded for this map — without
+	// the plugin setBearing/getBearing don't exist and the dial can't work.
+	if (
+		!map ||
+		typeof map.setBearing !== "function" ||
+		typeof map.getBearing !== "function"
+	) {
+		console.warn(
+			"addRotateControl: map has no rotation support " +
+				"(is the leaflet-rotate script loaded before map.js?). Skipping dial.",
+		);
+		return;
+	}
+
 	const normalize = (deg) => ((deg % 360) + 360) % 360;
 
 	const control = L.control({ position: "topright" });
@@ -393,85 +407,13 @@ const addLiveLocationControl = (map) => {
 	});
 };
 
-// Builds the teardrop pin (gradient head + tip + ground shadow)
-const createPinHtml = (pin, innerContent) => `
-	<div class="map-pin" style="--c1:${pin[0]};--c2:${pin[1]};">
-		<div class="mp-head">${innerContent}</div>
-		<div class="mp-tip"></div>
-		<div class="mp-shadow"></div>
-	</div>`;
-
-// Popup header: icon chip + place name + category pill
-const createPlacePopupHtml = (name, cfg) => `
-	<div class="pandal-map-popup">
-		<div style="display:flex; align-items:center; gap:10px;">
-			<div style="flex:0 0 auto; width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg, ${cfg.pin[0]}, ${cfg.pin[1]}); display:flex; align-items:center; justify-content:center; color:#fff; font-size:15px; box-shadow:0 2px 5px rgba(0,0,0,.25);">
-				<i class="fa-solid ${cfg.icon}"></i>
-			</div>
-			<div style="min-width:0;">
-				<div style="font-size:14px; font-weight:700; line-height:1.3;">${name}</div>
-				<div style="margin-top:3px; display:inline-block; font-size:10px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; color:${cfg.pin[1]}; background:${cfg.pin[0]}26; padding:2px 8px; border-radius:999px;">${cfg.label}</div>
-			</div>
-		</div>
-	</div>`;
-
-// Hover label shown directly on the map: place name + category
-const createTooltipHtml = (name, cfg) => `
-	<div style="text-align:center;">
-		<strong>${name}</strong><br>
-		<span style="color:${cfg.pin[0]}; font-size:10px; font-weight:700; letter-spacing:.4px; text-transform:uppercase;">${cfg.label}</span>
-	</div>`;
-
-/* Reverse lookup: gmapsUrl → which Places collection(s) the stop belongs to.
-   Supports both "RAIL_STOPS" and "RAIL_STATIONS" naming in commons.js.     */
-const buildStopKindLookup = () => {
-	const lookup = new Map();
-	const register = (kind, collection) => {
-		Object.values(collection || {}).forEach((place) => {
-			if (place && place.gmapsUrl) {
-				const kinds = lookup.get(place.gmapsUrl) || [];
-				kinds.push(kind);
-				lookup.set(place.gmapsUrl, kinds);
-			}
-		});
-	};
-	register("RAIL", Places.RAIL_STOPS ?? Places.RAIL_STATIONS);
-	register("BUS", Places.BUS_STOPS);
-	register("METRO", Places.METRO_STATIONS);
-	return lookup;
-};
-
-export function renderMapView(routeData, containerId = "map-view-container") {
-	ensureMapMarkerStyles();
-	let coords = getRouteCenter(routeData);
-
-	const map = L.map(containerId, {
-		zoomDelta: 0.1,
-		zoomSnap: 0.1,
-		wheelPxPerZoomLevel: 120,
-		rotate: true,
-		bearing: 45,
-		rotateControl: false, // built-in tri-state control replaced by addRotateControl below
-		center: [coords.latitude, coords.longitude],
-		zoom: 12,
-	});
-
-	L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-		maxZoom: 19,
-		attribution:
-			'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-	}).addTo(map);
-
-	// Custom compass rotator (drag dial / step buttons / reset to north)
-	addRotateControl(map);
-
-	// Live device location toggle (Google Maps-style blue dot)
-	addLiveLocationControl(map);
-
+/* Fullscreen toggle that makes the map container 100% of the screen.
+   Restores the original inline width/height on exit. */
+const addFullscreenControl = (map, position = "topright") => {
 	const mapContainer = map.getContainer();
 	const originalWidth = mapContainer.style.width;
 	const originalHeight = mapContainer.style.height;
-	const fullscreenControl = L.control({ position: "topright" });
+	const fullscreenControl = L.control({ position });
 
 	fullscreenControl.onAdd = () => {
 		const wrapper = L.DomUtil.create("div", "leaflet-bar leaflet-control");
@@ -528,6 +470,85 @@ export function renderMapView(routeData, containerId = "map-view-container") {
 		return wrapper;
 	};
 	fullscreenControl.addTo(map);
+};
+
+// Builds the teardrop pin (gradient head + tip + ground shadow)
+const createPinHtml = (pin, innerContent) => `
+	<div class="map-pin" style="--c1:${pin[0]};--c2:${pin[1]};">
+		<div class="mp-head">${innerContent}</div>
+		<div class="mp-tip"></div>
+		<div class="mp-shadow"></div>
+	</div>`;
+
+// Popup header: icon chip + place name + category pill
+const createPlacePopupHtml = (name, cfg) => `
+	<div class="pandal-map-popup">
+		<div style="display:flex; align-items:center; gap:10px;">
+			<div style="flex:0 0 auto; width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg, ${cfg.pin[0]}, ${cfg.pin[1]}); display:flex; align-items:center; justify-content:center; color:#fff; font-size:15px; box-shadow:0 2px 5px rgba(0,0,0,.25);">
+				<i class="fa-solid ${cfg.icon}"></i>
+			</div>
+			<div style="min-width:0;">
+				<div style="font-size:14px; font-weight:700; line-height:1.3;">${name}</div>
+				<div style="margin-top:3px; display:inline-block; font-size:10px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; color:${cfg.pin[1]}; background:${cfg.pin[0]}26; padding:2px 8px; border-radius:999px;">${cfg.label}</div>
+			</div>
+		</div>
+	</div>`;
+
+// Hover label shown directly on the map: place name + category
+const createTooltipHtml = (name, cfg) => `
+	<div style="text-align:center;">
+		<strong>${name}</strong><br>
+		<span style="color:${cfg.pin[0]}; font-size:10px; font-weight:700; letter-spacing:.4px; text-transform:uppercase;">${cfg.label}</span>
+	</div>`;
+
+/* Reverse lookup: gmapsUrl → which Places collection(s) the stop belongs to.
+   Supports both "RAIL_STOPS" and "RAIL_STATIONS" naming in commons.js.     */
+const buildStopKindLookup = () => {
+	const lookup = new Map();
+	const register = (kind, collection) => {
+		Object.values(collection || {}).forEach((place) => {
+			if (place && place.gmapsUrl) {
+				const kinds = lookup.get(place.gmapsUrl) || [];
+				kinds.push(kind);
+				lookup.set(place.gmapsUrl, kinds);
+			}
+		});
+	};
+	register("RAIL", Places.RAIL_STOPS ?? Places.RAIL_STATIONS);
+	register("BUS", Places.BUS_STOPS);
+	register("METRO", Places.METRO_STATIONS);
+	return lookup;
+};
+
+export function renderMapView(routeData, containerId = "map-view-container") {
+	ensureMapMarkerStyles();
+	const coords = getRouteCenter(routeData);
+
+	const map = L.map(containerId, {
+		zoomDelta: 0.1,
+		zoomSnap: 0.1,
+		wheelPxPerZoomLevel: 120,
+		rotate: true,
+		bearing: 45,
+		rotateControl: false, // built-in tri-state control replaced by addRotateControl below
+		center: coords ? [coords.latitude, coords.longitude] : [22.5726, 88.3639], // fallback initial view (Kolkata)
+		zoom: 12,
+	});
+
+	L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+		maxZoom: 19,
+		attribution:
+			'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	}).addTo(map);
+
+	// Custom compass rotator (drag dial / step buttons / reset to north)
+	addRotateControl(map);
+
+	// Live device location toggle (Google Maps-style blue dot)
+	addLiveLocationControl(map);
+
+	// Fullscreen toggle (expand to 100vw × 100vh and back)
+	addFullscreenControl(map);
 
 	const markerBounds = [];
 
@@ -552,9 +573,9 @@ export function renderMapView(routeData, containerId = "map-view-container") {
 		zIndexOffset = 0,
 		tooltipHtml = null,
 	) => {
-		const coords = getPinLocation(gmapsUrl);
-		if (coords) {
-			const { latitude, longitude } = coords;
+		const pinCoords = getPinLocation(gmapsUrl);
+		if (pinCoords) {
+			const { latitude, longitude } = pinCoords;
 			const icon = L.divIcon({
 				className: "custom-map-icon",
 				html: iconHtml,
@@ -752,6 +773,7 @@ export function register(routeData) {
    ---------------------------------------------------------------------------
    Everything below is self-contained: it does not read from or modify any of
    the helpers/logic above. Only `stops[]` pin locations are plotted.
+   Includes the compass rotation dial + fullscreen button on the radar map.
 ══════════════════════════════════════════════════════════════════════════ */
 
 /* One colour per day — add/adjust freely. Keys are matched case-insensitively
@@ -896,6 +918,7 @@ const radarInstances = new Map();
  */
 export function showPujaRadar(data, containerId = "puja-radar") {
 	ensurePujaRadarStyles();
+	ensureMapMarkerStyles(); // compass dial styles live in this stylesheet
 
 	const container = document.getElementById(containerId);
 	if (!container) {
@@ -912,11 +935,40 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 		radarInstances.delete(containerId);
 	}
 
+	// leaflet-rotate requires a real center+zoom BEFORE any fitBounds call, so
+	// pre-scan every day's stops to compute the map's initial center first.
+	const allLatLngs = [];
+	Object.entries(data || {}).forEach(([, routeData]) => {
+		(routeData?.stops || []).forEach((stop) => {
+			const coords = stop ? getPinLocation(stop.gmapsUrl) : null;
+			if (!coords) return;
+			const lat = Number(coords.latitude); // getPinLocation returns strings
+			const lng = Number(coords.longitude);
+			if (Number.isFinite(lat) && Number.isFinite(lng)) {
+				allLatLngs.push([lat, lng]);
+			}
+		});
+	});
+
+	const initialCenter = allLatLngs.length
+		? [
+				(Math.min(...allLatLngs.map(([lat]) => lat)) +
+					Math.max(...allLatLngs.map(([lat]) => lat))) /
+					2,
+				(Math.min(...allLatLngs.map(([, lng]) => lng)) +
+					Math.max(...allLatLngs.map(([, lng]) => lng))) /
+					2,
+			]
+		: [22.5726, 88.3639];
+
 	const map = L.map(containerId, {
 		zoomDelta: 0.1,
 		zoomSnap: 0.1,
 		wheelPxPerZoomLevel: 120,
-		center: [22.5726, 88.3639],
+		rotate: true,
+		bearing: 45,
+		rotateControl: false, // custom compass dial added below instead
+		center: initialCenter,
 		zoom: 12,
 	});
 
@@ -1001,6 +1053,19 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 	});
 
 	if (dayLayers.length) addRadarLegend(map, dayLayers);
+
+	/* Optional controls — added AFTER pins + legend and wrapped individually,
+	   so a missing dependency can never remove the pins or the day checkboxes. */
+	try {
+		addRotateControl(map); // self-skips when leaflet-rotate is not loaded
+	} catch (error) {
+		console.warn("Puja radar: rotate dial unavailable:", error);
+	}
+	try {
+		addFullscreenControl(map, "bottomright");
+	} catch (error) {
+		console.warn("Puja radar: fullscreen control unavailable:", error);
+	}
 
 	if (allPoints.length) {
 		map.fitBounds(allPoints, { padding: [40, 40] });
