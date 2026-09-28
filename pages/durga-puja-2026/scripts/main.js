@@ -5,6 +5,7 @@ import { saptami, saptami as saptamiData } from "./views/saptami.js";
 import { astami as astamiData } from "./views/astami.js";
 import { navami as navamiData } from "./views/navami.js";
 import { Area, Zone } from "./commons.js";
+import { showPujaRadar } from "./map.js";
 
 let data = {
 	chaturthi: chaturthiData,
@@ -267,6 +268,7 @@ function renderSelectedPage(pageRoot) {
 }
 
 function renderCounts() {
+	console.log(data);
 	let keys = Object.keys(data);
 	keys.forEach((k) => {
 		let dt = JSON.parse(JSON.stringify(data[k]));
@@ -339,4 +341,8 @@ initializePujaAudio();
 calculateStats();
 
 const pageRoot = document.getElementById("puja-day-main-root");
-if (pageRoot) renderSelectedPage(pageRoot);
+if (pageRoot) {
+	renderSelectedPage(pageRoot);
+} else {
+	showPujaRadar(data);
+}

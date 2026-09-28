@@ -746,3 +746,269 @@ export function register(routeData) {
 		}
 	});
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PUJA RADAR  —  all days' pandal stops on a single map (#puja-radar)
+   ---------------------------------------------------------------------------
+   Everything below is self-contained: it does not read from or modify any of
+   the helpers/logic above. Only `stops[]` pin locations are plotted.
+══════════════════════════════════════════════════════════════════════════ */
+
+/* One colour per day — add/adjust freely. Keys are matched case-insensitively
+   against the keys of the `data` object passed to showPujaRadar().          */
+export const RADAR_DAY_COLORS = {
+	chaturthi: { label: "Chaturthi", pin: ["#ffa94d", "#e8590c"] },
+	panchami: { label: "Panchami", pin: ["#f783ac", "#a61e4d"] },
+	shashthi: { label: "Shashthi", pin: ["#9775fa", "#5f3dc4"] },
+	saptami: { label: "Saptami", pin: ["#74c0fc", "#1864ab"] },
+	astami: { label: "Astami", pin: ["#38d9a9", "#087f5b"] },
+	navami: { label: "Navami", pin: ["#ffd43b", "#e67700"] },
+	dashami: { label: "Dashami", pin: ["#ff8787", "#c92a2a"] },
+};
+
+const RADAR_FALLBACK_PINS = [
+	["#adb5bd", "#495057"],
+	["#4dabf7", "#1971c2"],
+	["#da77f2", "#862e9c"],
+	["#63e6be", "#0ca678"],
+];
+
+// Radar-only styles (separate <style> id so it never clashes with the above)
+const ensurePujaRadarStyles = () => {
+	if (document.getElementById("puja-radar-styles")) return;
+	const style = document.createElement("style");
+	style.id = "puja-radar-styles";
+	style.textContent = `
+		.radar-map-icon { background: transparent; border: none; }
+		.radar-pin {
+			position: relative; width: 30px; height: 38px;
+			display: flex; flex-direction: column; align-items: center;
+			box-sizing: border-box; transform-origin: 50% 85%;
+			transition: transform .18s ease;
+		}
+		.radar-map-icon:hover .radar-pin { transform: scale(1.18); }
+		.radar-pin .rp-head {
+			z-index: 1; width: 26px; height: 26px; border-radius: 50%;
+			background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 100%);
+			border: 2px solid #ffffff; box-sizing: border-box;
+			box-shadow: 0 2px 6px rgba(0,0,0,.35), inset 0 -2px 4px rgba(0,0,0,.18);
+			display: flex; align-items: center; justify-content: center;
+			color: #fff; font-size: 10px; font-weight: 800; line-height: 1;
+			font-variant-numeric: tabular-nums;
+		}
+		.radar-pin .rp-tip {
+			width: 0; height: 0; margin-top: -3px;
+			border-left: 5px solid transparent; border-right: 5px solid transparent;
+			border-top: 9px solid var(--c2);
+		}
+		.radar-pin .rp-shadow {
+			position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+			width: 13px; height: 4px; border-radius: 50%; background: rgba(0,0,0,.25);
+		}
+		.radar-tooltip {
+			background: #1f2933; color: #fff; border: none; border-radius: 10px;
+			padding: 7px 11px; font-size: 12px; line-height: 1.45;
+			box-shadow: 0 6px 18px rgba(0,0,0,.28);
+		}
+		.leaflet-tooltip-top.radar-tooltip::before { border-top-color: #1f2933; }
+
+		.radar-legend {
+			background: rgba(255,255,255,.96); border-radius: 10px; padding: 8px 10px;
+			box-shadow: 0 4px 14px rgba(0,0,0,.25); font-size: 12px; line-height: 1.4;
+			max-height: 260px; overflow-y: auto; min-width: 140px;
+		}
+		.radar-legend h6 {
+			margin: 0 0 6px 0; font-size: 10px; font-weight: 800; letter-spacing: .5px;
+			text-transform: uppercase; color: #868e96;
+		}
+		.radar-legend label {
+			display: flex; align-items: center; gap: 7px; cursor: pointer;
+			padding: 2px 0; user-select: none; font-weight: 600; color: #343a40;
+		}
+		.radar-legend input { cursor: pointer; margin: 0; }
+		.radar-legend .rl-swatch {
+			width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto;
+			border: 1.5px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.15);
+		}
+		.radar-legend .rl-count { margin-left: auto; font-size: 10px; color: #868e96; font-weight: 700; }
+	`;
+	document.head.appendChild(style);
+};
+
+// Radar marker pin (numbered, coloured per day)
+const createRadarPinHtml = (pin, label) => `
+	<div class="radar-pin" style="--c1:${pin[0]};--c2:${pin[1]};">
+		<div class="rp-head">${label}</div>
+		<div class="rp-tip"></div>
+		<div class="rp-shadow"></div>
+	</div>`;
+
+const radarSafe = (value) =>
+	String(value ?? "").replace(
+		/[&<>"']/g,
+		(char) =>
+			({
+				"&": "&amp;",
+				"<": "&lt;",
+				">": "&gt;",
+				'"': "&quot;",
+				"'": "&#39;",
+			})[char],
+	);
+
+// Per-day checkbox legend that toggles each day's layer group on/off
+const addRadarLegend = (map, dayLayers) => {
+	const legend = L.control({ position: "topright" });
+	legend.onAdd = () => {
+		const box = L.DomUtil.create("div", "leaflet-control radar-legend");
+		box.innerHTML = `<h6>Days</h6>`;
+
+		dayLayers.forEach(({ label, pin, layer, count }) => {
+			const row = L.DomUtil.create("label", "", box);
+			row.innerHTML = `
+				<input type="checkbox" checked />
+				<span class="rl-swatch" style="background:linear-gradient(135deg, ${pin[0]}, ${pin[1]});"></span>
+				<span>${radarSafe(label)}</span>
+				<span class="rl-count">${count}</span>`;
+			const checkbox = row.querySelector("input");
+			L.DomEvent.on(checkbox, "change", () => {
+				if (checkbox.checked) map.addLayer(layer);
+				else map.removeLayer(layer);
+			});
+		});
+
+		L.DomEvent.disableClickPropagation(box);
+		L.DomEvent.disableScrollPropagation(box);
+		return box;
+	};
+	legend.addTo(map);
+};
+
+// Keeps one radar map per container so repeat calls don't throw "already initialized"
+const radarInstances = new Map();
+
+/**
+ * Renders every day's pandal stops on one map inside #puja-radar.
+ *
+ * @param {Object} data  e.g. { chaturthi: routeData, panchami: routeData, ... }
+ * @param {string} containerId  defaults to "puja-radar"
+ * @returns {L.Map|null} the created map instance
+ */
+export function showPujaRadar(data, containerId = "puja-radar") {
+	ensurePujaRadarStyles();
+
+	const container = document.getElementById(containerId);
+	if (!container) {
+		console.warn(`showPujaRadar: #${containerId} not found in the DOM.`);
+		return null;
+	} else {
+		console.log("#puja-radar found");
+	}
+
+	// Tear down a previous radar on the same container before rebuilding
+	const previous = radarInstances.get(containerId);
+	if (previous) {
+		previous.remove();
+		radarInstances.delete(containerId);
+	}
+
+	const map = L.map(containerId, {
+		zoomDelta: 0.1,
+		zoomSnap: 0.1,
+		wheelPxPerZoomLevel: 120,
+		center: [22.5726, 88.3639],
+		zoom: 12,
+	});
+
+	L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+		maxZoom: 19,
+		attribution:
+			'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	}).addTo(map);
+
+	const allPoints = [];
+	const dayLayers = [];
+	let fallbackIndex = 0;
+
+	Object.entries(data || {}).forEach(([dayKey, routeData]) => {
+		const stops = routeData?.stops || [];
+		if (!stops.length) return;
+
+		const preset = RADAR_DAY_COLORS[String(dayKey).toLowerCase()];
+		const pin =
+			preset?.pin ??
+			RADAR_FALLBACK_PINS[fallbackIndex++ % RADAR_FALLBACK_PINS.length];
+		const label =
+			preset?.label ??
+			routeData?.title ??
+			dayKey.charAt(0).toUpperCase() + dayKey.slice(1);
+
+		const layer = L.layerGroup();
+		let plotted = 0;
+
+		stops.forEach((stop) => {
+			const coords = getPinLocation(stop?.gmapsUrl);
+			if (!coords) return;
+
+			const latitude = Number(coords.latitude);
+			const longitude = Number(coords.longitude);
+			if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return;
+
+			const orderText = String(stop.order ?? "").padStart(2, "0");
+
+			const marker = L.marker([latitude, longitude], {
+				icon: L.divIcon({
+					className: "radar-map-icon",
+					html: createRadarPinHtml(pin, orderText),
+					iconSize: [30, 38],
+					iconAnchor: [15, 32],
+					popupAnchor: [0, -30],
+				}),
+				riseOnHover: true,
+			});
+
+			marker.bindTooltip(
+				`<div style="text-align:center;">
+					<strong>${orderText}. ${radarSafe(stop.title)}</strong><br>
+					<span style="color:${pin[0]}; font-size:10px; font-weight:700; letter-spacing:.4px; text-transform:uppercase;">${radarSafe(label)}</span>
+				</div>`,
+				{
+					direction: "top",
+					offset: [0, -32],
+					className: "radar-tooltip",
+					opacity: 1,
+				},
+			);
+
+			marker.bindPopup(
+				`<div class="pandal-map-popup">
+					<div style="font-size:10px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; color:${pin[1]};">${radarSafe(label)}</div>
+					<h6 style="margin:4px 0 0 0; font-size:15px;"><strong>${orderText}. ${radarSafe(stop.title)}</strong></h6>
+					${stop.area ? `<div style="margin-top:4px; font-size:12px; color:#868e96;">${radarSafe(stop.area).replace(",", ", ")}</div>` : ""}
+				</div>`,
+				{ maxWidth: 260, minWidth: 180 },
+			);
+
+			marker.addTo(layer);
+			allPoints.push([latitude, longitude]);
+			plotted++;
+		});
+
+		if (plotted) {
+			layer.addTo(map);
+			dayLayers.push({ label, pin, layer, count: plotted });
+		}
+	});
+
+	if (dayLayers.length) addRadarLegend(map, dayLayers);
+
+	if (allPoints.length) {
+		map.fitBounds(allPoints, { padding: [40, 40] });
+	}
+
+	// Containers that start hidden need a size recalc once they're visible
+	setTimeout(() => map.invalidateSize(), 100);
+
+	radarInstances.set(containerId, map);
+	return map;
+}
