@@ -338,11 +338,11 @@ function calculateStats() {
 }
 
 initializePujaAudio();
-calculateStats();
 
 const pageRoot = document.getElementById("puja-day-main-root");
 if (pageRoot) {
 	renderSelectedPage(pageRoot);
 } else {
+	calculateStats();
 	showPujaRadar(data);
 }
