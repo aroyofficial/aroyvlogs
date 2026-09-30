@@ -7,6 +7,11 @@ export const panchami = {
 		time: "7:30 AM",
 		place: Places.RAIL_STATIONS.BALLY_HALT,
 	},
+	countdown: {
+		title: "Maha Panchami",
+		subtitle: "The ultimate festive madness begins in...",
+		targetDate: new Date("2026-10-16"),
+	},
 	lunchStop: {
 		type: ItemType.LUNCH,
 		title: "Khao More Cafe",

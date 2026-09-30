@@ -7,6 +7,11 @@ export const navami = {
 		time: "7:30 AM",
 		place: Places.BUS_STOPS.BALLY_HALT,
 	},
+	countdown: {
+		title: "Maha Navami",
+		subtitle: "The Dhakis are ready. The dhunuchi is lit. Are you?",
+		targetDate: new Date("2026-10-20"),
+	},
 	lunchStop: {
 		type: ItemType.LUNCH,
 		title: "Aura 78",

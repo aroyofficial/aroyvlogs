@@ -3,6 +3,11 @@ import { Area, ItemType, LinkType, Places, TransitMedium } from "../commons.js";
 export const chaturthi = {
 	title: "Chaturthi",
 	dateLabel: "15 OCTOBER &middot; THURSDAY",
+	countdown: {
+		title: "Maha Chaturthi",
+		subtitle: "Feel the beats of the Dhak getting closer!",
+		targetDate: new Date("2026-10-15"),
+	},
 	meetup: {
 		time: "7:30 AM",
 		place: Places.BUS_STOPS.BALLY_HALT,

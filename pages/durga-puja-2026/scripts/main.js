@@ -4,7 +4,7 @@ import { shashthi as sasthiData } from "./views/shashthi.js";
 import { saptami, saptami as saptamiData } from "./views/saptami.js";
 import { astami as astamiData } from "./views/astami.js";
 import { navami as navamiData } from "./views/navami.js";
-import { Area, Zone } from "./commons.js";
+import { Area, showCountdownPopup, Zone } from "./commons.js";
 import { showPujaRadar } from "./map.js";
 
 let data = {
@@ -259,9 +259,16 @@ function renderSelectedPage(pageRoot) {
 				renderMain(routeData, commons.Places);
 				renderFooter(routeData);
 				map.register(routeData);
+				console.log(routeData);
+				showCountdownPopup(
+					routeData.countdown.title,
+					routeData.countdown.subtitle,
+					routeData.countdown.targetDate,
+				);
 			},
 		)
 		.catch((ex) => {
+			console.log(ex);
 			window.alert("Oops! Something went wrong. Try reloading the page.");
 			window.location.replace("../../404.html");
 		});
@@ -345,4 +352,9 @@ if (pageRoot) {
 } else {
 	calculateStats();
 	showPujaRadar(data);
+	showCountdownPopup(
+		"Mahalaya",
+		"The ultimate festive madness is here!",
+		new Date("2026-10-10"),
+	);
 }

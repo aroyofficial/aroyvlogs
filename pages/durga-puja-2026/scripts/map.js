@@ -472,6 +472,230 @@ const addFullscreenControl = (map, position = "topright") => {
 	fullscreenControl.addTo(map);
 };
 
+/**
+ * Adds an "Export" button to capture ONLY the tight rectangle defined by
+ * the stop coordinates — nothing outside that bounding box.
+ *
+ * Strategy:
+ *  1. Fit map to the stops bounds (no padding) and wait for tiles + moveend.
+ *  2. Capture the full map canvas via the screenshoter plugin.
+ *  3. Convert the lat/lng corner points to pixel positions and crop a canvas
+ *     to exactly that rectangle.
+ *  4. Download the cropped PNG and restore the previous view.
+ */
+const addExportControl = (map, allPoints) => {
+	// The plugin registers as L.simpleMapScreenshoter (factory) and
+	// L.Control.SimpleMapScreenshoter (class). Check both ways.
+	const hasPlugin =
+		typeof L.simpleMapScreenshoter === "function" ||
+		typeof L.Control?.SimpleMapScreenshoter === "function";
+
+	if (!hasPlugin) {
+		console.warn(
+			"Export unavailable: leaflet-simple-map-screenshoter not loaded. " +
+				'Add <script src="https://cdn.jsdelivr.net/npm/leaflet-simple-map-screenshoter@0.5.0/dist/leaflet-simple-map-screenshoter.js"></script> after leaflet.js.',
+		);
+		return;
+	}
+
+	// Build the tight bounding box from the extreme coordinates of all stops:
+	// farthest north (max lat), farthest south (min lat),
+	// farthest east (max lng), farthest west (min lng).
+	const lats = allPoints.map(([lat]) => lat);
+	const lngs = allPoints.map(([, lng]) => lng);
+	const minLat = Math.min(...lats);
+	const maxLat = Math.max(...lats);
+	const minLng = Math.min(...lngs);
+	const maxLng = Math.max(...lngs);
+	const stopsBounds = L.latLngBounds(
+		L.latLng(minLat, minLng), // SW corner
+		L.latLng(maxLat, maxLng), // NE corner
+	);
+
+	// Pad (px) added around the rectangle both for the zoom and the crop
+	const CROP_PADDING = 100;
+
+	const screenshoter = L.simpleMapScreenshoter({
+		hidden: true,
+		cropImageByInnerWH: true,
+		preventDownload: true, // we handle download ourselves after cropping
+		hideElementsWithSelectors: [".leaflet-control-container"],
+		mimeType: "image/png",
+		screenName: "puja-radar",
+	}).addTo(map);
+
+	// Fully wait for moveend + all tiles rendered before resolving
+	const waitForMapReady = () =>
+		new Promise((resolve) => {
+			let moveOk = false;
+			let tilesOk = false;
+
+			const tryResolve = () => {
+				if (moveOk && tilesOk) resolve();
+			};
+
+			map.once("moveend", () => {
+				moveOk = true;
+				// After move ends, wait one more rAF tick so Leaflet repositions panes
+				requestAnimationFrame(() => {
+					// Now wait for tiles — poll every 150 ms until no tile is loading
+					const pollTiles = () => {
+						if (!map._loading) {
+							tilesOk = true;
+							tryResolve();
+						} else {
+							setTimeout(pollTiles, 150);
+						}
+					};
+					pollTiles();
+				});
+			});
+
+			// Safety net: resolve after 4 s regardless
+			setTimeout(() => {
+				moveOk = true;
+				tilesOk = true;
+				tryResolve();
+			}, 4000);
+		});
+
+	// After the map has settled at the new view, convert the stopsBounds corners
+	// to container pixels, add CROP_PADDING, clamp to the canvas, and crop.
+	const cropImage = (base64Image) =>
+		new Promise((resolve, reject) => {
+			const img = new Image();
+
+			img.onload = () => {
+				const mapSize = map.getSize(); // logical px { x, y }
+				// Scale factor: captured canvas may be bigger than CSS pixels (retina)
+				const sx = img.width / mapSize.x;
+				const sy = img.height / mapSize.y;
+
+				// Convert the EXACT bounding-box corners to container (CSS) pixels
+				const nwPx = map.latLngToContainerPoint(stopsBounds.getNorthWest());
+				const sePx = map.latLngToContainerPoint(stopsBounds.getSouthEast());
+
+				// Apply padding in CSS pixels, then convert to canvas pixels
+				const rawX = (nwPx.x - CROP_PADDING) * sx;
+				const rawY = (nwPx.y - CROP_PADDING) * sy;
+				const rawW = (sePx.x - nwPx.x + CROP_PADDING * 2) * sx;
+				const rawH = (sePx.y - nwPx.y + CROP_PADDING * 2) * sy;
+
+				// Clamp so we never read outside the image
+				const x = Math.max(0, Math.round(rawX));
+				const y = Math.max(0, Math.round(rawY));
+				const w = Math.min(img.width - x, Math.round(rawW));
+				const h = Math.min(img.height - y, Math.round(rawH));
+
+				console.debug("[export] img size:", img.width, "x", img.height);
+				console.debug("[export] mapSize:", mapSize.x, "x", mapSize.y);
+				console.debug("[export] scale:", sx, sy);
+				console.debug("[export] nwPx:", nwPx, "sePx:", sePx);
+				console.debug("[export] crop rect:", { x, y, w, h });
+
+				if (w <= 0 || h <= 0) {
+					reject(
+						new Error(
+							`Crop region is zero/negative (x=${x} y=${y} w=${w} h=${h}). ` +
+								"The bounds rectangle may be outside the current viewport.",
+						),
+					);
+					return;
+				}
+
+				const canvas = document.createElement("canvas");
+				canvas.width = w;
+				canvas.height = h;
+				canvas.getContext("2d").drawImage(img, x, y, w, h, 0, 0, w, h);
+				resolve(canvas.toDataURL("image/png"));
+			};
+
+			img.onerror = () =>
+				reject(new Error("Failed to decode captured map image."));
+			img.src = base64Image;
+		});
+
+	const control = L.control({ position: "bottomright" });
+	control.onAdd = () => {
+		const wrapper = L.DomUtil.create("div", "leaflet-bar leaflet-control");
+		const button = L.DomUtil.create("button", "", wrapper);
+		button.type = "button";
+		button.title = "Export stops map as PNG";
+		button.setAttribute("aria-label", "Export stops map as PNG");
+		Object.assign(button.style, {
+			width: "34px",
+			height: "34px",
+			display: "flex",
+			alignItems: "center",
+			justifyContent: "center",
+			background: "#fff",
+			color: "#1f2937",
+			border: "0",
+			borderRadius: "4px",
+			cursor: "pointer",
+			fontSize: "16px",
+		});
+		button.innerHTML = `<i class="fa-solid fa-camera" aria-hidden="true"></i>`;
+
+		L.DomEvent.disableClickPropagation(wrapper);
+		L.DomEvent.disableScrollPropagation(wrapper);
+
+		L.DomEvent.on(button, "click", async (e) => {
+			L.DomEvent.stop(e);
+
+			const origColor = button.style.color;
+			const origIcon = button.innerHTML;
+			button.style.color = "#1a73e8";
+			button.innerHTML = `<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>`;
+			button.disabled = true;
+
+			// Remember where the user was
+			const prevCenter = map.getCenter();
+			const prevZoom = map.getZoom();
+
+			try {
+				// 1. Fit exactly to the stops bounding box + CROP_PADDING so every
+				//    pin is visible and there is guaranteed whitespace around them.
+				//    animate:false so moveend fires synchronously on the next tick.
+				map.fitBounds(stopsBounds, {
+					animate: false,
+					paddingTopLeft: [CROP_PADDING, CROP_PADDING],
+					paddingBottomRight: [CROP_PADDING, CROP_PADDING],
+				});
+
+				// 2. Wait for the map to fully settle (moveend + tiles loaded)
+				await waitForMapReady();
+
+				// 3. Capture the entire map viewport as base64 PNG
+				const fullImage = await screenshoter.takeScreen("image");
+
+				// 4. Crop to the precise pixel rectangle that maps to stopsBounds
+				//    (with CROP_PADDING around it)
+				const cropped = await cropImage(fullImage);
+
+				// 5. Download
+				const a = document.createElement("a");
+				a.download = "puja-radar.png";
+				a.href = cropped;
+				document.body.appendChild(a);
+				a.click();
+				document.body.removeChild(a);
+			} catch (err) {
+				console.error("Map export failed:", err);
+			} finally {
+				// 6. Restore the previous view
+				map.setView(prevCenter, prevZoom, { animate: false });
+				button.style.color = origColor;
+				button.innerHTML = origIcon;
+				button.disabled = false;
+			}
+		});
+
+		return wrapper;
+	};
+	control.addTo(map);
+};
+
 // Builds the teardrop pin (gradient head + tip + ground shadow)
 const createPinHtml = (pin, innerContent) => `
 	<div class="map-pin" style="--c1:${pin[0]};--c2:${pin[1]};">
@@ -974,6 +1198,7 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 
 	L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 		maxZoom: 19,
+		crossOrigin: true, // Required for image capture/canvas exports
 		attribution:
 			'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 	}).addTo(map);
@@ -1069,6 +1294,16 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 
 	if (allPoints.length) {
 		map.fitBounds(allPoints, { padding: [40, 40] });
+	}
+
+	// Export button (Screenshot of the stops bounding box)
+	// Added after fitBounds so the map has a valid view when the control initializes
+	if (allPoints.length) {
+		try {
+			addExportControl(map, allPoints);
+		} catch (error) {
+			console.warn("Puja radar: export control unavailable:", error);
+		}
 	}
 
 	// Containers that start hidden need a size recalc once they're visible

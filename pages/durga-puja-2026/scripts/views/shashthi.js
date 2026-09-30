@@ -4,6 +4,11 @@ export const shashthi = {
 	title: "Shashthi",
 	dateLabel: "17 OCTOBER · SATURDAY",
 	meetup: { time: "9:00 AM", place: Places.RAIL_STATIONS.SONARPUR },
+	countdown: {
+		title: "Maha Shashthi",
+		subtitle: "Let the lights, joy, and adda begin in...",
+		targetDate: new Date("2026-10-17"),
+	},
 	lunchStop: {
 		type: ItemType.LUNCH,
 		title: "Bhojohori Manna",

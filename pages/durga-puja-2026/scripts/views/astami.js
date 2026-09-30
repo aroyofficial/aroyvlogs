@@ -7,6 +7,11 @@ export const astami = {
 		time: "4:00 PM",
 		place: Places.RAIL_STATIONS.RAMRAJATALA,
 	},
+	countdown: {
+		title: "Maha Astami",
+		subtitle: "The sound of joy is getting louder!",
+		targetDate: new Date("2026-10-19"),
+	},
 	lunchStop: null,
 	stops: [
 		{

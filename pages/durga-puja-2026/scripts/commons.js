@@ -755,3 +755,189 @@ export function getRouteCenter(routeData) {
 		longitude: (minLng + maxLng) / 2,
 	};
 }
+
+/**
+ * Shows a responsive countdown popup anchored to a corner of the page.
+ * @param {string} title - Main headline (e.g., "Durga Puja 2026")
+ * @param {string} subtitle - Secondary text (e.g., "Countdown to Mahasaptami")
+ * @param {string|Date} targetDate - The date to count down to.
+ * @param {"top-right"|"top-left"|"bottom-right"|"bottom-left"} position - Corner to anchor the popup. Defaults to "bottom-right".
+ */
+export function showCountdownPopup(
+	title,
+	subtitle,
+	targetDate,
+	position = "bottom-right",
+) {
+	const target = new Date(targetDate).getTime();
+
+	// Resolve corner positioning
+	const POS = {
+		"top-right": { top: "20px", right: "20px", bottom: "auto", left: "auto" },
+		"top-left": { top: "20px", right: "auto", bottom: "auto", left: "20px" },
+		"bottom-right": {
+			top: "auto",
+			right: "20px",
+			bottom: "20px",
+			left: "auto",
+		},
+		"bottom-left": { top: "auto", right: "auto", bottom: "20px", left: "20px" },
+	};
+	const pos = POS[position] ?? POS["bottom-right"];
+
+	// Slide-in animation direction based on corner
+	const slideIn = position.includes("right")
+		? "translateX(120%)"
+		: "translateX(-120%)";
+	const slideUp = position.includes("bottom")
+		? "translateY(120%)"
+		: "translateY(-120%)";
+	const animFrom = position.includes("right") ? slideIn : slideIn;
+
+	// 1. Inject styles once
+	if (!document.getElementById("countdown-popup-styles")) {
+		const style = document.createElement("style");
+		style.id = "countdown-popup-styles";
+		style.textContent = `
+            .cd-popup {
+                position: fixed;
+                z-index: 99999;
+                width: 300px;
+                max-width: calc(100vw - 40px);
+                background: #ffffff;
+                border-radius: 18px;
+                padding: 20px;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10);
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                text-align: center;
+                border: 1px solid rgba(0,0,0,0.06);
+                box-sizing: border-box;
+            }
+            .cd-popup.cd-slide-in  { animation: cd-slidein  0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+            .cd-popup.cd-slide-out { animation: cd-slideout 0.3s ease-in forwards; }
+            @keyframes cd-slidein  { from { opacity: 0; transform: var(--cd-from); } to { opacity: 1; transform: none; } }
+            @keyframes cd-slideout { from { opacity: 1; transform: none; } to { opacity: 0; transform: var(--cd-from); } }
+            .cd-close {
+                position: absolute; top: 12px; right: 12px;
+                background: #f1f3f5; border: 0;
+                width: 26px; height: 26px; border-radius: 50%;
+                cursor: pointer; color: #495057; font-size: 14px;
+                display: flex; align-items: center; justify-content: center;
+                transition: background 0.15s;
+            }
+            .cd-close:hover { background: #dee2e6; }
+            .cd-title {
+                margin: 0 18px 2px;
+                font-size: 15px; font-weight: 800;
+                color: #1a1b1e; line-height: 1.3;
+            }
+            .cd-subtitle {
+                margin: 0 0 16px;
+                font-size: 11px; color: #868e96;
+                font-weight: 500; letter-spacing: 0.1px;
+            }
+            .cd-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+            .cd-unit {
+                background: #f8f9fa;
+                border: 1px solid #e9ecef;
+                border-radius: 10px;
+                padding: 10px 4px;
+            }
+            .cd-val {
+                display: block;
+                font-size: 22px; font-weight: 800;
+                color: #1a73e8; line-height: 1;
+                font-variant-numeric: tabular-nums;
+                letter-spacing: -0.5px;
+            }
+            .cd-lbl {
+                display: block;
+                font-size: 9px; font-weight: 700;
+                text-transform: uppercase;
+                color: #adb5bd; margin-top: 4px;
+                letter-spacing: 0.5px;
+            }
+            .cd-done {
+                grid-column: span 4;
+                padding: 10px 0;
+                font-size: 13px; font-weight: 700;
+                color: #2b8a3e;
+            }
+            @media (max-width: 360px) {
+                .cd-popup { padding: 16px; border-radius: 14px; }
+                .cd-val   { font-size: 18px; }
+                .cd-title { font-size: 13px; }
+            }
+        `;
+		document.head.appendChild(style);
+	}
+
+	// 2. Build the popup element
+	const popup = document.createElement("div");
+	popup.className = "cd-popup cd-slide-in";
+	Object.assign(popup.style, {
+		top: pos.top,
+		right: pos.right,
+		bottom: pos.bottom,
+		left: pos.left,
+		"--cd-from": position.includes("bottom") ? slideUp : slideIn,
+	});
+
+	popup.innerHTML = `
+        <button class="cd-close" title="Close" aria-label="Close countdown">&times;</button>
+        <p class="cd-title">${title}</p>
+        <p class="cd-subtitle">${subtitle}</p>
+        <div class="cd-grid">
+            <div class="cd-unit"><span class="cd-val" id="cd-days">00</span><span class="cd-lbl">Days</span></div>
+            <div class="cd-unit"><span class="cd-val" id="cd-hours">00</span><span class="cd-lbl">Hours</span></div>
+            <div class="cd-unit"><span class="cd-val" id="cd-mins">00</span><span class="cd-lbl">Mins</span></div>
+            <div class="cd-unit"><span class="cd-val" id="cd-secs">00</span><span class="cd-lbl">Secs</span></div>
+        </div>
+    `;
+
+	document.body.appendChild(popup);
+
+	// 3. Countdown logic
+	const els = {
+		d: popup.querySelector("#cd-days"),
+		h: popup.querySelector("#cd-hours"),
+		m: popup.querySelector("#cd-mins"),
+		s: popup.querySelector("#cd-secs"),
+	};
+
+	const tick = () => {
+		const diff = target - Date.now();
+		if (diff <= 0) {
+			clearInterval(timer);
+			popup.querySelector(".cd-grid").innerHTML =
+				`<div class="cd-done">🎉 The event has started!</div>`;
+			return;
+		}
+		const pad = (n) => String(n).padStart(2, "0");
+		els.d.textContent = pad(Math.floor(diff / 86400000));
+		els.h.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+		els.m.textContent = pad(Math.floor((diff % 3600000) / 60000));
+		els.s.textContent = pad(Math.floor((diff % 60000) / 1000));
+	};
+
+	const timer = setInterval(tick, 1000);
+	tick();
+
+	// 4. Close with slide-out animation
+	const close = () => {
+		clearInterval(timer);
+		popup.classList.replace("cd-slide-in", "cd-slide-out");
+		popup.addEventListener("animationend", () => popup.remove(), {
+			once: true,
+		});
+	};
+
+	popup.querySelector(".cd-close").addEventListener("click", close);
+
+	// Return close fn in case caller wants to dismiss it programmatically
+	return close;
+}

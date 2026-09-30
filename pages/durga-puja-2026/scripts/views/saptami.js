@@ -7,6 +7,11 @@ export const saptami = {
 		time: "9:00 AM",
 		place: Places.RAIL_STATIONS.BALLY,
 	},
+	countdown: {
+		title: "Maha Saptami",
+		subtitle: "Feel the rhythm of the Dhak in the air!",
+		targetDate: new Date("2026-10-18"),
+	},
 	lunchStop: {
 		type: ItemType.LUNCH,
 		title: "Raj Hotel & Restaurant",
