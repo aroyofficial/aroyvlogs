@@ -214,6 +214,11 @@ export const Places = {
 			gmapsUrl:
 				"https://www.google.com/maps/place/K.K.+Das+College/@22.4711722,88.3806125,179m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI4JzE3LjIiTiA4OMKwMjInNTAuNyJF!8m2!3d22.471442!4d88.380746!3m5!1s0x3a02710ae4add2b3:0x13bd8220f494133!8m2!3d22.471439!4d88.380747!16s%2Fg%2F11b7q6kp0n!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
 		},
+		BAISHNABGHATA_MELAR_MATH: {
+			name: "Baishnabghata (Melar Math)",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Baishnabghata+%2F+Melar+Math/@22.4706048,88.3855716,257m/data=!3m1!1e3!4m6!3m5!1s0x3a027175da88054f:0xb3c53c4673781f4!8m2!3d22.470965!4d88.38682!16s%2Fg%2F11bym_7wjv!5m1!1e1?hl=en-IN&entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+		},
 		GARIA_NO_6_BUS_TERMINUS: {
 			name: "Garia No. 6 Bus Terminus",
 			gmapsUrl:

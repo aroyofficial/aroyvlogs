@@ -146,7 +146,7 @@ export const panchami = {
 			order: 7,
 			type: ItemType.PANDAL,
 			area: Area.PATULI,
-			title: "Vaishnavghata Jatra Shuru Sangha",
+			title: "Basihnabghata Yatra Shuru Sangha",
 			distance: 83,
 			gmapsUrl:
 				"https://www.google.com/maps/place/Baishnabghata+Yatra+Shuru+Sangha/@22.4706735,88.374376,802m/data=!3m1!1e3!4m6!3m5!1s0x3a02710a21494a3d:0x45dd40db6757a4b4!8m2!3d22.4707001!4d88.3778402!16s%2Fg%2F1w4f6j9c?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=7edbaec7-2466-4a52-86ed-ed6f68d6549c",
@@ -176,10 +176,21 @@ export const panchami = {
 				{ type: LinkType.PHONE, value: "03324620093" },
 				{ type: LinkType.EMAIL, value: "shantisanghakendua@gmail.com" },
 			],
-			transit: 3,
 		},
 		{
 			order: 9,
+			type: ItemType.PANDAL,
+			area: Area.PATULI,
+			title: "Basihnabghata Patuli Upanagari Sarbojanin",
+			distance: 600,
+			gmapsUrl:
+				"https://www.google.com/maps/place/Baishnabghata+Patuli+Upanagari+Sarbojanin+Durgapuja+Ground/@22.4710877,88.3812978,805m/data=!3m1!1e3!4m6!3m5!1s0x3a02717674e95c11:0xc7fc0f94435cfd76!8m2!3d22.4704235!4d88.3872738!16s%2Fg%2F11f147c_3d!5m1!1e1?hl=en-IN&entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc: `Celebrating its <strong>39th year in 2026</strong>, Basihnabghata Patuli Upanagari Sarbojonin Durgotsav presents the theme <strong>'Ontorlin' (অন্তর্লীন)</strong>. The creative execution is by <strong>Partho Joardar</strong>.`,
+			links: [],
+			transit: 3,
+		},
+		{
+			order: 10,
 			type: ItemType.PANDAL,
 			area: Area.NAKTALA,
 			title: "Naktala Udayan Sangha",
@@ -202,7 +213,7 @@ export const panchami = {
 			lunch: true,
 		},
 		{
-			order: 10,
+			order: 11,
 			type: ItemType.PANDAL,
 			area: Area.KUDGHAT,
 			title: "Putiyari Club",
@@ -214,7 +225,7 @@ export const panchami = {
 			links: [],
 		},
 		{
-			order: 11,
+			order: 12,
 			type: ItemType.PANDAL,
 			area: Area.PASCHIM_PUTIARY,
 			title: "Pally Unnayan Samiti",
@@ -233,7 +244,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 12,
+			order: 13,
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Haridevpur Adarsha Samiti Club",
@@ -252,7 +263,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 13,
+			order: 14,
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Haridevpur New Sporting Club",
@@ -269,7 +280,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 14,
+			order: 15,
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Ajeya Sanghati Club",
@@ -288,7 +299,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 15,
+			order: 16,
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Vivekananda Park Athletic Club",
@@ -314,7 +325,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 16,
+			order: 17,
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Haridevpur 41 Palli",
@@ -335,7 +346,7 @@ export const panchami = {
 			transit: 5,
 		},
 		{
-			order: 17,
+			order: 18,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Netaji Sarak Ancholik Adhibasi Brindo",
@@ -355,7 +366,7 @@ export const panchami = {
 			transit: 6,
 		},
 		{
-			order: 18,
+			order: 19,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Barisha Players Corner",
@@ -374,7 +385,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 19,
+			order: 20,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Barisha Club",
@@ -394,7 +405,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 20,
+			order: 21,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Barisha Sarbojanin",
@@ -414,7 +425,7 @@ export const panchami = {
 			transit: 7,
 		},
 		{
-			order: 21,
+			order: 22,
 			type: ItemType.PANDAL,
 			area: Area.THAKURPUKUR,
 			title: "Thakurpukur State Bank Park",
@@ -437,7 +448,7 @@ export const panchami = {
 			transit: 8,
 		},
 		{
-			order: 22,
+			order: 23,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Friends Club",
@@ -455,7 +466,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 23,
+			order: 24,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Nutan Dal",
@@ -475,7 +486,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 24,
+			order: 25,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Adarsha Pally",
@@ -492,7 +503,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 25,
+			order: 26,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Club Sarbojanin",
@@ -519,7 +530,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 26,
+			order: 27,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Young Men's Association",
@@ -609,8 +620,8 @@ export const panchami = {
 				{
 					order: 1,
 					medium: TransitMedium.WALK,
-					distance: 110,
-					dest: Places.BUS_STOPS.KK_DAS_COLLEGE,
+					distance: 50,
+					dest: Places.BUS_STOPS.BAISHNABGHATA_MELAR_MATH,
 				},
 				{
 					order: 2,
