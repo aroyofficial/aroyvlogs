@@ -100,7 +100,15 @@ function calculateRouteSummary(routeData) {
 	const orderedTransits = [...transits].sort((a, b) => a.index - b.index);
 	const firstTransitStep = orderedTransits[0]?.steps[0];
 	const lastTransit = orderedTransits[orderedTransits.length - 1];
-	const lastTransitStep = lastTransit?.steps[lastTransit.steps.length - 1];
+	// const lastTransitStep = lastTransit?.steps[lastTransit.steps.length - 1];
+	const maxStopOrder = Math.max(...stops.map((s) => s.order));
+	const maxStopTransit = stops.find((s) => s.order === maxStopOrder)?.transit;
+	const maxStopTransitSteps = orderedTransits.find(
+		(t) => t.index === maxStopTransit,
+	)?.steps;
+	const lastTransitStep = maxStopTransitSteps
+		? maxStopTransitSteps[maxStopTransitSteps.length - 1]
+		: undefined;
 	const areas = [...new Set(stops.map((stop) => stop.area[0]))];
 	const itinerary = [
 		firstTransitStep?.src?.name,

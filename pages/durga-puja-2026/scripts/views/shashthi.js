@@ -200,10 +200,34 @@ export const shashthi = {
 				{ type: LinkType.PHONE, value: "9883065346" },
 				{ type: LinkType.EMAIL, value: "assajb@gmail.com" },
 			],
-			transit: 1,
 		},
 		{
 			order: 9,
+			type: ItemType.PANDAL,
+			area: Area.SOVABAZAR,
+			title: "Sovabazar Borotola Sarbojonin",
+			distance: 600,
+			gmapsUrl:
+				"https://www.google.com/maps/place/Shobhabazar+Burtolla+Sarbojanin+Durgotsav+Samity/@22.5957953,88.361829,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0277c90d454aed:0x75e71840892036c4!8m2!3d22.5957953!4d88.3644039!16s%2Fg%2F11t9b5jg9j!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyOS4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc: `Celebrating its <strong>98th year in 2026</strong>, Sovabajar Burtolla Sarbojanin presents the theme <strong>'Pally Chitro' (পল্লীচিত্র)</strong>, a unique presentation of Bengal's rural life and art. The concept is by <strong>Somnath</strong>, with the idol crafted by <strong>Soumen</strong>, design by <strong>Dipkumar</strong>, and construction by <strong>Nitai</strong>.`,
+			links: [
+				{
+					type: LinkType.FACEBOOK,
+					value: "https://www.facebook.com/SBSDS",
+				},
+				{
+					type: LinkType.PHONE,
+					value: "8820131781",
+				},
+				{
+					type: LinkType.EMAIL,
+					value: "sovabazar_burtolla_durgotsav@yahoo.in",
+				},
+			],
+			transit: 1,
+		},
+		{
+			order: 10,
 			type: ItemType.PANDAL,
 			area: Area.CHORBAGAN,
 			title: "Chorbagan Sarbojanin",
@@ -230,7 +254,7 @@ export const shashthi = {
 			transit: 2,
 		},
 		{
-			order: 10,
+			order: 11,
 			type: ItemType.PANDAL,
 			area: Area.MANIKTALA,
 			title: "Maniktala Chalta Bagan Lohapatty",
@@ -251,7 +275,7 @@ export const shashthi = {
 			],
 		},
 		{
-			order: 11,
+			order: 12,
 			type: ItemType.PANDAL,
 			area: Area.MANIKTALA,
 			title: "Lalabagan Sarbojonin",
@@ -272,7 +296,7 @@ export const shashthi = {
 			],
 		},
 		{
-			order: 12,
+			order: 13,
 			type: ItemType.PANDAL,
 			area: Area.MANIKTALA,
 			title: "Lalabagan Nabankur",
@@ -295,7 +319,7 @@ export const shashthi = {
 			],
 		},
 		{
-			order: 13,
+			order: 14,
 			type: ItemType.PANDAL,
 			area: Area.GOURIBARI,
 			title: "Gouriberia Sarbojonin",
@@ -312,7 +336,7 @@ export const shashthi = {
 			transit: 4,
 		},
 		{
-			order: 14,
+			order: 15,
 			type: ItemType.PANDAL,
 			area: Area.HATIBAGAN,
 			title: "Kashi Bose Lane",
@@ -333,7 +357,7 @@ export const shashthi = {
 			lunch: true,
 		},
 		{
-			order: 15,
+			order: 16,
 			type: ItemType.PANDAL,
 			area: Area.HATIBAGAN,
 			title: "Hatibagan Sarbojanin",
@@ -356,7 +380,7 @@ export const shashthi = {
 			],
 		},
 		{
-			order: 16,
+			order: 17,
 			type: ItemType.PANDAL,
 			area: Area.HATIBAGAN,
 			title: "Nalin Sarkar Street",
@@ -384,7 +408,7 @@ export const shashthi = {
 			],
 		},
 		{
-			order: 17,
+			order: 18,
 			type: ItemType.PANDAL,
 			area: Area.HATIBAGAN,
 			title: "North Tridhara",
@@ -403,7 +427,7 @@ export const shashthi = {
 			],
 		},
 		{
-			order: 18,
+			order: 19,
 			type: ItemType.PANDAL,
 			area: Area.HATIBAGAN,
 			title: "Hatibagan Nabinpally",
@@ -426,7 +450,7 @@ export const shashthi = {
 			],
 		},
 		{
-			order: 19,
+			order: 20,
 			type: ItemType.PANDAL,
 			area: Area.HATIBAGAN,
 			title: "Sikdar Bagan",
@@ -453,7 +477,7 @@ export const shashthi = {
 			],
 		},
 		{
-			order: 20,
+			order: 21,
 			type: ItemType.PANDAL,
 			area: Area.SOVABAZAR,
 			title: "Sovabazar Rajbari",
@@ -490,8 +514,13 @@ export const shashthi = {
 			steps: [
 				{
 					order: 1,
+					medium: TransitMedium.WALK,
+					distance: 180,
+					dest: Places.BUS_STOPS.SOVABAZAR,
+				},
+				{
+					order: 2,
 					medium: TransitMedium.BUS,
-					src: Places.BUS_STOPS.SOVABAZAR,
 					dest: Places.BUS_STOPS.JORASANKO_THAKURBARI,
 				},
 			],
