@@ -22,6 +22,123 @@
 		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/leaflet-rotate@0.2.8/dist/leaflet-rotate.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/leaflet-simple-map-screenshoter@0.5.0/dist/leaflet-simple-map-screenshoter.js"></script>
+		<style>
+			.pass-grid {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 16px;
+			}
+			.pass-card {
+				display: flex;
+				flex-direction: column;
+				min-height: fit-content;
+				padding: 24px;
+				background: var(--card);
+				border: 1px solid var(--line);
+				border-radius: 8px;
+				box-shadow: 0 10px 24px rgba(30, 24, 18, 0.05);
+				transition:
+					border-color 160ms ease,
+					box-shadow 160ms ease,
+					transform 160ms ease;
+			}
+			.pass-card__topline,
+			.pass-card__facts,
+			.pass-card__price {
+				display: flex;
+				align-items: center;
+			}
+			.pass-card__topline {
+				justify-content: space-between;
+				gap: 12px;
+			}
+			.pass-card__icon {
+				display: grid;
+				width: 38px;
+				height: 38px;
+				place-items: center;
+				border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+				border-radius: 50%;
+				color: var(--accent);
+				font-size: 16px;
+			}
+			.pass-card h3 {
+				margin-top: 10px;
+			}
+			.pass-card__facts {
+				gap: 16px;
+				padding: 13px 0;
+				margin: 4px 0 16px;
+				border-top: 1px solid var(--line);
+				border-bottom: 1px solid var(--line);
+				color: var(--muted);
+				font-size: 12px;
+				font-weight: 700;
+			}
+			.pass-card__facts span {
+				display: inline-flex;
+				align-items: center;
+				gap: 7px;
+			}
+			.pass-card__facts i {
+				color: var(--accent);
+			}
+			.pass-card__price {
+				gap: 7px;
+				margin-top: auto;
+				color: var(--ink);
+				font-family: Georgia, serif;
+				font-size: 27px;
+				font-weight: 700;
+			}
+			.pass-card__price small {
+				font-family: inherit;
+				font-size: 14px;
+				font-weight: 500;
+			}
+			.pass-card__action {
+				display: inline-flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 12px;
+				width: fit-content;
+				padding: 12px 14px;
+				background: var(--ink);
+				border: 1px solid var(--ink);
+				border-radius: 5px;
+				color: var(--paper);
+				transition:
+					background 160ms ease,
+					border-color 160ms ease,
+					transform 160ms ease;
+			}
+			.pass-card__action:hover,
+			.pass-card__action:focus-visible {
+				background: var(--accent);
+				border-color: var(--accent);
+				color: #fff;
+				transform: translateY(-1px);
+			}
+			.pass-card__action:focus-visible {
+				outline: 3px solid color-mix(in srgb, var(--accent) 35%, transparent);
+				outline-offset: 3px;
+			}
+			.pass-card__action i {
+				margin-left: 5px;
+			}
+			@media (max-width: 900px) {
+				.pass-grid {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+			}
+			@media (max-width: 700px) {
+				.pass-grid {
+					grid-template-columns: 1fr;
+				}
+				.pass-card {
+					min-height: 0;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<header class="site-header">
@@ -199,6 +316,146 @@
 							(<em>dhunuchi</em>), and local delicacies that define Kolkata's
 							street food culture.
 						</p>
+					</article>
+				</div>
+			</section>
+			<section class="section pass-section">
+				<div class="section-heading">
+					<div>
+						<span class="eyebrow">PANDAL ACCESS</span>
+						<h2>Puja Passes</h2>
+					</div>
+				</div>
+				<div class="content-grid pass-grid">
+					<article class="card-body pass-card">
+						<div class="pass-card__topline">
+							<span class="category">SITI CABLE</span>
+						</div>
+						<h3>Siti Puja Pass</h3>
+						<div class="pass-card__facts">
+							<span
+								><i class="fa-solid fa-ticket" aria-hidden="true"></i>55
+								pandals</span
+							>
+							<span
+								><i class="fa-solid fa-users" aria-hidden="true"></i>Up to 4
+								people</span
+							>
+						</div>
+						<div class="d-flex" style="align-items: center; gap: 18px">
+							<div class="pass-card__price">&#8377;1,499</div>
+							<a
+								class="text-link pass-card__action"
+								href="https://sitipujapass.com"
+								target="_blank"
+								rel="noopener noreferrer"
+								>Purchase</a
+							>
+						</div>
+					</article>
+					<article class="card-body pass-card">
+						<div class="pass-card__topline">
+							<span class="category">FORUM FOR DURGOTSAV</span>
+						</div>
+						<h3>FFD Puja Pass</h3>
+						<div class="pass-card__facts">
+							<span
+								><i class="fa-solid fa-ticket" aria-hidden="true"></i>52
+								pandals</span
+							>
+							<span
+								><i class="fa-solid fa-users" aria-hidden="true"></i>Up to 4
+								people</span
+							>
+						</div>
+						<div class="d-flex" style="align-items: center; gap: 18px">
+							<div class="pass-card__price">&#8377;999</div>
+							<a
+								class="text-link pass-card__action"
+								href="https://in.bookmyshow.com/activities/pujor-passport/et3ya59134"
+								target="_blank"
+								rel="noopener noreferrer"
+								>Purchase</a
+							>
+						</div>
+					</article>
+					<article class="card-body pass-card">
+						<div class="pass-card__topline">
+							<span class="category">PORIKROMA MAP</span>
+						</div>
+						<h3>Porikroma Map Puja Pass</h3>
+						<div class="pass-card__facts">
+							<span
+								><i class="fa-solid fa-ticket" aria-hidden="true"></i>54
+								pandals</span
+							>
+							<span
+								><i class="fa-solid fa-users" aria-hidden="true"></i>Up to 4
+								people</span
+							>
+						</div>
+						<div class="d-flex" style="align-items: center; gap: 18px">
+							<div class="pass-card__price">&#8377;950</div>
+							<a
+								class="text-link pass-card__action"
+								href="https://porikromamap.com/#"
+								target="_blank"
+								rel="noopener noreferrer"
+								>Purchase</a
+							>
+						</div>
+					</article>
+					<article class="card-body pass-card">
+						<div class="pass-card__topline">
+							<span class="category">ANANDA PUBLISHERS</span>
+						</div>
+						<h3>Anandamela Pujabarshiki</h3>
+						<div class="pass-card__facts">
+							<span
+								><i class="fa-solid fa-ticket" aria-hidden="true"></i>32
+								pandals</span
+							>
+							<span
+								><i class="fa-solid fa-users" aria-hidden="true"></i>Up to 2
+								people</span
+							>
+						</div>
+						<div class="d-flex" style="align-items: center; gap: 18px">
+							<div class="pass-card__price">&#8377;340</div>
+							<a
+								class="text-link pass-card__action"
+								href="https://www.deyspublishing.com/books/anandamela-2026"
+								target="_blank"
+								rel="noopener noreferrer"
+								>Purchase</a
+							>
+						</div>
+					</article>
+					<article class="card-body pass-card">
+						<div class="pass-card__topline">
+							<span class="category">DEVI PRANAM</span>
+						</div>
+						<h3>Devi Pranam Pujabarshiki</h3>
+						<div class="pass-card__facts">
+							<span
+								><i class="fa-solid fa-ticket" aria-hidden="true"></i>40
+								pandals</span
+							>
+							<span
+								><i class="fa-solid fa-users" aria-hidden="true"></i>Up to 3
+								people</span
+							>
+						</div>
+						<div class="d-flex" style="align-items: center; gap: 18px">
+							<div class="pass-card__price">&#8377;300</div>
+							<a
+								class="text-link pass-card__action"
+								href="https://boichitro.in/product/sharadiya-debi-pranam-1433/?srsltid=AU7gw4WemLK48iGZqHC9tb8XXKn3zsWm8Cd61EuS1ni9eGTtpv41elH7"
+								target="_blank"
+								rel="noopener noreferrer"
+								>Purchase</a
+							>
+						</div>
 					</article>
 				</div>
 			</section>
