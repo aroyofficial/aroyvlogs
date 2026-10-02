@@ -769,7 +769,11 @@ export function showCountdownPopup(
 	targetDate,
 	position = "bottom-right",
 ) {
-	const target = new Date(targetDate).getTime();
+	const targetDay =
+		targetDate instanceof Date
+			? targetDate.toISOString().slice(0, 10)
+			: targetDate;
+	const target = new Date(`${targetDay}T00:00:00+05:30`).getTime();
 
 	// Resolve corner positioning
 	const POS = {

@@ -289,8 +289,28 @@ export const saptami = {
 			order: 14,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
+			title: "Bidhan Sangha",
+			distance: 170,
+			gmapsUrl:
+				"https://www.google.com/maps/place/Bidhan+Sangha+durga+puja+club/@22.5933059,88.3841112,101m/data=!3m1!1e3!4m15!1m8!3m7!1s0x3a0277e3641979a7:0xf689568d28f9f72c!2sBidhan+Sangha+durga+puja+club!8m2!3d22.5936517!4d88.3848645!10e5!16s%2Fg%2F11h5n5dmg0!3m5!1s0x3a0277e3641979a7:0xf689568d28f9f72c!8m2!3d22.5936517!4d88.3848645!16s%2Fg%2F11h5n5dmg0!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyOS4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc: `<div class="puja-pandal-expansion-content">Celebrating its <strong>58th year in 2026</strong>, Ultadanga Bidhan Sangha presents the theme <strong>'Amurto' (অমূর্ত)</strong>. The creative team consists of <strong>Krishanu Pal, Ashu Chakroborty, and Ashish Saha</strong>.</div>`,
+			links: [
+				{
+					type: LinkType.FACEBOOK,
+					value: "https://www.facebook.com/UltadangaBidhansangha",
+				},
+				{
+					type: LinkType.INSTAGRAM,
+					value: "https://www.instagram.com/ultadanga_bidhan_sangha",
+				},
+			],
+		},
+		{
+			order: 15,
+			type: ItemType.PANDAL,
+			area: Area.ULTADANGA,
 			title: "Jagarani Sangha",
-			distance: 260,
+			distance: 95,
 			gmapsUrl:
 				"https://www.google.com/maps/place/JAGORANI+SANGHA+DURGA+PUJA+PANDAL/@22.59351,88.3845229,402m/data=!3m1!1e3!4m6!3m5!1s0x3a0277ad1e63f327:0xaf50f6fc071645e7!8m2!3d22.5929868!4d88.3848974!16s%2Fg%2F11j01zkdvt!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
 			htmlDesc:
@@ -305,7 +325,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 15,
+			order: 16,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
 			title: "Surirbagan",
@@ -317,7 +337,7 @@ export const saptami = {
 			links: [],
 		},
 		{
-			order: 16,
+			order: 17,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
 			title: "Dakshindari Youths",
@@ -341,7 +361,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 17,
+			order: 18,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
 			title: "Sangrami Sangha",
@@ -365,7 +385,7 @@ export const saptami = {
 			transit: 2,
 		},
 		{
-			order: 18,
+			order: 19,
 			type: ItemType.PANDAL,
 			area: Area.NAGER_BAZAR,
 			title: "Yuba Sangha",
@@ -393,7 +413,7 @@ export const saptami = {
 			transit: 3,
 		},
 		{
-			order: 19,
+			order: 20,
 			type: ItemType.PANDAL,
 			area: Area.BARANAGAR,
 			title: "Bandhudal Sporting Club",
@@ -416,7 +436,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 20,
+			order: 21,
 			type: ItemType.PANDAL,
 			area: Area.BARANAGAR,
 			title: "Karmi Sangha",
@@ -435,7 +455,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 21,
+			order: 22,
 			type: ItemType.PANDAL,
 			area: Area.BARANAGAR,
 			title: "Barangar Netaji Colony Lowland",
