@@ -256,6 +256,22 @@ export const saptami = {
 			order: 12,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
+			title: "Aurobindo Setu Sarbojonin",
+			distance: 500,
+			gmapsUrl:
+				"https://www.google.com/maps/place/AUROBINDO+SETU+SARBOJANIN+DURGAPUJA+SAMITI/@22.5964205,88.3800928,1063m/data=!3m1!1e3!4m6!3m5!1s0x3a02763ddb1b7f4f:0x493527a77e9235da!8m2!3d22.5944825!4d88.3805509!16s%2Fg%2F11hczxlrdl!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyOC4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc: `<div class="puja-pandal-expansion-content">Celebrating its <strong>50th year in 2026</strong>, the Puja presents the theme <strong>'Sonay Sohaga' (সোনায় সোহাগা)</strong>. The creative conceptualization is by <strong>Gauranga Pal</strong>, and the idol is crafted by <strong>Utpal Ghosh</strong>.</div>`,
+			links: [
+				{
+					type: LinkType.FACEBOOK,
+					value: "https://www.facebook.com/groups/210627409723181",
+				},
+			],
+		},
+		{
+			order: 13,
+			type: ItemType.PANDAL,
+			area: Area.ULTADANGA,
 			title: "Telengabagan",
 			distance: 350,
 			gmapsUrl:
@@ -270,7 +286,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 13,
+			order: 14,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
 			title: "Jagarani Sangha",
@@ -289,7 +305,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 14,
+			order: 15,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
 			title: "Surirbagan",
@@ -301,7 +317,7 @@ export const saptami = {
 			links: [],
 		},
 		{
-			order: 15,
+			order: 16,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
 			title: "Dakshindari Youths",
@@ -325,7 +341,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 16,
+			order: 17,
 			type: ItemType.PANDAL,
 			area: Area.ULTADANGA,
 			title: "Sangrami Sangha",
@@ -349,7 +365,7 @@ export const saptami = {
 			transit: 2,
 		},
 		{
-			order: 17,
+			order: 18,
 			type: ItemType.PANDAL,
 			area: Area.NAGER_BAZAR,
 			title: "Yuba Sangha",
@@ -377,7 +393,7 @@ export const saptami = {
 			transit: 3,
 		},
 		{
-			order: 18,
+			order: 19,
 			type: ItemType.PANDAL,
 			area: Area.BARANAGAR,
 			title: "Bandhudal Sporting Club",
@@ -400,7 +416,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 19,
+			order: 20,
 			type: ItemType.PANDAL,
 			area: Area.BARANAGAR,
 			title: "Karmi Sangha",
@@ -419,7 +435,7 @@ export const saptami = {
 			],
 		},
 		{
-			order: 20,
+			order: 21,
 			type: ItemType.PANDAL,
 			area: Area.BARANAGAR,
 			title: "Barangar Netaji Colony Lowland",
