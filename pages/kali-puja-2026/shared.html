@@ -529,6 +529,28 @@
 				}
 			})();
 
+			(() => {
+				let audio = document.getElementById("kali-puja-bgm");
+				if (!audio) {
+					audio = document.createElement("audio");
+					audio.id = "kali-puja-bgm";
+					audio.src = "assets/bgm.mp3";
+					audio.loop = true;
+					audio.preload = "auto";
+					audio.setAttribute("aria-hidden", "true");
+					audio.style.display = "none";
+					document.body.appendChild(audio);
+				}
+
+				const playAudio = () => audio.play().catch(() => {});
+				playAudio();
+				["pointerdown", "keydown", "touchstart"].forEach((eventName) =>
+					document.addEventListener(eventName, playAudio, {
+						once: true,
+						passive: true,
+					}),
+				);
+			})();
 			const hubs = {
 				barasat: {
 					title: "Barasat Kali Puja",

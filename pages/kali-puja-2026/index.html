@@ -482,6 +482,28 @@
 
 		<script>
 			(() => {
+				let audio = document.getElementById("kali-puja-bgm");
+				if (!audio) {
+					audio = document.createElement("audio");
+					audio.id = "kali-puja-bgm";
+					audio.src = "assets/bgm.mp3";
+					audio.loop = true;
+					audio.preload = "auto";
+					audio.setAttribute("aria-hidden", "true");
+					audio.style.display = "none";
+					document.body.appendChild(audio);
+				}
+
+				const playAudio = () => audio.play().catch(() => {});
+				playAudio();
+				["pointerdown", "keydown", "touchstart"].forEach((eventName) =>
+					document.addEventListener(eventName, playAudio, {
+						once: true,
+						passive: true,
+					}),
+				);
+			})();
+			(() => {
 				const target = new Date("2026-11-08T00:00:00+05:30").getTime();
 				const fields = {
 					days: document.getElementById("countdown-days"),
