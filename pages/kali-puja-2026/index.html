@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#21152b" />
+		<meta
+			name="description"
+			content="A practical guide to Kali Puja and Diwali 2026 in North 24 Parganas, with Barasat and Naihati route hubs, an interactive map and a live countdown."
+		/>
+		<title>Kali Puja &amp; Diwali 2026 | Vlogs with Arijit</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="../../css/style.css" />
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+		/>
+		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+		<script
+			src="https://kit.fontawesome.com/121e47ea8d.js"
+			crossorigin="anonymous"
+		></script>
+		<style>
+			:root {
+				--ink: #21152b;
+				--paper: #fbf7ef;
+				--card: #fffdf8;
+				--line: #ded4c4;
+				--muted: #6e6870;
+				--accent: #9c294a;
+				--gold: #ffca6a;
+			}
+			.kali-hero {
+				min-height: 430px;
+				background:
+					radial-gradient(circle at 76% 30%, #ffcf71 0 4%, transparent 4.5%),
+					radial-gradient(
+						circle at 76% 30%,
+						rgba(255, 199, 93, 0.28),
+						transparent 23%
+					),
+					linear-gradient(132deg, #1b1126, #34203b 56%, #7b2944);
+				color: #fff;
+			}
+			.kali-hero h1,
+			.kali-hero .eyebrow {
+				color: #fff;
+			}
+			.kali-hero h1 em {
+				color: var(--gold);
+			}
+			.kali-hero .hero-copy p {
+				color: #efe6df;
+				max-width: 650px;
+			}
+			.kali-hero .hero-art {
+				display: grid;
+				place-items: center;
+				font-size: clamp(130px, 20vw, 230px);
+				text-shadow: 0 20px 40px #0b071280;
+			}
+			.date-chip {
+				display: inline-flex;
+				align-items: center;
+				gap: 9px;
+				margin-top: 14px;
+				padding: 9px 13px;
+				border: 1px solid rgba(255, 255, 255, 0.35);
+				border-radius: 999px;
+				color: #fff;
+				font-size: 13px;
+				font-weight: 700;
+			}
+			.kali-countdown {
+				display: grid;
+				grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+				gap: 24px;
+				align-items: center;
+				padding: 28px;
+				background: linear-gradient(120deg, #271932, #51253e);
+				border-radius: 20px;
+				color: #fff;
+			}
+			.kali-countdown h2 {
+				margin: 5px 0 8px;
+				color: #fff;
+				font-family: Georgia, serif;
+				font-size: clamp(25px, 3vw, 36px);
+			}
+			.kali-countdown p {
+				margin: 0;
+				color: #e8dce5;
+				font-size: 14px;
+				line-height: 1.65;
+			}
+			.countdown-clock {
+				display: grid;
+				grid-template-columns: repeat(4, minmax(56px, 1fr));
+				gap: 10px;
+			}
+			.countdown-unit {
+				padding: 13px 8px;
+				background: rgba(255, 255, 255, 0.09);
+				border: 1px solid rgba(255, 255, 255, 0.17);
+				border-radius: 12px;
+				text-align: center;
+			}
+			.countdown-unit strong {
+				display: block;
+				color: var(--gold);
+				font:
+					700 clamp(25px, 4vw, 38px)/1 Georgia,
+					serif;
+				font-variant-numeric: tabular-nums;
+			}
+			.countdown-unit span {
+				display: block;
+				margin-top: 7px;
+				color: #f4eaf0;
+				font-size: 10px;
+				font-weight: 800;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+			}
+			.countdown-status {
+				min-height: 20px;
+				margin-top: 10px !important;
+				font-size: 12px !important;
+			}
+			.kali-card {
+				height: 100%;
+				padding: 25px;
+				background: var(--card);
+				border: 1px solid var(--line);
+				border-radius: 18px;
+			}
+			.kali-card h3 {
+				margin: 8px 0 10px;
+				font-family: Georgia, serif;
+				font-size: 25px;
+				font-weight: 500;
+			}
+			.kali-card p,
+			.kali-card li {
+				color: var(--muted);
+				font-size: 14px;
+				line-height: 1.7;
+			}
+			.kali-card p:last-child {
+				margin-bottom: 0;
+			}
+			.kali-card .category {
+				color: var(--accent);
+			}
+			.hub-card {
+				min-height: 100%;
+				padding: 26px;
+				background: var(--card);
+				border: 1px solid var(--line);
+				border-radius: 18px;
+				color: var(--ink);
+				text-decoration: none;
+				transition:
+					transform 0.18s ease,
+					box-shadow 0.18s ease;
+			}
+			.hub-card:hover,
+			.hub-card:focus-visible {
+				color: var(--ink);
+				transform: translateY(-3px);
+				box-shadow: 0 14px 30px rgba(35, 16, 39, 0.1);
+			}
+			.hub-card p {
+				color: var(--muted);
+				font-size: 14px;
+				line-height: 1.65;
+			}
+			.hub-card small {
+				color: var(--accent);
+				font-weight: 800;
+				letter-spacing: 0.1em;
+			}
+			.hub-card .text-link {
+				font-weight: 700;
+			}
+			.map-frame {
+				overflow: hidden;
+				background: #e8e4dc;
+				border: 1px solid var(--line);
+				border-radius: 18px;
+			}
+			#kali-hub-map {
+				width: 100%;
+				height: 520px;
+			}
+			.map-caption {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				gap: 10px;
+				padding: 13px 16px;
+				background: var(--card);
+				color: var(--muted);
+				font-size: 12px;
+			}
+			.map-links {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px 18px;
+				margin-top: 16px;
+			}
+			.map-links a,
+			.source-links a {
+				color: var(--accent);
+				font-size: 13px;
+				font-weight: 700;
+			}
+			.route-note {
+				padding: 18px 20px;
+				background: #fff5df;
+				border: 1px solid #edd6a5;
+				border-radius: 14px;
+				color: #694f23;
+				font-size: 14px;
+				line-height: 1.65;
+			}
+			.source-links {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 12px;
+			}
+			.source-links a {
+				display: block;
+				min-height: 100%;
+				padding: 17px;
+				background: var(--card);
+				border: 1px solid var(--line);
+				border-radius: 14px;
+				text-decoration: none;
+			}
+			.source-links small {
+				display: block;
+				margin-top: 5px;
+				color: var(--muted);
+				font-weight: 500;
+				line-height: 1.5;
+			}
+			.faq-list {
+				display: grid;
+				gap: 12px;
+			}
+			.faq-list details {
+				padding: 18px 20px;
+				background: var(--card);
+				border: 1px solid var(--line);
+				border-radius: 14px;
+			}
+			.faq-list summary {
+				color: var(--ink);
+				font-family: Georgia, serif;
+				font-size: 19px;
+				cursor: pointer;
+			}
+			.faq-list p {
+				margin: 12px 0 0;
+				color: var(--muted);
+				font-size: 14px;
+				line-height: 1.7;
+			}
+			@media (max-width: 760px) {
+				.kali-countdown {
+					grid-template-columns: 1fr;
+					padding: 22px;
+				}
+				#kali-hub-map {
+					height: 420px;
+				}
+				.source-links {
+					grid-template-columns: 1fr;
+				}
+			}
+			@media (max-width: 420px) {
+				.countdown-clock {
+					gap: 6px;
+				}
+				.countdown-unit {
+					padding: 11px 4px;
+				}
+				.countdown-unit span {
+					font-size: 9px;
+				}
+			}
+			@media (prefers-reduced-motion: reduce) {
+				.hub-card {
+					transition: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="container-fluid site-header-inner">
+				<a class="brand" href="../../" aria-label="Vlogs with Arijit home">
+					<span class="brand-icon">✦</span>
+					<span
+						><strong>Vlogs with Arijit</strong
+						><small>Stories, routes &amp; experiences</small></span
+					>
+				</a>
+				<a class="btn btn-dark rounded-pill" href="../../festivals/"
+					>&larr; Festivals</a
+				>
+			</div>
+		</header>
+
+		<main>
+			<section
+				class="hero kali-hero"
+				style="
+					background-image: url(&quot;https://lh3.googleusercontent.com/pw/AP1GczOM9hW-Mn6sUgRIk86RxqZ_6D9G4_hOkYEvPN3gLevZ6DgISFchWWsOZPGSZ7Guu_DNpyXlSRPmTtp8vFBSbf54MSnxZ8fS59av7tluq2VUeczgMAZrWgKv0qPZLZ8cz7FVsOxK9WepCr2WmSDAeSOMDA=w1515-h853-s-no-gm?authuser=0&quot;);
+					background-size: cover;
+					background-position: center;
+				"
+			>
+				<div class="hero-copy">
+					<span class="eyebrow">FESTIVAL OF LIGHTS · 2026</span>
+					<h1 style="line-height: 1.05">
+						Kali Puja<br /><em>&amp; Diwali</em>
+					</h1>
+					<p>
+						Chasing Lights in Bengal: Ultimate Kali Puja & Barasat - Naihati
+						Pandal Hopping Guide
+					</p>
+					<span class="date-chip"
+						><div>
+							<i class="fa-solid fa-calendar" style="color: #ffffff"></i>
+						</div>
+						<div style="padding-top: 2px">
+							<time datetime="2026-11-08">Sunday, 8 November 2026</time>
+						</div></span
+					>
+				</div>
+				<div class="hero-art" aria-hidden="true"></div>
+			</section>
+
+			<section class="section">
+				<div class="section-heading">
+					<div>
+						<span class="eyebrow">THE FESTIVAL IS APPROACHING</span>
+						<h2>Make a little room for the night</h2>
+					</div>
+				</div>
+				<div class="kali-countdown" aria-label="Countdown to Kali Puja day">
+					<div>
+						<span class="eyebrow" style="color: #ffca6a"
+							>KALI PUJA · 8 NOVEMBER</span
+						>
+						<h2>Counting down to the lights</h2>
+						<p>
+							Soon, Bengal's autumn nights will glow with devotion, dazzling
+							pandals and the joy of celebrating together. Start dreaming of
+							your Barasat or Naihati night out.
+						</p>
+					</div>
+					<div class="countdown-clock" aria-hidden="true">
+						<div class="countdown-unit">
+							<strong id="countdown-days">--</strong><span>Days</span>
+						</div>
+						<div class="countdown-unit">
+							<strong id="countdown-hours">--</strong><span>Hours</span>
+						</div>
+						<div class="countdown-unit">
+							<strong id="countdown-minutes">--</strong><span>Minutes</span>
+						</div>
+						<div class="countdown-unit">
+							<strong id="countdown-seconds">--</strong><span>Seconds</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="section-heading">
+					<div>
+						<span class="eyebrow">THE 2026 PLAN</span>
+						<h2>Different hubs, different ways to experience the night</h2>
+					</div>
+				</div>
+				<div class="content-grid">
+					<a class="hub-card" href="shared.html?hub=barasat">
+						<small class="d-flex mb-2">BARASAT HUB</small>
+						<h3>Theme pandals &amp; a lively town centre</h3>
+						<p>
+							Barasat is known for its ambitious Kali Puja pandals and lighting.
+							Start with the railway hub, then use confirmed club announcements
+							and traffic guidance to shape a practical local circuit.
+						</p>
+						<span class="text-link">Explore the Barasat guide &rarr;</span>
+					</a>
+					<a class="hub-card" href="shared.html?hub=naihati">
+						<small class="d-flex mb-2">NAIHATI HUB</small>
+						<h3>Boro Maa &amp; the riverside rail town</h3>
+						<p>
+							Naihati’s Boro Maa is a devotional anchor for the night. The guide
+							maps the station and temple location, with space to add nearby
+							pujas once their 2026 details are confirmed.
+						</p>
+						<span class="text-link">Explore the Naihati guide &rarr;</span>
+					</a>
+				</div>
+			</section>
+
+			<section class="section section-muted">
+				<div class="section-heading">
+					<div>
+						<span class="eyebrow">A BENGAL PERSPECTIVE</span>
+						<h2>One festival night, many local traditions</h2>
+					</div>
+				</div>
+				<div class="content-grid">
+					<article class="kali-card">
+						<span class="category">SHYAMA PUJA &amp; DIPAVALI</span>
+						<h3>Devotion at the new moon</h3>
+						<p>
+							In Bengal, Kali Puja is observed on the new-moon night associated
+							with Dipavali. Homes and streets glow with lamps while community
+							pujas bring worship, craft and neighbourhood life together. The
+							date is confirmed for Sunday, 8 November 2026 in the West Bengal
+							Government holiday calendar.
+						</p>
+					</article>
+					<article class="kali-card">
+						<span class="category">A NIGHT-TIME ROUTE</span>
+						<h3>Take the town one cluster at a time</h3>
+						<p>
+							The experience is shaped by the night itself: later visiting
+							hours, busy station approaches and local traffic arrangements.
+							These pages separate the fixed arrival landmarks from the
+							club-by-club route, which should be built from current organiser
+							and administration notices.
+						</p>
+					</article>
+					<article class="kali-card">
+						<span class="category">A GOOD VISIT</span>
+						<h3>Leave time for more than the queue</h3>
+						<p>
+							Pick one hub for the evening, agree on a meeting point, carry
+							water and keep your return plan flexible. Follow barricades and
+							volunteer directions, and ask before photographing worshippers or
+							ritual spaces.
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="section-heading">
+					<div>
+						<span class="eyebrow">ARRIVAL POINTS</span>
+						<h2>Find the two festival hubs</h2>
+					</div>
+				</div>
+				<p style="max-width: 760px; color: var(--muted); line-height: 1.7">
+					Use this map to orient yourself around Barasat Junction, Naihati
+					Junction and Boro Maa. These are reference landmarks, not a complete
+					list of 2026 pandals or a promised walking route.
+				</p>
+				<div class="map-frame">
+					<div
+						id="kali-hub-map"
+						role="application"
+						aria-label="Interactive map showing Barasat Junction, Naihati Junction and Boro Maa temple"
+					></div>
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="section-heading">
+					<div>
+						<span class="eyebrow">PLAN WITH CARE</span>
+						<h2>Useful notes for a busy puja night</h2>
+					</div>
+				</div>
+				<div class="content-grid">
+					<article class="kali-card">
+						<h3>Before leaving</h3>
+						<ul>
+							<li>
+								Check the latest local police, traffic and railway notices for
+								routes and operating hours.
+							</li>
+							<li>
+								Choose one town hub and decide on a clear meeting point in case
+								your group gets separated.
+							</li>
+							<li>
+								Keep your phone charged and save the station and return journey
+								details offline.
+							</li>
+						</ul>
+					</article>
+					<article class="kali-card">
+						<h3>On the route</h3>
+						<ul>
+							<li>
+								Use public transport where practical, then follow local
+								diversions and volunteer instructions.
+							</li>
+							<li>
+								Expect queues and allow generous time for walking between stops.
+							</li>
+							<li>
+								Respect restricted areas, worshippers, photography rules and
+								firework safety notices.
+							</li>
+						</ul>
+					</article>
+					<aside class="route-note">
+						<strong>Route update:</strong> the town hubs and Naihati’s Boro Maa
+						landmark are mapped. Individual club locations, themes, opening
+						hours and crowd-control routes belong here only after reliable 2026
+						announcements are available.
+					</aside>
+				</div>
+			</section>
+		</main>
+
+		<footer class="site-footer container-fluid">
+			<div>
+				<strong>Vlogs with Arijit</strong
+				><span>Kali Puja &amp; Diwali 2026</span>
+			</div>
+			<a class="text-link" href="../../">Back home</a>
+		</footer>
+
+		<script>
+			(() => {
+				const target = new Date("2026-11-08T00:00:00+05:30").getTime();
+				const fields = {
+					days: document.getElementById("countdown-days"),
+					hours: document.getElementById("countdown-hours"),
+					minutes: document.getElementById("countdown-minutes"),
+					seconds: document.getElementById("countdown-seconds"),
+				};
+				const status = document.getElementById("countdown-status");
+				const update = () => {
+					const remaining = target - Date.now();
+					if (remaining <= 0) {
+						Object.values(fields).forEach((field) => {
+							field.textContent = "00";
+						});
+						const parts = new Intl.DateTimeFormat("en-CA", {
+							timeZone: "Asia/Kolkata",
+							year: "numeric",
+							month: "2-digit",
+							day: "2-digit",
+						}).formatToParts(new Date());
+						const today = Object.fromEntries(
+							parts
+								.filter((part) => part.type !== "literal")
+								.map((part) => [part.type, part.value]),
+						);
+						status.textContent =
+							today.year === "2026" &&
+							today.month === "11" &&
+							today.day === "08"
+								? "It’s Kali Puja day. Have a beautiful and safe celebration."
+								: "Kali Puja 2026 has passed. See you at the next celebration.";
+						return false;
+					}
+					const seconds = Math.floor(remaining / 1000);
+					fields.days.textContent = String(
+						Math.floor(seconds / 86400),
+					).padStart(2, "0");
+					fields.hours.textContent = String(
+						Math.floor((seconds % 86400) / 3600),
+					).padStart(2, "0");
+					fields.minutes.textContent = String(
+						Math.floor((seconds % 3600) / 60),
+					).padStart(2, "0");
+					fields.seconds.textContent = String(seconds % 60).padStart(2, "0");
+					return true;
+				};
+				if (update()) {
+					const timer = window.setInterval(() => {
+						if (!update()) window.clearInterval(timer);
+					}, 1000);
+				}
+			})();
+
+			if (window.L) {
+				const map = L.map("kali-hub-map", { scrollWheelZoom: false }).setView(
+					[22.806, 88.45],
+					10,
+				);
+				L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+					maxZoom: 19,
+					attribution:
+						'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+				}).addTo(map);
+				const places = [
+					{
+						name: "Barasat Junction",
+						kind: "Railway arrival point",
+						position: [22.72419, 88.48378],
+						url: "https://www.google.com/maps/search/?api=1&query=Barasat+Junction+Railway+Station",
+					},
+					{
+						name: "Naihati Junction",
+						kind: "Railway arrival point",
+						position: [22.88701, 88.41765],
+						url: "https://www.google.com/maps/search/?api=1&query=Naihati+Junction+Railway+Station",
+					},
+					{
+						name: "Boro Maa Kali Temple",
+						kind: "Naihati devotional landmark",
+						position: [22.8886, 88.41434],
+						url: "https://www.google.com/maps/search/?api=1&query=Boro+Maa+Kali+Temple+Naihati",
+					},
+				];
+				const bounds = [];
+				places.forEach((place) => {
+					bounds.push(place.position);
+					L.marker(place.position)
+						.addTo(map)
+						.bindPopup(
+							`<strong>${place.name}</strong><br>${place.kind}<br><a href="${place.url}" target="_blank" rel="noopener noreferrer">Open directions</a>`,
+						);
+				});
+				map.fitBounds(bounds, { padding: [35, 35] });
+			} else {
+				document.getElementById("kali-hub-map").innerHTML =
+					'<p style="padding:24px">The interactive map could not load. Use the Google Maps links below to open each location.</p>';
+			}
+		</script>
+	</body>
+</html>
