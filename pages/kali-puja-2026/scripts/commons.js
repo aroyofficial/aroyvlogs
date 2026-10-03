@@ -1,0 +1,996 @@
+export const ItemType = {
+	PANDAL: 1,
+	LUNCH: 2,
+	TRANSIT: 3,
+	DINNER: 4,
+};
+
+export const Zone = {
+	NONE: "None",
+	NORTH: "North Kolkata",
+	SOUTH: "South Kolkata",
+	EAST: "East Kolkata",
+	PORT: "Port Area",
+	SOUTHWEST: "South West Kolkata",
+	CENTRAL: "Central Kolkata",
+};
+
+export const Area = {
+	BELGACHIA: ["Belgachia", Zone.NORTH],
+	TALA: ["Tala", Zone.NORTH],
+	MUDIALI: ["Mudiali", Zone.SOUTH],
+	RABINDRA_SAROBAR: ["Rabindra Sarobar", Zone.SOUTH],
+	BALLYGUNGE: ["Ballygunge", Zone.SOUTH],
+	NEW_ALIPORE: ["New Alipore", Zone.SOUTH],
+	CHETLA: ["Chetla", Zone.SOUTH],
+	ALIPORE: ["Alipore", Zone.SOUTH],
+	KALIGHAT: ["Kalighat", Zone.SOUTH],
+	HAZRA: ["Hazra", Zone.SOUTH],
+	BHOWANIPORE: ["Bhowanipore", Zone.SOUTH],
+	PARK_STREET: ["Park Street", Zone.CENTRAL],
+	COLLEGE_STREET: ["College Street", Zone.CENTRAL],
+	BOWBAZAR: ["Bowbazar", Zone.CENTRAL],
+	ENTALLY: ["Entally", Zone.CENTRAL],
+	BOSEPUKUR: ["Bosepukur", Zone.SOUTH],
+	NAIHATI: ["Naihati", Zone.NONE],
+	RAJDANGA: ["Rajdanga", Zone.SOUTH],
+	SANTOSHPUR: ["Santoshpur", Zone.SOUTH],
+	PATULI: ["Patuli", Zone.SOUTH],
+	GARIA: ["Garia", Zone.SOUTH],
+	NAKTALA: ["Naktala", Zone.SOUTH],
+	KUDGHAT: ["Kudghat", Zone.SOUTH],
+	PASCHIM_PUTIARY: ["Paschim Putiary", Zone.SOUTHWEST],
+	HARIDEVPUR: ["Haridevpur", Zone.SOUTHWEST],
+	BEHALA: ["Behala", Zone.SOUTHWEST],
+	THAKURPUKUR: ["Thakurpukur", Zone.SOUTHWEST],
+	BAGBAZAR: ["Bagbazar", Zone.NORTH],
+	SHYAMBAZAR: ["Shyambazar", Zone.NORTH],
+	KUMARTULI: ["Kumartuli", Zone.NORTH],
+	HATKHOLA: ["Hatkhola", Zone.NORTH],
+	AHIRITOLA: ["Ahiritola", Zone.NORTH],
+	CHORBAGAN: ["Chorbagan", Zone.NORTH],
+	MANIKTALA: ["Maniktala", Zone.NORTH],
+	GOURIBARI: ["Gouri Bari", Zone.NORTH],
+	HATIBAGAN: ["Hati Bagan", Zone.NORTH],
+	SOVABAZAR: ["Sovabazar", Zone.NORTH],
+	GARIAHAT: ["Gariahat", Zone.SOUTH],
+	ULTADANGA: ["Ultadanga", Zone.NORTH],
+	NAGER_BAZAR: ["Nager Bazar", Zone.EAST],
+	BARANAGAR: ["Baranagar", Zone.NORTH],
+	KHIDIRPUR: ["Khidirpur", Zone.PORT],
+	DHAKURIA: ["Dhakuria", Zone.SOUTH],
+	SELIMPUR: ["Selimpur", Zone.SOUTH],
+	JODHPUR_PARK: ["Jodhpur Park", Zone.SOUTH],
+	JADAVPUR: ["Jadavpur", Zone.SOUTH],
+	LAKETOWN: ["Lake Town", Zone.EAST],
+	BELIAGHATA: ["Beliaghata", Zone.EAST],
+	SALT_LAKE: ["Salt Lake", Zone.EAST],
+	NEWTOWN: ["New Town", Zone.EAST],
+	DUM_DUM_PARK: ["Dum Dum Park", Zone.NORTH],
+	DUM_DUM: ["Dum Dum", Zone.NORTH],
+	BAGUIATI: ["Baguiati", Zone.NORTH],
+	JORABAGAN: ["Jorabagan", Zone.NORTH],
+	TOLLYGUNGE: ["Tollygunge", Zone.SOUTH],
+	KANKURGACHI: ["Kankurgachi", Zone.EAST],
+};
+
+export const LinkType = {
+	FACEBOOK: 1,
+	INSTAGRAM: 2,
+	WEBSITE: 3,
+	YOUTUBE: 4,
+	X: 5,
+	PHONE: 6,
+	EMAIL: 7,
+};
+
+export const WALKING_PACE_METERS_PER_MINUTE = 50; // 3 km/h
+
+export const TransitMedium = {
+	WALK: 0,
+	AUTO: 1,
+	BUS: 2,
+	TRAIN: 3,
+	METRO: 4,
+	CAB: 5,
+	FERRY: 6,
+};
+
+export const Places = {
+	BUS_STOPS: {
+		BALLY_HALT: {
+			name: "Bally Halt",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Bally+Halt+Stand/@22.65278,88.3369251,804m/data=!3m1!1e3!4m14!1m7!3m6!1s0x39f89d23e11303f1:0xde6d8afeb1caf408!2sBally+Halt+Bus+Stop!8m2!3d22.65278!4d88.3395!16s%2Fg%2F11zf6hxkpn!3m5!1s0x39f89d65c9aea4e3:0xf139f4b47a387628!8m2!3d22.6523756!4d88.3411888!16s%2Fg%2F11h6rz93bn!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		DAKSHINESHWAR: {
+			name: "Dakshineshwar",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Dakshineswar/@22.6535562,88.3608603,201m/data=!3m1!1e3!4m10!1m2!2m1!1sdakshineswar+bus+stand!3m6!1s0x39f89d00ca774131:0x495f6e8ecd21345a!8m2!3d22.6535562!4d88.3620512!15sChZkYWtzaGluZXN3YXIgYnVzIHN0YW5kkgEIYnVzX3N0b3DgAQA!16s%2Fg%2F11b7q54s18!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		PAIKPARA: {
+			name: "Paikpara",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Paikpara/@22.612392,88.3749801,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89d8a1ce403b1:0x9b765751996bb9e9!8m2!3d22.612392!4d88.377555!16s%2Fg%2F1ptxrm21l!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		TALA_POST_OFFICE: {
+			name: "Tala Post Office",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Tala+Post+Office/@22.6059158,88.3744661,177m/data=!3m1!1e3!4m6!3m5!1s0x3a02762679d49381:0x5f5418e1e2837d91!8m2!3d22.6059168!4d88.3743949!16s%2Fg%2F1tj29f0b!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		TOLLYGUNGE_POLICE_STATION: {
+			name: "Tollygunge Police Station",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Tollygunge+P.S./@22.5141026,88.3453757,158m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMwJzUxLjkiTiA4OMKwMjAnNDYuMiJF!8m2!3d22.514406!4d88.346158!3m5!1s0x3a0270cae1d81e07:0xbba029c5459a46c0!8m2!3d22.5142588!4d88.3458392!16s%2Fg%2F11bymy99ff!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		NEW_ALIPORE_PETROL_PUMP: {
+			name: "New Alipore Petrol Pump",
+			gmapsUrl:
+				"https://www.google.com/maps/place/New+Alipore+Petrol+Pump/@22.5089637,88.3329027,71m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMwJzMyLjQiTiA4OMKwMTknNTguMSJF!8m2!3d22.508994!4d88.332794!3m5!1s0x3a0270ae1f3b3a1f:0xad38aea6506c853f!8m2!3d22.5085775!4d88.3335009!16s%2Fg%2F11b7pzm0gb!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BANKIM_MUKHERJEE_SARANI: {
+			name: "Bankim Mukherjee Sarani",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Bankim+Mukherjee+Sarani+-+Army+Camp/@22.5099505,88.3319888,72m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMwJzM1LjIiTiA4OMKwMTknNTYuNCJF!8m2!3d22.509788!4d88.332329!3m5!1s0x3a0270add9c46a1f:0x36110ede91aa82e6!8m2!3d22.509789!4d88.332329!16s%2Fg%2F11c6_c8ryg!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		CHETLA: {
+			name: "Chetla",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Chetla/@22.5174824,88.3364584,122m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMxJzAzLjMiTiA4OMKwMjAnMTIuMCJF!8m2!3d22.517572!4d88.336662!3m5!1s0x3a02774cc00e30f7:0x9973bbda1738dc1e!8m2!3d22.517572!4d88.336662!16s%2Fg%2F11b7pz3q71!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		ALIPORE_CHETLA_CROSSING: {
+			name: "Alipore Chetla Crossing",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Alipore+Chetla+Crossing/@22.5179859,88.332985,90m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMxJzA0LjciTiA4OMKwMTknNTkuMyJF!8m2!3d22.517972!4d88.33313!3m5!1s0x3a0277529ba3889d:0x5a753a463cbb2bcb!8m2!3d22.517856!4d88.333302!16s%2Fg%2F11bymy85vp!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		KEORATALA_SHAMSHAN: {
+			name: "Keoratala Shamshan",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Keoratala+Shamshan/@22.5167306,88.3417102,85m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMxJzAwLjgiTiA4OMKwMjAnMzAuNCJF!8m2!3d22.516899!4d88.341787!3m5!1s0x3a02774ad86edec7:0x36cb97593a4b3d98!8m2!3d22.5169015!4d88.3417867!16s%2Fg%2F11gbfbx_dv!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		RASHBEHARI_AVENUE_CROSSING: {
+			name: "Rashbehari Avenue Crossing",
+			gmapsUrl:
+				"https://www.google.com/maps/place/S.P.+Mukherjee+Road+%2F+R.B.+Avenue+Crossing/@22.5175479,88.3458279,67m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMxJzAzLjciTiA4OMKwMjAnNDQuOCJF!8m2!3d22.517695!4d88.345767!3m5!1s0x3a02773527497b0f:0xbbdb51e20b59da07!8m2!3d22.5176996!4d88.345781!16s%2Fg%2F11g__28mb!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		KALIGHAT: {
+			name: "Kalighat",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Kalighat+-+Near+Main+Toron/@22.523751,88.3417395,366m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMxJzI0LjciTiA4OMKwMjAnMzAuOSJF!8m2!3d22.523526!4d88.341925!3m5!1s0x3a027749c1be4b93:0xdfc2e21ccf95469d!8m2!3d22.523523!4d88.341923!16s%2Fg%2F11byl4qpbd!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		NRS_HOSPITAL: {
+			name: "NRS Hospital",
+			gmapsUrl:
+				"https://www.google.com/maps/place/A.J.C.+Bose+Road+-+NRS+Hospital/@22.5639571,88.3668778,402m/data=!3m1!1e3!4m6!3m5!1s0x3a0276561c799ea3:0xe566b5ffdddb4814!8m2!3d22.563957!4d88.368409!16s%2Fg%2F12hkbq_ks!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		RAMLILA_MAIDAN: {
+			name: "Ramlila Maidan",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ramlila+Maidan/@22.559633,88.3674661,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276f9a062f333:0xff9cab9b31b3cd91!8m2!3d22.559633!4d88.370041!16s%2Fg%2F11g8bblzl9!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		RAJDANGA_NABA_PALLY: {
+			name: "Rajdanga Naba Pally",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Raj+Danga+Nabapally/@22.5146703,88.3902557,78m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMwJzUyLjciTiA4OMKwMjMnMjUuMiJF!8m2!3d22.514643!4d88.390323!3m5!1s0x3a02714d19cfe4a5:0x72787fc5c458e230!8m2!3d22.514644!4d88.390324!16s%2Fg%2F12hq5tgj9!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		EKDALIA: {
+			name: "Ekdalia",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ekdalia/@22.5206963,88.3682383,198m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMxJzE0LjciTiA4OMKwMjInMDUuNiJF!8m2!3d22.520756!4d88.368214!3m5!1s0x3a0276d3f33de6e5:0x97850b9a0b12ab86!8m2!3d22.520876!4d88.368025!16s%2Fg%2F11gbfp22l_!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		GARIAHAT_MORE: {
+			name: "Gariahat More",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Gariahat+More/@22.5200923,88.363544,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276d450e5e077:0xe5043a36e48122e7!8m2!3d22.5200923!4d88.3661189!16s%2Fg%2F1ydnvm__p!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		GARIAHAT_MORE_NEAR_EKDALIA_EVERGREEN: {
+			name: "Gariahat More",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Gariahat+More/@22.5197752,88.3650782,804m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a0276d450e5e077:0xe5043a36e48122e7!2sGariahat+More!8m2!3d22.5200923!4d88.3661189!16s%2Fg%2F1ydnvm__p!3m5!1s0x3a0276d451787397:0x5bf0350f840b53f5!8m2!3d22.5203371!4d88.3649721!16s%2Fg%2F11b7qc3z4s!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BALLYGUNGE_PHARI: {
+			name: "Ballygunge Phari",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ballygunge+Phari/@22.528162,88.3633361,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276d762bd16fd:0x50c3844ca79f2435!8m2!3d22.528162!4d88.365911!16s%2Fg%2F11gzt888s!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BALLYGUNGE: {
+			name: "Ballygunge",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ballygunge/@22.5207815,88.3705823,57m/data=!3m1!1e3!4m6!3m5!1s0x3a0276d23f6d8821:0x2406c9898adc1537!8m2!3d22.5207691!4d88.3708287!16s%2Fg%2F1ptz4p0sh!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SANTOSHPUR_LAKE: {
+			name: "Santoshpur Lake",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Santoshpur+Lake/@22.4918288,88.3824248,191m/am=t/data=!3m1!1e3!4m6!3m5!1s0x3a02716aa95f0f75:0x8443281c805ee1aa!8m2!3d22.491824!4d88.383126!16s%2Fg%2F11b7qd5rc7!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=59ae0639-ec08-468e-be55-e8524e982dd9",
+		},
+		SANTOSHPUR_BOTTOLA: {
+			name: "Santoshpur Bottola",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Santoshpur+Bottala/@22.4930523,88.3798409,50m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI5JzM0LjkiTiA4OMKwMjInNDcuNiJF!8m2!3d22.493035!4d88.379878!3m5!1s0x3a02713e2c935b79:0x3526bfff908b3edd!8m2!3d22.4930262!4d88.3798778!16s%2Fg%2F11b7q10qtz!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SULEKHA_MORE: {
+			name: "Sulekha More",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sulekha+More/@22.4916501,88.3714729,201m/am=t/data=!3m1!1e3!4m6!3m5!1s0x3a027118064959e5:0xb0b301350b1539db!8m2!3d22.49165!4d88.372248!16s%2Fg%2F1hjgydcy9!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=608e706a-8891-4543-abe9-285535832aa1",
+		},
+		KK_DAS_COLLEGE: {
+			name: "KK Das College",
+			gmapsUrl:
+				"https://www.google.com/maps/place/K.K.+Das+College/@22.4711722,88.3806125,179m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI4JzE3LjIiTiA4OMKwMjInNTAuNyJF!8m2!3d22.471442!4d88.380746!3m5!1s0x3a02710ae4add2b3:0x13bd8220f494133!8m2!3d22.471439!4d88.380747!16s%2Fg%2F11b7q6kp0n!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BAISHNABGHATA_MELAR_MATH: {
+			name: "Baishnabghata (Melar Math)",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Baishnabghata+%2F+Melar+Math/@22.4706048,88.3855716,257m/data=!3m1!1e3!4m6!3m5!1s0x3a027175da88054f:0xb3c53c4673781f4!8m2!3d22.470965!4d88.38682!16s%2Fg%2F11bym_7wjv!5m1!1e1?hl=en-IN&entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		GARIA_NO_6_BUS_TERMINUS: {
+			name: "Garia No. 6 Bus Terminus",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Garia+No.+6/@22.4652144,88.3774054,116m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI3JzU0LjciTiA4OMKwMjInMzguMyJF!8m2!3d22.465182!4d88.377306!3m5!1s0x3a0271a6d2859f21:0xa895964d52e7d3bb!8m2!3d22.465182!4d88.377305!16s%2Fg%2F1tp_4tf9!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		ANANDA_ASHRAM: {
+			name: "Ananda Ashram",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ananda+Ashram/@22.4715265,88.3673922,136m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI4JzE3LjUiTiA4OMKwMjInMDMuMCJF!8m2!3d22.471534!4d88.367492!3m5!1s0x3a0271012a1daba9:0xe828e01792c35e0f!8m2!3d22.471541!4d88.3675!16s%2Fg%2F1tnpjf1w!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		KARUNAMOYEE: {
+			name: "Karunamoyee",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Karunamayee/@22.4861149,88.3402206,135m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI5JzEwLjQiTiA4OMKwMjAnMjQuMiJF!8m2!3d22.486214!4d88.340042!3m5!1s0x3a0270938a042c9f:0xe0783cb628868336!8m2!3d22.486215!4d88.340041!16s%2Fg%2F11f0wnv4kn!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		MUCHIPARA: {
+			name: "Muchipara",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Muchipara/@22.4871732,88.3324175,66m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI5JzEzLjciTiA4OMKwMTknNTYuNSJF!8m2!3d22.487138!4d88.33235!3m5!1s0x3a0270999325aca3:0x30dc04062a9364fc!8m2!3d22.4871814!4d88.3323339!16s%2Fg%2F11gbfbvq9h!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BEHALA_CHOWRASTA: {
+			name: "Behala Chowrasta",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Behala+Chowrasta/@22.4871511,88.3129405,171m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a027a6d9190f669:0x4dcef2ce2623eb60!2sBehala+Chowrasta!8m2!3d22.4870602!4d88.3131928!16s%2Fg%2F1pp2vlpvk!3m5!1s0x3a027a6debfee4f9:0x663ed9bd2228e65!8m2!3d22.486941!4d88.313366!16s%2Fg%2F1tsyn5x_!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SAKHERBAZAR: {
+			name: "Sakherbazar",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sakher+Bazar/@22.4817473,88.3113353,189m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDI4JzU0LjgiTiA4OMKwMTgnMzkuOSJF!8m2!3d22.481899!4d88.311089!3m5!1s0x3a027a6f6b0ffacd:0xf3e25cf29c32d37b!8m2!3d22.481902!4d88.311092!16s%2Fg%2F11b7q86d_x!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		AJANTA_CINEMA: {
+			name: "Ajanta Cinema",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ajanta+Cinema/@22.5079328,88.3166994,1240m/data=!3m1!1e3!4m6!3m5!1s0x3a027a06d092224f:0xb72abb8c0a0d05b4!8m2!3d22.5091892!4d88.3211371!16s%2Fg%2F11b7q4h0nq!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkxNi4wIPu8ASoASAFQAw%3D%3D&skid=e839ca7b-8ae2-46e1-974d-da1ea2bda4a1",
+		},
+		PANCHANANTALA: {
+			name: "Panchanantala",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Panchanantala/@22.4674026,88.3070362,402m/data=!3m1!1e3!4m10!1m2!2m1!1spanchanantala+near+thakurpukur!3m6!1s0x3a027a8a0f9d5903:0x262825028bb1593b!8m2!3d22.467561!4d88.308826!15sCh5wYW5jaGFuYW50YWxhIG5lYXIgdGhha3VycHVrdXJaICIecGFuY2hhbmFudGFsYSBuZWFyIHRoYWt1cnB1a3VykgEIYnVzX3N0b3CaAURDaTlEUVVsUlFVTnZaRU5vZEhsalJqbHZUMnQwY2xGdVFsbFZiVGxOV1RCT1FtSkZWVEpsUldoc1ducEtSRTlZWXhBQuABAPoBBAgAEEQ!16s%2Fg%2F11bylf9k7v!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		FANCY_MARKET: {
+			name: "Fancy Market",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Fancy+Market/@22.5399299,88.3237098,171m/data=!3m1!1e3!4m6!3m5!1s0x3a027760021798f1:0x3c15cf2da7d2f597!8m2!3d22.540092!4d88.323999!16s%2Fg%2F11bv6pmnwb!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		MANASHA_MANDIR: {
+			name: "Manasha Mandir",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Manasha+Mandir/@22.5403309,88.3268512,132m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a02775e030a6427:0xcba695bf1878949d!2sManasha+Mandir!8m2!3d22.5402903!4d88.3270474!16s%2Fg%2F1pp2x9b_f!3m5!1s0x3a02775e030a6427:0xcba695bf1878949d!8m2!3d22.5402903!4d88.3270474!16s%2Fg%2F1pp2x9b_f!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SOVABAZAR: {
+			name: "Sovabazar",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sovabazar/@22.5950786,88.3647086,125m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM1JzQyLjMiTiA4OMKwMjEnNTQuMyJF!8m2!3d22.595075!4d88.365078!3m5!1s0x3a0276330a5a8cd1:0x42914a9d96f2992c!8m2!3d22.5950734!4d88.3650799!16s%2Fg%2F11byl1cy93!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		JORASANKO_THAKURBARI: {
+			name: "Jorasanko Thakurbari",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Jorasanko+Thakur+Bari/@22.5842558,88.362333,138m/data=!3m1!1e3!4m6!3m5!1s0x3a0277b4c5ebde5d:0x5125fcdf21e4fa66!8m2!3d22.584265!4d88.362332!16s%2Fg%2F11byl60xhd!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		RAM_MANDIR: {
+			name: "Ram Mandir",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ram+Mandir/@22.5825318,88.3617455,120m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM0JzU3LjgiTiA4OMKwMjEnNDIuMiJF!8m2!3d22.582734!4d88.361709!3m5!1s0x3a0277b4bee86bdf:0xc3c5d50e0bcb23af!8m2!3d22.582729!4d88.361705!16s%2Fg%2F1hjgxv9nx!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		CHALTABAGAN: {
+			name: "Chalta Bagan",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Chalta+Bagan/@22.5854019,88.3707547,97m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM1JzA3LjgiTiA4OMKwMjInMTQuNiJF!8m2!3d22.585489!4d88.370717!3m5!1s0x3a0276485b707df7:0x41835dc2d8d59a8c!8m2!3d22.5854949!4d88.3707234!16s%2Fg%2F11byl6f4ts!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		JAIPURIA_COLLEGE: {
+			name: "Jaipuria College",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Jaipuria+College/@22.5967343,88.3656067,201m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a027633ccbc0001:0x91c63cb1189b5816!2sSovabazar+Rajbari!8m2!3d22.5962644!4d88.3673797!16s%2Fm%2F0j7h_09!3m5!1s0x3a02763254935db7:0xed43779524665!8m2!3d22.5968676!4d88.3655935!16s%2Fg%2F11bymxf_fy!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BAGBAZAR_ROAD: {
+			name: "Bagbazar Road",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Bagbazar+Road/@22.6036249,88.367585,80m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a02770037e0911d:0xfa847e12d9e36882!2s(Bagbazar+Sarbojanin+Durga+Puja+Mandap)!8m2!3d22.60478!4d88.3661767!16s%2Fg%2F11vs6f9h3d!3m5!1s0x3a02762e9cefaf55:0xcc0548e9c29199c7!8m2!3d22.603529!4d88.36781!16s%2Fg%2F11bycjy961!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		GOURIBARI: {
+			name: "Gouribari",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Gouribari/@22.5941218,88.3751246,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a02763c032fac31:0xd1b60d7c7e1f8448!8m2!3d22.5941218!4d88.3776995!16s%2Fg%2F1tmxt_sm!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		GREY_STREET: {
+			name: "Grey Street",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Grey+Street/@22.594919,88.3668191,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276313c97d9d5:0x759e7f685edf2745!8m2!3d22.594919!4d88.369394!16s%2Fg%2F11b7q8gmlc!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		RASHBEHARI_CROSSING: {
+			name: "Rashbehari Crossing",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Rashbehari+Crossing/@22.516342,88.345669,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a027734e230252b:0x2b7af518f47a7a96!8m2!3d22.516342!4d88.345669!16s%2Fg%2F11b7q0vnbm!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		NAGERBAZAR: {
+			name: "Nager Bazar",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Rashbehari+Crossing/@22.516342,88.345669,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a027734e230252b:0x2b7af518f47a7a96!8m2!3d22.516342!4d88.345669!16s%2Fg%2F11b7q0vnbm!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SINTHIR_MORE: {
+			name: "Sinthir More",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sinthee+More+(%E0%A6%B8%E0%A6%BF%E0%A6%81%E0%A6%A5%E0%A6%BF%E0%A6%B0+%E0%A6%AE%E0%A7%8B%E0%A6%A1%E0%A6%BC)/@22.6310927,88.3778971,244m/data=!3m1!1e3!4m14!1m7!3m6!1s0x39f89d946aaa0ccf:0xd4c33247bff3124f!2sSinthi+More!8m2!3d22.631334!4d88.378642!16s%2Fg%2F1pv0wy_lc!3m5!1s0x39f89d004b6e29e9:0x29b9a5f7eb547a0c!8m2!3d22.6310165!4d88.378543!16s%2Fg%2F11x06_ln_y!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		PALPARA: {
+			name: "Palpara",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Pal+Para/@22.6363584,88.3758015,804m/data=!3m1!1e3!4m6!3m5!1s0x39f89dbe1cf8c1db:0x7967fc3d3cc03483!8m2!3d22.635825!4d88.378067!16s%2Fg%2F1thvr2_4!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		HOWRAH: {
+			name: "Howrah",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Howrah/@22.5845071,88.3333649,1542m/data=!3m1!1e3!4m10!1m2!2m1!1showrah+bus+stand!3m6!1s0x3a0277956c3f4a2f:0xd729bdebc872a007!8m2!3d22.5853928!4d88.3423778!15sChBob3dyYWggYnVzIHN0YW5kkgEIYnVzX3N0b3DgAQA!16s%2Fg%2F11pcb066c6!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		EDF: {
+			name: "EDF",
+			gmapsUrl:
+				"https://www.google.com/maps/place/E.D.F./@22.5023571,88.3633341,75m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMwJzA4LjciTiA4OMKwMjEnNDcuOSJF!8m2!3d22.502412!4d88.363293!3m5!1s0x3a0270d8702ab421:0x3b44dd83ecad30cc!8m2!3d22.5024109!4d88.3632967!16s%2Fg%2F11byl71s07!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SITALA_MANDIR: {
+			name: "Sitala Mandir",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sitala+Mandir+(Naskarpara)/@22.502226,88.3880214,189m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMwJzA4LjIiTiA4OMKwMjMnMTYuOSJF!8m2!3d22.502278!4d88.388013!3m5!1s0x3a027145b77e1569:0x1305b04f792dd991!8m2!3d22.502277!4d88.388018!16s%2Fg%2F11dztsl5tx!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SITALA_MANDIR_NASKARPARA: {
+			name: "Sitala Mandir (Naskarpara)",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sitala+Mandir+(Naskarpara)/@22.5018374,88.3824772,1601m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMwJzA3LjUiTiA4OMKwMjMnMTcuMyJF!8m2!3d22.502091!4d88.388135!3m5!1s0x3a027145c92357bb:0x67ecb7799a55a46d!8m2!3d22.502087!4d88.388142!16s%2Fg%2F11bbtp8ts2!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SELIMPUR: {
+			name: "Selimpur",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Selimpur/@22.5040379,88.3729425,92m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMwJzE0LjYiTiA4OMKwMjInMjIuNyJF!8m2!3d22.504066!4d88.37297!3m5!1s0x3a02713aa949e477:0x369d18643477248b!8m2!3d22.504067!4d88.372968!16s%2Fg%2F11dz56j_c0!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		LAKETOWN: {
+			name: "Lake Town",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Lake+Town/@22.5996911,88.4057101,79m/data=!3m1!1e3!4m6!3m5!1s0x3a0275e3518796d7:0xb5d5a0d8b2078566!8m2!3d22.599613!4d88.406018!16s%2Fg%2F11bc8cd5k2!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		LAKETOWN_FOOTBRIDGE: {
+			name: "Lake Town Foot Bridge",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Lake+Town+Foot+Bridge/@22.5999813,88.407417,402m/data=!3m1!1e3!4m6!3m5!1s0x3a0275fb31ee5b47:0x7f8ca56343ef2d44!8m2!3d22.6005398!4d88.408282!16s%2Fg%2F11bc8df04t!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		PHOOLBAGAN_KALIMANDIR: {
+			name: "Phool Bagan Kali Mandir",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Phoolbagan+Kali+Mandir/@22.5706094,88.3868154,804m/data=!3m1!1e3!4m6!3m5!1s0x3a0276637d4ef7b7:0x33360cce7acdfc5a!8m2!3d22.570058!4d88.390184!16s%2Fg%2F1td7lqls!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=644e32a6-2aed-41e5-b4dc-cede611c298a",
+		},
+		CIT_MORE: {
+			name: "CIT More",
+			gmapsUrl:
+				"https://www.google.com/maps/place/C.I.T.+More/@22.5629008,88.3955706,100m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDMzJzQ3LjAiTiA4OMKwMjMnNDQuNyJF!8m2!3d22.563054!4d88.395755!3m5!1s0x3a02768740fb59d7:0x139fef62fd2654f!8m2!3d22.563045!4d88.395755!16s%2Fg%2F11gbktynrg!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		NICCO_PARK: {
+			name: "Nicco Park",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Nicco+Park/@22.5719661,88.4203423,136m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM0JzE5LjIiTiA4OMKwMjUnMTMuMCJF!8m2!3d22.572007!4d88.420277!3m5!1s0x3a0275c9dcd18725:0x6274fa6a4207b933!8m2!3d22.5719957!4d88.42028!16s%2Fg%2F11c6cnv4f1!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BIDHANNAGAR_SOUTH_POLICE_STATION: {
+			name: "Bidhannagar South Police Station",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Bidhannagar+South+Police+Station/@22.5703856,88.4134317,112m/data=!3m1!1e3!4m6!3m5!1s0x3a0275ce7f1b0195:0x3f7e0a73019a932f!8m2!3d22.570513!4d88.41353!16s%2Fg%2F11gnprvct6!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		LABONY: {
+			name: "Labony",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Labony/@22.5813163,88.4066557,186m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM0JzUyLjQiTiA4OMKwMjQnMjMuOCJF!8m2!3d22.581225!4d88.406598!3m5!1s0x3a0275d956ec949d:0xea5b35ff909e343e!8m2!3d22.581231!4d88.406604!16s%2Fg%2F11b7q58tbh!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		CITY_CENTER: {
+			name: "City Center",
+			gmapsUrl:
+				"https://www.google.com/maps/place/City+Center/@22.587041,88.4072523,101m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a0275dd908f2c4b:0x1358520f5fbc2aa!2sCity+Centre!8m2!3d22.5870411!4d88.4078654!16s%2Fg%2F1vzv22rv!3m5!1s0x3a0275dde80c29a9:0x576df7e2935363ff!8m2!3d22.587015!4d88.407402!16s%2Fg%2F11gbfd6hrg!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		TECHNOPOLIS: {
+			name: "Technopolis",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Technopolis/@22.5805573,88.4375128,222m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM0JzUwLjUiTiA4OMKwMjYnMTYuNCJF!8m2!3d22.580695!4d88.437888!3m5!1s0x3a0275a6e2052571:0x16c6d428b7cfffb5!8m2!3d22.580697!4d88.437888!16s%2Fg%2F11byl5b9b5!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		NEWTOWN_BUS_TERMINUS: {
+			name: "New Town Bus Terminus",
+			gmapsUrl:
+				"https://www.google.com/maps/place/New+Town/@22.5826886,88.4535871,193m/data=!3m1!1e3!4m12!1m5!3m4!2zMjLCsDM0JzU3LjYiTiA4OMKwMjcnMTMuOSJF!8m2!3d22.582666!4d88.453848!3m5!1s0x3a0275115fe53141:0x24c1b6e17ea160be!8m2!3d22.582669!4d88.45385!16s%2Fg%2F1tj7zcwg!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		NEWTOWN_AXIS_MALL: {
+			name: "New Town Axis Mall",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Axis+Mall+New+Town/@22.5809029,88.4557995,804m/data=!3m1!1e3!4m6!3m5!1s0x3a02753d8a064cf9:0x682d3519d7eb1f4b!8m2!3d22.5809017!4d88.4597773!16s%2Fg%2F11h598zj2p!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		DUM_DUM_PARK: {
+			name: "Dum Dum Park",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Dum+Dum+Park/@22.6028665,88.418867,402m/data=!3m1!1e3!4m6!3m5!1s0x3a0275f2fd3dd92b:0xf57d2634d3a37f65!8m2!3d22.6031682!4d88.419258!16s%2Fg%2F1tf272kd!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		MRINALINI: {
+			name: "Mrinalini",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Mrinalini/@22.628782,88.4181171,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89e161eac96fd:0x72fd011f2a26d4c1!8m2!3d22.628782!4d88.420692!16s%2Fg%2F11c6_d89kj?entry=tts&g_ep=EgoyMDI2MDgyNi4wIPu8ASoASAFQAw%3D%3D&skid=f4a315e8-839c-4a23-bac1-272edbe00dfa",
+		},
+		KANKURGACHI: {
+			name: "Kankurgachi",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Kankurgachi/@22.5803922,88.3900812,128m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a0275fb31ee5b47:0x7f8ca56343ef2d44!2sLake+Town+Foot+Bridge!8m2!3d22.6005398!4d88.408282!16s%2Fg%2F11bc8df04t!3m5!1s0x3a02766e5cd6e911:0x935f966e84e693e9!8m2!3d22.580353!4d88.390012!16s%2Fg%2F11g2_g3ctg!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		AMARPALLY_BHAGABATI: {
+			name: "Amarpally Bhagabati",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Amarpally+Bhagabati/@22.6171357,88.4121371,277m/data=!3m1!1e3!4m6!3m5!1s0x39f89e1c9eccaa07:0xa9982817fdeb086e!8m2!3d22.617523!4d88.412711!16s%2Fg%2F11bymtjw5s!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+	},
+	METRO_STATIONS: {
+		DAKSHINESHWAR: {
+			name: "Dakshineshwar",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Dakshineswar/@22.6538276,88.3611228,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89daa1748bbcb:0xa27c675d829f7253!8m2!3d22.6538276!4d88.3636977!16s%2Fg%2F11r1s77q7s!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BELGACHIA: {
+			name: "Belgachia",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Belgachia/@22.605973,88.3837781,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a02761eb2edc24b:0x907a8d18e3d19993!8m2!3d22.605973!4d88.386353!16s%2Fm%2F0gtszc_!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		RABINDRA_SAROBAR: {
+			name: "Rabindra Sarobar",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Rabindra+Sarobor/@22.5078864,88.3429822,805m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0270c9a7b32055:0x4752ac60f521069!8m2!3d22.5078864!4d88.3455571!16s%2Fm%2F0gtwz05!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		NETAJI_BHAVAN: {
+			name: "Netaji Bhavan",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Netaji+Bhavan/@22.532977,88.3431375,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a027738d8f3509f:0x50f16bdb507d7d94!8m2!3d22.532977!4d88.3457124!16s%2Fm%2F0bmfz9v!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		PARK_STREET: {
+			name: "Park Street",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Park+Street/@22.55445,88.3472751,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a02770e57b33743:0x76896b81976ccd02!8m2!3d22.55445!4d88.34985!16s%2Fm%2F0gttv70!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		CENTRAL: {
+			name: "Central",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Central/@22.5725237,88.3556674,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0277ac0161c411:0xa1c2fcf3868f35f3!8m2!3d22.5725237!4d88.3582423!16s%2Fm%2F0gtwrz3!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BEHALA_BAZAR: {
+			name: "Behala Bazar",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Behala+Bazar/@22.5003316,88.3192637,1549m/data=!3m1!1e3!4m6!3m5!1s0x3a027a0ee4cea537:0x53edb209775aeb4!8m2!3d22.500378!4d88.3172706!16s%2Fg%2F1ptxv86p1!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkxNi4wIPu8ASoASAFQAw%3D%3D&skid=dad2a5f9-8fbc-4c4d-8407-ceefb4f132f5",
+		},
+		GEETANJALI: {
+			name: "Geetanjali",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Gitanjali/@22.469425,88.3673474,805m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a02710777f15313:0x89774f7a8b6e951f!8m2!3d22.469425!4d88.3699223!16s%2Fg%2F1hm6s202z?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=757ff03e-6f00-4000-9fc1-f3722ceb8645",
+		},
+		THAKURPUKUR: {
+			name: "Thakurpukur",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Thakurpukur/@22.4627778,88.2729664,6203m/data=!3m1!1e3!4m6!3m5!1s0x3a027a8ba16f9511:0xa766c9189ed14f7d!8m2!3d22.4642826!4d88.3074849!16s%2Fg%2F1hf6jkfmc?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=9747849a-f8b3-4dfa-8e00-ff0f668980a2",
+		},
+		NETAJI: {
+			name: "Netaji",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Netaji/@22.4809362,88.3433862,805m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0270ed8471e3fb:0xf8876f7c9d7c7ba7!8m2!3d22.4809362!4d88.3459611!16s%2Fm%2F0gtv5rk!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SALTLAKE_SECTOR_V: {
+			name: "Salt Lake Sector V",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Salt+Lake+Sector+V/@22.5828074,88.4249997,1411m/data=!3m1!1e3!4m6!3m5!1s0x3a0275bb6b618b6f:0x985bb9bc2420e910!8m2!3d22.580939!4d88.429052!16s%2Fg%2F11f69_jwfm!5m1!1e1?entry=tts&g_ep=EgoyMDI2MDkwMi4wIPu8ASoASAFQAw%3D%3D&skid=d8e2088f-d031-4761-96c5-ac3f2f76a328",
+		},
+	},
+	RAIL_STATIONS: {
+		TALA: {
+			name: "Tala",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Tala/@22.6063823,88.3762971,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276216235b991:0x36fcc1cfa1da07b8!8m2!3d22.6063823!4d88.378872!16s%2Fg%2F11gk_36m3p!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SEALDAH: {
+			name: "Sealdah",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sealdah/@22.567792,88.3684454,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a027659c5555555:0xa3968ffa1950bfd0!8m2!3d22.567792!4d88.3710203!16zL20vMDV2MWM5!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BALLY_HALT: {
+			name: "Bally Halt",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Bally+Halt/@22.6522445,88.3366672,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89d2407d0b96d:0xbc21f779dc795ff2!8m2!3d22.6522445!4d88.3392421!16s%2Fg%2F1vs1q8hf!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BALLYGUNGE: {
+			name: "Ballygunge",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ballygunge+Jn/@22.5194391,88.3717059,302m/data=!3m1!1e3!4m6!3m5!1s0x3a0276d27c71e5b1:0xdfc52b39229e41e1!8m2!3d22.5193772!4d88.3721353!16s%2Fg%2F11f776gnq7!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		RAMRAJATALA: {
+			name: "Ramrajatala",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Ramrajatala/@22.5894096,88.2943872,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0278684e1f631d:0xd5d92607bd744c9e!8m2!3d22.5894096!4d88.2969621!16s%2Fg%2F11h0d3grfd!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BALLY: {
+			name: "Bally",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Bally/@22.6556234,88.3369475,804m/data=!3m1!1e3!4m15!1m8!3m7!1s0x39f89d20fde81ee7:0x15f059101ff78933!2sBally,+Howrah,+West+Bengal+700084!3b1!8m2!3d22.6547113!4d88.3404785!16s%2Fg%2F11n6spr548!3m5!1s0x39f89d210123f297:0xe7009345b2ebfbcc!8m2!3d22.6559311!4d88.3405404!16s%2Fg%2F1vq737wp!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
+		},
+		SONARPUR: {
+			name: "Sonarpur",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Sonarpur+Junction/@22.4429798,88.4305441,805m/data=!3m3!1e3!4b1!5s0x3991aaada085e821:0xbacf9a7d718961b5!4m6!3m5!1s0x3a027268720d59bd:0x6b7e7cedeb80a85a!8m2!3d22.4429798!4d88.4305441!16s%2Fg%2F11gjt6knh3!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		HOWRAH: {
+			name: "Howrah",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Howrah+Jn/@22.5837,88.3395651,804m/data=!3m3!1e3!4b1!5s0x1207f875ff627ff7:0x5d15e7c15533e6f9!4m6!3m5!1s0x3a027795d8ab719b:0x45ef375a63fd05f3!8m2!3d22.5837!4d88.34214!16s%2Fg%2F12lppvq2b!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BIDHANNAGAR_ROAD: {
+			name: "Bidhannagar Road",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Bidhan+Nagar+Road/@22.5914513,88.3882393,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3a0276128ae2ad71:0xe86f7f526ac0430c!8m2!3d22.5914513!4d88.3908142!16s%2Fm%2F051_bz7!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		DUMDUM: {
+			name: "Dum Dum",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Dum+Dum+Junction/@22.6211825,88.390566,804m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89dfaf3564501:0xd9f017fd844bc3c7!8m2!3d22.6211825!4d88.3931409!16s%2Fm%2F0gttn81!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		DHAKURIA: {
+			name: "Dhakuria",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Dhakuria/@22.5091478,88.3686128,805m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a02712e6ae3f11b:0x917260bb2f312d62!2sDhakuria!8m2!3d22.5091478!4d88.3711877!16s%2Fg%2F11fd7d7qgy!3m5!1s0x3a02712e6ae3f11b:0x917260bb2f312d62!8m2!3d22.5091478!4d88.3711877!16s%2Fg%2F11fd7d7qgy!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		CHINSURAH: {
+			name: "Chinsurah",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Chuchura/@22.8901581,88.3673,802m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f8917b9f35c88f:0x69a69336f0396b87!8m2!3d22.8901581!4d88.3698749!16s%2Fg%2F11dxjxkjkv!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BANDEL: {
+			name: "Bandel",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Bandel+Jn/@22.9228695,88.3755836,802m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f893bf47214cad:0xa2d72684cbfdfe4d!8m2!3d22.9228695!4d88.3781585!16s%2Fg%2F1tc_722b!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		NAIHATI: {
+			name: "Naihati",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Naihati+JN./@22.8874565,88.4155106,802m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f896a3028ed425:0xa5f0b19d0c1b9f12!8m2!3d22.8874565!4d88.4180855!16s%2Fg%2F1hhn9kwkm!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+	},
+	FERRY_TERMINALS: {
+		CHINSURAH_FERRY_GHAT: {
+			name: "Chinsurah Ferry Ghat",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Chinsurah+Boroma+Ferry+Ghat/@22.8876409,88.4035431,148m/data=!3m1!1e3!4m14!1m7!3m6!1s0x39f897c3db781d3f:0x25b7b3da3a4ba433!2sNaihati+Boroma+ghat!8m2!3d22.8895764!4d88.412025!16s%2Fg%2F11rhrwb6j8!3m5!1s0x39f8979192eea90b:0xd691288c0a587c23!8m2!3d22.8876814!4d88.4038788!16s%2Fg%2F11smcrn8fc!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		NAIHATI_FERRY_GHAT: {
+			name: "Naihati Ferry Ghat",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Naihati+Boroma+ghat/@22.8901498,88.4115537,230m/data=!3m1!1e3!4m7!3m6!1s0x39f897c3db781d3f:0x25b7b3da3a4ba433!4b1!8m2!3d22.8895764!4d88.412025!16s%2Fg%2F11rhrwb6j8!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+	},
+};
+
+export function getPinLocation(urlString) {
+	try {
+		const path = new URL(urlString).pathname;
+		const placeLatitude = path.match(/!3d(-?\d+(?:\.\d+)?)/)?.[1];
+		const placeLongitude = path.match(/!4d(-?\d+(?:\.\d+)?)/)?.[1];
+		const coordinatePath = path.match(/@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/);
+		const latitude = placeLatitude || coordinatePath?.[1];
+		const longitude = placeLongitude || coordinatePath?.[2];
+
+		return latitude && longitude ? { latitude, longitude } : null;
+	} catch {
+		return null;
+	}
+}
+
+export function getToiletsUrl(gmapsUrl) {
+	const pin = getPinLocation(gmapsUrl);
+	return pin
+		? `https://www.google.com/maps/search/toilets/@${pin.latitude},${pin.longitude},17z?entry=ttu`
+		: "";
+}
+
+export function renderPandal(item, routeData) {
+	const safe = (value) =>
+		String(value).replace(
+			/[&<>"']/g,
+			(char) =>
+				({
+					"&": "&amp;",
+					"<": "&lt;",
+					">": "&gt;",
+					'"': "&quot;",
+					"'": "&#39;",
+				})[char],
+		);
+	const icons = {
+		[LinkType.FACEBOOK]: "facebook",
+		[LinkType.INSTAGRAM]: "instagram",
+		[LinkType.WEBSITE]: "chrome",
+		[LinkType.YOUTUBE]: "youtube",
+		[LinkType.X]: "x-twitter",
+		[LinkType.PHONE]: "phone",
+		[LinkType.EMAIL]: "envelope",
+	};
+	const links = item.links
+		.map(({ type, value }) => {
+			const href =
+				type === LinkType.PHONE
+					? `tel:${value}`
+					: type === LinkType.EMAIL
+						? `mailto:${value}`
+						: value;
+			const external = type !== LinkType.PHONE && type !== LinkType.EMAIL;
+			const style =
+				type === LinkType.PHONE || type === LinkType.EMAIL ? "solid" : "brands";
+			return `<div class="itinerary-item-fa-btn"><a href="${safe(href)}"${external ? ' target="_blank" rel="noopener"' : ""}><i class="fa-${style} fa-${icons[type]}"></i></a></div>`;
+		})
+		.join("");
+	const linkFooter = links
+		? `<div class="itinerary-item-expansion-panel-footer">${links}</div>`
+		: "";
+	const toiletsUrl = getToiletsUrl(item.gmapsUrl);
+	const toiletsLink = toiletsUrl
+		? `<a class="map-btn" target="_blank" rel="noopener" href="${safe(toiletsUrl)}">Toilets &#8599;</a>`
+		: "";
+	const area = `${item.area[0].toUpperCase()} (${item.area[1].toUpperCase()})`;
+	const previousStop = routeData.stops.find(
+		(stop) => stop.order === item.order - 1,
+	);
+	const transitBeforeStopIndex = item.isPreviousTransit
+		? item.transit
+		: previousStop?.isPreviousTransit
+			? undefined
+			: previousStop?.transit;
+	const transitBeforeStop = routeData.transits.find(
+		(transit) => transit.index === transitBeforeStopIndex,
+	);
+	const lastTransitDestination = transitBeforeStop?.steps.at(-1)?.dest?.name;
+	const lunchStop = previousStop?.lunch ? routeData.lunchStop.title : null;
+	const lastTransitDestinationAfterLunchStop =
+		previousStop?.lunch && routeData.lunchStop.transit
+			? routeData.transits
+					.find((t) => t.index === routeData.lunchStop.transit)
+					.steps.at(-1)?.dest?.name
+			: null;
+	const fromLocation =
+		lastTransitDestinationAfterLunchStop ||
+		lunchStop ||
+		lastTransitDestination ||
+		previousStop?.title;
+	const walkingTime = Math.ceil(item.distance / WALKING_PACE_METERS_PER_MINUTE);
+
+	return `<span class="itinerary-item-order">${String(item.order).padStart(2, "0")}</span><div class="itinerary-item pandal" aria-expanded="false"><div class="itinerary-item-body"><div> <!-- <div class="geo-area">${safe(area)}</div> --> <h3 style="margin-top:6px;">${safe(item.title)}</h3><p>&#128694; ${safe(item.distance)} m &middot; &#9201;&#65039; ${walkingTime} min${fromLocation ? ` from ${safe(fromLocation)}.` : "."}</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="${safe(item.gmapsUrl)}">Google Maps &#8599;</a>${toiletsLink}</div></div><div class="itinerary-item-expansion-panel" aria-hidden="true"><div><div class="itinerary-item-expansion-panel-body">${item.htmlDesc}</div>${linkFooter}</div></div></div>`;
+}
+
+export function renderTransit(transit) {
+	const getPlaceType = (place) => {
+		if (Object.values(Places.BUS_STOPS).includes(place)) {
+			return { chipClass: "place-chip--bus" };
+		}
+		if (Object.values(Places.METRO_STATIONS).includes(place)) {
+			return { chipClass: "place-chip--metro" };
+		}
+		if (Object.values(Places.RAIL_STATIONS).includes(place)) {
+			return { chipClass: "place-chip--rail" };
+		}
+		if (place?.placeType === "bus-stop") {
+			return { chipClass: "place-chip--bus" };
+		}
+		if (place?.placeType === "metro-station") {
+			return { chipClass: "place-chip--metro" };
+		}
+		if (place?.placeType === "rail-station") {
+			return { chipClass: "place-chip--rail" };
+		}
+		return null;
+	};
+	const locationLink = (place) => {
+		const placeType = getPlaceType(place);
+		const chipClass = placeType ? ` ${placeType.chipClass}` : "";
+		return place?.gmapsUrl
+			? `<a class="route-location-link${chipClass}" target="_blank" rel="noopener" href="${place.gmapsUrl}">${place.name}</a>`
+			: place.name;
+	};
+	const steps = transit.steps.map((step) => {
+		const destination = locationLink(step.dest);
+		switch (step.medium) {
+			case TransitMedium.WALK: {
+				const prefix = step.prefix ? `${step.prefix} ` : "";
+				const from = step.fromName ? `from ${step.fromName} to` : "to";
+				const duration = Math.ceil(
+					step.distance / WALKING_PACE_METERS_PER_MINUTE,
+				);
+				return `${prefix}&#128694; ${step.distance} m &middot; &#9201;&#65039; ${duration} min ${from} ${destination}`;
+			}
+			case TransitMedium.BUS:
+				return step.src
+					? `Take a bus from ${locationLink(step.src)} to ${destination}`
+					: `Then take a bus to ${destination}`;
+			case TransitMedium.METRO:
+				return `take a metro to ${destination}`;
+			case TransitMedium.AUTO:
+				return `then take ${step.modeLabel || "an auto"} to ${destination}`;
+			case TransitMedium.TRAIN:
+				return step.src
+					? `Take ${step.service || "a train"} from ${locationLink(step.src)} to ${destination}${step.via ? ` via ${locationLink(step.via)}` : ""}`
+					: `Then take ${step.service || "a train"} to ${destination}${step.via ? ` via ${locationLink(step.via)}` : ""}`;
+			case TransitMedium.CAB:
+				return step.src
+					? `Take a cab from ${locationLink(step.src)} to ${destination}`
+					: `Then book a cab to ${destination}`;
+			default:
+				return destination;
+		}
+	});
+	return `<strong>Transit:</strong> ${steps.join(" &rarr; ")}${transit.note ? ` &middot; ${transit.note}` : ""}.`;
+}
+
+export function renderLunch(lunch) {
+	const walkingTime = Math.ceil(
+		lunch.distance / WALKING_PACE_METERS_PER_MINUTE,
+	);
+	return `<li class="itinerary-stop lunch-stop-step"><div class="itinerary-item lunch-stop"><div class="itinerary-item-body"><div><div class="geo-area">&#127869; LUNCH</div><h3>${lunch.title}</h3><p>Lunch stop. &#128694; ${lunch.distance} m &middot; &#9201;&#65039; ${walkingTime} min from ${lunch.fromName}.</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="${lunch.gmapsUrl}">Google Maps &#8599;</a></div></div></div></li>`;
+}
+
+export function renderDinner(dinner) {
+	const walkingTime = Math.ceil(
+		dinner.distance / WALKING_PACE_METERS_PER_MINUTE,
+	);
+	return `<li class="itinerary-stop dinner-stop-step"><div class="itinerary-item dinner-stop"><div class="itinerary-item-body"><div><div class="geo-area">&#127869; DINNER</div><h3>${dinner.title}</h3><p>Dinner stop. &#128694; ${dinner.distance} m &middot; &#9201;&#65039; ${walkingTime} min from ${dinner.fromName}.</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="${dinner.gmapsUrl}">Google Maps &#8599;</a></div></div></div></li>`;
+}
+
+export function getRouteCenter(routeData) {
+	const coords = [];
+
+	const push = (gmapsUrl) => {
+		if (!gmapsUrl) return;
+		const pin = getPinLocation(gmapsUrl);
+		if (pin) {
+			// getPinLocation returns strings — must cast before min/max / math
+			const lat = Number(pin.latitude);
+			const lng = Number(pin.longitude);
+			if (Number.isFinite(lat) && Number.isFinite(lng)) {
+				coords.push({ lat, lng });
+			}
+		}
+	};
+
+	// 1. Meetup place
+	push(routeData?.meetup?.place?.gmapsUrl);
+
+	// 2. Lunch stop
+	push(routeData?.lunchStop?.gmapsUrl);
+
+	// 3. Dinner stop
+	push(routeData?.dinnerStop?.gmapsUrl);
+
+	// 4. All puja stops
+	(routeData?.stops || []).forEach((stop) => push(stop?.gmapsUrl));
+
+	// 5. All transit endpoints (src + dest of every step)
+	(routeData?.transits || []).forEach((transit) =>
+		(transit?.steps || []).forEach((step) => {
+			push(step?.src?.gmapsUrl);
+			push(step?.dest?.gmapsUrl);
+		}),
+	);
+
+	if (!coords.length) return null;
+
+	let minLat = Infinity;
+	let maxLat = -Infinity;
+	let minLng = Infinity;
+	let maxLng = -Infinity;
+
+	for (const { lat, lng } of coords) {
+		if (lat < minLat) minLat = lat;
+		if (lat > maxLat) maxLat = lat;
+		if (lng < minLng) minLng = lng;
+		if (lng > maxLng) maxLng = lng;
+	}
+
+	return {
+		latitude: (minLat + maxLat) / 2,
+		longitude: (minLng + maxLng) / 2,
+	};
+}
+
+/**
+ * Shows a responsive countdown popup anchored to a corner of the page.
+ * @param {string} title - Main headline (e.g., "Durga Puja 2026")
+ * @param {string} subtitle - Secondary text (e.g., "Countdown to Mahasaptami")
+ * @param {string|Date} targetDate - The date to count down to.
+ * @param {"top-right"|"top-left"|"bottom-right"|"bottom-left"} position - Corner to anchor the popup. Defaults to "bottom-right".
+ */
+export function showCountdownPopup(
+	title,
+	subtitle,
+	targetDate,
+	position = "bottom-right",
+) {
+	const targetDay =
+		targetDate instanceof Date
+			? targetDate.toISOString().slice(0, 10)
+			: targetDate;
+	const target = new Date(`${targetDay}T00:00:00+05:30`).getTime();
+
+	// Resolve corner positioning
+	const POS = {
+		"top-right": { top: "20px", right: "20px", bottom: "auto", left: "auto" },
+		"top-left": { top: "20px", right: "auto", bottom: "auto", left: "20px" },
+		"bottom-right": {
+			top: "auto",
+			right: "20px",
+			bottom: "20px",
+			left: "auto",
+		},
+		"bottom-left": { top: "auto", right: "auto", bottom: "20px", left: "20px" },
+	};
+	const pos = POS[position] ?? POS["bottom-right"];
+
+	// Slide-in animation direction based on corner
+	const slideIn = position.includes("right")
+		? "translateX(120%)"
+		: "translateX(-120%)";
+	const slideUp = position.includes("bottom")
+		? "translateY(120%)"
+		: "translateY(-120%)";
+	const animFrom = position.includes("right") ? slideIn : slideIn;
+
+	// 1. Inject styles once
+	if (!document.getElementById("countdown-popup-styles")) {
+		const style = document.createElement("style");
+		style.id = "countdown-popup-styles";
+		style.textContent = `
+            .cd-popup {
+                position: fixed;
+                z-index: 99999;
+                width: 300px;
+                max-width: calc(100vw - 40px);
+                background: #ffffff;
+                border-radius: 18px;
+                padding: 20px;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10);
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                text-align: center;
+                border: 1px solid rgba(0,0,0,0.06);
+                box-sizing: border-box;
+            }
+            .cd-popup.cd-slide-in  { animation: cd-slidein  0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+            .cd-popup.cd-slide-out { animation: cd-slideout 0.3s ease-in forwards; }
+            @keyframes cd-slidein  { from { opacity: 0; transform: var(--cd-from); } to { opacity: 1; transform: none; } }
+            @keyframes cd-slideout { from { opacity: 1; transform: none; } to { opacity: 0; transform: var(--cd-from); } }
+            .cd-close {
+                position: absolute; top: 12px; right: 12px;
+                background: #f1f3f5; border: 0;
+                width: 26px; height: 26px; border-radius: 50%;
+                cursor: pointer; color: #495057; font-size: 14px;
+                display: flex; align-items: center; justify-content: center;
+                transition: background 0.15s;
+            }
+            .cd-close:hover { background: #dee2e6; }
+            .cd-title {
+                margin: 0 18px 2px;
+                font-size: 15px; font-weight: 800;
+                color: #1a1b1e; line-height: 1.3;
+            }
+            .cd-subtitle {
+                margin: 0 0 16px;
+                font-size: 11px; color: #868e96;
+                font-weight: 500; letter-spacing: 0.1px;
+            }
+            .cd-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+            .cd-unit {
+                background: #f8f9fa;
+                border: 1px solid #e9ecef;
+                border-radius: 10px;
+                padding: 10px 4px;
+            }
+            .cd-val {
+                display: block;
+                font-size: 22px; font-weight: 800;
+                color: #1a73e8; line-height: 1;
+                font-variant-numeric: tabular-nums;
+                letter-spacing: -0.5px;
+            }
+            .cd-lbl {
+                display: block;
+                font-size: 9px; font-weight: 700;
+                text-transform: uppercase;
+                color: #adb5bd; margin-top: 4px;
+                letter-spacing: 0.5px;
+            }
+            .cd-done {
+                grid-column: span 4;
+                padding: 10px 0;
+                font-size: 13px; font-weight: 700;
+                color: #2b8a3e;
+            }
+            @media (max-width: 360px) {
+                .cd-popup { padding: 16px; border-radius: 14px; }
+                .cd-val   { font-size: 18px; }
+                .cd-title { font-size: 13px; }
+            }
+        `;
+		document.head.appendChild(style);
+	}
+
+	// 2. Build the popup element
+	const popup = document.createElement("div");
+	popup.className = "cd-popup cd-slide-in";
+	Object.assign(popup.style, {
+		top: pos.top,
+		right: pos.right,
+		bottom: pos.bottom,
+		left: pos.left,
+		"--cd-from": position.includes("bottom") ? slideUp : slideIn,
+	});
+
+	popup.innerHTML = `
+        <button class="cd-close" title="Close" aria-label="Close countdown">&times;</button>
+        <p class="cd-title">${title}</p>
+        <p class="cd-subtitle">${subtitle}</p>
+        <div class="cd-grid">
+            <div class="cd-unit"><span class="cd-val" id="cd-days">00</span><span class="cd-lbl">Days</span></div>
+            <div class="cd-unit"><span class="cd-val" id="cd-hours">00</span><span class="cd-lbl">Hours</span></div>
+            <div class="cd-unit"><span class="cd-val" id="cd-mins">00</span><span class="cd-lbl">Mins</span></div>
+            <div class="cd-unit"><span class="cd-val" id="cd-secs">00</span><span class="cd-lbl">Secs</span></div>
+        </div>
+    `;
+
+	document.body.appendChild(popup);
+
+	// 3. Countdown logic
+	const els = {
+		d: popup.querySelector("#cd-days"),
+		h: popup.querySelector("#cd-hours"),
+		m: popup.querySelector("#cd-mins"),
+		s: popup.querySelector("#cd-secs"),
+	};
+
+	const tick = () => {
+		const diff = target - Date.now();
+		if (diff <= 0) {
+			clearInterval(timer);
+			popup.querySelector(".cd-grid").innerHTML =
+				`<div class="cd-done">🎉 The event has started!</div>`;
+			return;
+		}
+		const pad = (n) => String(n).padStart(2, "0");
+		els.d.textContent = pad(Math.floor(diff / 86400000));
+		els.h.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+		els.m.textContent = pad(Math.floor((diff % 3600000) / 60000));
+		els.s.textContent = pad(Math.floor((diff % 60000) / 1000));
+	};
+
+	const timer = setInterval(tick, 1000);
+	tick();
+
+	// 4. Close with slide-out animation
+	const close = () => {
+		clearInterval(timer);
+		popup.classList.replace("cd-slide-in", "cd-slide-out");
+		popup.addEventListener("animationend", () => popup.remove(), {
+			once: true,
+		});
+	};
+
+	popup.querySelector(".cd-close").addEventListener("click", close);
+
+	// Return close fn in case caller wants to dismiss it programmatically
+	return close;
+}
