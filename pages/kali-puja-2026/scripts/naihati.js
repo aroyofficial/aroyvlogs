@@ -4,7 +4,7 @@ export const naihatiData = {
 	title: "Naihati Kali Puja",
 	dateLabel: "10 NOVEMBER &middot; TUESDAY",
 	meetup: {
-		time: "3:00 PM",
+		time: "2:00 PM",
 		place: Places.RAIL_STATIONS.BALLY,
 	},
 	countdown: {
