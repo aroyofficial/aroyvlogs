@@ -585,12 +585,15 @@ export const Places = {
 
 export function getPinLocation(urlString) {
 	try {
-		const path = new URL(urlString).pathname;
-		const placeLatitude = path.match(/!3d(-?\d+(?:\.\d+)?)/)?.[1];
-		const placeLongitude = path.match(/!4d(-?\d+(?:\.\d+)?)/)?.[1];
+		const url = new URL(urlString);
+		const path = `${url.pathname}${url.search}`;
+		// A Google Maps URL may contain several place results. The first !3d/!4d
+		// pair can be a search result; the final pair belongs to the selected place.
+		const placeCoordinates = [...path.matchAll(/!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/g)];
+		const primaryPlace = placeCoordinates.at(-1);
 		const coordinatePath = path.match(/@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/);
-		const latitude = placeLatitude || coordinatePath?.[1];
-		const longitude = placeLongitude || coordinatePath?.[2];
+		const latitude = primaryPlace?.[1] || coordinatePath?.[1];
+		const longitude = primaryPlace?.[2] || coordinatePath?.[2];
 
 		return latitude && longitude ? { latitude, longitude } : null;
 	} catch {
