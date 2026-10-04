@@ -846,8 +846,6 @@ export function showCountdownPopup(
 	const slideUp = position.includes("bottom")
 		? "translateY(120%)"
 		: "translateY(-120%)";
-	const animFrom = position.includes("right") ? slideIn : slideIn;
-
 	// 1. Inject styles once
 	if (!document.getElementById("countdown-popup-styles")) {
 		const style = document.createElement("style");

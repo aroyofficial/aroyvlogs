@@ -1,6 +1,6 @@
 import { Area, ItemType, LinkType, Places, TransitMedium } from "./commons.js";
 
-export const panchami = {
+export const naihatiData = {
 	title: "Naihati Kali Puja",
 	dateLabel: "10 NOVEMBER &middot; TUESDAY",
 	meetup: {

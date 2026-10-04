@@ -1,5 +1,5 @@
-import { chaturthi as barasatData } from "./barasat.js";
-import { panchami as naihatiData } from "./naihati.js";
+import { barasatData } from "./barasat.js";
+import { naihatiData } from "./naihati.js";
 import { Area, showCountdownPopup, Zone } from "./commons.js";
 import { showPujaRadar } from "./map.js";
 
