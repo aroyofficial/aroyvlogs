@@ -72,6 +72,7 @@ export const Area = {
 	JORABAGAN: ["Jorabagan", Zone.NORTH],
 	TOLLYGUNGE: ["Tollygunge", Zone.SOUTH],
 	KANKURGACHI: ["Kankurgachi", Zone.EAST],
+	BARASAT: ["Barasat", Zone.NONE],
 };
 
 export const LinkType = {
@@ -561,6 +562,11 @@ export const Places = {
 			name: "Naihati",
 			gmapsUrl:
 				"https://www.google.com/maps/place/Naihati+JN./@22.8874565,88.4155106,802m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f896a3028ed425:0xa5f0b19d0c1b9f12!8m2!3d22.8874565!4d88.4180855!16s%2Fg%2F1hhn9kwkm!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+		},
+		BARASAT: {
+			name: "Barasat",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Barasat+Jn./@22.7235556,88.4806532,803m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f8a20ecaef28a9:0x14cbcf7132dfb3b4!8m2!3d22.7235556!4d88.4832281!16s%2Fm%2F0gh6cz1!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
 		},
 	},
 	FERRY_TERMINALS: {
