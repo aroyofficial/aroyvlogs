@@ -85,7 +85,7 @@ export const panchami = {
 			title: "Becha Kali",
 			distance: 46,
 			gmapsUrl:
-				"https://www.google.com/maps/place/VCR7%2BV6X+Lohaghat+Park,+13%2F1,+Suresh+Mitra+Rd,+Naihati,+Kolkata,+West+Bengal+743165/@22.8922405,88.4112992,266m/data=!3m1!1e3!4m6!3m5!1s0x39f896a604d4d397:0x580b8fa168d5d2ec!8m2!3d22.8925902!4d88.411758!16s%2Fg%2F11b8tdm636!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+				"https://www.google.com/maps/place/Naihati+Becha+Kali+Puja/@22.8877719,88.413205,802m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f89784fab26827:0xd47f73c2971cc098!8m2!3d22.8877719!4d88.4157799!16s%2Fg%2F11j0bkctgm!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
 			htmlDesc: ``,
 			links: [
 				{
@@ -97,17 +97,6 @@ export const panchami = {
 					value: "https://www.instagram.com/becha_kali",
 				},
 			],
-		},
-		{
-			order: 5,
-			type: ItemType.PANDAL,
-			area: Area.NAIHATI,
-			title: "Lohaghat Park Association",
-			distance: 900,
-			gmapsUrl:
-				"https://www.google.com/maps/place/VCR7%2BV6X+Lohaghat+Park,+13%2F1,+Suresh+Mitra+Rd,+Naihati,+Kolkata,+West+Bengal+743165/@22.8927958,88.4091711,802m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f896a604d4d397:0x580b8fa168d5d2ec!8m2!3d22.8925902!4d88.411758!16s%2Fg%2F11b8tdm636!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
-			htmlDesc: `Celebrating its <strong>66th year in 2026</strong>, Naihati Lohaghat Park Association has not yet confirmed its official theme details.`,
-			links: [],
 		},
 		{
 			order: 5,

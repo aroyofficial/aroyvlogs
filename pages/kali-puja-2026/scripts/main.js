@@ -76,6 +76,7 @@ function setupPandalExpansions() {
 	document.querySelectorAll(".pandal").forEach((card) => {
 		card.addEventListener("click", (event) => {
 			if (event.target.closest("a")) return;
+			if (card.dataset.emptyExpansion === "true") return;
 			const open = card.getAttribute("aria-expanded") === "true";
 			document
 				.querySelectorAll('.pandal[aria-expanded="true"]')

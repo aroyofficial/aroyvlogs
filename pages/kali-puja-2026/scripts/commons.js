@@ -638,6 +638,7 @@ export function renderPandal(item, routeData) {
 	const linkFooter = links
 		? `<div class="itinerary-item-expansion-panel-footer">${links}</div>`
 		: "";
+	const hasExpansionContent = Boolean(item.htmlDesc?.trim() || links);
 	const toiletsUrl = getToiletsUrl(item.gmapsUrl);
 	const toiletsLink = toiletsUrl
 		? `<a class="map-btn" target="_blank" rel="noopener" href="${safe(toiletsUrl)}">Toilets &#8599;</a>`
@@ -669,7 +670,7 @@ export function renderPandal(item, routeData) {
 		previousStop?.title;
 	const walkingTime = Math.ceil(item.distance / WALKING_PACE_METERS_PER_MINUTE);
 
-	return `<span class="itinerary-item-order">${String(item.order).padStart(2, "0")}</span><div class="itinerary-item pandal" aria-expanded="false"><div class="itinerary-item-body"><div> <!-- <div class="geo-area">${safe(area)}</div> --> <h3 style="margin-top:6px;">${safe(item.title)}</h3><p>&#128694; ${safe(item.distance)} m &middot; &#9201;&#65039; ${walkingTime} min${fromLocation ? ` from ${safe(fromLocation)}.` : "."}</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="${safe(item.gmapsUrl)}">Google Maps &#8599;</a>${toiletsLink}</div></div><div class="itinerary-item-expansion-panel" aria-hidden="true"><div><div class="itinerary-item-expansion-panel-body">${item.htmlDesc}</div>${linkFooter}</div></div></div>`;
+	return `<span class="itinerary-item-order">${String(item.order).padStart(2, "0")}</span><div class="itinerary-item pandal" aria-expanded="false"${hasExpansionContent ? "" : ' data-empty-expansion="true"'}><div class="itinerary-item-body"><div> <!-- <div class="geo-area">${safe(area)}</div> --> <h3 style="margin-top:6px;">${safe(item.title)}</h3><p>&#128694; ${safe(item.distance)} m &middot; &#9201;&#65039; ${walkingTime} min${fromLocation ? ` from ${safe(fromLocation)}.` : "."}</p></div><div class="route-actions"><a class="map-btn" target="_blank" rel="noopener" href="${safe(item.gmapsUrl)}">Google Maps &#8599;</a>${toiletsLink}</div></div><div class="itinerary-item-expansion-panel" aria-hidden="true"><div><div class="itinerary-item-expansion-panel-body">${item.htmlDesc}</div>${linkFooter}</div></div></div>`;
 }
 
 export function renderTransit(transit) {
