@@ -388,8 +388,26 @@ export const panchami = {
 			order: 20,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
+			title: "Barisha Netaji Sangha",
+			distance: 700,
+			gmapsUrl:
+				"https://www.google.com/maps/place/Barisha+Netaji+Sangha/@22.486468,88.3136709,378m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a027a6e0797f0bb:0x67f287a97397de17!2sBehala+Player's+Corner+Durga+Puja!8m2!3d22.4858476!4d88.313717!16s%2Fg%2F11cs3fm3dt!3m5!1s0x3a027a71f53897ad:0xf58172e44ad1e72e!8m2!3d22.4860275!4d88.3152074!16s%2Fg%2F1tf3xt1b!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc:
+				"Celebrating its <strong>51st year in 2026</strong>, Barisha Netaji Sangha presents the theme <strong>'Ohong' (অহং)</strong>. The pandal is designed by artist <strong>Shitangshu</strong>, with the idol crafted by <strong>Sanatan Pal</strong> and lighting designed by <strong>Shantanu Das</strong>.",
+			links: [
+				{
+					type: LinkType.FACEBOOK,
+					value: "https://www.facebook.com/BarishaNetajiSangha",
+				},
+				{ type: LinkType.PHONE, value: "9088958137" },
+			],
+		},
+		{
+			order: 21,
+			type: ItemType.PANDAL,
+			area: Area.BEHALA,
 			title: "Barisha Club",
-			distance: 1000,
+			distance: 650,
 			gmapsUrl:
 				"https://www.google.com/maps/place/Barisha+Club+Puja+Ground+and+Community+Hall/@22.4858436,88.2998163,3219m/data=!3m1!1e3!4m6!3m5!1s0x3a027a6fe9697123:0xe1530cae4fe5b431!8m2!3d22.4812859!4d88.3132412!16s%2Fg%2F1pp2tl9jp?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=39bb6e34-a5cd-43cc-8ddb-0de622be73eb",
 			htmlDesc:
@@ -405,7 +423,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 21,
+			order: 22,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Barisha Sarbojanin",
@@ -425,7 +443,7 @@ export const panchami = {
 			transit: 7,
 		},
 		{
-			order: 22,
+			order: 23,
 			type: ItemType.PANDAL,
 			area: Area.THAKURPUKUR,
 			title: "Thakurpukur State Bank Park",
@@ -448,7 +466,7 @@ export const panchami = {
 			transit: 8,
 		},
 		{
-			order: 23,
+			order: 24,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Friends Club",
@@ -466,7 +484,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 24,
+			order: 25,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Nutan Dal",
@@ -486,7 +504,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 25,
+			order: 26,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Adarsha Pally",
@@ -503,7 +521,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 26,
+			order: 27,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Club Sarbojanin",
@@ -530,7 +548,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 27,
+			order: 28,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Young Men's Association",
