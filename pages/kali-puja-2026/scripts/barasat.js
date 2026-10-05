@@ -199,6 +199,28 @@ export const barasatData = {
 				"https://www.google.com/maps/place/Football+Ground/@22.7174622,88.4938041,906m/data=!3m1!1e3!4m6!3m5!1s0x39f8a2188c542511:0x28fb7fddaf58edfa!8m2!3d22.7165934!4d88.4974527!16s%2Fg%2F11hbpn8hzp!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
 			htmlDesc: ``,
 			links: [],
+		},
+		{
+			order: 15,
+			type: ItemType.PANDAL,
+			area: Area.BARASAT,
+			title: "Jubo Gosthi",
+			distance: 550,
+			gmapsUrl:
+				"https://www.google.com/maps/place/Jubogoshthi+Playground/@22.7152387,88.4949104,171m/data=!3m1!1e3!4m6!3m5!1s0x39f8a398982a47e1:0x8110e9735e027d6b!8m2!3d22.7153789!4d88.4949569!16s%2Fg%2F11t444wnk6!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc: ``,
+			links: [],
+		},
+		{
+			order: 16,
+			type: ItemType.PANDAL,
+			area: Area.BARASAT,
+			title: "Balak Brindo",
+			distance: 260,
+			gmapsUrl:
+				"https://www.google.com/maps/place/Taki+Road+Balak+Brinda+Sporting+Club/@22.7154542,88.492041,171m/data=!3m1!1e3!4m6!3m5!1s0x39f8a21b950d442b:0xf709bba0e4199c00!8m2!3d22.7153996!4d88.492456!16s%2Fg%2F1pzsc1qnj!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc: ``,
+			links: [],
 			transit: 1,
 		},
 	],
@@ -227,7 +249,7 @@ export const barasatData = {
 				{
 					order: 1,
 					medium: TransitMedium.WALK,
-					distance: 2100,
+					distance: 1600,
 					dest: Places.RAIL_STATIONS.BARASAT,
 				},
 				{
