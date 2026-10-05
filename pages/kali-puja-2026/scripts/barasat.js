@@ -49,15 +49,37 @@ export const barasatData = {
 			order: 3,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
+			title: "Gopal Smriti Sangha",
+			distance: 2100,
+			gmapsUrl:
+				"https://www.google.com/maps/place/Gopal+Smriti+Sangha/@22.7368155,88.4879468,84m/data=!3m1!1e3!4m6!3m5!1s0x39f8a27211b814bb:0xdc0f252109bcd476!8m2!3d22.7369116!4d88.488135!16s%2Fg%2F11gd671_zx!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc: ``,
+			links: [],
+		},
+		{
+			order: 4,
+			type: ItemType.PANDAL,
+			area: Area.BARASAT,
+			title: "Shakti Mandir Club",
+			distance: 750,
+			gmapsUrl:
+				"https://www.google.com/maps/place/Shaktimandir+Club/@22.7352652,88.4826613,168m/data=!3m1!1e3!4m14!1m7!3m6!1s0x39f8a27211b814bb:0xdc0f252109bcd476!2sGopal+Smriti+Sangha!8m2!3d22.7369116!4d88.488135!16s%2Fg%2F11gd671_zx!3m5!1s0x39f8a2745d16671b:0x48da414035b77f94!8m2!3d22.7355063!4d88.4826697!16s%2Fg%2F11fy_1nc4z!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc: ``,
+			links: [],
+		},
+		{
+			order: 5,
+			type: ItemType.PANDAL,
+			area: Area.BARASAT,
 			title: "Kishore Sporting Club",
-			distance: 1200,
+			distance: 650,
 			gmapsUrl:
 				"https://www.google.com/maps/place/Kishore+Sporting+Club+ground/@22.7313246,88.4811645,256m/data=!3m1!1e3!4m14!1m7!3m6!1s0x39f8a274d5a05541:0x66537fad50e51dae!2sKISHORE+SPORTING+CLUB!8m2!3d22.7319182!4d88.4816515!16s%2Fg%2F1q6j2ydss!3m5!1s0x39f8a3007aaefe9f:0xb674aca5179c2c63!8m2!3d22.7319656!4d88.4813175!16s%2Fg%2F11wg4nq50s!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
 			htmlDesc: ``,
 			links: [],
 		},
 		{
-			order: 4,
+			order: 6,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
 			title: "Regiment Club",
@@ -68,7 +90,7 @@ export const barasatData = {
 			links: [],
 		},
 		{
-			order: 5,
+			order: 7,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
 			title: "Nabapally Association",
@@ -84,7 +106,7 @@ export const barasatData = {
 			],
 		},
 		{
-			order: 6,
+			order: 8,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
 			title: "Amra Sabai Club",
@@ -95,7 +117,7 @@ export const barasatData = {
 			links: [],
 		},
 		{
-			order: 7,
+			order: 9,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
 			title: "Jagriti Sangha",
@@ -107,7 +129,7 @@ export const barasatData = {
 			dinner: true,
 		},
 		{
-			order: 8,
+			order: 10,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
 			title: "Tarucchaya Club",
@@ -118,7 +140,7 @@ export const barasatData = {
 			links: [],
 		},
 		{
-			order: 9,
+			order: 11,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
 			title: "Sandhani Club",
@@ -129,7 +151,7 @@ export const barasatData = {
 			links: [],
 		},
 		{
-			order: 10,
+			order: 12,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
 			title: "K.N.C Regiment",
@@ -157,7 +179,7 @@ export const barasatData = {
 			],
 		},
 		{
-			order: 11,
+			order: 13,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
 			title: "Bidhan Park",
@@ -168,7 +190,7 @@ export const barasatData = {
 			links: [],
 		},
 		{
-			order: 12,
+			order: 14,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
 			title: "Shatadal Sangha",
@@ -179,7 +201,7 @@ export const barasatData = {
 			links: [],
 		},
 		{
-			order: 13,
+			order: 15,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
 			title: "Bidrohi Club",
@@ -190,7 +212,7 @@ export const barasatData = {
 			links: [],
 		},
 		{
-			order: 14,
+			order: 16,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
 			title: "Aguyan Sangha",
@@ -201,7 +223,7 @@ export const barasatData = {
 			links: [],
 		},
 		{
-			order: 15,
+			order: 17,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
 			title: "Jubo Gosthi",
@@ -212,7 +234,7 @@ export const barasatData = {
 			links: [],
 		},
 		{
-			order: 16,
+			order: 18,
 			type: ItemType.PANDAL,
 			area: Area.BARASAT,
 			title: "Balak Brindo",
