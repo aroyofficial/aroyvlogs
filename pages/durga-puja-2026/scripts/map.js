@@ -813,7 +813,10 @@ export function renderMapView(routeData, containerId = "map-view-container") {
 				zIndexOffset,
 				riseOnHover: true,
 			}).addTo(map);
-			marker.bindPopup(popupHtml, { maxWidth: 300, minWidth: 220 });
+			const mapsLink = gmapsUrl
+				? `<div style="margin-top:10px"><a href="${safe(gmapsUrl)}" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a></div>`
+				: "";
+			marker.bindPopup(`${popupHtml}${mapsLink}`, { maxWidth: 300, minWidth: 220 });
 
 			if (tooltipHtml) {
 				marker.bindTooltip(tooltipHtml, {
@@ -825,7 +828,7 @@ export function renderMapView(routeData, containerId = "map-view-container") {
 			}
 
 			markerBounds.push([latitude, longitude]);
-		}
+		} else console.warn("Map marker skipped: unusable Google Maps URL", gmapsUrl);
 	};
 
 	/* ── 1. Process Transit & Meetup Locations ────────────────────────────── */
@@ -1225,7 +1228,10 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 
 		stops.forEach((stop) => {
 			const coords = getPinLocation(stop?.gmapsUrl);
-			if (!coords) return;
+			if (!coords) {
+				console.warn("Puja radar stop skipped: unusable Google Maps URL", stop?.title, stop?.gmapsUrl);
+				return;
+			}
 
 			const latitude = Number(coords.latitude);
 			const longitude = Number(coords.longitude);
@@ -1262,6 +1268,7 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 					<div style="font-size:10px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; color:${pin[1]};">${radarSafe(label)}</div>
 					<h6 style="margin:4px 0 0 0; font-size:15px;"><strong>${orderText}. ${radarSafe(stop.title)}</strong></h6>
 					${stop.area ? `<div style="margin-top:4px; font-size:12px; color:#868e96;">${radarSafe(stop.area).replace(",", ", ")}</div>` : ""}
+					${stop.gmapsUrl ? `<a href="${radarSafe(stop.gmapsUrl)}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:10px;">Open in Google Maps ↗</a>` : ""}
 				</div>`,
 				{ maxWidth: 260, minWidth: 180 },
 			);
