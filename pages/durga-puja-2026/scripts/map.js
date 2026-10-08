@@ -4,6 +4,7 @@ import {
 	TransitMedium,
 	getPinLocation,
 	getRouteCenter,
+	Zone,
 } from "./commons.js";
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -816,7 +817,10 @@ export function renderMapView(routeData, containerId = "map-view-container") {
 			const mapsLink = gmapsUrl
 				? `<div style="margin-top:10px"><a href="${safe(gmapsUrl)}" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a></div>`
 				: "";
-			marker.bindPopup(`${popupHtml}${mapsLink}`, { maxWidth: 300, minWidth: 220 });
+			marker.bindPopup(`${popupHtml}${mapsLink}`, {
+				maxWidth: 300,
+				minWidth: 220,
+			});
 
 			if (tooltipHtml) {
 				marker.bindTooltip(tooltipHtml, {
@@ -828,7 +832,8 @@ export function renderMapView(routeData, containerId = "map-view-container") {
 			}
 
 			markerBounds.push([latitude, longitude]);
-		} else console.warn("Map marker skipped: unusable Google Maps URL", gmapsUrl);
+		} else
+			console.warn("Map marker skipped: unusable Google Maps URL", gmapsUrl);
 	};
 
 	/* ── 1. Process Transit & Meetup Locations ────────────────────────────── */
@@ -1015,6 +1020,15 @@ export const RADAR_DAY_COLORS = {
 	dashami: { label: "Dashami", pin: ["#ff8787", "#c92a2a"] },
 };
 
+export const RADAR_ZONE_COLORS = {
+	[Zone.NORTH]: ["#74c0fc", "#1864ab"],
+	[Zone.SOUTH]: ["#ff8787", "#c92a2a"],
+	[Zone.EAST]: ["#69db7c", "#2b8a3e"],
+	[Zone.PORT]: ["#da77f2", "#862e9c"],
+	[Zone.SOUTHWEST]: ["#ffd43b", "#e67700"],
+	[Zone.CENTRAL]: ["#63e6be", "#0ca678"],
+};
+
 const RADAR_FALLBACK_PINS = [
 	["#adb5bd", "#495057"],
 	["#4dabf7", "#1971c2"],
@@ -1062,12 +1076,13 @@ const ensurePujaRadarStyles = () => {
 		.leaflet-tooltip-top.radar-tooltip::before { border-top-color: #1f2933; }
 
 		.radar-legend {
-			background: rgba(255,255,255,.96); border-radius: 10px; padding: 8px 10px;
+			width: max-content; min-width: 140px; max-width: calc(100vw - 40px); box-sizing: border-box;
+			background: rgba(255,255,255,.96); border-radius: 10px; padding: 16px 16px;
 			box-shadow: 0 4px 14px rgba(0,0,0,.25); font-size: 12px; line-height: 1.4;
-			max-height: 260px; overflow-y: auto; min-width: 140px;
+			max-height: 260px; overflow-y: auto;
 		}
 		.radar-legend h6 {
-			margin: 0 0 6px 0; font-size: 10px; font-weight: 800; letter-spacing: .5px;
+			margin: 0 0 12px 0; font-size: 10px; font-weight: 800; letter-spacing: .5px;
 			text-transform: uppercase; color: #868e96;
 		}
 		.radar-legend label {
@@ -1080,6 +1095,28 @@ const ensurePujaRadarStyles = () => {
 			border: 1.5px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.15);
 		}
 		.radar-legend .rl-count { margin-left: auto; font-size: 10px; color: #868e96; font-weight: 700; }
+		.radar-legend .radar-zone-filter {
+			display: grid; grid-template-columns: 1fr auto; align-items: center;
+			column-gap: 12px; margin: 0 0 8px; text-align: left;
+		}
+		.radar-legend .radar-zone-filter select {
+			justify-self: end; width: max-content; min-width: 160px; max-width: 100%;
+			margin-top: 0; padding: 5px 7px;
+			border: 1px solid #ced4da; border-radius: 6px;
+			background: #fff; color: #343a40; font: inherit;
+		}
+		.radar-legend .radar-zone-filter select:hover,
+		.radar-legend .radar-zone-filter select:focus,
+		.radar-legend .radar-zone-filter select:focus-visible,
+		.radar-legend .radar-zone-filter select:active { outline: none; box-shadow: none; }
+		.radar-legend .radar-filter-heading {
+			margin: 9px 0 4px; padding-top: 7px; border-top: 1px solid #e9ecef;
+			font-size: 10px; font-weight: 800; letter-spacing: .5px;
+			text-transform: uppercase; color: #868e96;
+		}
+		.radar-legend .radar-zone-filter:last-of-type {
+			margin-bottom: 0px;
+		}
 	`;
 	document.head.appendChild(style);
 };
@@ -1106,25 +1143,91 @@ const radarSafe = (value) =>
 	);
 
 // Per-day checkbox legend that toggles each day's layer group on/off
-const addRadarLegend = (map, dayLayers) => {
+const addRadarLegend = (map, dayLayers, markerRecords, zoneCounts) => {
 	const legend = L.control({ position: "topright" });
 	legend.onAdd = () => {
 		const box = L.DomUtil.create("div", "leaflet-control radar-legend");
-		box.innerHTML = `<h6>Days</h6>`;
-
-		dayLayers.forEach(({ label, pin, layer, count }) => {
-			const row = L.DomUtil.create("label", "", box);
-			row.innerHTML = `
-				<input type="checkbox" checked />
-				<span class="rl-swatch" style="background:linear-gradient(135deg, ${pin[0]}, ${pin[1]});"></span>
-				<span>${radarSafe(label)}</span>
-				<span class="rl-count">${count}</span>`;
-			const checkbox = row.querySelector("input");
-			L.DomEvent.on(checkbox, "change", () => {
-				if (checkbox.checked) map.addLayer(layer);
-				else map.removeLayer(layer);
-			});
+		box.innerHTML = `<h6>Map filters</h6>`;
+		const modeFilter = L.DomUtil.create("label", "radar-zone-filter", box);
+		modeFilter.innerHTML = `<span>Filter by</span><select aria-label="Choose filter type"><option value="day">Day</option><option value="zone">Zone</option></select>`;
+		const modeSelect = modeFilter.querySelector("select");
+		const valueFilter = L.DomUtil.create("label", "radar-zone-filter", box);
+		valueFilter.innerHTML = `<span id="radar-filter-value-label">Day</span><select aria-label="Choose a day"></select>`;
+		const valueSelect = valueFilter.querySelector("select");
+		const populateValues = () => {
+			const mode = modeSelect.value;
+			const previousValue = valueSelect.value;
+			const options =
+				mode === "day"
+					? [
+							{ value: "all", label: "All days" },
+							...dayLayers.map(({ key, label, count }) => ({
+								value: key,
+								label: `${label} (${count})`,
+							})),
+						]
+					: [
+							{ value: "all", label: "All zones" },
+							...Object.values(Zone).map((zone) => ({
+								value: zone,
+								label: `${zone} (${zoneCounts.get(zone) || 0})`,
+							})),
+						];
+			valueSelect.replaceChildren(
+				...options.map(({ value, label }) => {
+					const option = document.createElement("option");
+					option.value = value;
+					option.textContent = label;
+					return option;
+				}),
+			);
+			valueSelect.setAttribute("aria-label", `Choose a ${mode}`);
+			valueFilter.querySelector("#radar-filter-value-label").textContent =
+				mode === "day" ? "Day" : "Zone";
+			if (options.some(({ value }) => value === previousValue))
+				valueSelect.value = previousValue;
+		};
+		populateValues();
+		const applyFilters = () => {
+			const mode = modeSelect.value;
+			const selectedValue = valueSelect.value;
+			markerRecords.forEach(
+				({
+					dayKey,
+					zone,
+					dayPin,
+					zonePin,
+					orderText,
+					zoneOrderText,
+					marker,
+				}) => {
+					const markerPin = mode === "zone" ? zonePin : dayPin;
+					const markerLabel = mode === "zone" ? zoneOrderText : orderText;
+					marker.setIcon(
+						L.divIcon({
+							className: "radar-map-icon",
+							html: createRadarPinHtml(markerPin, markerLabel),
+							iconSize: [30, 38],
+							iconAnchor: [15, 32],
+							popupAnchor: [0, -30],
+						}),
+					);
+					const visible =
+						selectedValue === "all" ||
+						(mode === "day"
+							? dayKey === selectedValue
+							: zone === selectedValue);
+					if (visible && !map.hasLayer(marker)) marker.addTo(map);
+					else if (!visible && map.hasLayer(marker)) map.removeLayer(marker);
+				},
+			);
+		};
+		L.DomEvent.on(modeSelect, "change", () => {
+			populateValues();
+			applyFilters();
 		});
+		L.DomEvent.on(valueSelect, "change", applyFilters);
+		applyFilters();
 
 		L.DomEvent.disableClickPropagation(box);
 		L.DomEvent.disableScrollPropagation(box);
@@ -1208,6 +1311,9 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 
 	const allPoints = [];
 	const dayLayers = [];
+	const markerRecords = [];
+	const zoneCounts = new Map();
+	const zoneSequences = new Map();
 	let fallbackIndex = 0;
 
 	Object.entries(data || {}).forEach(([dayKey, routeData]) => {
@@ -1223,13 +1329,16 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 			routeData?.title ??
 			dayKey.charAt(0).toUpperCase() + dayKey.slice(1);
 
-		const layer = L.layerGroup();
 		let plotted = 0;
 
 		stops.forEach((stop) => {
 			const coords = getPinLocation(stop?.gmapsUrl);
 			if (!coords) {
-				console.warn("Puja radar stop skipped: unusable Google Maps URL", stop?.title, stop?.gmapsUrl);
+				console.warn(
+					"Puja radar stop skipped: unusable Google Maps URL",
+					stop?.title,
+					stop?.gmapsUrl,
+				);
 				return;
 			}
 
@@ -1238,6 +1347,9 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 			if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return;
 
 			const orderText = String(stop.order ?? "").padStart(2, "0");
+			const zone = Array.isArray(stop.area) ? stop.area[1] : null;
+			const zoneOrder = zone ? (zoneSequences.get(zone) || 0) + 1 : null;
+			if (zone) zoneSequences.set(zone, zoneOrder);
 
 			const marker = L.marker([latitude, longitude], {
 				icon: L.divIcon({
@@ -1273,18 +1385,27 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 				{ maxWidth: 260, minWidth: 180 },
 			);
 
-			marker.addTo(layer);
+			markerRecords.push({
+				dayKey,
+				zone,
+				dayPin: pin,
+				zonePin: RADAR_ZONE_COLORS[zone] || RADAR_FALLBACK_PINS[0],
+				orderText,
+				zoneOrderText: zoneOrder === null ? orderText : String(zoneOrder),
+				marker,
+			});
+			if (zone) zoneCounts.set(zone, (zoneCounts.get(zone) || 0) + 1);
 			allPoints.push([latitude, longitude]);
 			plotted++;
 		});
 
 		if (plotted) {
-			layer.addTo(map);
-			dayLayers.push({ label, pin, layer, count: plotted });
+			dayLayers.push({ key: dayKey, label, pin, count: plotted });
 		}
 	});
 
-	if (dayLayers.length) addRadarLegend(map, dayLayers);
+	if (dayLayers.length)
+		addRadarLegend(map, dayLayers, markerRecords, zoneCounts);
 
 	/* Optional controls — added AFTER pins + legend and wrapped individually,
 	   so a missing dependency can never remove the pins or the day checkboxes. */

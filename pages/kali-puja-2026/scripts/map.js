@@ -821,7 +821,10 @@ export function renderMapView(routeData, containerId = "map-view-container") {
 			const mapsLink = gmapsUrl
 				? `<div style="margin-top:10px"><a href="${safe(gmapsUrl)}" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a></div>`
 				: "";
-			marker.bindPopup(`${popupHtml}${mapsLink}`, { maxWidth: 300, minWidth: 220 });
+			marker.bindPopup(`${popupHtml}${mapsLink}`, {
+				maxWidth: 300,
+				minWidth: 220,
+			});
 
 			if (tooltipHtml) {
 				marker.bindTooltip(tooltipHtml, {
@@ -833,7 +836,8 @@ export function renderMapView(routeData, containerId = "map-view-container") {
 			}
 
 			markerBounds.push([latitude, longitude]);
-		} else console.warn("Map marker skipped: unusable Google Maps URL", gmapsUrl);
+		} else
+			console.warn("Map marker skipped: unusable Google Maps URL", gmapsUrl);
 	};
 
 	/* ── 1. Process Transit & Meetup Locations ────────────────────────────── */
@@ -1077,12 +1081,12 @@ const ensurePujaRadarStyles = () => {
 		.leaflet-tooltip-top.radar-tooltip::before { border-top-color: #1f2933; }
 
 		.radar-legend {
-			background: rgba(255,255,255,.96); border-radius: 10px; padding: 8px 10px;
+			background: rgba(255,255,255,.96); border-radius: 10px; padding: 16px 16px;
 			box-shadow: 0 4px 14px rgba(0,0,0,.25); font-size: 12px; line-height: 1.4;
 			max-height: 260px; overflow-y: auto; min-width: 140px;
 		}
 		.radar-legend h6 {
-			margin: 0 0 6px 0; font-size: 10px; font-weight: 800; letter-spacing: .5px;
+			margin: 0 0 12px 0; font-size: 10px; font-weight: 800; letter-spacing: .5px;
 			text-transform: uppercase; color: #868e96;
 		}
 		.radar-legend label {
@@ -1095,6 +1099,9 @@ const ensurePujaRadarStyles = () => {
 			border: 1.5px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.15);
 		}
 		.radar-legend .rl-count { margin-left: auto; font-size: 10px; color: #868e96; font-weight: 700; }
+		.radar-legend .radar-zone-filter:last-of-type {
+			margin-bottom: 0px;
+		}
 	`;
 	document.head.appendChild(style);
 };
@@ -1195,13 +1202,16 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 				allLatLngs.push([lat, lng]);
 			}
 		});
-		(routeData?.meetup?.place ? [routeData.meetup.place] : []).forEach((place) => {
-			const coords = getPinLocation(place.gmapsUrl);
-			if (!coords) return;
-			const lat = Number(coords.latitude);
-			const lng = Number(coords.longitude);
-			if (Number.isFinite(lat) && Number.isFinite(lng)) allLatLngs.push([lat, lng]);
-		});
+		(routeData?.meetup?.place ? [routeData.meetup.place] : []).forEach(
+			(place) => {
+				const coords = getPinLocation(place.gmapsUrl);
+				if (!coords) return;
+				const lat = Number(coords.latitude);
+				const lng = Number(coords.longitude);
+				if (Number.isFinite(lat) && Number.isFinite(lng))
+					allLatLngs.push([lat, lng]);
+			},
+		);
 		(routeData?.transits || []).forEach((transit) => {
 			(transit.steps || []).forEach((step) => {
 				[step.src, step.dest].forEach((place) => {
@@ -1209,7 +1219,8 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 					if (!coords) return;
 					const lat = Number(coords.latitude);
 					const lng = Number(coords.longitude);
-					if (Number.isFinite(lat) && Number.isFinite(lng)) allLatLngs.push([lat, lng]);
+					if (Number.isFinite(lat) && Number.isFinite(lng))
+						allLatLngs.push([lat, lng]);
 				});
 			});
 		});
@@ -1267,7 +1278,11 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 		stops.forEach((stop) => {
 			const coords = getPinLocation(stop?.gmapsUrl);
 			if (!coords) {
-				console.warn("Puja radar stop skipped: unusable Google Maps URL", stop?.title, stop?.gmapsUrl);
+				console.warn(
+					"Puja radar stop skipped: unusable Google Maps URL",
+					stop?.title,
+					stop?.gmapsUrl,
+				);
 				return;
 			}
 
@@ -1354,7 +1369,11 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 			const latitude = Number(coords.latitude);
 			const longitude = Number(coords.longitude);
 			if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return;
-			const [icon, transitPin, category] = transitIcons[medium] || ["fa-person-walking", ["#adb5bd", "#495057"], "Transit Point"];
+			const [icon, transitPin, category] = transitIcons[medium] || [
+				"fa-person-walking",
+				["#adb5bd", "#495057"],
+				"Transit Point",
+			];
 			const marker = L.marker([latitude, longitude], {
 				icon: L.divIcon({
 					className: "radar-map-icon",
@@ -1363,10 +1382,18 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 					iconAnchor: [16, 34],
 				}),
 			});
-			marker.bindTooltip(`<strong>${radarSafe(place.name || routeData.lunchStop?.title || category)}</strong><br><small>${category}</small>`, {
-				direction: "top", offset: [0, -32], className: "radar-tooltip", opacity: 1,
-			});
-			marker.bindPopup(`<strong>${radarSafe(place.name || routeData.lunchStop?.title || category)}</strong><br><small>${category}</small>`);
+			marker.bindTooltip(
+				`<strong>${radarSafe(place.name || routeData.lunchStop?.title || category)}</strong><br><small>${category}</small>`,
+				{
+					direction: "top",
+					offset: [0, -32],
+					className: "radar-tooltip",
+					opacity: 1,
+				},
+			);
+			marker.bindPopup(
+				`<strong>${radarSafe(place.name || routeData.lunchStop?.title || category)}</strong><br><small>${category}</small>`,
+			);
 			marker.addTo(layer);
 			allPoints.push([latitude, longitude]);
 		});
