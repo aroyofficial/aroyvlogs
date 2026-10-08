@@ -269,6 +269,11 @@ export const Places = {
 			gmapsUrl:
 				"https://www.google.com/maps/place/Manasha+Mandir/@22.5403309,88.3268512,132m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a02775e030a6427:0xcba695bf1878949d!2sManasha+Mandir!8m2!3d22.5402903!4d88.3270474!16s%2Fg%2F1pp2x9b_f!3m5!1s0x3a02775e030a6427:0xcba695bf1878949d!8m2!3d22.5402903!4d88.3270474!16s%2Fg%2F1pp2x9b_f!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkyMS4wIKXMDSoASAFQAw%3D%3D",
 		},
+		GARIA_MARKET: {
+			name: "Garia Market",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Garia+Market/@22.4702998,88.3773304,118m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3a02710a21494a3d:0x45dd40db6757a4b4!2sBaishnabghata+Yatra+Shuru+Sangha!8m2!3d22.4707001!4d88.3778402!16s%2Fg%2F1w4f6j9c!3m5!1s0x3a02710a1be30619:0x9866d71b664951a!8m2!3d22.470426!4d88.37761!16s%2Fg%2F11bycgm7vs!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+		},
 		SOVABAZAR: {
 			name: "Sovabazar",
 			gmapsUrl:

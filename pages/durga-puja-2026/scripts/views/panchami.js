@@ -145,6 +145,24 @@ export const panchami = {
 		{
 			order: 7,
 			type: ItemType.PANDAL,
+			area: Area.JADAVPUR,
+			title: "Shyama Pally Shyama Sangha",
+			distance: 150,
+			gmapsUrl:
+				"https://www.google.com/maps/place/Shyamapally+shyama+sangha+club/@22.4916365,88.3708986,562m/data=!3m1!1e3!4m6!3m5!1s0x3a027100613166b1:0x8998815b4a3f2325!8m2!3d22.491445!4d88.3713456!16s%2Fg%2F11zx32_271!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+			htmlDesc: `Celebrating its <strong>47th year in 2026</strong>, Shyama Pally Shyama Sangha presents the theme <strong>'Turongo' (তুরঙ্গ)</strong>. The creative team consists of <strong>Sumi, Shuvadip, Trisha, and Papan</strong>, with associates <strong>Raju and Soumyadeep</strong>.`,
+			links: [
+				{
+					type: LinkType.FACEBOOK,
+					value: "https://www.facebook.com/shymapallidurgapujacommity",
+				},
+				{ type: LinkType.PHONE, value: "9051611147" },
+			],
+			transit: 10,
+		},
+		{
+			order: 8,
+			type: ItemType.PANDAL,
 			area: Area.PATULI,
 			title: "Basihnabghata Yatra Shuru Sangha",
 			distance: 83,
@@ -155,7 +173,7 @@ export const panchami = {
 			links: [],
 		},
 		{
-			order: 8,
+			order: 9,
 			type: ItemType.PANDAL,
 			area: Area.GARIA,
 			title: "Kendua Shanti Sangha",
@@ -178,7 +196,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 9,
+			order: 10,
 			type: ItemType.PANDAL,
 			area: Area.PATULI,
 			title: "Basihnabghata Patuli Upanagari Sarbojanin",
@@ -190,7 +208,7 @@ export const panchami = {
 			transit: 3,
 		},
 		{
-			order: 10,
+			order: 11,
 			type: ItemType.PANDAL,
 			area: Area.NAKTALA,
 			title: "Naktala Udayan Sangha",
@@ -213,7 +231,7 @@ export const panchami = {
 			lunch: true,
 		},
 		{
-			order: 11,
+			order: 12,
 			type: ItemType.PANDAL,
 			area: Area.KUDGHAT,
 			title: "Putiyari Club",
@@ -225,7 +243,7 @@ export const panchami = {
 			links: [],
 		},
 		{
-			order: 12,
+			order: 13,
 			type: ItemType.PANDAL,
 			area: Area.PASCHIM_PUTIARY,
 			title: "Pally Unnayan Samiti",
@@ -244,7 +262,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 13,
+			order: 14,
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Haridevpur Adarsha Samiti Club",
@@ -263,7 +281,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 14,
+			order: 15,
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Haridevpur New Sporting Club",
@@ -280,7 +298,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 15,
+			order: 16,
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Ajeya Sanghati Club",
@@ -299,7 +317,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 16,
+			order: 17,
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Vivekananda Park Athletic Club",
@@ -325,7 +343,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 17,
+			order: 18,
 			type: ItemType.PANDAL,
 			area: Area.HARIDEVPUR,
 			title: "Haridevpur 41 Palli",
@@ -346,7 +364,7 @@ export const panchami = {
 			transit: 5,
 		},
 		{
-			order: 18,
+			order: 19,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Netaji Sarak Ancholik Adhibasi Brindo",
@@ -366,7 +384,7 @@ export const panchami = {
 			transit: 6,
 		},
 		{
-			order: 19,
+			order: 20,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Barisha Players Corner",
@@ -385,7 +403,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 20,
+			order: 21,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Barisha Netaji Sangha",
@@ -403,7 +421,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 21,
+			order: 22,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Barisha Club",
@@ -423,7 +441,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 22,
+			order: 23,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Barisha Sarbojanin",
@@ -443,7 +461,7 @@ export const panchami = {
 			transit: 7,
 		},
 		{
-			order: 23,
+			order: 24,
 			type: ItemType.PANDAL,
 			area: Area.THAKURPUKUR,
 			title: "Thakurpukur State Bank Park",
@@ -466,7 +484,7 @@ export const panchami = {
 			transit: 8,
 		},
 		{
-			order: 24,
+			order: 25,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Friends Club",
@@ -484,7 +502,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 25,
+			order: 26,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Nutan Dal",
@@ -504,7 +522,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 26,
+			order: 27,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Adarsha Pally",
@@ -521,7 +539,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 27,
+			order: 28,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Club Sarbojanin",
@@ -548,7 +566,7 @@ export const panchami = {
 			],
 		},
 		{
-			order: 28,
+			order: 29,
 			type: ItemType.PANDAL,
 			area: Area.BEHALA,
 			title: "Behala Young Men's Association",
@@ -753,6 +771,23 @@ export const panchami = {
 					order: 2,
 					medium: TransitMedium.CAB,
 					dest: Places.RAIL_STATIONS.BALLY_HALT,
+				},
+			],
+		},
+		{
+			index: 10,
+			type: ItemType.TRANSIT,
+			steps: [
+				{
+					order: 1,
+					medium: TransitMedium.WALK,
+					distance: 150,
+					dest: Places.BUS_STOPS.SULEKHA_MORE,
+				},
+				{
+					order: 2,
+					medium: TransitMedium.BUS,
+					dest: Places.BUS_STOPS.GARIA_MARKET,
 				},
 			],
 		},
