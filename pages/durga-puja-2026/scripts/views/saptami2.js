@@ -1,7 +1,7 @@
 import { Area, ItemType, LinkType, Places, TransitMedium } from "../commons.js";
 
-export const saptami = {
-	title: "Saptami",
+export const saptami2 = {
+	title: "Saptami (Day 2)",
 	dateLabel: "18 OCTOBER · SUNDAY",
 	meetup: {
 		time: "9:00 AM",

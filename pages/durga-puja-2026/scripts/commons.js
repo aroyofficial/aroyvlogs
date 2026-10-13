@@ -561,25 +561,36 @@ export function getPinLocation(urlString) {
 		const validCoordinates = (latitude, longitude) => {
 			const lat = Number(latitude);
 			const lng = Number(longitude);
-			return Number.isFinite(lat) && Number.isFinite(lng) && lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180
+			return Number.isFinite(lat) &&
+				Number.isFinite(lng) &&
+				lat >= -90 &&
+				lat <= 90 &&
+				lng >= -180 &&
+				lng <= 180
 				? { latitude: String(lat), longitude: String(lng) }
 				: null;
 		};
-		const featureCoordinates = [...path.matchAll(/!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/g)].at(-1);
-		const lngLatCoordinates = [...path.matchAll(/!2d(-?\d+(?:\.\d+)?)!3d(-?\d+(?:\.\d+)?)/g)].at(-1);
+		const featureCoordinates = [
+			...path.matchAll(/!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/g),
+		].at(-1);
+		const lngLatCoordinates = [
+			...path.matchAll(/!2d(-?\d+(?:\.\d+)?)!3d(-?\d+(?:\.\d+)?)/g),
+		].at(-1);
 		const coordinatePair = /(-?\d{1,2}(?:\.\d+)?)[,， ]+(-?\d{1,3}(?:\.\d+)?)/;
 		const candidates = [
 			featureCoordinates && [featureCoordinates[1], featureCoordinates[2]],
 			lngLatCoordinates && [lngLatCoordinates[2], lngLatCoordinates[1]],
 			path.match(/@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/)?.slice(1),
-			...['query', 'q', 'destination', 'll', 'center'].map((key) => url.searchParams.get(key)?.match(coordinatePair)?.slice(1)),
+			...["query", "q", "destination", "ll", "center"].map((key) =>
+				url.searchParams.get(key)?.match(coordinatePair)?.slice(1),
+			),
 		];
 		for (const candidate of candidates) {
 			if (!candidate?.[0] || !candidate?.[1]) continue;
 			const coordinates = validCoordinates(candidate[0], candidate[1]);
 			if (coordinates) return coordinates;
 		}
-		for (const key of ['link', 'url', 'q']) {
+		for (const key of ["link", "url", "q"]) {
 			const nested = url.searchParams.get(key);
 			if (nested && nested !== urlString) {
 				const coordinates = getPinLocation(nested);
@@ -808,6 +819,7 @@ export function showCountdownPopup(
 	targetDate,
 	position = "bottom-right",
 ) {
+	return;
 	const targetDay =
 		targetDate instanceof Date
 			? targetDate.toISOString().slice(0, 10)

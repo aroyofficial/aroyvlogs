@@ -1,17 +1,18 @@
-import { chaturthi as chaturthiData } from "./views/chaturthi.js";
 import { panchami as panchamiData } from "./views/panchami.js";
-import { shashthi as sasthiData } from "./views/shashthi.js";
-import { saptami, saptami as saptamiData } from "./views/saptami.js";
+import { shashthi as shashthiData } from "./views/shashthi.js";
+import { saptami1 as saptami1Data } from "./views/saptami1.js";
+
+import { saptami2, saptami2 as saptamiData } from "./views/saptami2.js";
 import { astami as astamiData } from "./views/astami.js";
 import { navami as navamiData } from "./views/navami.js";
 import { Area, showCountdownPopup, Zone } from "./commons.js";
 import { showPujaRadar } from "./map.js";
 
 let data = {
-	chaturthi: chaturthiData,
 	panchami: panchamiData,
-	sasthi: sasthiData,
-	saptami: saptamiData,
+	shashthi: shashthiData,
+	saptami1: saptami1Data,
+	saptami2: saptamiData,
 	astami: astamiData,
 	navami: navamiData,
 };
@@ -220,10 +221,10 @@ function renderSelectedPage(pageRoot) {
 	Promise.all([
 		import("./commons.js"),
 		import("./map.js"),
-		import("./views/chaturthi.js"),
 		import("./views/panchami.js"),
 		import("./views/shashthi.js"),
-		import("./views/saptami.js"),
+		import("./views/saptami1.js"),
+		import("./views/saptami2.js"),
 		import("./views/astami.js"),
 		import("./views/navami.js"),
 	])
@@ -231,10 +232,10 @@ function renderSelectedPage(pageRoot) {
 			([
 				commons,
 				map,
-				{ chaturthi },
 				{ panchami },
 				{ shashthi },
-				{ saptami },
+				{ saptami1 },
+				{ saptami2 },
 				{ astami },
 				{ navami },
 			]) => {
@@ -247,12 +248,12 @@ function renderSelectedPage(pageRoot) {
 				const requestedPage = new URLSearchParams(window.location.search).get(
 					"day",
 				);
-				const pageKey = requestedPage || pageRoot.dataset.page || "chaturthi";
+				const pageKey = requestedPage || pageRoot.dataset.page || "panchami";
 				const routeData = {
-					chaturthi,
 					panchami,
 					shashthi,
-					saptami,
+					saptami1,
+					saptami2,
 					astami,
 					navami,
 				}[pageKey.toLowerCase()];
