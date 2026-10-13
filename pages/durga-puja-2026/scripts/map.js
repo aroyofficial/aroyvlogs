@@ -1014,7 +1014,8 @@ export const RADAR_DAY_COLORS = {
 	chaturthi: { label: "Chaturthi", pin: ["#ffa94d", "#e8590c"] },
 	panchami: { label: "Panchami", pin: ["#f783ac", "#a61e4d"] },
 	shashthi: { label: "Shashthi", pin: ["#9775fa", "#5f3dc4"] },
-	saptami: { label: "Saptami", pin: ["#74c0fc", "#1864ab"] },
+	saptami1: { label: "Saptami #1", pin: ["#74c0fc", "#1864ab"] },
+	saptami2: { label: "Saptami #2", pin: ["#4dabf7", "#1971c2"] },
 	astami: { label: "Astami", pin: ["#38d9a9", "#087f5b"] },
 	navami: { label: "Navami", pin: ["#ffd43b", "#e67700"] },
 	dashami: { label: "Dashami", pin: ["#ff8787", "#c92a2a"] },
@@ -1168,7 +1169,7 @@ const addRadarLegend = (map, dayLayers, markerRecords, zoneCounts) => {
 						]
 					: [
 							{ value: "all", label: "All zones" },
-							...Object.values(Zone).map((zone) => ({
+							...Object.values(Zone).filter((zone) => zone !== Zone.NONE).map((zone) => ({
 								value: zone,
 								label: `${zone} (${zoneCounts.get(zone) || 0})`,
 							})),
@@ -1347,7 +1348,9 @@ export function showPujaRadar(data, containerId = "puja-radar") {
 			if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return;
 
 			const orderText = String(stop.order ?? "").padStart(2, "0");
-			const zone = Array.isArray(stop.area) ? stop.area[1] : null;
+			const zone = Array.isArray(stop.area) && stop.area[1] !== Zone.NONE
+				? stop.area[1]
+				: null;
 			const zoneOrder = zone ? (zoneSequences.get(zone) || 0) + 1 : null;
 			if (zone) zoneSequences.set(zone, zoneOrder);
 

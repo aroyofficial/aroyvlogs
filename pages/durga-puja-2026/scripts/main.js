@@ -1,3 +1,4 @@
+import { chaturthi as chaturthiData } from "./views/chaturthi.js";
 import { panchami as panchamiData } from "./views/panchami.js";
 import { shashthi as shashthiData } from "./views/shashthi.js";
 import { saptami1 as saptami1Data } from "./views/saptami1.js";
@@ -9,6 +10,7 @@ import { Area, showCountdownPopup, Zone } from "./commons.js";
 import { showPujaRadar } from "./map.js";
 
 let data = {
+	chaturthi: chaturthiData,
 	panchami: panchamiData,
 	shashthi: shashthiData,
 	saptami1: saptami1Data,
@@ -62,7 +64,12 @@ function renderItinerary(routeData) {
 				? renderTransitMarkup(lunchStop.transit)
 				: "";
 		const afterStopMarkup =
-			stopTransitMarkup + lunchMarkup + lunchTransitMarkup;
+			stopTransitMarkup +
+			(stop.nextTransit !== undefined
+				? renderTransitMarkup(stop.nextTransit)
+				: "") +
+			lunchMarkup +
+			lunchTransitMarkup;
 
 		if (afterStopMarkup) {
 			slot.insertAdjacentHTML("afterend", afterStopMarkup);
@@ -103,7 +110,8 @@ function calculateRouteSummary(routeData) {
 	const lastTransit = orderedTransits[orderedTransits.length - 1];
 	// const lastTransitStep = lastTransit?.steps[lastTransit.steps.length - 1];
 	const maxStopOrder = Math.max(...stops.map((s) => s.order));
-	const maxStopTransit = stops.find((s) => s.order === maxStopOrder)?.transit;
+	const lastStop = stops.find((s) => s.order === maxStopOrder);
+	const maxStopTransit = lastStop?.nextTransit ?? lastStop?.transit;
 	const maxStopTransitSteps = orderedTransits.find(
 		(t) => t.index === maxStopTransit,
 	)?.steps;
@@ -118,6 +126,9 @@ function calculateRouteSummary(routeData) {
 	].filter(Boolean);
 	const linkedTransitIndexes = new Set([
 		...stops.map((stop) => stop.transit).filter((index) => index !== undefined),
+		...stops
+			.map((stop) => stop.nextTransit)
+			.filter((index) => index !== undefined),
 		...(stops.some((stop) => stop.lunch) && lunchStop?.transit !== undefined
 			? [lunchStop.transit]
 			: []),
@@ -144,7 +155,13 @@ function calculateRouteSummary(routeData) {
 	const duration = hours
 		? `${hours} hour${hours === 1 ? "" : "s"} ${minutes} min`
 		: `${minutes} min`;
-	const zones = [...new Set(stops.map((stop) => stop.area[1]))];
+	const zones = [
+		...new Set(
+			stops
+				.map((stop) => stop.area?.[1])
+				.filter((zone) => zone && zone !== Zone.NONE),
+		),
+	];
 
 	return {
 		itinerary: itinerary.join(" &rarr; "),
@@ -175,7 +192,7 @@ function renderMain(routeData, Places) {
 	const meetupPlaceClass = getMeetupPlaceClass(meetup.place, Places);
 	const { itinerary, totalWalkingDistance, totalPandals, zones } =
 		calculateRouteSummary(routeData);
-	mainRoot.outerHTML = `<main id="puja-day-main"><section class="section"><span class="eyebrow">${dateLabel}</span><h1 class="puja-day display-3 mt-3">${title}</h1><p class="lead text-secondary">Meet-up: ${meetup.time} &middot; <a class="route-location-link meetup-place-chip ${meetupPlaceClass}" target="_blank" rel="noopener" href="${meetup.place.gmapsUrl}"><span>${meetup.place.name}</span></a></p><div class="route-summary">&#128256; <strong>Itinerary:</strong> ${itinerary}</div><div class="route-summary mt-3">&#128694; <strong>Total Walking Distance:</strong> ${totalWalkingDistance}</div><div class="route-summary mt-3">&#127917; <strong>Total Pandals:</strong> ${totalPandals}</div><div class="route-summary mt-3">&#128506;&#65039; <strong>Zones Covered:</strong> ${zones}</div><div class="mt-4 mb-3"><button id="toggle-map-btn" class="btn btn-outline-dark">Show Map View</button></div><div id="map-view-container" style="display: none; height: 500px; width: 100%; margin-bottom: 20px; z-index: 1;"></div><ol class="route-list"></ol></section></main>`;
+	mainRoot.outerHTML = `<main id="puja-day-main"><section class="section"><span class="eyebrow">${dateLabel}</span><h1 class="puja-day display-3 mt-3">${title}</h1><p class="lead text-secondary">Meet-up: ${meetup.time} &middot; <a class="route-location-link meetup-place-chip ${meetupPlaceClass}" target="_blank" rel="noopener" href="${meetup.place.gmapsUrl}"><span>${meetup.place.name}</span></a></p><div class="route-summary">&#128256; <strong>Itinerary:</strong> ${itinerary}</div><div class="route-summary mt-3">&#128694; <strong>Total Walking Distance:</strong> ${totalWalkingDistance}</div><div class="route-summary mt-3">&#127917; <strong>Total Pandals:</strong> ${totalPandals}</div>${zones ? `<div class="route-summary mt-3">&#128506;&#65039; <strong>Zones Covered:</strong> ${zones}</div>` : ""}<div class="mt-4 mb-3"><button id="toggle-map-btn" class="btn btn-outline-dark">Show Map View</button></div><div id="map-view-container" style="display: none; height: 500px; width: 100%; margin-bottom: 20px; z-index: 1;"></div><ol class="route-list"></ol></section></main>`;
 	renderItinerary(routeData);
 	setupPandalExpansions();
 }
@@ -221,6 +238,7 @@ function renderSelectedPage(pageRoot) {
 	Promise.all([
 		import("./commons.js"),
 		import("./map.js"),
+		import("./views/chaturthi.js"),
 		import("./views/panchami.js"),
 		import("./views/shashthi.js"),
 		import("./views/saptami1.js"),
@@ -232,6 +250,7 @@ function renderSelectedPage(pageRoot) {
 			([
 				commons,
 				map,
+				{ chaturthi },
 				{ panchami },
 				{ shashthi },
 				{ saptami1 },
@@ -250,6 +269,7 @@ function renderSelectedPage(pageRoot) {
 				);
 				const pageKey = requestedPage || pageRoot.dataset.page || "panchami";
 				const routeData = {
+					chaturthi,
 					panchami,
 					shashthi,
 					saptami1,
@@ -318,20 +338,29 @@ function renderCounts() {
 		".overall-pandal-count",
 	);
 	let totalDaysEl = document.querySelector(".total-days");
-	totalDaysEl.innerText = keys.length;
+	if (totalDaysEl) totalDaysEl.innerText = keys.length;
 	overallPandalCountEls.forEach((el) => (el.innerText = data.total.pandals));
-	keys.forEach((k, index) => {
-		if (daywisePandalCountEls && daywisePandalCountEls[index]) {
-			daywisePandalCountEls[index].innerText = data[k].total.pandals;
+	const calendarDayKeys = [
+		"chaturthi",
+		"panchami",
+		"shashthi",
+		"saptami1",
+		"saptami2",
+		"astami",
+		"navami",
+	];
+	calendarDayKeys.forEach((key, index) => {
+		if (daywisePandalCountEls?.[index]) {
+			daywisePandalCountEls[index].innerText = data[key]?.total?.pandals ?? 0;
 		}
-		if (pandalCountSummaryEls && pandalCountSummaryEls[index]) {
-			pandalCountSummaryEls[index].innerText = data[k].total.pandals;
+		if (pandalCountSummaryEls?.[index]) {
+			pandalCountSummaryEls[index].innerText = data[key]?.total?.pandals ?? 0;
 		}
 	});
 }
 
 function renderZones() {
-	let zoneKeys = Object.keys(Zone);
+	let zoneKeys = Object.keys(Zone).filter((key) => Zone[key] !== Zone.NONE);
 	let areaKeys = Object.keys(Area);
 	let targetingZonesEl = document.getElementById("targeting-zones");
 	zoneKeys.forEach((z) => {

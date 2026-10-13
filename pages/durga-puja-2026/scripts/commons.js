@@ -5,6 +5,7 @@ export const ItemType = {
 };
 
 export const Zone = {
+	NONE: "None",
 	NORTH: "North Kolkata",
 	SOUTH: "South Kolkata",
 	EAST: "East Kolkata",
@@ -14,6 +15,7 @@ export const Zone = {
 };
 
 export const Area = {
+	KALYANI: ["Kalyani", Zone.NONE],
 	BELGACHIA: ["Belgachia", Zone.NORTH],
 	TALA: ["Tala", Zone.NORTH],
 	MUDIALI: ["Mudiali", Zone.SOUTH],
@@ -94,6 +96,16 @@ export const TransitMedium = {
 
 export const Places = {
 	BUS_STOPS: {
+		ITI_MORE: {
+			name: "I.T.I More",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Kalyani+ITI+more/@22.9803252,88.4372845,888m/data=!3m1!1e3!4m14!1m7!3m6!1s0x39f89529629985dd:0xb32e85f580866520!2sITI+More+Durga+Puja+Ground!8m2!3d22.9796125!4d88.4385469!16s%2Fg%2F11gxvs5syd!3m5!1s0x39f89500129f03b1:0x9859bc082d30ff09!8m2!3d22.9801297!4d88.4379673!16s%2Fg%2F11m5_s6gdr!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		RATHTALA_MORE: {
+			name: "Rathtala More",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Rathtala+More/@22.9592479,88.424872,120m/data=!3m1!1e3!4m14!1m7!3m6!1s0x39f89529629985dd:0xb32e85f580866520!2sITI+More+Durga+Puja+Ground!8m2!3d22.9796125!4d88.4385469!16s%2Fg%2F11gxvs5syd!3m5!1s0x39f89500648abb13:0xd15fc82ed1f863ba!8m2!3d22.9591796!4d88.4250186!16s%2Fg%2F11z4wnt61x!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+		},
 		BALLY_HALT: {
 			name: "Bally Halt",
 			gmapsUrl:
@@ -493,6 +505,16 @@ export const Places = {
 		},
 	},
 	RAIL_STATIONS: {
+		KALYANI: {
+			name: "Kalyani",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Kalyani/@22.9681154,88.4641749,802m/data=!3m1!1e3!4m14!1m7!3m6!1s0x39f8952bb39dcec3:0x41e574a9d0b9d88e!2sKalyani+Rail+Station!8m2!3d22.9681154!4d88.4667498!16s%2Fg%2F11j8sm30y9!3m5!1s0x39f89569b468a613:0xb71acdd2b15d7dac!8m2!3d22.969111!4d88.4674923!16s%2Fg%2F11g8lsl8hd!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+		},
+		KANCHRAPARA: {
+			name: "Kanchrapara",
+			gmapsUrl:
+				"https://www.google.com/maps/place/Kanchrapara+station/@22.9462037,88.4500365,410m/data=!3m1!1e3!4m6!3m5!1s0x39f89500732f47e1:0x1b7e1e13ec9fd2c3!8m2!3d22.9460879!4d88.4513009!16s%2Fg%2F11w32vm7y0!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+		},
 		TALA: {
 			name: "Tala",
 			gmapsUrl:
@@ -653,7 +675,10 @@ export function renderPandal(item, routeData) {
 	const toiletsLink = toiletsUrl
 		? `<a class="map-btn" target="_blank" rel="noopener" href="${safe(toiletsUrl)}">Toilets &#8599;</a>`
 		: "";
-	const area = `${item.area[0].toUpperCase()} (${item.area[1].toUpperCase()})`;
+	const area =
+		item.area[1] === Zone.NONE
+			? item.area[0].toUpperCase()
+			: `${item.area[0].toUpperCase()} (${item.area[1].toUpperCase()})`;
 	const previousStop = routeData.stops.find(
 		(stop) => stop.order === item.order - 1,
 	);
